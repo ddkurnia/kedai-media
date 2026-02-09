@@ -23,7 +23,7 @@ color:white;
 overflow-x:hidden;
 }
 
-/* Glow background */
+/* Glow Background */
 body::before{
 content:"";
 position:fixed;
@@ -49,7 +49,7 @@ animation:floatGlow 8s infinite alternate-reverse;
 }
 
 @keyframes floatGlow{
-from{transform:translateY(0px);}
+from{transform:translateY(0);}
 to{transform:translateY(40px);}
 }
 
@@ -112,39 +112,43 @@ nav a:hover{
 color:#22d3ee;
 }
 
-/* HERO */
+/* HERO PREMIUM */
 .hero{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:160px 8% 120px 8%;
+padding:200px 8% 140px 8%;
+gap:80px;
 flex-wrap:wrap;
+position:relative;
 }
 
 .hero-text{
-max-width:600px;
+max-width:620px;
 animation:fadeUp 1s ease forwards;
 opacity:0;
 }
 
 .hero h1{
-font-size:56px;
+font-size:60px;
 font-weight:800;
-margin-bottom:20px;
+margin-bottom:25px;
 background:linear-gradient(90deg,#22d3ee,#3b82f6);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
+line-height:1.1;
 }
 
 .hero p{
 color:#94a3b8;
-margin-bottom:30px;
-line-height:1.6;
+margin:30px 0 45px 0;
+line-height:1.8;
+font-size:17px;
 }
 
 .btn{
-padding:14px 30px;
-border-radius:12px;
+padding:16px 40px;
+border-radius:14px;
 text-decoration:none;
 font-weight:600;
 transition:0.3s;
@@ -154,11 +158,12 @@ display:inline-block;
 .btn-primary{
 background:#22d3ee;
 color:#020617;
-box-shadow:0 0 20px #22d3ee;
+box-shadow:0 0 30px #22d3ee;
 }
 
 .btn-primary:hover{
-box-shadow:0 0 40px #22d3ee;
+box-shadow:0 0 60px #22d3ee;
+transform:translateY(-3px);
 }
 
 .hero-image{
@@ -167,19 +172,37 @@ min-width:300px;
 text-align:center;
 animation:fadeUp 1.3s ease forwards;
 opacity:0;
+position:relative;
 }
 
 .hero-image img{
 width:100%;
-max-width:520px;
-filter:drop-shadow(0 0 30px #22d3ee55);
-border-radius:20px;
+max-width:540px;
+filter:drop-shadow(0 40px 60px rgba(34,211,238,0.25));
+border-radius:24px;
+transition:0.6s;
+}
+
+.hero-image img:hover{
+transform:translateY(-5px) scale(1.02);
+}
+
+/* TRANSITION */
+.hero::after{
+content:"";
+position:absolute;
+bottom:-60px;
+left:0;
+width:100%;
+height:120px;
+background:linear-gradient(to bottom, transparent, #020617);
 }
 
 /* STATS */
 .stats{
-padding:80px 8%;
+padding:80px 8% 120px 8%;
 text-align:center;
+background:linear-gradient(to bottom, transparent, #0f172a);
 }
 
 .stats h2{
@@ -275,14 +298,14 @@ from{transform:translateY(40px);opacity:0;}
 to{transform:translateY(0);opacity:1;}
 }
 
-/* Mobile */
+/* MOBILE */
 @media(max-width:768px){
 .hero{
 flex-direction:column;
 text-align:center;
-padding:140px 8% 80px 8%;
+padding:160px 8% 100px 8%;
 }
-.hero h1{font-size:38px;}
+.hero h1{font-size:40px;}
 }
 </style>
 </head>
@@ -324,14 +347,12 @@ padding:140px 8% 80px 8%;
 </section>
 
 <section class="services" id="services">
-
 <div class="card"><i class="ri-line-chart-line"></i><h3>Digital Marketing</h3><p>Strategi iklan dan optimasi untuk meningkatkan penjualan.</p></div>
 <div class="card"><i class="ri-rocket-line"></i><h3>Branding Produk</h3><p>Membangun identitas visual dan positioning produk yang kuat.</p></div>
 <div class="card"><i class="ri-shield-keyhole-line"></i><h3>Keamanan Media Sosial</h3><p>Proteksi akun bisnis dari hacking dan ancaman digital.</p></div>
 <div class="card"><i class="ri-refresh-line"></i><h3>Hapus & Pemulihan Akun</h3><p>Layanan penghapusan serta recovery akun media sosial bermasalah.</p></div>
 <div class="card"><i class="ri-code-s-slash-line"></i><h3>Automation Program</h3><p>Pembuatan sistem otomatis untuk efisiensi operasional bisnis.</p></div>
 <div class="card"><i class="ri-brush-line"></i><h3>Desain Grafis</h3><p>Desain feed, logo, banner, dan kebutuhan visual profesional.</p></div>
-
 </section>
 
 <section class="cta" id="contact">
@@ -351,8 +372,7 @@ padding:140px 8% 80px 8%;
 const cards = document.querySelectorAll('.card');
 window.addEventListener('scroll',()=>{
 cards.forEach(card=>{
-const top = card.getBoundingClientRect().top;
-if(top < window.innerHeight - 100){
+if(card.getBoundingClientRect().top < window.innerHeight - 100){
 card.classList.add('show');
 }
 });
