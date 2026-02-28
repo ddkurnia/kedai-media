@@ -57,7 +57,7 @@ jasa digital marketing indonesia
 
 <style>
 
-/* STYLE ANDA TETAP SAMA — TIDAK DIUBAH */
+/* STYLE ANDA TETAP */
 
 body{
 font-family:'Inter',sans-serif;
@@ -228,9 +228,44 @@ color:white;
 .btn-blue{background:#2563eb;}
 .btn-green{background:#22c55e;}
 
-footer{
+
+/* FOOTER PROFESSIONAL — TAMBAHAN */
+
+.footer-pro{
+background:#0f172a;
+color:#cbd5e1;
+padding:60px 8% 30px;
+margin-top:60px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:40px;
+}
+
+.footer-title{
+color:white;
+font-weight:700;
+margin-bottom:15px;
+}
+
+.footer-link{
+display:block;
+color:#94a3b8;
+text-decoration:none;
+margin-bottom:8px;
+}
+
+.footer-link:hover{
+color:white;
+}
+
+.footer-bottom{
+border-top:1px solid #1e293b;
+margin-top:40px;
+padding-top:20px;
 text-align:center;
-padding:25px;
 color:#64748b;
 }
 
@@ -275,13 +310,49 @@ color:#64748b;
 <div class="modal-box" id="modalContent"></div>
 </div>
 
-<footer>
-© 2026 Kedai Media Indonesia
-</footer>
+
+<!-- FOOTER PROFESSIONAL TAMBAHAN -->
+
+<section class="footer-pro">
+
+<div class="footer-grid">
+
+<div>
+<div class="footer-title">Kedai Media</div>
+<div>Solusi digital profesional sejak 2009. Melayani website, automation, dan sistem custom seluruh Indonesia.</div>
+</div>
+
+<div>
+<div class="footer-title">Layanan</div>
+<a href="pemulihan-akun-sosmed/" class="footer-link">Pemulihan Akun</a>
+<a href="jasa-pembuatan-website/" class="footer-link">Pembuatan Website</a>
+<a href="whatsapp-automation/" class="footer-link">WhatsApp Automation</a>
+<a href="sistem-custom/" class="footer-link">Sistem Custom</a>
+</div>
+
+<div>
+<div class="footer-title">Perusahaan</div>
+<a href="#" class="footer-link">Tentang Kami</a>
+<a href="#" class="footer-link">Kontak</a>
+<a href="#" class="footer-link">Privacy Policy</a>
+</div>
+
+<div>
+<div class="footer-title">Kontak</div>
+<div>WhatsApp: 082285781863</div>
+<div>Indonesia</div>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 Kedai Media Indonesia. All rights reserved.
+</div>
+
+</section>
+
 
 <script>
-
-/* COUNTER */
 
 function animateValue(id,start,end,duration){
 let obj=document.getElementById(id);
@@ -299,8 +370,6 @@ if(current>=end)clearInterval(timer);
 animateValue("clients",0,10247,2000);
 animateValue("visitors",0,Math.floor(Math.random()*200)+50,2000);
 
-/* SCROLL REVEAL */
-
 const observer=new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
 if(entry.isIntersecting){
@@ -312,8 +381,6 @@ entry.target.classList.add("visible");
 document.querySelectorAll(".card").forEach(el=>{
 observer.observe(el);
 });
-
-/* SERVICES DATA */
 
 const services={
 recovery:{title:"Pemulihan Akun Sosmed",desc:"Mengembalikan akun yang diretas.",url:"pemulihan-akun-sosmed/"},
