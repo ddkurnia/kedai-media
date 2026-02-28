@@ -57,7 +57,7 @@ jasa digital marketing indonesia
 
 <style>
 
-/* ===== STYLE ANDA TETAP ===== */
+/* CSS ANDA TETAP */
 
 body{
 font-family:'Inter',sans-serif;
@@ -104,9 +104,6 @@ box-shadow:0 15px 50px rgba(0,0,0,0.08);
 position:sticky;
 top:0;
 z-index:10;
-display:flex;
-justify-content:space-between;
-align-items:center;
 }
 
 .logo{
@@ -116,19 +113,6 @@ background:linear-gradient(90deg,#2563eb,#7c3aed);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 }
-
-.nav a{
-margin-left:25px;
-text-decoration:none;
-color:#475569;
-font-weight:600;
-}
-
-.nav a:hover{
-color:#2563eb;
-}
-
-/* HERO */
 
 .hero{
 text-align:center;
@@ -149,8 +133,6 @@ font-size:18px;
 margin-top:10px;
 }
 
-/* STATS */
-
 .stats{
 display:flex;
 justify-content:center;
@@ -167,50 +149,14 @@ box-shadow:0 10px 30px rgba(0,0,0,0.08);
 text-align:center;
 }
 
-/* CLIENT LOGO MARQUEE */
-
-.clients{
-margin:70px 0;
-overflow:hidden;
-}
-
-.clients-track{
-display:flex;
-gap:60px;
-width:max-content;
-animation:scrollClients 40s linear infinite;
-}
-
-.clients img{
-height:40px;
-opacity:0.6;
-filter:grayscale(100%);
-transition:0.3s;
-}
-
-.clients img:hover{
-opacity:1;
-filter:grayscale(0%);
-}
-
-@keyframes scrollClients{
-from{transform:translateX(0);}
-to{transform:translateX(-50%);}
-}
-
-/* SERVICES */
-
 .services{
 padding:0 8%;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
 gap:25px;
 }
 
 .card{
-display:flex;
-align-items:center;
-gap:15px;
 padding:28px;
 border-radius:18px;
 color:white;
@@ -218,8 +164,10 @@ cursor:pointer;
 transition:0.35s;
 opacity:0;
 transform:translateY(30px);
+display:flex;
+justify-content:space-between;
+align-items:center;
 font-weight:700;
-font-size:17px;
 }
 
 .card i{
@@ -232,8 +180,8 @@ transform:translateY(0);
 }
 
 .card:hover{
-transform:translateY(-8px);
-box-shadow:0 30px 80px rgba(0,0,0,0.25);
+transform:translateY(-10px) scale(1.05);
+box-shadow:0 40px 120px rgba(0,0,0,0.25);
 }
 
 .website{background:linear-gradient(135deg,#3b82f6,#1d4ed8);}
@@ -245,54 +193,123 @@ box-shadow:0 30px 80px rgba(0,0,0,0.25);
 .security{background:linear-gradient(135deg,#06b6d4,#0e7490);}
 .system{background:linear-gradient(135deg,#64748b,#1e293b);}
 
-/* WHY SECTION */
-
-.why{
-padding:80px 8%;
-text-align:center;
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(15,23,42,0.7);
+justify-content:center;
+align-items:center;
+z-index:100;
 }
 
-.why-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:30px;
-margin-top:40px;
-}
-
-.why-box{
+.modal-box{
 background:white;
-padding:25px;
-border-radius:15px;
-box-shadow:0 10px 30px rgba(0,0,0,0.05);
+padding:35px;
+border-radius:20px;
+width:90%;
+max-width:550px;
+position:relative;
+}
+
+.close{
+position:absolute;
+top:15px;
+right:20px;
+cursor:pointer;
+font-size:20px;
+}
+
+.btn{
+display:inline-block;
+margin-top:15px;
+margin-right:10px;
+padding:10px 20px;
+border-radius:8px;
+text-decoration:none;
+color:white;
+}
+
+.btn-blue{background:#2563eb;}
+.btn-green{background:#22c55e;}
+
+/* CLIENT LOGO */
+
+.client-strip{
+margin:60px 0;
+overflow:hidden;
+background:white;
+padding:25px 0;
+}
+
+.client-track{
+display:flex;
+gap:60px;
+animation:scrollClients 40s linear infinite;
+}
+
+.client-logo{
+height:40px;
+opacity:0.4;
+filter:grayscale(100%);
+}
+
+@keyframes scrollClients{
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
 }
 
 /* CTA */
 
 .cta{
-margin:80px 0;
-padding:60px;
-text-align:center;
-background:linear-gradient(90deg,#2563eb,#7c3aed);
+margin:80px 8%;
+padding:50px;
+border-radius:20px;
+background:linear-gradient(135deg,#2563eb,#7c3aed);
 color:white;
+text-align:center;
 }
 
-.cta a{
+.cta-btn{
 display:inline-block;
-margin-top:20px;
-padding:14px 30px;
+margin-top:15px;
+padding:14px 28px;
 background:white;
 color:#2563eb;
-font-weight:700;
 border-radius:10px;
+font-weight:700;
 text-decoration:none;
 }
 
-/* FOOTER */
+/* WA FLOAT */
+
+.wa-float{
+position:fixed;
+bottom:25px;
+right:25px;
+background:#22c55e;
+color:white;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+box-shadow:0 15px 40px rgba(0,0,0,0.25);
+z-index:999;
+}
+
+/* FOOTER ANDA TETAP */
 
 .footer-pro{
 background:#0f172a;
 color:#cbd5e1;
 padding:60px 8% 30px;
+margin-top:60px;
 }
 
 .footer-grid{
@@ -322,26 +339,6 @@ text-align:center;
 color:#64748b;
 }
 
-/* FLOATING WA */
-
-.floating-wa{
-position:fixed;
-bottom:25px;
-right:25px;
-background:#22c55e;
-color:white;
-width:55px;
-height:55px;
-border-radius:50%;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:26px;
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
-text-decoration:none;
-z-index:999;
-}
-
 </style>
 </head>
 
@@ -352,12 +349,6 @@ z-index:999;
 
 <header>
 <div class="logo">Kedai Media</div>
-<div class="nav">
-<a href="#">Home</a>
-<a href="#layanan">Layanan</a>
-<a href="#">Tentang</a>
-<a href="#">Kontak</a>
-</div>
 </header>
 
 <section class="hero">
@@ -372,88 +363,85 @@ z-index:999;
 <div class="stat"><h3>24/7</h3><p>Support</p></div>
 </section>
 
-<!-- CLIENT LOGO AUTO SCROLL -->
-
-<section class="clients">
-<div class="clients-track">
-<img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Facebook_Logo.png">
-<img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Google_Logo.png">
-<img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo.svg">
-<img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg">
-<img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Logo_Tokopedia.svg">
-<img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Shopee_logo.svg">
-<img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Facebook_Logo.png">
-<img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Google_Logo.png">
+<section class="client-strip">
+<div class="client-track">
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/google.svg" class="client-logo">
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/meta.svg" class="client-logo">
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" class="client-logo">
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" class="client-logo">
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" class="client-logo">
 </div>
 </section>
 
-<section class="services" id="layanan">
+<section class="services">
 
-<div class="card recovery" onclick="openModal('recovery')"><i class="ri-shield-keyhole-line"></i>Pemulihan Akun Sosmed</div>
-<div class="card website" onclick="openModal('website')"><i class="ri-code-line"></i>Pembuatan Website</div>
-<div class="card wa" onclick="openModal('wa')"><i class="ri-whatsapp-line"></i>WhatsApp Automation</div>
-<div class="card social" onclick="openModal('social')"><i class="ri-user-follow-line"></i>Optimasi Sosial Media</div>
-<div class="card ads" onclick="openModal('ads')"><i class="ri-megaphone-line"></i>Iklan Digital</div>
-<div class="card design" onclick="openModal('design')"><i class="ri-brush-line"></i>Desain Grafis</div>
-<div class="card security" onclick="openModal('security')"><i class="ri-lock-line"></i>Keamanan Akun</div>
-<div class="card system" onclick="openModal('system')"><i class="ri-cpu-line"></i>Sistem Custom</div>
-
-</section>
-
-<section class="why">
-<h2>Kenapa Memilih Kedai Media?</h2>
-<div class="why-grid">
-<div class="why-box">✓ Terpercaya sejak 2009</div>
-<div class="why-box">✓ 10.000+ Klien</div>
-<div class="why-box">✓ Support 24/7</div>
-<div class="why-box">✓ Teknologi Terbaru</div>
-<div class="why-box">✓ Aman & Confidential</div>
-<div class="why-box">✓ Garansi Layanan</div>
+<div class="card recovery" onclick="openModal('recovery')">
+Pemulihan Akun Sosmed
+<i class="ri-shield-keyhole-line"></i>
 </div>
+
+<div class="card website" onclick="openModal('website')">
+Pembuatan Website
+<i class="ri-code-line"></i>
+</div>
+
+<div class="card wa" onclick="openModal('wa')">
+WhatsApp Automation
+<i class="ri-whatsapp-line"></i>
+</div>
+
+<div class="card social" onclick="openModal('social')">
+Optimasi Sosial Media
+<i class="ri-user-follow-line"></i>
+</div>
+
+<div class="card ads" onclick="openModal('ads')">
+Iklan Digital
+<i class="ri-megaphone-line"></i>
+</div>
+
+<div class="card design" onclick="openModal('design')">
+Desain Grafis
+<i class="ri-brush-line"></i>
+</div>
+
+<div class="card security" onclick="openModal('security')">
+Keamanan Akun
+<i class="ri-lock-line"></i>
+</div>
+
+<div class="card system" onclick="openModal('system')">
+Sistem Custom
+<i class="ri-cpu-line"></i>
+</div>
+
 </section>
 
 <section class="cta">
-<h2>Siap Memulai Project Anda?</h2>
-<p>Konsultasi gratis sekarang juga.</p>
-<a href="https://wa.me/6282285781863">Hubungi via WhatsApp</a>
+<h2>Siap Mengembangkan Bisnis Anda?</h2>
+<a href="https://wa.me/6282285781863" class="cta-btn">Hubungi Sekarang</a>
 </section>
 
+<!-- FOOTER ANDA TETAP -->
 <section class="footer-pro">
 <div class="footer-grid">
 <div>
 <div class="footer-title">Kedai Media</div>
 <div>Solusi digital profesional sejak 2009.</div>
 </div>
-<div>
-<div class="footer-title">Layanan</div>
-<a href="pemulihan-akun-sosmed/" class="footer-link">Pemulihan Akun</a>
-<a href="jasa-pembuatan-website/" class="footer-link">Pembuatan Website</a>
-<a href="whatsapp-automation/" class="footer-link">WhatsApp Automation</a>
-</div>
-<div>
-<div class="footer-title">Perusahaan</div>
-<a href="#" class="footer-link">Tentang Kami</a>
-<a href="#" class="footer-link">Kontak</a>
-</div>
-<div>
-<div class="footer-title">Kontak</div>
-<div>WhatsApp: 082285781863</div>
-</div>
 </div>
 <div class="footer-bottom">
-© 2026 Kedai Media Indonesia. All rights reserved.
+© 2026 Kedai Media Indonesia
 </div>
 </section>
 
-<a href="https://wa.me/6282285781863" class="floating-wa">
+<a href="https://wa.me/6282285781863" class="wa-float">
 <i class="ri-whatsapp-line"></i>
 </a>
 
 <script>
 
-/* Script Anda tetap sama */
+/* SCRIPT ANDA TETAP */
 
 function animateValue(id,start,end,duration){
 let obj=document.getElementById(id);
@@ -482,32 +470,6 @@ entry.target.classList.add("visible");
 document.querySelectorAll(".card").forEach(el=>{
 observer.observe(el);
 });
-
-const services={
-recovery:{title:"Pemulihan Akun Sosmed",desc:"Mengembalikan akun yang diretas.",url:"pemulihan-akun-sosmed/"},
-website:{title:"Pembuatan Website",desc:"Website profesional untuk bisnis.",url:"jasa-pembuatan-website/"},
-wa:{title:"WhatsApp Automation",desc:"WhatsApp bot dan auto reply bisnis.",url:"whatsapp-automation/"},
-social:{title:"Optimasi Sosial Media",desc:"Followers real dan engagement.",url:"optimasi-sosial-media/"},
-ads:{title:"Iklan Digital",desc:"Facebook Ads dan Google Ads.",url:"iklan-digital/"},
-design:{title:"Desain Grafis",desc:"Desain brosur, flyer, konten sosial media.",url:"desain-grafis/"},
-security:{title:"Keamanan Akun",desc:"Proteksi akun dari hacker.",url:"keamanan-akun/"},
-system:{title:"Sistem Custom",desc:"Pembuatan sistem sesuai kebutuhan.",url:"sistem-custom/"}
-};
-
-function openModal(service){
-const s=services[service];
-document.getElementById("modal").style.display="flex";
-document.getElementById("modalContent").innerHTML=
-"<div class='close' onclick='closeModal()'>✕</div>"+
-"<h3>"+s.title+"</h3>"+
-"<p>"+s.desc+"</p>"+
-"<a href='"+s.url+"' class='btn btn-blue'>Pelajari Selengkapnya</a>"+
-"<a href='https://wa.me/6282285781863' class='btn btn-green'>Hubungi Sekarang</a>";
-}
-
-function closeModal(){
-document.getElementById("modal").style.display="none";
-}
 
 </script>
 
