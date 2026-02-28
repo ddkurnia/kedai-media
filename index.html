@@ -6,11 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>
-Jasa Pembuatan Website, Pemulihan Akun Sosmed, WhatsApp Automation, Iklan Digital, Desain Grafis, dan Sistem Custom | Kedai Media Indonesia
+Jasa Pembuatan Website, Pemulihan Akun Sosmed, WhatsApp Automation, Iklan Digital, Desain Grafis, Sistem Custom | Kedai Media Indonesia
 </title>
 
 <meta name="description" content="
-Kedai Media menyediakan jasa pembuatan website, landing page, pemulihan akun sosmed Facebook Instagram TikTok yang di hack, cara mengembalikan akun facebook yang di hack, jasa menghapus akun sosmed yang disalahgunakan, WhatsApp automation, WhatsApp bot, followers real, jasa iklan Facebook Ads Instagram Ads Google Ads, desain grafis, keamanan akun sosial media, dan pembuatan sistem custom untuk UMKM, bisnis, instansi pemerintah, organisasi, dan partai politik di seluruh Indonesia.
+Kedai Media menyediakan jasa pembuatan website, landing page, pemulihan akun sosmed Facebook Instagram TikTok yang di hack, cara mengembalikan akun facebook yang di hack, jasa menghapus akun sosmed yang disalahgunakan, WhatsApp automation, WhatsApp bot, followers real, jasa iklan Facebook Ads Instagram Ads Google Ads, desain grafis, keamanan akun sosial media, dan pembuatan sistem custom untuk UMKM, bisnis, instansi pemerintah, organisasi, dan partai politik di seluruh Indonesia. Terpercaya sejak 2009.
 ">
 
 <meta name="keywords" content="
@@ -66,59 +66,16 @@ jasa digital marketing indonesia
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
-}
-
 body{
-background:linear-gradient(180deg,#f8fafc,#eef2ff,#f8fafc);
-overflow-x:hidden;
-color:#0f172a;
+font-family:'Inter',sans-serif;
+margin:0;
+background:linear-gradient(180deg,#f8fafc,#eef2ff);
 }
-
-/* STRIPE STYLE BACKGROUND */
-
-body::before{
-content:"";
-position:fixed;
-width:600px;
-height:600px;
-background:radial-gradient(circle,#3b82f630,transparent);
-top:-200px;
-left:-200px;
-animation:float 12s infinite alternate;
-z-index:-1;
-}
-
-body::after{
-content:"";
-position:fixed;
-width:500px;
-height:500px;
-background:radial-gradient(circle,#8b5cf630,transparent);
-bottom:-200px;
-right:-200px;
-animation:float 15s infinite alternate-reverse;
-z-index:-1;
-}
-
-@keyframes float{
-from{transform:translateY(0px);}
-to{transform:translateY(60px);}
-}
-
-/* HEADER */
 
 header{
-padding:22px 8%;
+padding:20px 8%;
 background:white;
 box-shadow:0 10px 30px rgba(0,0,0,0.05);
-display:flex;
-justify-content:space-between;
-align-items:center;
 }
 
 .logo{
@@ -129,77 +86,44 @@ background:linear-gradient(90deg,#2563eb,#7c3aed);
 -webkit-text-fill-color:transparent;
 }
 
-/* SECTION TITLE */
-
 .section-title{
 text-align:center;
 font-size:36px;
-font-weight:800;
-margin-bottom:40px;
+margin-top:40px;
+margin-bottom:20px;
 background:linear-gradient(90deg,#2563eb,#7c3aed);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 }
 
-/* SERVICES */
-
 .services{
-padding:60px 8%;
-}
-
-.grid{
+padding:20px 8%;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
+gap:20px;
 }
 
 .card{
 padding:30px;
-border-radius:18px;
-cursor:pointer;
+border-radius:16px;
 color:white;
-position:relative;
-overflow:hidden;
+cursor:pointer;
 transition:0.4s;
 }
 
-.card::before{
-content:"";
-position:absolute;
-width:200%;
-height:200%;
-background:linear-gradient(120deg,transparent,rgba(255,255,255,0.3),transparent);
-transform:rotate(45deg);
-top:-150%;
-left:-150%;
-transition:0.6s;
-}
-
-.card:hover::before{
-top:100%;
-left:100%;
-}
-
 .card:hover{
-transform:scale(1.08) translateY(-8px);
+transform:scale(1.07);
 box-shadow:0 25px 60px rgba(0,0,0,0.25);
 }
 
+.red{background:linear-gradient(135z);}
 .blue{background:linear-gradient(135deg,#3b82f6,#2563eb);}
-.red{background:linear-gradient(135deg,#ef4444,#dc2626);}
 .green{background:linear-gradient(135deg,#22c55e,#16a34a);}
 .purple{background:linear-gradient(135deg,#8b5cf6,#7c3aed);}
 .orange{background:linear-gradient(135deg,#f97316,#ea580c);}
 .pink{background:linear-gradient(135deg,#ec4899,#be185d);}
 .cyan{background:linear-gradient(135deg,#06b6d4,#0891b2);}
 .gray{background:linear-gradient(135deg,#64748b,#334155);}
-
-.card i{
-font-size:32px;
-margin-bottom:10px;
-}
-
-/* MODAL */
 
 .modal{
 display:none;
@@ -215,53 +139,26 @@ align-items:center;
 
 .modal-content{
 background:white;
-padding:35px;
-border-radius:18px;
-max-width:520px;
-width:90%;
-animation:zoom 0.3s;
-}
-
-@keyframes zoom{
-from{transform:scale(0.7);}
-to{transform:scale(1);}
-}
-
-.close{
-float:right;
-font-size:22px;
-cursor:pointer;
+padding:30px;
+border-radius:16px;
+max-width:500px;
 }
 
 .btn{
 display:inline-block;
-margin-top:20px;
-padding:12px 24px;
-background:linear-gradient(90deg,#2563eb,#7c3aed);
+margin-top:15px;
+padding:10px 20px;
+background:#2563eb;
 color:white;
 text-decoration:none;
-border-radius:10px;
-font-weight:600;
-box-shadow:0 10px 25px rgba(37,99,235,0.3);
+border-radius:8px;
 }
-
-/* TRUST SECTION */
 
 .trust{
 text-align:center;
-padding:60px 8%;
+padding:40px;
 background:white;
 margin-top:40px;
-box-shadow:0 -5px 30px rgba(0,0,0,0.05);
-}
-
-.trust h3{
-font-size:22px;
-margin-bottom:10px;
-}
-
-.trust p{
-color:#64748b;
 }
 
 footer{
@@ -271,6 +168,7 @@ color:#64748b;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -279,93 +177,87 @@ color:#64748b;
 <div class="logo">Kedai Media</div>
 </header>
 
-<section class="services">
 <h2 class="section-title">Layanan Kedai Media</h2>
 
-<div class="grid">
-
-<div class="card blue" onclick="openModal('website')">
-<i class="ri-code-line"></i>
-<h3>Pembuatan Website</h3>
-</div>
+<div class="services">
 
 <div class="card red" onclick="openModal('recovery')">
 <i class="ri-shield-keyhole-line"></i>
 <h3>Pemulihan Akun Sosmed</h3>
 </div>
 
-<div class="card green" onclick="openModal('wa')">
+<div class="card blue">
+<i class="ri-code-line"></i>
+<h3>Pembuatan Website</h3>
+</div>
+
+<div class="card green">
 <i class="ri-whatsapp-line"></i>
 <h3>WhatsApp Automation</h3>
 </div>
 
-<div class="card purple" onclick="openModal('social')">
+<div class="card purple">
 <i class="ri-user-follow-line"></i>
 <h3>Optimasi Sosial Media</h3>
 </div>
 
-<div class="card orange" onclick="openModal('ads')">
+<div class="card orange">
 <i class="ri-megaphone-line"></i>
 <h3>Iklan Digital</h3>
 </div>
 
-<div class="card pink" onclick="openModal('design')">
+<div class="card pink">
 <i class="ri-brush-line"></i>
 <h3>Desain Grafis</h3>
 </div>
 
-<div class="card cyan" onclick="openModal('security')">
+<div class="card cyan">
 <i class="ri-lock-line"></i>
 <h3>Keamanan Akun</h3>
 </div>
 
-<div class="card gray" onclick="openModal('system')">
+<div class="card gray">
 <i class="ri-cpu-line"></i>
 <h3>Sistem Custom</h3>
 </div>
 
 </div>
-</section>
 
 <div class="modal" id="modal">
 <div class="modal-content">
-<span class="close" onclick="closeModal()">×</span>
-<h2 id="title"></h2>
-<p id="text"></p>
-<a href="https://wa.me/6282285781863" class="btn">Konsultasi Sekarang</a>
+<h3>Pemulihan Akun Sosial Media</h3>
+
+<p>
+Kami membantu cara mengembalikan akun Facebook yang di hack, Instagram diretas, TikTok diambil orang lain, serta jasa menghapus akun sosmed yang disalahgunakan.
+</p>
+
+<a href="pemulihan-akun-sosmed/" class="btn">
+Lihat Penjelasan Lengkap
+</a>
+
 </div>
 </div>
 
 <section class="trust">
+
 <h3>Terpercaya Sejak 2009</h3>
-<p>Telah membantu lebih dari 10.000+ klien di seluruh Indonesia.</p>
+
+<p>Telah membantu lebih dari 10.000 klien di seluruh Indonesia.</p>
+
 </section>
 
 <footer>
-© 2026 Kedai Media. All Rights Reserved.
+
+© 2026 Kedai Media Indonesia
+
 </footer>
 
 <script>
 
-const data={
-website:{title:"Jasa Pembuatan Website",text:"Website UMKM, bisnis, instansi, organisasi, partai politik, landing page, company profile, dan sistem custom."},
-recovery:{title:"Pemulihan Akun Sosial Media",text:"Membantu cara mengembalikan akun Facebook yang di hack, Instagram diretas, TikTok diambil orang, serta jasa menghapus akun sosmed yang disalahgunakan."},
-wa:{title:"WhatsApp Automation",text:"WhatsApp bot, auto reply, customer service otomatis, dan WhatsApp Business API."},
-social:{title:"Optimasi Sosial Media",text:"Followers real, engagement, like, komentar, dan pertumbuhan akun bisnis."},
-ads:{title:"Jasa Iklan Digital",text:"Facebook Ads, Instagram Ads, Google Ads untuk meningkatkan penjualan."},
-design:{title:"Desain Grafis",text:"Desain brosur, flyer, dan konten sosial media profesional."},
-security:{title:"Keamanan Akun",text:"Proteksi akun dari hacker dan penyalahgunaan."},
-system:{title:"Pembuatan Sistem Custom",text:"Sistem database, aplikasi custom, dan sistem organisasi."}
-};
-
 function openModal(service){
-document.getElementById("modal").style.display="flex";
-document.getElementById("title").innerText=data[service].title;
-document.getElementById("text").innerText=data[service].text;
-}
 
-function closeModal(){
-document.getElementById("modal").style.display="none";
+document.getElementById("modal").style.display="flex";
+
 }
 
 </script>
