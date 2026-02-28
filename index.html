@@ -57,8 +57,6 @@ jasa digital marketing indonesia
 
 <style>
 
-/* CSS ANDA TETAP */
-
 body{
 font-family:'Inter',sans-serif;
 margin:0;
@@ -152,7 +150,7 @@ text-align:center;
 .services{
 padding:0 8%;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:25px;
 }
 
@@ -165,13 +163,8 @@ transition:0.35s;
 opacity:0;
 transform:translateY(30px);
 display:flex;
-justify-content:space-between;
 align-items:center;
-font-weight:700;
-}
-
-.card i{
-font-size:30px;
+gap:18px;
 }
 
 .card.visible{
@@ -180,8 +173,17 @@ transform:translateY(0);
 }
 
 .card:hover{
-transform:translateY(-10px) scale(1.05);
-box-shadow:0 40px 120px rgba(0,0,0,0.25);
+transform:translateY(-8px);
+box-shadow:0 30px 80px rgba(0,0,0,0.25);
+}
+
+.card i{
+font-size:32px;
+}
+
+.card span{
+font-weight:700;
+font-size:18px;
 }
 
 .website{background:linear-gradient(135deg,#3b82f6,#1d4ed8);}
@@ -192,6 +194,32 @@ box-shadow:0 40px 120px rgba(0,0,0,0.25);
 .design{background:linear-gradient(135deg,#ec4899,#9d174d);}
 .security{background:linear-gradient(135deg,#06b6d4,#0e7490);}
 .system{background:linear-gradient(135deg,#64748b,#1e293b);}
+
+/* LOGO CLIENT */
+
+.client-wrap{
+margin:60px 0;
+overflow:hidden;
+}
+
+.client-track{
+display:flex;
+gap:60px;
+animation:scroll 40s linear infinite;
+opacity:0.6;
+}
+
+.client-track img{
+height:40px;
+filter:grayscale(100%);
+}
+
+@keyframes scroll{
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
+}
+
+/* MODAL */
 
 .modal{
 display:none;
@@ -235,75 +263,6 @@ color:white;
 
 .btn-blue{background:#2563eb;}
 .btn-green{background:#22c55e;}
-
-/* CLIENT LOGO */
-
-.client-strip{
-margin:60px 0;
-overflow:hidden;
-background:white;
-padding:25px 0;
-}
-
-.client-track{
-display:flex;
-gap:60px;
-animation:scrollClients 40s linear infinite;
-}
-
-.client-logo{
-height:40px;
-opacity:0.4;
-filter:grayscale(100%);
-}
-
-@keyframes scrollClients{
-0%{transform:translateX(0);}
-100%{transform:translateX(-50%);}
-}
-
-/* CTA */
-
-.cta{
-margin:80px 8%;
-padding:50px;
-border-radius:20px;
-background:linear-gradient(135deg,#2563eb,#7c3aed);
-color:white;
-text-align:center;
-}
-
-.cta-btn{
-display:inline-block;
-margin-top:15px;
-padding:14px 28px;
-background:white;
-color:#2563eb;
-border-radius:10px;
-font-weight:700;
-text-decoration:none;
-}
-
-/* WA FLOAT */
-
-.wa-float{
-position:fixed;
-bottom:25px;
-right:25px;
-background:#22c55e;
-color:white;
-width:60px;
-height:60px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:28px;
-box-shadow:0 15px 40px rgba(0,0,0,0.25);
-z-index:999;
-}
-
-/* FOOTER ANDA TETAP */
 
 .footer-pro{
 background:#0f172a;
@@ -363,85 +322,92 @@ color:#64748b;
 <div class="stat"><h3>24/7</h3><p>Support</p></div>
 </section>
 
-<section class="client-strip">
+<!-- LOGO CLIENT -->
+<section class="client-wrap">
 <div class="client-track">
-<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/google.svg" class="client-logo">
-<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/meta.svg" class="client-logo">
-<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" class="client-logo">
-<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg" class="client-logo">
-<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" class="client-logo">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TVRI.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Google.png">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Shopee_logo.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
 </div>
 </section>
 
 <section class="services">
 
 <div class="card recovery" onclick="openModal('recovery')">
-Pemulihan Akun Sosmed
 <i class="ri-shield-keyhole-line"></i>
+<span>Pemulihan Akun Sosmed</span>
 </div>
 
 <div class="card website" onclick="openModal('website')">
-Pembuatan Website
 <i class="ri-code-line"></i>
+<span>Pembuatan Website</span>
 </div>
 
 <div class="card wa" onclick="openModal('wa')">
-WhatsApp Automation
 <i class="ri-whatsapp-line"></i>
+<span>WhatsApp Automation</span>
 </div>
 
 <div class="card social" onclick="openModal('social')">
-Optimasi Sosial Media
 <i class="ri-user-follow-line"></i>
+<span>Optimasi Sosial Media</span>
 </div>
 
 <div class="card ads" onclick="openModal('ads')">
-Iklan Digital
 <i class="ri-megaphone-line"></i>
+<span>Iklan Digital</span>
 </div>
 
 <div class="card design" onclick="openModal('design')">
-Desain Grafis
 <i class="ri-brush-line"></i>
+<span>Desain Grafis</span>
 </div>
 
 <div class="card security" onclick="openModal('security')">
-Keamanan Akun
 <i class="ri-lock-line"></i>
+<span>Keamanan Akun</span>
 </div>
 
 <div class="card system" onclick="openModal('system')">
-Sistem Custom
 <i class="ri-cpu-line"></i>
+<span>Sistem Custom</span>
 </div>
 
 </section>
 
-<section class="cta">
-<h2>Siap Mengembangkan Bisnis Anda?</h2>
-<a href="https://wa.me/6282285781863" class="cta-btn">Hubungi Sekarang</a>
-</section>
+<div class="modal" id="modal">
+<div class="modal-box" id="modalContent"></div>
+</div>
 
-<!-- FOOTER ANDA TETAP -->
 <section class="footer-pro">
 <div class="footer-grid">
 <div>
 <div class="footer-title">Kedai Media</div>
 <div>Solusi digital profesional sejak 2009.</div>
 </div>
+
+<div>
+<div class="footer-title">Layanan</div>
+<a href="pemulihan-akun-sosmed/" class="footer-link">Pemulihan Akun</a>
+<a href="jasa-pembuatan-website/" class="footer-link">Pembuatan Website</a>
 </div>
+
+<div>
+<div class="footer-title">Kontak</div>
+<div>WhatsApp: 082285781863</div>
+</div>
+
+</div>
+
 <div class="footer-bottom">
 © 2026 Kedai Media Indonesia
 </div>
 </section>
 
-<a href="https://wa.me/6282285781863" class="wa-float">
-<i class="ri-whatsapp-line"></i>
-</a>
-
 <script>
-
-/* SCRIPT ANDA TETAP */
 
 function animateValue(id,start,end,duration){
 let obj=document.getElementById(id);
@@ -457,7 +423,7 @@ if(current>=end)clearInterval(timer);
 }
 
 animateValue("clients",0,10247,2000);
-animateValue("visitors",0,Math.floor(Math.random()*200)+50,2000);
+animateValue("visitors",0,150,2000);
 
 const observer=new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
@@ -470,6 +436,32 @@ entry.target.classList.add("visible");
 document.querySelectorAll(".card").forEach(el=>{
 observer.observe(el);
 });
+
+const services={
+recovery:{title:"Pemulihan Akun Sosmed",desc:"Mengembalikan akun yang diretas.",url:"pemulihan-akun-sosmed/"},
+website:{title:"Pembuatan Website",desc:"Website profesional untuk bisnis.",url:"jasa-pembuatan-website/"},
+wa:{title:"WhatsApp Automation",desc:"WhatsApp bot otomatis.",url:"whatsapp-automation/"},
+social:{title:"Optimasi Sosial Media",desc:"Followers real.",url:"optimasi-sosial-media/"},
+ads:{title:"Iklan Digital",desc:"Facebook Ads dan Google Ads.",url:"iklan-digital/"},
+design:{title:"Desain Grafis",desc:"Desain profesional.",url:"desain-grafis/"},
+security:{title:"Keamanan Akun",desc:"Proteksi akun.",url:"keamanan-akun/"},
+system:{title:"Sistem Custom",desc:"Sistem sesuai kebutuhan.",url:"sistem-custom/"}
+};
+
+function openModal(service){
+const s=services[service];
+document.getElementById("modal").style.display="flex";
+document.getElementById("modalContent").innerHTML=
+"<div class='close' onclick='closeModal()'>✕</div>"+
+"<h3>"+s.title+"</h3>"+
+"<p>"+s.desc+"</p>"+
+"<a href='"+s.url+"' class='btn btn-blue'>Pelajari Selengkapnya</a>"+
+"<a href='https://wa.me/6282285781863' class='btn btn-green'>Hubungi Sekarang</a>";
+}
+
+function closeModal(){
+document.getElementById("modal").style.display="none";
+}
 
 </script>
 
