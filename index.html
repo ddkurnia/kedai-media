@@ -6,11 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>
-Jasa Website, Pemulihan Akun Sosmed, WhatsApp Automation, Iklan Digital, Desain Grafis, Sistem Custom | Kedai Media Indonesia
+Jasa Website, Pemulihan Akun Sosmed, WhatsApp Automation, Followers Real, Iklan Digital, Desain Grafis, Keamanan Akun, Sistem Custom | Kedai Media Indonesia
 </title>
 
 <meta name="description" content="
-Kedai Media menyediakan jasa pembuatan website, landing page, pemulihan akun sosmed Facebook Instagram TikTok yang di hack, jasa menghapus akun sosmed, WhatsApp automation, followers real, iklan Facebook Ads Instagram Ads Google Ads, desain grafis, keamanan akun sosial media, dan sistem custom. Terpercaya sejak 2009, melayani seluruh Indonesia.
+Kedai Media menyediakan jasa pembuatan website, landing page, website UMKM, website company profile, pemulihan akun sosmed Facebook Instagram TikTok yang di hack, jasa menghapus akun sosmed, WhatsApp automation, jasa followers real, jasa engagement sosial media, iklan Facebook Ads Instagram Ads Google Ads, desain grafis, keamanan akun sosial media, dan sistem custom. Terpercaya sejak 2009 membantu lebih dari 10.000 klien seluruh Indonesia.
 ">
 
 <meta name="keywords" content="
@@ -25,22 +25,24 @@ pemulihan akun sosmed,
 cara mengembalikan akun facebook yang di hack,
 cara mengembalikan akun instagram yang di hack,
 cara mengembalikan akun tiktok yang di hack,
+jasa menghapus akun sosmed,
 jasa pemulihan akun facebook,
 jasa pemulihan akun instagram,
 jasa pemulihan akun tiktok,
-jasa menghapus akun sosmed,
-jasa keamanan akun sosmed,
 jasa whatsapp automation,
 jasa whatsapp bot indonesia,
 jasa chatbot whatsapp,
 jasa followers instagram real,
-jasa engagement sosial media,
+jasa followers facebook real,
+jasa followers tiktok real,
+jasa engagement instagram,
 jasa iklan facebook ads,
 jasa iklan instagram ads,
 jasa google ads indonesia,
-jasa desain grafis,
+jasa desain grafis indonesia,
 jasa desain brosur,
 jasa desain flyer,
+jasa keamanan akun sosmed,
 jasa sistem custom indonesia,
 jasa pembuatan aplikasi,
 jasa digital marketing indonesia
@@ -56,15 +58,17 @@ jasa digital marketing indonesia
 body{
 font-family:'Inter',sans-serif;
 margin:0;
-background:linear-gradient(180deg,#ffffff,#f1f5f9);
+background:linear-gradient(180deg,#ffffff,#f8fafc);
 }
 
 /* HEADER */
-
 header{
 padding:20px 8%;
 background:white;
-box-shadow:0 10px 40px rgba(0,0,0,0.08);
+box-shadow:0 15px 50px rgba(0,0,0,0.08);
+position:sticky;
+top:0;
+z-index:10;
 }
 
 .logo{
@@ -76,60 +80,66 @@ background:linear-gradient(90deg,#2563eb,#7c3aed);
 }
 
 /* TITLE */
-
 .title{
 text-align:center;
-font-size:38px;
-margin-top:40px;
-margin-bottom:40px;
+font-size:40px;
+margin:50px 0;
 background:linear-gradient(90deg,#2563eb,#7c3aed);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
+font-weight:800;
 }
 
-/* SERVICES */
-
+/* SERVICES GRID */
 .services{
-padding:0 8% 40px;
+padding:0 8%;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:20px;
+gap:25px;
 }
 
 .card{
-padding:25px;
-border-radius:16px;
+padding:28px;
+border-radius:18px;
 color:white;
 cursor:pointer;
-transition:0.35s;
+transition:all 0.35s ease;
 position:relative;
 overflow:hidden;
 }
 
 .card:hover{
-transform:translateY(-8px) scale(1.03);
-box-shadow:0 30px 80px rgba(0,0,0,0.25);
+transform:translateY(-10px) scale(1.05);
+box-shadow:0 40px 120px rgba(0,0,0,0.25);
+}
+
+.card:hover::after{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(255,255,255,0.1);
 }
 
 .card i{
-font-size:26px;
-margin-bottom:10px;
+font-size:30px;
+margin-bottom:12px;
 display:block;
 }
 
 /* COLORS */
-
-.website{background:linear-gradient(135deg,#3b82f6,#2563eb);}
-.recovery{background:linear-gradient(135deg,#ef4444,#dc2626);}
-.wa{background:linear-gradient(135deg,#22c55e,#16a34a);}
-.social{background:linear-gradient(135deg,#8b5cf6,#7c3aed);}
-.ads{background:linear-gradient(135deg,#f97316,#ea580c);}
-.design{background:linear-gradient(135deg,#ec4899,#be185d);}
-.security{background:linear-gradient(135deg,#06b6d4,#0891b2);}
-.system{background:linear-gradient(135deg,#64748b,#334155);}
+.website{background:linear-gradient(135deg,#3b82f6,#1d4ed8);}
+.recovery{background:linear-gradient(135deg,#ef4444,#b91c1c);}
+.wa{background:linear-gradient(135deg,#22c55e,#15803d);}
+.social{background:linear-gradient(135deg,#8b5cf6,#6d28d9);}
+.ads{background:linear-gradient(135deg,#f97316,#c2410c);}
+.design{background:linear-gradient(135deg,#ec4899,#9d174d);}
+.security{background:linear-gradient(135deg,#06b6d4,#0e7490);}
+.system{background:linear-gradient(135deg,#64748b,#1e293b);}
 
 /* MODAL */
-
 .modal{
 display:none;
 position:fixed;
@@ -137,63 +147,69 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(15,23,42,0.6);
+background:rgba(15,23,42,0.7);
 backdrop-filter:blur(6px);
 justify-content:center;
 align-items:center;
-z-index:999;
+z-index:100;
 }
 
 .modal-box{
 background:white;
-padding:30px;
-border-radius:18px;
+padding:35px;
+border-radius:20px;
 width:90%;
-max-width:500px;
-box-shadow:0 40px 120px rgba(0,0,0,0.25);
-animation:zoom 0.25s ease;
+max-width:550px;
+box-shadow:0 50px 150px rgba(0,0,0,0.3);
+animation:zoomIn 0.25s ease;
+position:relative;
 }
 
-@keyframes zoom{
+@keyframes zoomIn{
 from{transform:scale(0.8);opacity:0;}
 to{transform:scale(1);opacity:1;}
 }
 
 .close{
 position:absolute;
-right:20px;
 top:15px;
-font-size:22px;
+right:20px;
 cursor:pointer;
+font-size:22px;
+color:#64748b;
 }
 
 .btn{
 display:inline-block;
-margin-top:15px;
-padding:12px 20px;
-background:#2563eb;
-color:white;
+margin-top:18px;
+padding:12px 22px;
+border-radius:10px;
 text-decoration:none;
-border-radius:8px;
+color:white;
 font-weight:600;
+transition:0.3s;
 }
 
-.btn.wa{
-background:#22c55e;
+.btn-blue{background:#2563eb;}
+.btn-green{background:#22c55e;}
+
+.btn:hover{
+transform:scale(1.05);
+box-shadow:0 15px 40px rgba(0,0,0,0.2);
 }
 
 /* TRUST */
-
 .trust{
+margin-top:60px;
 background:white;
+padding:50px;
 text-align:center;
-padding:40px;
-margin-top:40px;
+box-shadow:0 15px 60px rgba(0,0,0,0.05);
 }
 
 footer{
 text-align:center;
-padding:20px;
+padding:25px;
 color:#64748b;
 }
 
@@ -207,104 +223,137 @@ color:#64748b;
 <div class="logo">Kedai Media</div>
 </header>
 
-<div class="title">Layanan Kedai Media</div>
+<h1 class="title">Layanan Kedai Media</h1>
 
-<div class="services">
+<section class="services">
 
 <div class="card recovery" onclick="openModal('recovery')">
 <i class="ri-shield-keyhole-line"></i>
 Pemulihan Akun Sosmed
 </div>
 
-<div class="card website" onclick="goPage('jasa-pembuatan-website')">
+<div class="card website" onclick="openModal('website')">
 <i class="ri-code-line"></i>
 Pembuatan Website
 </div>
 
-<div class="card wa">
+<div class="card wa" onclick="openModal('wa')">
 <i class="ri-whatsapp-line"></i>
 WhatsApp Automation
 </div>
 
-<div class="card social">
+<div class="card social" onclick="openModal('social')">
 <i class="ri-user-follow-line"></i>
 Optimasi Sosial Media
 </div>
 
-<div class="card ads">
+<div class="card ads" onclick="openModal('ads')">
 <i class="ri-megaphone-line"></i>
 Iklan Digital
 </div>
 
-<div class="card design">
+<div class="card design" onclick="openModal('design')">
 <i class="ri-brush-line"></i>
 Desain Grafis
 </div>
 
-<div class="card security">
+<div class="card security" onclick="openModal('security')">
 <i class="ri-lock-line"></i>
 Keamanan Akun
 </div>
 
-<div class="card system">
+<div class="card system" onclick="openModal('system')">
 <i class="ri-cpu-line"></i>
 Sistem Custom
 </div>
 
+</section>
+
+<div class="modal" id="modal">
+<div class="modal-box" id="modalContent"></div>
 </div>
 
-<!-- MODAL -->
-
-<div class="modal" id="modal" onclick="closeModal()">
-
-<div class="modal-box" onclick="event.stopPropagation()">
-
-<div class="close" onclick="closeModal()">×</div>
-
-<h3>Pemulihan Akun Sosial Media</h3>
-
-<p>
-Kami membantu mengembalikan akun Facebook yang di hack, Instagram diretas, TikTok diambil orang lain, serta menghapus akun sosmed yang disalahgunakan.
-</p>
-
-<a href="pemulihan-akun-sosmed/" class="btn">
-Pelajari Selengkapnya
-</a>
-
-<a href="https://wa.me/6282285781863" class="btn wa">
-Hubungi Sekarang
-</a>
-
-</div>
-
-</div>
-
-<div class="trust">
-
-<h3>Terpercaya Sejak 2009</h3>
-
+<section class="trust">
+<h2>Terpercaya Sejak 2009</h2>
 <p>Telah membantu lebih dari 10.000 klien di seluruh Indonesia.</p>
-
-</div>
+</section>
 
 <footer>
-
 © 2026 Kedai Media Indonesia
-
 </footer>
 
 <script>
 
-function openModal(){
+const services = {
+
+recovery:{
+title:"Pemulihan Akun Sosial Media",
+desc:"Membantu mengembalikan akun Facebook yang di hack, Instagram diretas, TikTok diambil orang, serta jasa menghapus akun sosmed yang disalahgunakan.",
+url:"pemulihan-akun-sosmed/"
+},
+
+website:{
+title:"Jasa Pembuatan Website",
+desc:"Website profesional untuk UMKM, bisnis, instansi pemerintah, sekolah, organisasi, hingga partai politik.",
+url:"jasa-pembuatan-website/"
+},
+
+wa:{
+title:"WhatsApp Automation",
+desc:"WhatsApp bot, auto reply, sistem CS otomatis, dan integrasi WhatsApp Business API.",
+url:"whatsapp-automation/"
+},
+
+social:{
+title:"Optimasi Sosial Media",
+desc:"Jasa followers real, like, komentar, engagement, dan pertumbuhan akun bisnis.",
+url:"optimasi-sosial-media/"
+},
+
+ads:{
+title:"Iklan Digital",
+desc:"Facebook Ads, Instagram Ads, dan Google Ads untuk meningkatkan penjualan.",
+url:"iklan-digital/"
+},
+
+design:{
+title:"Desain Grafis",
+desc:"Desain brosur, flyer, konten sosial media, dan materi promosi profesional.",
+url:"desain-grafis/"
+},
+
+security:{
+title:"Keamanan Akun Sosmed",
+desc:"Mengamankan akun dari hacker dan penyalahgunaan.",
+url:"keamanan-akun/"
+},
+
+system:{
+title:"Sistem Custom",
+desc:"Pembuatan aplikasi, database, dan sistem custom sesuai kebutuhan.",
+url:"sistem-custom/"
+}
+
+};
+
+function openModal(service){
+
+const s=services[service];
+
 document.getElementById("modal").style.display="flex";
+
+document.getElementById("modalContent").innerHTML=`
+<div class="close" onclick="closeModal()">✕</div>
+<h3>${s.title}</h3>
+<p>${s.desc}</p>
+<a href="${s.url}" class="btn btn-blue">Pelajari Selengkapnya</a>
+<a href="https://wa.me/6282285781863" class="btn btn-green">Hubungi Sekarang</a>
+`;
+
 }
 
 function closeModal(){
 document.getElementById("modal").style.display="none";
-}
-
-function goPage(url){
-window.location.href=url;
 }
 
 </script>
