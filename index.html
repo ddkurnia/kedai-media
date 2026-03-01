@@ -57,8 +57,6 @@ jasa digital marketing indonesia
 
 <style>
 
-/* STYLE ANDA TETAP */
-
 body{
 font-family:'Inter',sans-serif;
 margin:0;
@@ -154,6 +152,8 @@ padding:0 8%;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
 gap:25px;
+max-width:1100px;
+margin:auto;
 }
 
 .card{
@@ -164,6 +164,7 @@ cursor:pointer;
 transition:0.35s;
 opacity:0;
 transform:translateY(30px);
+font-weight:700;
 }
 
 .card.visible{
@@ -184,6 +185,76 @@ box-shadow:0 40px 120px rgba(0,0,0,0.25);
 .design{background:linear-gradient(135deg,#ec4899,#9d174d);}
 .security{background:linear-gradient(135deg,#06b6d4,#0e7490);}
 .system{background:linear-gradient(135deg,#64748b,#1e293b);}
+
+
+/* PARTNER */
+
+.partner-section{
+max-width:1100px;
+margin:70px auto;
+text-align:center;
+overflow:hidden;
+}
+
+.partner-title{
+font-size:24px;
+font-weight:800;
+margin-bottom:30px;
+}
+
+.partner-track{
+display:flex;
+gap:60px;
+animation:scrollPartner 40s linear infinite;
+width:max-content;
+}
+
+.partner-track img{
+height:40px;
+opacity:0.6;
+filter:grayscale(100%);
+}
+
+@keyframes scrollPartner{
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
+}
+
+
+/* TRUST */
+
+.trust-section{
+max-width:1100px;
+margin:80px auto;
+padding:0 20px;
+text-align:center;
+}
+
+.trust-title{
+font-size:28px;
+font-weight:800;
+margin-bottom:40px;
+}
+
+.trust-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:20px;
+}
+
+.trust-card{
+background:white;
+padding:25px;
+border-radius:14px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.trust-card i{
+font-size:28px;
+color:#2563eb;
+margin-bottom:10px;
+}
+
 
 .modal{
 display:none;
@@ -229,7 +300,7 @@ color:white;
 .btn-green{background:#22c55e;}
 
 
-/* FOOTER PROFESSIONAL — TAMBAHAN */
+/* FOOTER */
 
 .footer-pro{
 background:#0f172a;
@@ -255,10 +326,6 @@ display:block;
 color:#94a3b8;
 text-decoration:none;
 margin-bottom:8px;
-}
-
-.footer-link:hover{
-color:white;
 }
 
 .footer-bottom{
@@ -306,12 +373,89 @@ color:#64748b;
 
 </section>
 
+
+<!-- PARTNER -->
+
+<section class="partner-section">
+
+<div class="partner-title">Partner & Teknologi</div>
+
+<div style="overflow:hidden">
+<div class="partner-track">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/95/TikTok_logo.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/57/X_logo_2023.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Logo_Adsense.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/95/TikTok_logo.svg">
+
+</div>
+</div>
+
+</section>
+
+
+<!-- TRUST -->
+
+<section class="trust-section">
+
+<div class="trust-title">Kenapa Memilih Kedai Media</div>
+
+<div class="trust-grid">
+
+<div class="trust-card">
+<i class="ri-award-line"></i>
+<b>Terpercaya sejak 2009</b>
+<div>Lebih dari 15 tahun pengalaman</div>
+</div>
+
+<div class="trust-card">
+<i class="ri-user-star-line"></i>
+<b>10.000+ Klien</b>
+<div>Dipercaya seluruh Indonesia</div>
+</div>
+
+<div class="trust-card">
+<i class="ri-shield-check-line"></i>
+<b>Success Rate Tinggi</b>
+<div>Keberhasilan hingga 99.9%</div>
+</div>
+
+<div class="trust-card">
+<i class="ri-customer-service-2-line"></i>
+<b>Support 24/7</b>
+<div>Siap membantu kapan saja</div>
+</div>
+
+<div class="trust-card">
+<i class="ri-lock-2-line"></i>
+<b>100% Aman</b>
+<div>Privasi terjamin</div>
+</div>
+
+<div class="trust-card">
+<i class="ri-flashlight-line"></i>
+<b>Cepat & Profesional</b>
+<div>Pengerjaan cepat & berkualitas</div>
+</div>
+
+</div>
+
+</section>
+
+
 <div class="modal" id="modal">
 <div class="modal-box" id="modalContent"></div>
 </div>
 
-
-<!-- FOOTER PROFESSIONAL TAMBAHAN -->
 
 <section class="footer-pro">
 
@@ -331,22 +475,14 @@ color:#64748b;
 </div>
 
 <div>
-<div class="footer-title">Perusahaan</div>
-<a href="#" class="footer-link">Tentang Kami</a>
-<a href="#" class="footer-link">Kontak</a>
-<a href="#" class="footer-link">Privacy Policy</a>
-</div>
-
-<div>
 <div class="footer-title">Kontak</div>
 <div>WhatsApp: 082285781863</div>
-<div>Indonesia</div>
 </div>
 
 </div>
 
 <div class="footer-bottom">
-© 2026 Kedai Media Indonesia. All rights reserved.
+© 2026 Kedai Media Indonesia
 </div>
 
 </section>
@@ -354,21 +490,8 @@ color:#64748b;
 
 <script>
 
-function animateValue(id,start,end,duration){
-let obj=document.getElementById(id);
-let range=end-start;
-let current=start;
-let increment=1;
-let stepTime=Math.abs(Math.floor(duration/range));
-let timer=setInterval(()=>{
-current+=increment;
-obj.innerHTML=current.toLocaleString();
-if(current>=end)clearInterval(timer);
-},stepTime);
-}
-
 animateValue("clients",0,10247,2000);
-animateValue("visitors",0,Math.floor(Math.random()*200)+50,2000);
+animateValue("visitors",0,150,2000);
 
 const observer=new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
@@ -381,32 +504,6 @@ entry.target.classList.add("visible");
 document.querySelectorAll(".card").forEach(el=>{
 observer.observe(el);
 });
-
-const services={
-recovery:{title:"Pemulihan Akun Sosmed",desc:"Mengembalikan akun yang diretas.",url:"pemulihan-akun-sosmed/"},
-website:{title:"Pembuatan Website",desc:"Website profesional untuk bisnis.",url:"jasa-pembuatan-website/"},
-wa:{title:"WhatsApp Automation",desc:"WhatsApp bot dan auto reply bisnis.",url:"whatsapp-automation/"},
-social:{title:"Optimasi Sosial Media",desc:"Followers real dan engagement.",url:"optimasi-sosial-media/"},
-ads:{title:"Iklan Digital",desc:"Facebook Ads dan Google Ads.",url:"iklan-digital/"},
-design:{title:"Desain Grafis",desc:"Desain brosur, flyer, konten sosial media.",url:"desain-grafis/"},
-security:{title:"Keamanan Akun",desc:"Proteksi akun dari hacker.",url:"keamanan-akun/"},
-system:{title:"Sistem Custom",desc:"Pembuatan sistem sesuai kebutuhan.",url:"sistem-custom/"}
-};
-
-function openModal(service){
-const s=services[service];
-document.getElementById("modal").style.display="flex";
-document.getElementById("modalContent").innerHTML=
-"<div class='close' onclick='closeModal()'>✕</div>"+
-"<h3>"+s.title+"</h3>"+
-"<p>"+s.desc+"</p>"+
-"<a href='"+s.url+"' class='btn btn-blue'>Pelajari Selengkapnya</a>"+
-"<a href='https://wa.me/6282285781863' class='btn btn-green'>Hubungi Sekarang</a>";
-}
-
-function closeModal(){
-document.getElementById("modal").style.display="none";
-}
 
 </script>
 
