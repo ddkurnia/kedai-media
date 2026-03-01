@@ -505,6 +505,123 @@ document.querySelectorAll(".card").forEach(el=>{
 observer.observe(el);
 });
 
+<script>
+
+function animateValue(id,start,end,duration){
+let obj=document.getElementById(id);
+if(!obj) return;
+let range=end-start;
+let current=start;
+let increment=1;
+let stepTime=Math.abs(Math.floor(duration/range));
+let timer=setInterval(()=>{
+current+=increment;
+obj.innerHTML=current.toLocaleString();
+if(current>=end) clearInterval(timer);
+},stepTime);
+}
+
+animateValue("clients",0,10247,2000);
+animateValue("visitors",0,Math.floor(Math.random()*200)+50,2000);
+
+
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("visible");
+}
+});
+});
+
+document.querySelectorAll(".card").forEach(el=>{
+observer.observe(el);
+});
+
+
+
+const services={
+
+recovery:{
+title:"Pemulihan Akun Sosmed",
+desc:"Mengembalikan akun yang diretas.",
+url:"pemulihan-akun-sosmed/"
+},
+
+website:{
+title:"Pembuatan Website",
+desc:"Website profesional untuk bisnis.",
+url:"jasa-pembuatan-website/"
+},
+
+wa:{
+title:"WhatsApp Automation",
+desc:"WhatsApp bot dan auto reply bisnis.",
+url:"whatsapp-automation/"
+},
+
+social:{
+title:"Optimasi Sosial Media",
+desc:"Followers real dan engagement.",
+url:"optimasi-sosial-media/"
+},
+
+ads:{
+title:"Iklan Digital",
+desc:"Facebook Ads dan Google Ads.",
+url:"iklan-digital/"
+},
+
+design:{
+title:"Desain Grafis",
+desc:"Desain brosur, flyer, konten sosial media.",
+url:"desain-grafis/"
+},
+
+security:{
+title:"Keamanan Akun",
+desc:"Proteksi akun dari hacker.",
+url:"keamanan-akun/"
+},
+
+system:{
+title:"Sistem Custom",
+desc:"Pembuatan sistem sesuai kebutuhan.",
+url:"sistem-custom/"
+}
+
+};
+
+
+
+function openModal(service){
+
+const s=services[service];
+
+if(!s) return;
+
+document.getElementById("modal").style.display="flex";
+
+document.getElementById("modalContent").innerHTML=
+
+"<div class='close' onclick='closeModal()'>✕</div>"+
+
+"<h3>"+s.title+"</h3>"+
+
+"<p>"+s.desc+"</p>"+
+
+"<a href='"+s.url+"' class='btn btn-blue'>Pelajari Selengkapnya</a>"+
+
+"<a href='https://wa.me/6282285781863' class='btn btn-green'>Hubungi Sekarang</a>";
+
+}
+
+
+function closeModal(){
+
+document.getElementById("modal").style.display="none";
+
+}
+
 </script>
 
 </body>
