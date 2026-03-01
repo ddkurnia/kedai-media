@@ -66,6 +66,10 @@ box-shadow:0 15px 50px rgba(0,0,0,0.08);
 position:sticky;
 top:0;
 z-index:10;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
 }
 
 .logo{
@@ -74,6 +78,31 @@ font-weight:800;
 background:linear-gradient(90deg,#2563eb,#7c3aed);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
+}
+
+.status{
+display:flex;
+align-items:center;
+gap:6px;
+font-size:13px;
+color:#22c55e;
+font-weight:600;
+}
+
+.status::before{
+content:"";
+width:8px;
+height:8px;
+background:#22c55e;
+border-radius:50%;
+box-shadow:0 0 6px #22c55e;
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%{opacity:1;}
+50%{opacity:0.3;}
+100%{opacity:1;}
 }
 
 .hero{
