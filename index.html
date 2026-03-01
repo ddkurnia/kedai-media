@@ -524,7 +524,344 @@ document.getElementById("modalContent").innerHTML=
 function closeModal(){
 document.getElementById("modal").style.display="none";
 }
-</script>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="aA_fuOiYahPshm9xAmia-HqmMiZAerc5FtIHZbzu9xI" />
+
+<title>
+Jasa Website, Pemulihan Akun Sosmed, WhatsApp Automation, Followers Real, Iklan Digital, Desain Grafis, Keamanan Akun, Sistem Custom | Kedai Media Indonesia
+</title>
+
+<meta name="description" content=" Kedai Media menyediakan jasa pembuatan website, landing page, website UMKM, website company profile, pemulihan akun sosmed Facebook Instagram TikTok yang di hack, jasa menghapus akun sosmed, WhatsApp automation, jasa followers real, jasa engagement sosial media, iklan Facebook Ads Instagram Ads Google Ads, desain grafis, keamanan akun sosial media, dan sistem custom. Terpercaya sejak 2009 membantu lebih dari 10.000 klien seluruh Indonesia. ">
+
+<meta name="keywords" content=" jasa pembuatan website, jasa website umkm, jasa website company profile, jasa website instansi pemerintah, jasa website sekolah, jasa website organisasi, jasa website partai politik, pemulihan akun sosmed, cara mengembalikan akun facebook yang di hack, cara mengembalikan akun instagram yang di hack, cara mengembalikan akun tiktok yang di hack, jasa menghapus akun sosmed, jasa pemulihan akun facebook, jasa pemulihan akun instagram, jasa pemulihan akun tiktok, jasa whatsapp automation, jasa whatsapp bot indonesia, jasa chatbot whatsapp, jasa followers instagram real, jasa followers facebook real, jasa followers tiktok real, jasa engagement instagram, jasa iklan facebook ads, jasa iklan instagram ads, jasa google ads indonesia, jasa desain grafis indonesia, jasa desain brosur, jasa desain flyer, jasa keamanan akun sosmed, jasa sistem custom indonesia, jasa pembuatan aplikasi, jasa digital marketing indonesia ">
+
+<meta name="robots" content="index, follow">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+<style>
+
+/* === STYLE ASLI ANDA TETAP === */
+body{
+font-family:'Inter',sans-serif;
+margin:0;
+background:linear-gradient(180deg,#ffffff,#f8fafc);
+overflow-x:hidden;
+}
+
+.orb{
+position:fixed;
+border-radius:50%;
+filter:blur(90px);
+opacity:0.25;
+z-index:-1;
+animation:float 12s infinite ease-in-out;
+}
+
+.orb1{
+width:400px;
+height:400px;
+background:#2563eb;
+top:-100px;
+left:-100px;
+}
+
+.orb2{
+width:400px;
+height:400px;
+background:#7c3aed;
+bottom:-100px;
+right:-100px;
+animation-delay:4s;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(60px);}
+}
+
+header{
+padding:6px 8%;
+background:white;
+box-shadow:0 2px 10px rgba(0,0,0,0.05);
+position:sticky;
+top:0;
+z-index:10;
+display:flex;
+align-items:center;
+}
+
+.powered{
+font-size:12px;
+color:#64748b;
+letter-spacing:2px;
+margin-bottom:2px;
+}
+
+.logo{
+font-size:22px;
+font-weight:800;
+line-height:1.1;
+margin:0;
+background:linear-gradient(90deg,#2563eb,#7c3aed);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+/* FIX ERROR: penutup kurung hilang di sini */
+
+.hero{
+text-align:center;
+padding:60px 20px 10px;
+}
+
+.hero h1{
+font-size:40px;
+font-weight:800;
+background:linear-gradient(90deg,#2563eb,#7c3aed);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero p{
+color:#64748b;
+font-size:18px;
+margin-top:10px;
+}
+
+.stats{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+margin:40px 0;
+}
+
+.stat{
+background:white;
+padding:20px 30px;
+border-radius:14px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+text-align:center;
+}
+
+.services{
+padding:0 8%;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:25px;
+}
+
+.card{
+padding:28px;
+border-radius:18px;
+color:white;
+cursor:pointer;
+transition:0.35s;
+opacity:0;
+transform:translateY(30px);
+}
+
+.card.visible{
+opacity:1;
+transform:translateY(0);
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.05);
+box-shadow:0 40px 120px rgba(0,0,0,0.25);
+}
+
+.website{background:linear-gradient(135deg,#3b82f6,#1d4ed8);}
+.recovery{background:linear-gradient(135deg,#ef4444,#b91c1c);}
+.wa{background:linear-gradient(135deg,#22c55e,#15803d);}
+.social{background:linear-gradient(135deg,#8b5cf6,#6d28d9);}
+.ads{background:linear-gradient(135deg,#f97316,#c2410c);}
+.design{background:linear-gradient(135deg,#ec4899,#9d174d);}
+.security{background:linear-gradient(135deg,#06b6d4,#0e7490);}
+.system{background:linear-gradient(135deg,#64748b,#1e293b);}
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(15,23,42,0.7);
+justify-content:center;
+align-items:center;
+z-index:100;
+}
+
+.modal-box{
+background:white;
+padding:35px;
+border-radius:20px;
+width:90%;
+max-width:550px;
+position:relative;
+}
+
+.close{
+position:absolute;
+top:15px;
+right:20px;
+cursor:pointer;
+font-size:20px;
+}
+
+.btn{
+display:inline-block;
+margin-top:15px;
+margin-right:10px;
+padding:10px 20px;
+border-radius:8px;
+text-decoration:none;
+color:white;
+}
+
+.btn-blue{background:#2563eb;}
+.btn-green{background:#22c55e;}
+
+.partner-section{
+text-align:center;
+padding:80px 8% 40px;
+}
+
+.partner-section h2{
+font-weight:800;
+margin-bottom:40px;
+}
+
+.partner-logos{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:40px;
+opacity:0.6;
+}
+
+.partner-logos img{
+height:40px;
+filter:grayscale(100%);
+transition:0.3s;
+}
+
+.partner-logos img:hover{
+filter:none;
+opacity:1;
+}
+
+.trust-section{
+padding:60px 8%;
+text-align:center;
+}
+
+.trust-section h2{
+font-weight:800;
+margin-bottom:40px;
+}
+
+.trust-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.trust-card{
+background:white;
+padding:25px;
+border-radius:14px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.footer-pro{
+background:#0f172a;
+color:#cbd5e1;
+padding:60px 8% 30px;
+margin-top:60px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:40px;
+}
+
+.footer-title{
+color:white;
+font-weight:700;
+margin-bottom:15px;
+}
+
+.footer-link{
+display:block;
+color:#94a3b8;
+text-decoration:none;
+margin-bottom:8px;
+}
+
+.footer-link:hover{
+color:white;
+}
+
+.footer-bottom{
+border-top:1px solid #1e293b;
+margin-top:40px;
+padding-top:20px;
+text-align:center;
+color:#64748b;
+}
+
+/* ICON */
+.card{
+position:relative;
+display:flex;
+align-items:center;
+gap:14px;
+font-weight:700;
+overflow:hidden;
+}
+
+.card i{
+font-size:28px;
+background:rgba(255,255,255,0.18);
+padding:12px;
+border-radius:14px;
+box-shadow:
+0 8px 20px rgba(0,0,0,0.25),
+inset 0 3px 6px rgba(255,255,255,0.5),
+inset 0 -4px 8px rgba(0,0,0,0.35);
+backdrop-filter:blur(6px);
+}
+
+.card::before{
+content:"";
+position:absolute;
+inset:0;
+border-radius:18px;
+opacity:0.10;
+background-image:url("https://www.transparenttextures.com/patterns/batik.png");
+background-size:220px;
+pointer-events:none;
+}
+
+.card::after{
+function closeModal(){
+document.getElementById("modal").style.display="none";
+}
+// Tutup modal jika klik di luar box
+document.getElementById("modal").addEventListener("click", function(e){
+if(e.target === this){
+this.style.display = "none";
+}
+});
 
 </body>
 </html>
