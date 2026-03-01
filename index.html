@@ -570,7 +570,26 @@ document.getElementById("modalContent").innerHTML=
 function closeModal(){
 document.getElementById("modal").style.display="none";
 }
-</script>
 
+
+// TAMBAHKAN DI SINI
+document.getElementById("modal").addEventListener("click", function(e){
+
+if(e.target === this){
+this.style.display = "none";
+}
+
+});
+
+document.addEventListener("keydown", function(e){
+
+if(e.key === "Escape"){
+document.getElementById("modal").style.display = "none";
+}
+
+});
+
+
+</script>
 </body>
 </html>
