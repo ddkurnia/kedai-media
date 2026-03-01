@@ -351,6 +351,36 @@ background-size:220px;
 pointer-events:none;
 }
 
+.partner-wrapper{
+overflow:hidden;
+width:100%;
+display:flex;
+justify-content:center;
+margin-top:20px;
+}
+
+.partner-track{
+display:flex;
+gap:80px;
+animation:partnerScroll 40s linear infinite;
+}
+
+.partner-track img{
+height:42px;
+opacity:0.7;
+transition:0.3s;
+}
+
+.partner-track img:hover{
+opacity:1;
+transform:scale(1.1);
+}
+
+@keyframes partnerScroll{
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
+}
+
 /* glow premium */
 .card::after{
 content:"";
@@ -444,14 +474,8 @@ Sistem Custom
 <section style="text-align:center;margin:60px 0 20px 0;">
 <h2 style="font-size:22px;margin-bottom:25px;">Partner & Teknologi</h2>
 
-<div style="
-display:flex;
-justify-content:center;
-align-items:center;
-gap:40px;
-flex-wrap:wrap;
-opacity:0.8;
-">
+<div class="partner-wrapper">
+<div class="partner-track">
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" height="40">
 
@@ -465,6 +489,20 @@ opacity:0.8;
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Ads_logo.svg" height="40">
 
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" height="40">
+  
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg" height="40">
+  
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" height="40">
+  
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" height="40">
+  
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" height="40">
+  
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Ads_logo.svg" height="40">
+
+</div> 
 </div>
 </section>
 
