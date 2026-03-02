@@ -17,311 +17,250 @@ Jasa Website, Pemulihan Akun Sosmed, WhatsApp Automation, Followers Real, Iklan 
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
 <style>
-/* === CSS VARIABLES - DARK PREMIUM THEME === */
+/* === CSS VARIABLES - KEDAI MEDIA THEME === */
 :root {
-  --bg-primary: #09090b;
-  --bg-secondary: #18181b;
-  --bg-card: rgba(24, 24, 27, 0.6);
-  --fg-primary: #fafafa;
-  --fg-secondary: #a1a1aa;
-  --fg-muted: #71717a;
-  --accent: #f97316;
-  --accent-glow: rgba(249, 115, 22, 0.4);
-  --accent-secondary: #fb923c;
-  --border: rgba(255, 255, 255, 0.08);
-  --glass: rgba(255, 255, 255, 0.03);
-  --radius-sm: 12px;
-  --radius-md: 20px;
-  --radius-lg: 32px;
+  --white: #ffffff;
+  --black: #111111;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-400: #9ca3af;
+  --gray-600: #4b5563;
+  --sky-400: #38bdf8;
+  --sky-500: #0ea5e9;
+  --violet-500: #8b5cf6;
+  --violet-600: #7c3aed;
+  --primary-gradient: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+  --text-gradient: linear-gradient(90deg, #0ea5e9, #8b5cf6);
+  --card-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+  --card-hover-shadow: 0 20px 50px -15px rgba(14, 165, 233, 0.2);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  background: var(--bg-primary);
-  color: var(--fg-primary);
+  font-family: 'Inter', sans-serif;
+  background: var(--white);
+  color: var(--gray-600);
   overflow-x: hidden;
   line-height: 1.6;
 }
 
-/* === ANIMATED MESH GRADIENT BACKGROUND === */
-.bg-mesh {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background: 
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(249, 115, 22, 0.15), transparent),
-    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(251, 146, 60, 0.1), transparent),
-    radial-gradient(ellipse 50% 30% at 0% 50%, rgba(249, 115, 22, 0.08), transparent);
+/* === GLOBAL STYLES === */
+h1, h2, h3, h4, h5 {
+  font-family: 'Poppins', sans-serif;
+  color: var(--black);
 }
 
-.noise-overlay {
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+/* === DECORATIVE BACKGROUND === */
+.bg-decoration {
   position: fixed;
-  inset: 0;
-  z-index: -1;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 600px;
+  background: linear-gradient(180deg, rgba(14, 165, 233, 0.03) 0%, transparent 100%);
   pointer-events: none;
+  z-index: -1;
 }
 
-/* === FLOATING SHAPES === */
-.floating-shape {
+.bg-blob {
   position: fixed;
   border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.3;
+  filter: blur(80px);
+  opacity: 0.4;
   pointer-events: none;
   z-index: -1;
-  animation: floatShape 20s ease-in-out infinite;
 }
 
-.shape-1 {
-  width: 600px;
-  height: 600px;
-  background: linear-gradient(135deg, #f97316, #ea580c);
-  top: -200px;
-  right: -200px;
-  animation-delay: 0s;
-}
+.blob-1 { width: 500px; height: 500px; background: rgba(56, 189, 248, 0.15); top: -200px; right: -100px; }
+.blob-2 { width: 400px; height: 400px; background: rgba(139, 92, 246, 0.15); bottom: 20%; left: -150px; }
 
-.shape-2 {
-  width: 400px;
-  height: 400px;
-  background: linear-gradient(135deg, #fb923c, #fdba74);
-  bottom: -100px;
-  left: -100px;
-  animation-delay: -10s;
-}
-
-@keyframes floatShape {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(50px, 50px) rotate(5deg); }
-  50% { transform: translate(0, 100px) rotate(0deg); }
-  75% { transform: translate(-50px, 50px) rotate(-5deg); }
-}
-
-/* === HEADER - GLASS MORPHISM === */
+/* === HEADER === */
 header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 16px 5%;
-  background: rgba(9, 9, 11, 0.8);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--gray-100);
+  transition: box-shadow 0.3s;
 }
 
 header.scrolled {
-  padding: 12px 5%;
-  background: rgba(9, 9, 11, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .header-inner {
-  max-width: 1400px;
-  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 72px;
 }
 
 .brand {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  line-height: 1.2;
 }
 
 .powered {
-  font-size: 9px;
+  font-size: 10px;
+  color: var(--gray-400);
   text-transform: uppercase;
-  letter-spacing: 3px;
-  color: var(--fg-muted);
-  font-weight: 600;
+  letter-spacing: 1.5px;
+  font-weight: 500;
 }
 
 .logo {
-  font-family: 'Outfit', sans-serif;
-  font-size: 26px;
-  font-weight: 800;
-  color: var(--fg-primary);
-  letter-spacing: -0.5px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  background: var(--text-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.logo span {
-  color: var(--accent);
-}
-
-.status {
+.status-badge {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 18px;
-  background: rgba(34, 197, 94, 0.1);
-  border: 1px solid rgba(34, 197, 94, 0.2);
+  gap: 8px;
+  padding: 8px 16px;
+  background: #ecfdf5;
   border-radius: 50px;
   font-size: 13px;
   font-weight: 600;
-  color: #4ade80;
+  color: #059669;
 }
 
-.status::before {
-  content: "";
+.status-badge::before {
+  content: '';
   width: 8px;
   height: 8px;
-  background: #4ade80;
+  background: #10b981;
   border-radius: 50%;
-  box-shadow: 0 0 12px #4ade80;
-  animation: pulse 2s ease-in-out infinite;
+  animation: blink 2s infinite;
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.8); }
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
 
-/* === HERO SECTION - MINIMALIST === */
+/* === HERO === */
 .hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: 140px 0 80px;
   text-align: center;
-  padding: 120px 20px 60px;
-  position: relative;
 }
 
 .hero-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 16px;
-  background: var(--glass);
-  border: 1px solid var(--border);
+  padding: 8px 20px;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
   border-radius: 50px;
   font-size: 13px;
   font-weight: 500;
-  color: var(--fg-secondary);
-  margin-bottom: 32px;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: reveal 0.8s 0.2s forwards;
+  color: var(--gray-600);
+  margin-bottom: 24px;
 }
 
 .hero-badge i {
-  color: var(--accent);
+  color: var(--sky-500);
 }
 
 .hero h1 {
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(40px, 8vw, 80px);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -2px;
-  margin-bottom: 24px;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: reveal 0.8s 0.3s forwards;
+  font-size: clamp(36px, 6vw, 56px);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
 }
 
-.hero h1 .highlight {
-  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+.hero h1 span {
+  background: var(--text-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .hero p {
-  font-size: clamp(16px, 2vw, 20px);
-  color: var(--fg-secondary);
+  font-size: 18px;
+  color: var(--gray-600);
   max-width: 600px;
-  margin-bottom: 40px;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: reveal 0.8s 0.4s forwards;
+  margin: 0 auto 32px;
 }
 
-.hero-cta {
+.hero-buttons {
   display: flex;
   gap: 16px;
-  flex-wrap: wrap;
   justify-content: center;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: reveal 0.8s 0.5s forwards;
+  flex-wrap: wrap;
 }
 
-@keyframes reveal {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* === BUTTONS === */
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
-  padding: 16px 32px;
-  border-radius: var(--radius-sm);
-  font-family: inherit;
+  padding: 14px 28px;
+  font-family: 'Inter', sans-serif;
   font-size: 15px;
   font-weight: 600;
   text-decoration: none;
-  border: none;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  transition: all 0.3s;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent), #ea580c);
+  background: var(--primary-gradient);
   color: white;
-  box-shadow: 0 4px 24px var(--accent-glow);
+  box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px var(--accent-glow);
+  box-shadow: 0 8px 30px rgba(14, 165, 233, 0.4);
 }
 
-.btn-secondary {
-  background: var(--glass);
-  border: 1px solid var(--border);
-  color: var(--fg-primary);
+.btn-outline {
+  background: transparent;
+  color: var(--gray-600);
+  border: 2px solid var(--gray-200);
 }
 
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.15);
+.btn-outline:hover {
+  border-color: var(--sky-500);
+  color: var(--sky-500);
+  background: rgba(14, 165, 233, 0.05);
 }
 
-/* === STATS - HORIZONTAL STRIP === */
-.stats-strip {
-  padding: 40px 5%;
-  background: var(--glass);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+/* === STATS === */
+.stats {
+  padding: 40px 0;
+  border-top: 1px solid var(--gray-100);
+  border-bottom: 1px solid var(--gray-100);
+  background: var(--gray-50);
 }
 
-.stats-inner {
-  max-width: 1200px;
-  margin: 0 auto;
+.stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
@@ -329,366 +268,279 @@ header.scrolled {
 
 .stat-item {
   text-align: center;
-  padding: 20px;
-  position: relative;
-}
-
-.stat-item:not(:last-child)::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1px;
-  height: 40px;
-  background: var(--border);
 }
 
 .stat-number {
-  font-family: 'Outfit', sans-serif;
-  font-size: 42px;
-  font-weight: 800;
-  color: var(--accent);
-  line-height: 1;
-  margin-bottom: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  background: var(--text-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 4px;
 }
 
 .stat-label {
-  font-size: 13px;
+  font-size: 14px;
+  color: var(--gray-400);
   font-weight: 500;
-  color: var(--fg-muted);
-  text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
-/* === SERVICES - BENTO GRID === */
-.services-section {
-  padding: 100px 5%;
+/* === SERVICES === */
+.services {
+  padding: 80px 0;
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: 60px;
-}
-
-.section-tag {
-  display: inline-block;
-  padding: 6px 14px;
-  background: rgba(249, 115, 22, 0.1);
-  border: 1px solid rgba(249, 115, 22, 0.2);
-  border-radius: 50px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 16px;
+  margin-bottom: 50px;
 }
 
 .section-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(32px, 5vw, 48px);
-  font-weight: 800;
-  letter-spacing: -1px;
-  margin-bottom: 16px;
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 700;
+  margin-bottom: 12px;
 }
 
-.section-desc {
-  font-size: 17px;
-  color: var(--fg-secondary);
-  max-width: 600px;
-  margin: 0 auto;
+.section-subtitle {
+  font-size: 16px;
+  color: var(--gray-400);
 }
 
 .services-grid {
-  max-width: 1400px;
-  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto auto;
-  gap: 16px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 
-/* BENTO LAYOUT */
-.card {
-  position: relative;
-  padding: 32px;
-  border-radius: var(--radius-md);
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+.service-card {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: 20px;
+  padding: 28px;
   cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 200px;
 }
 
-.card::before {
+.service-card::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, transparent, rgba(255,255,255,0.02));
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--card-gradient);
   opacity: 0;
-  transition: opacity 0.4s;
+  transition: opacity 0.3s;
 }
 
-.card:hover::before {
+.service-card:hover::before {
   opacity: 1;
 }
 
-.card:hover {
-  border-color: rgba(249, 115, 22, 0.3);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px -20px rgba(249, 115, 22, 0.2);
+.service-card:hover {
+  border-color: transparent;
+  box-shadow: var(--card-hover-shadow);
+  transform: translateY(-5px);
 }
 
-/* BENTO POSITIONS */
-.card:nth-child(1) { grid-column: span 4; }
-.card:nth-child(2) { grid-column: span 4; }
-.card:nth-child(3) { grid-column: span 4; }
-.card:nth-child(4) { grid-column: span 4; }
-.card:nth-child(5) { grid-column: span 4; }
-.card:nth-child(6) { grid-column: span 4; }
-.card:nth-child(7) { grid-column: span 6; }
-.card:nth-child(8) { grid-column: span 6; }
-
-.card-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: var(--radius-sm);
+.service-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 24px;
-  margin-bottom: 20px;
-  transition: transform 0.4s;
+  margin-bottom: 18px;
+  background: var(--icon-bg);
+  color: var(--icon-color);
+  transition: transform 0.3s;
 }
 
-.card:hover .card-icon {
+.service-card:hover .service-icon {
   transform: scale(1.1);
 }
 
-.card-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 8px;
+.service-name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 6px;
 }
 
-.card-desc {
-  font-size: 14px;
-  color: var(--fg-muted);
-  line-height: 1.6;
+.service-desc {
+  font-size: 13px;
+  color: var(--gray-400);
+  line-height: 1.5;
 }
 
-.card-arrow {
-  position: absolute;
-  top: 32px;
-  right: 32px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--glass);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--fg-muted);
-  font-size: 18px;
-  transition: all 0.3s;
-}
+/* Card Variations */
+.card-website { --card-gradient: linear-gradient(90deg, #3b82f6, #2563eb); --icon-bg: #eff6ff; --icon-color: #3b82f6; }
+.card-recovery { --card-gradient: linear-gradient(90deg, #ef4444, #dc2626); --icon-bg: #fef2f2; --icon-color: #ef4444; }
+.card-wa { --card-gradient: linear-gradient(90deg, #22c55e, #16a34a); --icon-bg: #f0fdf4; --icon-color: #22c55e; }
+.card-social { --card-gradient: linear-gradient(90deg, #8b5cf6, #7c3aed); --icon-bg: #f5f3ff; --icon-color: #8b5cf6; }
+.card-ads { --card-gradient: linear-gradient(90deg, #f97316, #ea580c); --icon-bg: #fff7ed; --icon-color: #f97316; }
+.card-design { --card-gradient: linear-gradient(90deg, #ec4899, #db2777); --icon-bg: #fdf2f8; --icon-color: #ec4899; }
+.card-security { --card-gradient: linear-gradient(90deg, #06b6d4, #0891b2); --icon-bg: #ecfeff; --icon-color: #06b6d4; }
+.card-system { --card-gradient: linear-gradient(90deg, #64748b, #475569); --icon-bg: #f8fafc; --icon-color: #64748b; }
 
-.card:hover .card-arrow {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: white;
-  transform: rotate(-45deg);
-}
-
-/* CARD COLORS */
-.card.recovery .card-icon { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
-.card.website .card-icon { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
-.card.wa .card-icon { background: rgba(34, 197, 94, 0.1); color: #22c55e; }
-.card.social .card-icon { background: rgba(139, 92, 246, 0.1); color: #8b5cf6; }
-.card.ads .card-icon { background: rgba(249, 115, 22, 0.1); color: #f97316; }
-.card.design .card-icon { background: rgba(236, 72, 153, 0.1); color: #ec4899; }
-.card.security .card-icon { background: rgba(6, 182, 212, 0.1); color: #06b6d4; }
-.card.system .card-icon { background: rgba(100, 116, 139, 0.1); color: #94a3b8; }
-
-/* === PARTNER - MARQUEE === */
-.partner-section {
-  padding: 60px 0;
-  background: var(--glass);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+/* === PARTNER === */
+.partner {
+  padding: 50px 0;
+  background: var(--black);
   overflow: hidden;
 }
 
-.partner-marquee {
+.partner-inner {
   display: flex;
-  gap: 80px;
-  animation: marquee 40s linear infinite;
+  align-items: center;
+  gap: 40px;
+}
+
+.partner-label {
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+.partner-track {
+  display: flex;
+  gap: 50px;
+  align-items: center;
 }
 
 .partner-logo {
-  height: 28px;
-  opacity: 0.3;
-  filter: grayscale(100%) brightness(2);
-  transition: all 0.4s;
+  height: 26px;
+  opacity: 0.4;
+  filter: brightness(0) invert(1);
+  transition: opacity 0.3s;
   flex-shrink: 0;
 }
 
 .partner-logo:hover {
-  opacity: 0.7;
-  filter: grayscale(0%) brightness(1);
+  opacity: 0.8;
 }
 
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* === TRUST - CARDS === */
-.trust-section {
-  padding: 100px 5%;
+/* === TRUST === */
+.trust {
+  padding: 80px 0;
+  background: var(--gray-50);
 }
 
 .trust-grid {
-  max-width: 1200px;
-  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
 }
 
-.trust-card {
-  padding: 32px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  transition: all 0.4s;
-  position: relative;
-  overflow: hidden;
+.trust-item {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 24px 16px;
+  text-align: center;
+  transition: all 0.3s;
 }
 
-.trust-card::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-  transform: scaleX(0);
-  transition: transform 0.4s;
-}
-
-.trust-card:hover {
-  border-color: rgba(249, 115, 22, 0.2);
-  transform: translateY(-4px);
-}
-
-.trust-card:hover::after {
-  transform: scaleX(1);
+.trust-item:hover {
+  box-shadow: var(--card-shadow);
+  transform: translateY(-3px);
 }
 
 .trust-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-sm);
-  background: rgba(249, 115, 22, 0.1);
+  width: 44px;
+  height: 44px;
+  background: var(--primary-gradient);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
-  color: var(--accent);
-  margin-bottom: 20px;
+  margin: 0 auto 14px;
+  font-size: 20px;
+  color: white;
 }
 
 .trust-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 4px;
 }
 
 .trust-desc {
-  font-size: 14px;
-  color: var(--fg-muted);
+  font-size: 12px;
+  color: var(--gray-400);
 }
 
-/* === MODAL - CENTERED === */
+/* === MODAL === */
 .modal-overlay {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
   z-index: 2000;
   justify-content: center;
   align-items: center;
   padding: 20px;
 }
 
-.modal-content {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 48px;
+.modal-box {
+  background: var(--white);
+  border-radius: 24px;
+  padding: 40px;
   max-width: 480px;
   width: 100%;
   position: relative;
-  animation: modalIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: modalIn 0.3s ease-out;
 }
 
 @keyframes modalIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95) translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 .modal-close {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 40px;
-  height: 40px;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  background: var(--gray-100);
   border-radius: 50%;
-  background: var(--glass);
-  border: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   font-size: 18px;
-  color: var(--fg-muted);
-  transition: all 0.3s;
+  color: var(--gray-400);
+  transition: all 0.2s;
 }
 
 .modal-close:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--fg-primary);
+  background: var(--gray-200);
+  color: var(--black);
 }
 
 .modal-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: 28px;
-  font-weight: 800;
+  font-size: 26px;
+  font-weight: 700;
   margin-bottom: 12px;
 }
 
 .modal-desc {
   font-size: 15px;
-  color: var(--fg-secondary);
-  margin-bottom: 32px;
-  line-height: 1.7;
+  color: var(--gray-600);
+  margin-bottom: 28px;
+  line-height: 1.6;
 }
 
 .modal-actions {
@@ -696,177 +548,111 @@ header.scrolled {
   gap: 12px;
 }
 
-.modal-actions .btn {
-  flex: 1;
-  justify-content: center;
-}
+.modal-actions .btn { flex: 1; }
 
 /* === FOOTER === */
 footer {
-  padding: 80px 5% 40px;
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--border);
+  background: var(--black);
+  color: var(--gray-400);
+  padding: 60px 0 30px;
 }
 
 .footer-grid {
-  max-width: 1200px;
-  margin: 0 auto;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 60px;
-  margin-bottom: 60px;
+  gap: 50px;
+  margin-bottom: 40px;
 }
 
-.footer-brand {
-  max-width: 300px;
+.footer-brand p {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-top: 16px;
 }
 
 .footer-logo {
-  font-family: 'Outfit', sans-serif;
-  font-size: 24px;
-  font-weight: 800;
-  margin-bottom: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
 }
 
 .footer-logo span {
-  color: var(--accent);
-}
-
-.footer-tagline {
-  font-size: 14px;
-  color: var(--fg-muted);
-  line-height: 1.7;
+  background: var(--text-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .footer-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--fg-primary);
-  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 18px;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .footer-link {
   display: block;
-  color: var(--fg-muted);
+  color: var(--gray-400);
   text-decoration: none;
   font-size: 14px;
-  margin-bottom: 12px;
-  transition: color 0.3s;
+  margin-bottom: 10px;
+  transition: color 0.2s;
 }
 
 .footer-link:hover {
-  color: var(--accent);
+  color: var(--sky-400);
 }
 
 .footer-bottom {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding-top: 30px;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 24px;
   text-align: center;
   font-size: 13px;
-  color: var(--fg-muted);
 }
 
 /* === RESPONSIVE === */
 @media (max-width: 1024px) {
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .card:nth-child(n) {
-    grid-column: span 1;
-    min-height: 180px;
-  }
-  
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-  }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .trust-grid { grid-template-columns: repeat(3, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
 }
 
 @media (max-width: 768px) {
-  .stats-inner {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .stat-item:nth-child(2)::after {
-    display: none;
-  }
-  
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .card:nth-child(n) {
-    grid-column: span 1;
-  }
-  
-  .trust-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-  
-  .hero h1 {
-    letter-spacing: -1px;
-  }
-  
-  .modal-content {
-    padding: 32px 24px;
-  }
-  
-  .modal-actions {
-    flex-direction: column;
-  }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-grid { grid-template-columns: 1fr; }
+  .trust-grid { grid-template-columns: repeat(2, 1fr); }
+  .partner-label { display: none; }
+  .modal-actions { flex-direction: column; }
+  .footer-grid { grid-template-columns: 1fr; gap: 30px; }
 }
 
 @media (max-width: 480px) {
-  .stats-inner {
-    grid-template-columns: 1fr;
-  }
-  
-  .stat-item::after {
-    display: none;
-  }
-  
-  .hero-cta {
-    flex-direction: column;
-    width: 100%;
-    padding: 0 20px;
-  }
-  
-  .btn {
-    width: 100%;
-    justify-content: center;
-  }
+  .hero { padding: 120px 0 60px; }
+  .hero-buttons { flex-direction: column; }
+  .btn { width: 100%; }
+  .trust-grid { grid-template-columns: 1fr; }
 }
 
-/* === UTILITY ANIMATIONS === */
-.fade-in {
+/* === ANIMATIONS === */
+.fade-up {
   opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(20px);
+  transition: all 0.5s ease-out;
 }
 
-.fade-in.visible {
+.fade-up.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* === FOCUS STATES === */
 *:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--sky-500);
   outline-offset: 2px;
 }
 
-/* === REDUCED MOTION === */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -877,157 +663,131 @@ footer {
 </head>
 <body>
 
-<div class="bg-mesh"></div>
-<div class="noise-overlay"></div>
-<div class="floating-shape shape-1"></div>
-<div class="floating-shape shape-2"></div>
+<div class="bg-decoration"></div>
+<div class="bg-blob blob-1"></div>
+<div class="bg-blob blob-2"></div>
 
 <!-- HEADER -->
 <header id="header">
-  <div class="header-inner">
+  <div class="container header-inner">
     <div class="brand">
       <div class="powered">MALAKA HUB</div>
-      <div class="logo">Kedai<span>Media</span></div>
+      <div class="logo">Kedai Media</div>
     </div>
-    <div class="status">Online</div>
+    <div class="status-badge">Online</div>
   </div>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">
-    <i class="ri-shield-check-line"></i>
-    Terpercaya sejak 2009
-  </div>
-  <h1>Solusi Digital<br><span class="highlight">Tanpa Batas</span></h1>
-  <p>Transformasi bisnis Anda dengan teknologi terdepan. Dipercaya lebih dari 10.000 klien di seluruh Indonesia.</p>
-  <div class="hero-cta">
-    <a href="#layanan" class="btn btn-primary">
-      <i class="ri-arrow-right-line"></i>
-      Lihat Layanan
-    </a>
-    <a href="https://wa.me/6282285781863" target="_blank" rel="noopener" class="btn btn-secondary">
-      <i class="ri-whatsapp-line"></i>
-      Hubungi Kami
-    </a>
+  <div class="container">
+    <div class="hero-badge">
+      <i class="ri-shield-check-line"></i>
+      Dipercaya sejak 2009
+    </div>
+    <h1>Solusi Digital <span>Profesional</span><br>untuk Bisnis Anda</h1>
+    <p>Kami membantu bisnis Anda berkembang dengan layanan digital terpercaya. Lebih dari 10.000 klien telah merasakan hasilnya.</p>
+    <div class="hero-buttons">
+      <a href="#layanan" class="btn btn-primary">
+        <i class="ri-arrow-right-line"></i>
+        Lihat Layanan
+      </a>
+      <a href="https://wa.me/6282285781863" target="_blank" rel="noopener" class="btn btn-outline">
+        <i class="ri-whatsapp-line"></i>
+        Hubungi Kami
+      </a>
+    </div>
   </div>
 </section>
 
 <!-- STATS -->
-<section class="stats-strip">
-  <div class="stats-inner">
-    <div class="stat-item">
-      <div class="stat-number" id="clients">0</div>
-      <div class="stat-label">Klien</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number" id="visitors">0</div>
-      <div class="stat-label">Pengunjung</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">99.9%</div>
-      <div class="stat-label">Success Rate</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">24/7</div>
-      <div class="stat-label">Support</div>
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number" id="clients">0</div>
+        <div class="stat-label">Klien Puas</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" id="visitors">0</div>
+        <div class="stat-label">Pengunjung</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">99.9%</div>
+        <div class="stat-label">Success Rate</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Support</div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- SERVICES -->
-<section class="services-section" id="layanan">
-  <div class="section-header">
-    <div class="section-tag">Layanan Kami</div>
-    <h2 class="section-title">Solusi Lengkap untuk Bisnis</h2>
-    <p class="section-desc">Pilih layanan yang sesuai dengan kebutuhan digital bisnis Anda</p>
-  </div>
-  
-  <div class="services-grid">
-    <div class="card recovery fade-in" onclick="openModal('recovery')">
-      <div class="card-icon"><i class="ri-shield-keyhole-fill"></i></div>
-      <div>
-        <div class="card-title">Pemulihan Akun Sosmed</div>
-        <div class="card-desc">Mengembalikan akun yang diretas atau di-hack</div>
-      </div>
-      <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+<section class="services" id="layanan">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Layanan Kami</h2>
+      <p class="section-subtitle">Pilih solusi yang tepat untuk kebutuhan bisnis Anda</p>
     </div>
     
-    <div class="card website fade-in" onclick="openModal('website')">
-      <div class="card-icon"><i class="ri-code-box-fill"></i></div>
-      <div>
-        <div class="card-title">Pembuatan Website</div>
-        <div class="card-desc">Website profesional untuk bisnis Anda</div>
+    <div class="services-grid">
+      <div class="service-card card-recovery fade-up" onclick="openModal('recovery')">
+        <div class="service-icon"><i class="ri-shield-keyhole-fill"></i></div>
+        <div class="service-name">Pemulihan Akun Sosmed</div>
+        <div class="service-desc">Mengembalikan akun yang diretas</div>
       </div>
-      <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-    </div>
-    
-    <div class="card wa fade-in" onclick="openModal('wa')">
-      <div class="card-icon"><i class="ri-whatsapp-fill"></i></div>
-      <div>
-        <div class="card-title">WhatsApp Automation</div>
-        <div class="card-desc">Bot dan auto reply untuk bisnis</div>
+      
+      <div class="service-card card-website fade-up" onclick="openModal('website')">
+        <div class="service-icon"><i class="ri-code-box-fill"></i></div>
+        <div class="service-name">Pembuatan Website</div>
+        <div class="service-desc">Website profesional untuk bisnis</div>
       </div>
-      <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-    </div>
-    
-    <div class="card social fade-in" onclick="openModal('social')">
-      <div class="card-icon"><i class="ri-group-fill"></i></div>
-      <div>
-        <div class="card-title">Optimasi Sosial Media</div>
-        <div class="card-desc">Followers real dan engagement</div>
+      
+      <div class="service-card card-wa fade-up" onclick="openModal('wa')">
+        <div class="service-icon"><i class="ri-whatsapp-fill"></i></div>
+        <div class="service-name">WhatsApp Automation</div>
+        <div class="service-desc">Bot dan auto reply bisnis</div>
       </div>
-      <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-    </div>
-    
-    <div class="card ads fade-in" onclick="openModal('ads')">
-      <div class="card-icon"><i class="ri-megaphone-fill"></i></div>
-      <div>
-        <div class="card-title">Iklan Digital</div>
-        <div class="card-desc">Facebook Ads dan Google Ads</div>
+      
+      <div class="service-card card-social fade-up" onclick="openModal('social')">
+        <div class="service-icon"><i class="ri-group-fill"></i></div>
+        <div class="service-name">Optimasi Sosial Media</div>
+        <div class="service-desc">Followers real dan engagement</div>
       </div>
-      <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-    </div>
-    
-    <div class="card design fade-in" onclick="openModal('design')">
-      <div class="card-icon"><i class="ri-palette-fill"></i></div>
-      <div>
-        <div class="card-title">Desain Grafis</div>
-        <div class="card-desc">Brosur, flyer, konten sosial media</div>
+      
+      <div class="service-card card-ads fade-up" onclick="openModal('ads')">
+        <div class="service-icon"><i class="ri-megaphone-fill"></i></div>
+        <div class="service-name">Iklan Digital</div>
+        <div class="service-desc">Facebook Ads & Google Ads</div>
       </div>
-      <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-    </div>
-    
-    <div class="card security fade-in" onclick="openModal('security')">
-      <div class="card-icon"><i class="ri-lock-fill"></i></div>
-      <div>
-        <div class="card-title">Keamanan Akun</div>
-        <div class="card-desc">Proteksi akun dari ancaman hacker</div>
+      
+      <div class="service-card card-design fade-up" onclick="openModal('design')">
+        <div class="service-icon"><i class="ri-palette-fill"></i></div>
+        <div class="service-name">Desain Grafis</div>
+        <div class="service-desc">Brosur, flyer, konten sosmed</div>
       </div>
-      <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
-    </div>
-    
-    <div class="card system fade-in" onclick="openModal('system')">
-      <div class="card-icon"><i class="ri-cpu-fill"></i></div>
-      <div>
-        <div class="card-title">Sistem Custom</div>
-        <div class="card-desc">Pembuatan sistem sesuai kebutuhan</div>
+      
+      <div class="service-card card-security fade-up" onclick="openModal('security')">
+        <div class="service-icon"><i class="ri-lock-fill"></i></div>
+        <div class="service-name">Keamanan Akun</div>
+        <div class="service-desc">Proteksi dari ancaman hacker</div>
       </div>
-      <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+      
+      <div class="service-card card-system fade-up" onclick="openModal('system')">
+        <div class="service-icon"><i class="ri-cpu-fill"></i></div>
+        <div class="service-name">Sistem Custom</div>
+        <div class="service-desc">Sesuai kebutuhan bisnis</div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- PARTNER -->
-<section class="partner-section">
-  <div class="partner-marquee" id="partnerMarquee">
-    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google">
-    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg" alt="Facebook">
-    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub">
-    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" alt="OpenAI">
-    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Ads_logo.svg" alt="Google Ads">
-    <!-- Duplicate for seamless loop -->
+<section class="partner">
+  <div class="partner-inner" id="partnerTrack">
+    <span class="partner-label">Partner Teknologi</span>
     <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google">
     <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg" alt="Facebook">
     <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub">
@@ -1038,150 +798,116 @@ footer {
 </section>
 
 <!-- TRUST -->
-<section class="trust-section">
-  <div class="section-header">
-    <div class="section-tag">Mengapa Kami</div>
-    <h2 class="section-title">Kenapa Memilih Kedai Media</h2>
-  </div>
-  
-  <div class="trust-grid">
-    <div class="trust-card fade-in">
-      <div class="trust-icon"><i class="ri-history-line"></i></div>
-      <div class="trust-title">Terpercaya sejak 2009</div>
-      <div class="trust-desc">Lebih dari 15 tahun pengalaman melayani klien</div>
+<section class="trust">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Kenapa Memilih Kami</h2>
+      <p class="section-subtitle">Kepercayaan klien adalah prioritas utama kami</p>
     </div>
-    <div class="trust-card fade-in">
-      <div class="trust-icon"><i class="ri-user-star-line"></i></div>
-      <div class="trust-title">10.000+ Klien</div>
-      <div class="trust-desc">Dipercaya seluruh Indonesia</div>
-    </div>
-    <div class="trust-card fade-in">
-      <div class="trust-icon"><i class="ri-bar-chart-grouped-line"></i></div>
-      <div class="trust-title">Success Rate Tinggi</div>
-      <div class="trust-desc">Keberhasilan hingga 99.9%</div>
-    </div>
-    <div class="trust-card fade-in">
-      <div class="trust-icon"><i class="ri-customer-service-2-line"></i></div>
-      <div class="trust-title">Support 24/7</div>
-      <div class="trust-desc">Siap membantu kapan saja</div>
-    </div>
-    <div class="trust-card fade-in">
-      <div class="trust-icon"><i class="ri-shield-check-line"></i></div>
-      <div class="trust-title">100% Aman</div>
-      <div class="trust-desc">Privasi terjamin</div>
-    </div>
-    <div class="trust-card fade-in">
-      <div class="trust-icon"><i class="ri-rocket-2-line"></i></div>
-      <div class="trust-title">Cepat & Profesional</div>
-      <div class="trust-desc">Pengerjaan cepat & berkualitas</div>
+    
+    <div class="trust-grid">
+      <div class="trust-item fade-up">
+        <div class="trust-icon"><i class="ri-history-line"></i></div>
+        <div class="trust-title">Sejak 2009</div>
+        <div class="trust-desc">15+ tahun pengalaman</div>
+      </div>
+      <div class="trust-item fade-up">
+        <div class="trust-icon"><i class="ri-user-star-line"></i></div>
+        <div class="trust-title">10.000+ Klien</div>
+        <div class="trust-desc">Seluruh Indonesia</div>
+      </div>
+      <div class="trust-item fade-up">
+        <div class="trust-icon"><i class="ri-bar-chart-grouped-line"></i></div>
+        <div class="trust-title">99.9% Sukses</div>
+        <div class="trust-desc">Tingkat keberhasilan</div>
+      </div>
+      <div class="trust-item fade-up">
+        <div class="trust-icon"><i class="ri-customer-service-2-line"></i></div>
+        <div class="trust-title">Support 24/7</div>
+        <div class="trust-desc">Siap membantu</div>
+      </div>
+      <div class="trust-item fade-up">
+        <div class="trust-icon"><i class="ri-shield-check-line"></i></div>
+        <div class="trust-title">100% Aman</div>
+        <div class="trust-desc">Privasi terjamin</div>
+      </div>
+      <div class="trust-item fade-up">
+        <div class="trust-icon"><i class="ri-rocket-2-line"></i></div>
+        <div class="trust-title">Cepat & Pro</div>
+        <div class="trust-desc">Proses profesional</div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modal">
-  <div class="modal-content">
+  <div class="modal-box">
     <div class="modal-close" onclick="closeModal()"><i class="ri-close-line"></i></div>
     <h3 class="modal-title" id="modalTitle"></h3>
     <p class="modal-desc" id="modalDesc"></p>
     <div class="modal-actions">
       <a href="#" class="btn btn-primary" id="modalLink">Pelajari Selengkapnya</a>
-      <a href="https://wa.me/6282285781863" target="_blank" rel="noopener" class="btn btn-secondary">Hubungi Kami</a>
+      <a href="https://wa.me/6282285781863" target="_blank" rel="noopener" class="btn btn-outline">Hubungi Kami</a>
     </div>
   </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <div class="footer-logo">Kedai<span>Media</span></div>
-      <p class="footer-tagline">Solusi digital profesional sejak 2009. Melayani website, automation, dan sistem custom seluruh Indonesia.</p>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">Kedai<span>Media</span></div>
+        <p>Solusi digital profesional sejak 2009. Melayani website, automation, dan sistem custom seluruh Indonesia.</p>
+      </div>
+      <div>
+        <div class="footer-title">Layanan</div>
+        <a href="pemulihan-akun-sosmed/" class="footer-link">Pemulihan Akun</a>
+        <a href="jasa-pembuatan-website/" class="footer-link">Pembuatan Website</a>
+        <a href="whatsapp-automation/" class="footer-link">WhatsApp Automation</a>
+        <a href="sistem-custom/" class="footer-link">Sistem Custom</a>
+      </div>
+      <div>
+        <div class="footer-title">Perusahaan</div>
+        <a href="#" class="footer-link">Tentang Kami</a>
+        <a href="#" class="footer-link">Kontak</a>
+        <a href="#" class="footer-link">Privacy Policy</a>
+      </div>
+      <div>
+        <div class="footer-title">Kontak</div>
+        <p class="footer-link" style="cursor: default;">WhatsApp</p>
+        <p class="footer-link" style="cursor: default;">Indonesia</p>
+      </div>
     </div>
-    <div>
-      <div class="footer-title">Layanan</div>
-      <a href="pemulihan-akun-sosmed/" class="footer-link">Pemulihan Akun</a>
-      <a href="jasa-pembuatan-website/" class="footer-link">Pembuatan Website</a>
-      <a href="whatsapp-automation/" class="footer-link">WhatsApp Automation</a>
-      <a href="sistem-custom/" class="footer-link">Sistem Custom</a>
+    <div class="footer-bottom">
+      © 2026 Kedai Media Indonesia. All rights reserved.
     </div>
-    <div>
-      <div class="footer-title">Perusahaan</div>
-      <a href="#" class="footer-link">Tentang Kami</a>
-      <a href="#" class="footer-link">Kontak</a>
-      <a href="#" class="footer-link">Privacy Policy</a>
-    </div>
-    <div>
-      <div class="footer-title">Kontak</div>
-      <p class="footer-link" style="cursor: default;">WhatsApp</p>
-      <p class="footer-link" style="cursor: default;">Indonesia</p>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    © 2026 Kedai Media Indonesia. All rights reserved.
   </div>
 </footer>
 
 <script>
 // === DATA LAYANAN ===
 const services = {
-  recovery: { 
-    title: "Pemulihan Akun Sosmed", 
-    desc: "Layanan profesional untuk mengembalikan akun sosial media Anda yang telah diretas atau di-hack. Kami menangani Facebook, Instagram, TikTok, dan platform lainnya dengan tingkat keberhasilan tinggi.", 
-    url: "pemulihan-akun-sosmed/" 
-  },
-  website: { 
-    title: "Pembuatan Website", 
-    desc: "Website profesional untuk bisnis, UMKM, company profile, instansi pemerintah, sekolah, dan organisasi. Desain modern dengan performa optimal.", 
-    url: "jasa-pembuatan-website/" 
-  },
-  wa: { 
-    title: "WhatsApp Automation", 
-    desc: "Solusi WhatsApp bot dan auto reply untuk bisnis. Tingkatkan efisiensi layanan pelanggan dengan sistem otomatis yang cerdas.", 
-    url: "whatsapp-automation/" 
-  },
-  social: { 
-    title: "Optimasi Sosial Media", 
-    desc: "Jasa followers real dan engagement untuk Instagram, Facebook, dan TikTok. Tingkatkan visibilitas dan kredibilitas bisnis Anda.", 
-    url: "optimasi-sosial-media/" 
-  },
-  ads: { 
-    title: "Iklan Digital", 
-    desc: "Kelola iklan Facebook Ads, Instagram Ads, dan Google Ads secara profesional. Optimasi budget untuk hasil maksimal.", 
-    url: "iklan-digital/" 
-  },
-  design: { 
-    title: "Desain Grafis", 
-    desc: "Jasa desain brosur, flyer, konten sosial media, dan kebutuhan visual lainnya. Desain menarik yang meningkatkan brand awareness.", 
-    url: "desain-grafis/" 
-  },
-  security: { 
-    title: "Keamanan Akun", 
-    desc: "Proteksi akun sosial media Anda dari ancaman hacker. Audit keamanan dan implementasi sistem perlindungan menyeluruh.", 
-    url: "keamanan-akun/" 
-  },
-  system: { 
-    title: "Sistem Custom", 
-    desc: "Pengembangan sistem dan aplikasi sesuai kebutuhan spesifik bisnis Anda. Solusi teknologi yang scalable dan maintainable.", 
-    url: "sistem-custom/" 
-  }
+  recovery: { title: "Pemulihan Akun Sosmed", desc: "Layanan profesional untuk mengembalikan akun sosial media Anda yang telah diretas atau di-hack. Kami menangani Facebook, Instagram, TikTok, dan platform lainnya dengan tingkat keberhasilan tinggi.", url: "pemulihan-akun-sosmed/" },
+  website: { title: "Pembuatan Website", desc: "Website profesional untuk bisnis, UMKM, company profile, instansi pemerintah, sekolah, dan organisasi. Desain modern dengan performa optimal.", url: "jasa-pembuatan-website/" },
+  wa: { title: "WhatsApp Automation", desc: "Solusi WhatsApp bot dan auto reply untuk bisnis. Tingkatkan efisiensi layanan pelanggan dengan sistem otomatis yang cerdas.", url: "whatsapp-automation/" },
+  social: { title: "Optimasi Sosial Media", desc: "Jasa followers real dan engagement untuk Instagram, Facebook, dan TikTok. Tingkatkan visibilitas dan kredibilitas bisnis Anda.", url: "optimasi-sosial-media/" },
+  ads: { title: "Iklan Digital", desc: "Kelola iklan Facebook Ads, Instagram Ads, dan Google Ads secara profesional. Optimasi budget untuk hasil maksimal.", url: "iklan-digital/" },
+  design: { title: "Desain Grafis", desc: "Jasa desain brosur, flyer, konten sosial media, dan kebutuhan visual lainnya. Desain menarik yang meningkatkan brand awareness.", url: "desain-grafis/" },
+  security: { title: "Keamanan Akun", desc: "Proteksi akun sosial media Anda dari ancaman hacker. Audit keamanan dan implementasi sistem perlindungan menyeluruh.", url: "keamanan-akun/" },
+  system: { title: "Sistem Custom", desc: "Pengembangan sistem dan aplikasi sesuai kebutuhan spesifik bisnis Anda. Solusi teknologi yang scalable dan maintainable.", url: "sistem-custom/" }
 };
 
-// === MODAL FUNCTIONS ===
+// === MODAL ===
 function openModal(key) {
   const s = services[key];
   if (!s) return;
-  
   document.getElementById('modalTitle').textContent = s.title;
   document.getElementById('modalDesc').textContent = s.desc;
-  
-  const linkEl = document.getElementById('modalLink');
-  linkEl.href = s.url;
-  linkEl.onclick = function(e) {
-    window.location.href = s.url;
-    return false;
-  };
-  
+  const link = document.getElementById('modalLink');
+  link.href = s.url;
+  link.onclick = function(e) { window.location.href = s.url; return false; };
   document.getElementById('modal').style.display = 'flex';
   document.body.style.overflow = 'hidden';
 }
@@ -1191,58 +917,60 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-document.getElementById('modal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
+document.getElementById('modal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeModal();
-});
-
-// === COUNTER ANIMATION ===
+// === COUNTER ===
 function animateCounter(id, end, duration) {
   const el = document.getElementById(id);
   if (!el) return;
-  
-  const startTime = performance.now();
-  
-  function update(currentTime) {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.floor(end * eased).toLocaleString();
-    
-    if (progress < 1) requestAnimationFrame(update);
+  const start = performance.now();
+  function update(now) {
+    const p = Math.min((now - start) / duration, 1);
+    el.textContent = Math.floor(end * (1 - Math.pow(1 - p, 3))).toLocaleString();
+    if (p < 1) requestAnimationFrame(update);
   }
-  
   requestAnimationFrame(update);
 }
 
 // === SCROLL ANIMATIONS ===
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-// === HEADER SCROLL EFFECT ===
+// === HEADER SCROLL ===
 window.addEventListener('scroll', () => {
-  const header = document.getElementById('header');
-  if (window.scrollY > 50) {
-    header.classList.add('scrolled');
-  } else {
-    header.classList.remove('scrolled');
-  }
+  document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// === INIT ON LOAD ===
+// === PARTNER MARQUEE ===
+function initMarquee() {
+  const track = document.getElementById('partnerTrack');
+  if (!track) return;
+  const logos = track.querySelectorAll('.partner-logo');
+  if (logos.length < 2) return;
+  
+  // Clone logos
+  logos.forEach(logo => track.appendChild(logo.cloneNode(true)));
+  
+  let pos = 0;
+  const speed = 0.5;
+  function animate() {
+    pos -= speed;
+    const width = track.scrollWidth / 2;
+    if (Math.abs(pos) >= width) pos = 0;
+    track.style.transform = `translateX(${pos}px)`;
+    requestAnimationFrame(animate);
+  }
+  animate();
+}
+
+// === INIT ===
 document.addEventListener('DOMContentLoaded', () => {
   animateCounter('clients', 10247, 2500);
   animateCounter('visitors', Math.floor(Math.random() * 200) + 50, 2000);
+  initMarquee();
 });
 </script>
 
