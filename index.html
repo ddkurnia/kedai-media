@@ -107,16 +107,21 @@ animation:pulse 2s infinite;
 
 .hero {
     text-align:center;
-    padding:60px 20px 10px;
+    padding:140px 20px 60px;
 
-    background: url('hero-bg.png') center bottom no-repeat;
-    background-size: cover;
-    background-position: center bottom;
+    background:
+        linear-gradient(to bottom, #eef2ff 0%, #ffffff 100%),
+        url('hero-bg.png');
 
-    min-height:420px;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 100% auto;
+
+    min-height:520px;
+
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    justify-content:flex-start;
 }
 
 .hero h1{
