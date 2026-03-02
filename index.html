@@ -17,238 +17,1086 @@ Jasa Website, Pemulihan Akun Sosmed, WhatsApp Automation, Followers Real, Iklan 
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
 <style>
-/* === VARIABEL & RESET === */
+/* === CSS VARIABLES - DARK PREMIUM THEME === */
 :root {
-  --bg: #f8fafc;
-  --bg-dark: #0f172a;
-  --fg: #1e293b;
-  --fg-light: #64748b;
-  --accent-blue: #2563eb;
-  --accent-purple: #7c3aed;
-  --success: #22c55e;
-  --card-shadow: 0 25px 80px -20px rgba(0,0,0,0.15);
+  --bg-primary: #09090b;
+  --bg-secondary: #18181b;
+  --bg-card: rgba(24, 24, 27, 0.6);
+  --fg-primary: #fafafa;
+  --fg-secondary: #a1a1aa;
+  --fg-muted: #71717a;
+  --accent: #f97316;
+  --accent-glow: rgba(249, 115, 22, 0.4);
+  --accent-secondary: #fb923c;
+  --border: rgba(255, 255, 255, 0.08);
+  --glass: rgba(255, 255, 255, 0.03);
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-  font-family: 'Inter', sans-serif;
-  margin: 0;
-  background: var(--bg);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg-primary);
+  color: var(--fg-primary);
   overflow-x: hidden;
+  line-height: 1.6;
 }
 
-/* === BACKGROUND VISUAL === */
-.bg-grid {
-  position: fixed; inset: 0;
-  background-image: 
-    radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.08) 0%, transparent 50%);
-  pointer-events: none; z-index: -2;
+/* === ANIMATED MESH GRADIENT BACKGROUND === */
+.bg-mesh {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(249, 115, 22, 0.15), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(251, 146, 60, 0.1), transparent),
+    radial-gradient(ellipse 50% 30% at 0% 50%, rgba(249, 115, 22, 0.08), transparent);
 }
 
-.bg-pattern {
-  position: fixed; inset: 0; opacity: 0.4;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%232563eb' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  pointer-events: none; z-index: -1;
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
 }
 
-.orb {
-  position: fixed; border-radius: 50%; filter: blur(100px); opacity: 0.35; z-index: -1;
-  animation: float 15s infinite ease-in-out;
+/* === FLOATING SHAPES === */
+.floating-shape {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: -1;
+  animation: floatShape 20s ease-in-out infinite;
 }
-.orb1 { width: 500px; height: 500px; background: linear-gradient(135deg, #2563eb, #3b82f6); top: -150px; left: -150px; }
-.orb2 { width: 450px; height: 450px; background: linear-gradient(135deg, #7c3aed, #a78bfa); bottom: -100px; right: -100px; animation-delay: -5s; }
 
-@keyframes float { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-20px, 30px); } }
+.shape-1 {
+  width: 600px;
+  height: 600px;
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  top: -200px;
+  right: -200px;
+  animation-delay: 0s;
+}
 
-/* === HEADER === */
+.shape-2 {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, #fb923c, #fdba74);
+  bottom: -100px;
+  left: -100px;
+  animation-delay: -10s;
+}
+
+@keyframes floatShape {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(50px, 50px) rotate(5deg); }
+  50% { transform: translate(0, 100px) rotate(0deg); }
+  75% { transform: translate(-50px, 50px) rotate(-5deg); }
+}
+
+/* === HEADER - GLASS MORPHISM === */
 header {
-  padding: 18px 6%;
-  background: rgba(255,255,255,0.85);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 16px 5%;
+  background: rgba(9, 9, 11, 0.8);
   backdrop-filter: blur(20px);
-  box-shadow: 0 20px 50px -10px rgba(0,0,0,0.08);
-  position: sticky; top: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  border-bottom: 1px solid rgba(0,0,0,0.03);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.brand { display: flex; flex-direction: column; gap: 2px; }
-.powered { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--fg-light); font-weight: 600; }
-.logo { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.status { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--success); font-weight: 600; padding: 8px 16px; background: rgba(34, 197, 94, 0.08); border-radius: 50px; border: 1px solid rgba(34, 197, 94, 0.15); }
-.status::before { content: ""; width: 8px; height: 8px; background: var(--success); border-radius: 50%; box-shadow: 0 0 10px var(--success); animation: pulse 2s infinite; }
-@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
-/* === HERO === */
-.hero { text-align: center; padding: 80px 20px 50px; }
-.hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(32px, 6vw, 52px); font-weight: 700; margin: 0; background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple), #06b6d4); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientShift 8s ease infinite; }
-@keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-.hero p { color: var(--fg-light); font-size: clamp(16px, 2.5vw, 20px); margin-top: 16px; }
+header.scrolled {
+  padding: 12px 5%;
+  background: rgba(9, 9, 11, 0.95);
+}
 
-/* === STATS === */
-.stats { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin: 30px 0 50px; padding: 0 20px; }
-.stat { background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); padding: 22px 28px; border-radius: 16px; box-shadow: var(--card-shadow); text-align: center; border: 1px solid rgba(255,255,255,0.8); min-width: 140px; }
-.stat h3 { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; margin: 0 0 4px; background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.stat p { color: var(--fg-light); font-size: 13px; font-weight: 500; margin: 0; text-transform: uppercase; }
+.header-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-/* === SERVICES === */
-.services { padding: 0 6%; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; max-width: 1400px; margin: 0 auto; }
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.powered {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--fg-muted);
+  font-weight: 600;
+}
+
+.logo {
+  font-family: 'Outfit', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--fg-primary);
+  letter-spacing: -0.5px;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4ade80;
+}
+
+.status::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: #4ade80;
+  border-radius: 50%;
+  box-shadow: 0 0 12px #4ade80;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* === HERO SECTION - MINIMALIST === */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 120px 20px 60px;
+  position: relative;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg-secondary);
+  margin-bottom: 32px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: reveal 0.8s 0.2s forwards;
+}
+
+.hero-badge i {
+  color: var(--accent);
+}
+
+.hero h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(40px, 8vw, 80px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: reveal 0.8s 0.3s forwards;
+}
+
+.hero h1 .highlight {
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  font-size: clamp(16px, 2vw, 20px);
+  color: var(--fg-secondary);
+  max-width: 600px;
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: reveal 0.8s 0.4s forwards;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: reveal 0.8s 0.5s forwards;
+}
+
+@keyframes reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), #ea580c);
+  color: white;
+  box-shadow: 0 4px 24px var(--accent-glow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px var(--accent-glow);
+}
+
+.btn-secondary {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  color: var(--fg-primary);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* === STATS - HORIZONTAL STRIP === */
+.stats-strip {
+  padding: 40px 5%;
+  background: var(--glass);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.stats-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 40px;
+  background: var(--border);
+}
+
+.stat-number {
+  font-family: 'Outfit', sans-serif;
+  font-size: 42px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* === SERVICES - BENTO GRID === */
+.services-section {
+  padding: 100px 5%;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-tag {
+  display: inline-block;
+  padding: 6px 14px;
+  background: rgba(249, 115, 22, 0.1);
+  border: 1px solid rgba(249, 115, 22, 0.2);
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+}
+
+.section-desc {
+  font-size: 17px;
+  color: var(--fg-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.services-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto auto;
+  gap: 16px;
+}
+
+/* BENTO LAYOUT */
 .card {
-  position: relative; padding: 28px 24px; border-radius: 20px; color: white; cursor: pointer;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0; transform: translateY(40px) scale(0.95);
-  display: flex; align-items: center; gap: 16px;
-  font-weight: 700; font-size: 15px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);
+  position: relative;
+  padding: 32px;
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
 }
-.card.visible { opacity: 1; transform: translateY(0) scale(1); }
-.card::before { content: ""; position: absolute; inset: 0; border-radius: 20px; opacity: 0.12; background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z' fill='%23ffffff' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E"); pointer-events: none; }
-.card:hover { transform: translateY(-12px) scale(1.02); box-shadow: 0 40px 100px -20px rgba(0,0,0,0.3); }
-.card i { font-size: 26px; background: rgba(255,255,255,0.2); padding: 14px; border-radius: 14px; box-shadow: 0 8px 25px rgba(0,0,0,0.2), inset 0 2px 4px rgba(255,255,255,0.3); backdrop-filter: blur(8px); transition: all 0.4s; }
-.card:hover i { transform: scale(1.1) rotate(-5deg); }
 
-/* Card Colors */
-.website { background: linear-gradient(145deg, #3b82f6, #1d4ed8); }
-.recovery { background: linear-gradient(145deg, #ef4444, #b91c1c); }
-.wa { background: linear-gradient(145deg, #22c55e, #15803d); }
-.social { background: linear-gradient(145deg, #8b5cf6, #6d28d9); }
-.ads { background: linear-gradient(145deg, #f97316, #c2410c); }
-.design { background: linear-gradient(145deg, #ec4899, #9d174d); }
-.security { background: linear-gradient(145deg, #06b6d4, #0e7490); }
-.system { background: linear-gradient(145deg, #475569, #1e293b); }
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent, rgba(255,255,255,0.02));
+  opacity: 0;
+  transition: opacity 0.4s;
+}
 
-/* === PARTNER === */
-.partner-section { text-align: center; padding: 80px 6% 50px; }
-.partner-section h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(20px, 4vw, 26px); font-weight: 700; margin-bottom: 30px; color: var(--fg); }
-.partner-wrapper { overflow: hidden; width: 100%; margin-top: 30px; padding: 20px 0; position: relative; }
-.partner-wrapper::before, .partner-wrapper::after { content: ''; position: absolute; top: 0; bottom: 0; width: 100px; z-index: 2; pointer-events: none; }
-.partner-wrapper::before { left: 0; background: linear-gradient(90deg, var(--bg), transparent); }
-.partner-wrapper::after { right: 0; background: linear-gradient(-90deg, var(--bg), transparent); }
-.partner-track { display: flex; gap: 60px; align-items: center; width: max-content; }
-.partner-track img { height: 36px; opacity: 0.5; filter: grayscale(100%); transition: all 0.4s; }
-.partner-track img:hover { opacity: 1; filter: none; transform: scale(1.15); }
+.card:hover::before {
+  opacity: 1;
+}
 
-/* === TRUST === */
-.trust-section { padding: 60px 6%; text-align: center; }
-.trust-section h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(24px, 4vw, 32px); font-weight: 700; margin-bottom: 50px; color: var(--fg); }
-.trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; max-width: 1200px; margin: 0 auto; }
-.trust-card { background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); padding: 28px 20px; border-radius: 18px; box-shadow: var(--card-shadow); border: 1px solid rgba(255,255,255,0.8); transition: all 0.4s; position: relative; overflow: hidden; }
-.trust-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); transform: scaleX(0); transition: transform 0.4s; }
-.trust-card:hover::before { transform: scaleX(1); }
-.trust-card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px -15px rgba(0,0,0,0.15); }
-.trust-icon { width: 50px; height: 50px; background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1)); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 24px; color: var(--accent-blue); transition: transform 0.3s; }
-.trust-card:hover .trust-icon { transform: scale(1.1) rotate(5deg); }
-.trust-card strong { display: block; font-size: 16px; color: var(--fg); margin-bottom: 8px; font-weight: 700; }
-.trust-card span { color: var(--fg-light); font-size: 14px; }
+.card:hover {
+  border-color: rgba(249, 115, 22, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px -20px rgba(249, 115, 22, 0.2);
+}
 
-/* === MODAL === */
-.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(8px); justify-content: center; align-items: center; z-index: 1000; padding: 20px; animation: fadeIn 0.3s; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.modal-box { background: white; padding: 40px; border-radius: 24px; width: 100%; max-width: 500px; position: relative; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.3); animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid rgba(255,255,255,0.1); }
-@keyframes modalSlideIn { from { opacity: 0; transform: translateY(30px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
-.modal-box h3 { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; margin: 0 0 12px; color: var(--fg); }
-.modal-box p { color: var(--fg-light); font-size: 15px; margin: 0 0 24px; line-height: 1.6; }
-.close { position: absolute; top: 18px; right: 22px; cursor: pointer; font-size: 24px; color: var(--fg-light); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 10px; transition: all 0.3s; background: rgba(0,0,0,0.05); }
-.close:hover { background: rgba(0,0,0,0.1); transform: rotate(90deg); }
+/* BENTO POSITIONS */
+.card:nth-child(1) { grid-column: span 4; }
+.card:nth-child(2) { grid-column: span 4; }
+.card:nth-child(3) { grid-column: span 4; }
+.card:nth-child(4) { grid-column: span 4; }
+.card:nth-child(5) { grid-column: span 4; }
+.card:nth-child(6) { grid-column: span 4; }
+.card:nth-child(7) { grid-column: span 6; }
+.card:nth-child(8) { grid-column: span 6; }
 
-.btn { display: inline-block; margin-top: 8px; margin-right: 10px; padding: 14px 24px; border-radius: 12px; text-decoration: none; color: white; font-weight: 600; font-size: 14px; transition: all 0.3s; border: none; cursor: pointer; }
-.btn:hover { transform: translateY(-2px); }
-.btn-blue { background: linear-gradient(135deg, #3b82f6, #2563eb); }
-.btn-green { background: linear-gradient(135deg, #22c55e, #16a34a); }
+.card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  transition: transform 0.4s;
+}
+
+.card:hover .card-icon {
+  transform: scale(1.1);
+}
+
+.card-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.card-desc {
+  font-size: 14px;
+  color: var(--fg-muted);
+  line-height: 1.6;
+}
+
+.card-arrow {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg-muted);
+  font-size: 18px;
+  transition: all 0.3s;
+}
+
+.card:hover .card-arrow {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+  transform: rotate(-45deg);
+}
+
+/* CARD COLORS */
+.card.recovery .card-icon { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+.card.website .card-icon { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+.card.wa .card-icon { background: rgba(34, 197, 94, 0.1); color: #22c55e; }
+.card.social .card-icon { background: rgba(139, 92, 246, 0.1); color: #8b5cf6; }
+.card.ads .card-icon { background: rgba(249, 115, 22, 0.1); color: #f97316; }
+.card.design .card-icon { background: rgba(236, 72, 153, 0.1); color: #ec4899; }
+.card.security .card-icon { background: rgba(6, 182, 212, 0.1); color: #06b6d4; }
+.card.system .card-icon { background: rgba(100, 116, 139, 0.1); color: #94a3b8; }
+
+/* === PARTNER - MARQUEE === */
+.partner-section {
+  padding: 60px 0;
+  background: var(--glass);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.partner-marquee {
+  display: flex;
+  gap: 80px;
+  animation: marquee 40s linear infinite;
+}
+
+.partner-logo {
+  height: 28px;
+  opacity: 0.3;
+  filter: grayscale(100%) brightness(2);
+  transition: all 0.4s;
+  flex-shrink: 0;
+}
+
+.partner-logo:hover {
+  opacity: 0.7;
+  filter: grayscale(0%) brightness(1);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* === TRUST - CARDS === */
+.trust-section {
+  padding: 100px 5%;
+}
+
+.trust-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.trust-card {
+  padding: 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+
+.trust-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+  transform: scaleX(0);
+  transition: transform 0.4s;
+}
+
+.trust-card:hover {
+  border-color: rgba(249, 115, 22, 0.2);
+  transform: translateY(-4px);
+}
+
+.trust-card:hover::after {
+  transform: scaleX(1);
+}
+
+.trust-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  background: rgba(249, 115, 22, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.trust-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.trust-desc {
+  font-size: 14px;
+  color: var(--fg-muted);
+}
+
+/* === MODAL - CENTERED === */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.modal-content {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 48px;
+  max-width: 480px;
+  width: 100%;
+  position: relative;
+  animation: modalIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--fg-muted);
+  transition: all 0.3s;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--fg-primary);
+}
+
+.modal-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.modal-desc {
+  font-size: 15px;
+  color: var(--fg-secondary);
+  margin-bottom: 32px;
+  line-height: 1.7;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.modal-actions .btn {
+  flex: 1;
+  justify-content: center;
+}
 
 /* === FOOTER === */
-.footer-pro { background: var(--bg-dark); color: #cbd5e1; padding: 60px 6% 30px; margin-top: 80px; position: relative; }
-.footer-pro::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent-blue), var(--accent-purple), transparent); }
-.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
-.footer-title { color: white; font-weight: 700; margin-bottom: 18px; font-size: 16px; }
-.footer-link { display: block; color: #94a3b8; text-decoration: none; margin-bottom: 12px; font-size: 14px; transition: all 0.3s; width: fit-content; }
-.footer-link:hover { color: white; }
-.footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 50px; padding-top: 25px; text-align: center; color: #64748b; font-size: 14px; }
+footer {
+  padding: 80px 5% 40px;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+}
+
+.footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+
+.footer-brand {
+  max-width: 300px;
+}
+
+.footer-logo {
+  font-family: 'Outfit', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.footer-logo span {
+  color: var(--accent);
+}
+
+.footer-tagline {
+  font-size: 14px;
+  color: var(--fg-muted);
+  line-height: 1.7;
+}
+
+.footer-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--fg-primary);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer-link {
+  display: block;
+  color: var(--fg-muted);
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 12px;
+  transition: color 0.3s;
+}
+
+.footer-link:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 30px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 13px;
+  color: var(--fg-muted);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .card:nth-child(n) {
+    grid-column: span 1;
+    min-height: 180px;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
 
 @media (max-width: 768px) {
-  .hero { padding: 50px 16px 30px; }
-  .services { padding: 0 4%; }
-  .card { padding: 22px 18px; }
-  .btn { display: block; width: 100%; margin-right: 0; margin-top: 10px; text-align: center; }
+  .stats-inner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .stat-item:nth-child(2)::after {
+    display: none;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .card:nth-child(n) {
+    grid-column: span 1;
+  }
+  
+  .trust-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .hero h1 {
+    letter-spacing: -1px;
+  }
+  
+  .modal-content {
+    padding: 32px 24px;
+  }
+  
+  .modal-actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-inner {
+    grid-template-columns: 1fr;
+  }
+  
+  .stat-item::after {
+    display: none;
+  }
+  
+  .hero-cta {
+    flex-direction: column;
+    width: 100%;
+    padding: 0 20px;
+  }
+  
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* === UTILITY ANIMATIONS === */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === FOCUS STATES === */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* === REDUCED MOTION === */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 </style>
 </head>
 <body>
 
-<div class="bg-grid"></div>
-<div class="bg-pattern"></div>
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
+<div class="bg-mesh"></div>
+<div class="noise-overlay"></div>
+<div class="floating-shape shape-1"></div>
+<div class="floating-shape shape-2"></div>
 
-<header>
-  <div class="brand">
-    <div class="powered">MALAKA HUB</div>
-    <div class="logo">Kedai Media</div>
+<!-- HEADER -->
+<header id="header">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="powered">MALAKA HUB</div>
+      <div class="logo">Kedai<span>Media</span></div>
+    </div>
+    <div class="status">Online</div>
   </div>
-  <div class="status">Online</div>
 </header>
 
+<!-- HERO -->
 <section class="hero">
-  <h1>Solusi Digital Profesional Indonesia</h1>
-  <p>Dipercaya lebih dari 10.000 klien sejak 2009</p>
+  <div class="hero-badge">
+    <i class="ri-shield-check-line"></i>
+    Terpercaya sejak 2009
+  </div>
+  <h1>Solusi Digital<br><span class="highlight">Tanpa Batas</span></h1>
+  <p>Transformasi bisnis Anda dengan teknologi terdepan. Dipercaya lebih dari 10.000 klien di seluruh Indonesia.</p>
+  <div class="hero-cta">
+    <a href="#layanan" class="btn btn-primary">
+      <i class="ri-arrow-right-line"></i>
+      Lihat Layanan
+    </a>
+    <a href="https://wa.me/6282285781863" target="_blank" rel="noopener" class="btn btn-secondary">
+      <i class="ri-whatsapp-line"></i>
+      Hubungi Kami
+    </a>
+  </div>
 </section>
 
-<section class="stats">
-  <div class="stat"><h3 id="clients">0</h3><p>Klien</p></div>
-  <div class="stat"><h3 id="visitors">0</h3><p>Pengunjung</p></div>
-  <div class="stat"><h3>99.9%</h3><p>Success Rate</p></div>
-  <div class="stat"><h3>24/7</h3><p>Support</p></div>
-</section>
-
-<section class="services">
-  <div class="card recovery" onclick="openModal('recovery')"><i class="ri-shield-keyhole-fill"></i>Pemulihan Akun Sosmed</div>
-  <div class="card website" onclick="openModal('website')"><i class="ri-code-box-fill"></i>Pembuatan Website</div>
-  <div class="card wa" onclick="openModal('wa')"><i class="ri-whatsapp-fill"></i>WhatsApp Automation</div>
-  <div class="card social" onclick="openModal('social')"><i class="ri-group-fill"></i>Optimasi Sosial Media</div>
-  <div class="card ads" onclick="openModal('ads')"><i class="ri-megaphone-fill"></i>Iklan Digital</div>
-  <div class="card design" onclick="openModal('design')"><i class="ri-palette-fill"></i>Desain Grafis</div>
-  <div class="card security" onclick="openModal('security')"><i class="ri-lock-fill"></i>Keamanan Akun</div>
-  <div class="card system" onclick="openModal('system')"><i class="ri-cpu-fill"></i>Sistem Custom</div>
-</section>
-
-<section class="partner-section">
-  <h2>Partner & Teknologi</h2>
-  <div class="partner-wrapper">
-    <div class="partner-track" id="partnerTrack">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" height="40">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg" alt="Facebook" height="40">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" height="40">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" height="40">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" alt="OpenAI" height="40">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Ads_logo.svg" alt="Google Ads" height="40">
+<!-- STATS -->
+<section class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-number" id="clients">0</div>
+      <div class="stat-label">Klien</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" id="visitors">0</div>
+      <div class="stat-label">Pengunjung</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">99.9%</div>
+      <div class="stat-label">Success Rate</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">24/7</div>
+      <div class="stat-label">Support</div>
     </div>
   </div>
 </section>
 
-<section class="trust-section">
-  <h2>Kenapa Memilih Kedai Media</h2>
-  <div class="trust-grid">
-    <div class="trust-card"><div class="trust-icon"><i class="ri-history-line"></i></div><strong>Terpercaya sejak 2009</strong><span>Lebih dari 15 tahun pengalaman</span></div>
-    <div class="trust-card"><div class="trust-icon"><i class="ri-user-star-line"></i></div><strong>10.000+ Klien</strong><span>Dipercaya seluruh Indonesia</span></div>
-    <div class="trust-card"><div class="trust-icon"><i class="ri-bar-chart-grouped-line"></i></div><strong>Success Rate Tinggi</strong><span>Keberhasilan hingga 99.9%</span></div>
-    <div class="trust-card"><div class="trust-icon"><i class="ri-customer-service-2-line"></i></div><strong>Support 24/7</strong><span>Siap membantu kapan saja</span></div>
-    <div class="trust-card"><div class="trust-icon"><i class="ri-shield-check-line"></i></div><strong>100% Aman</strong><span>Privasi terjamin</span></div>
-    <div class="trust-card"><div class="trust-icon"><i class="ri-rocket-2-line"></i></div><strong>Cepat & Profesional</strong><span>Pengerjaan cepat & berkualitas</span></div>
+<!-- SERVICES -->
+<section class="services-section" id="layanan">
+  <div class="section-header">
+    <div class="section-tag">Layanan Kami</div>
+    <h2 class="section-title">Solusi Lengkap untuk Bisnis</h2>
+    <p class="section-desc">Pilih layanan yang sesuai dengan kebutuhan digital bisnis Anda</p>
+  </div>
+  
+  <div class="services-grid">
+    <div class="card recovery fade-in" onclick="openModal('recovery')">
+      <div class="card-icon"><i class="ri-shield-keyhole-fill"></i></div>
+      <div>
+        <div class="card-title">Pemulihan Akun Sosmed</div>
+        <div class="card-desc">Mengembalikan akun yang diretas atau di-hack</div>
+      </div>
+      <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+    </div>
+    
+    <div class="card website fade-in" onclick="openModal('website')">
+      <div class="card-icon"><i class="ri-code-box-fill"></i></div>
+      <div>
+        <div class="card-title">Pembuatan Website</div>
+        <div class="card-desc">Website profesional untuk bisnis Anda</div>
+      </div>
+      <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+    </div>
+    
+    <div class="card wa fade-in" onclick="openModal('wa')">
+      <div class="card-icon"><i class="ri-whatsapp-fill"></i></div>
+      <div>
+        <div class="card-title">WhatsApp Automation</div>
+        <div class="card-desc">Bot dan auto reply untuk bisnis</div>
+      </div>
+      <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+    </div>
+    
+    <div class="card social fade-in" onclick="openModal('social')">
+      <div class="card-icon"><i class="ri-group-fill"></i></div>
+      <div>
+        <div class="card-title">Optimasi Sosial Media</div>
+        <div class="card-desc">Followers real dan engagement</div>
+      </div>
+      <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+    </div>
+    
+    <div class="card ads fade-in" onclick="openModal('ads')">
+      <div class="card-icon"><i class="ri-megaphone-fill"></i></div>
+      <div>
+        <div class="card-title">Iklan Digital</div>
+        <div class="card-desc">Facebook Ads dan Google Ads</div>
+      </div>
+      <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+    </div>
+    
+    <div class="card design fade-in" onclick="openModal('design')">
+      <div class="card-icon"><i class="ri-palette-fill"></i></div>
+      <div>
+        <div class="card-title">Desain Grafis</div>
+        <div class="card-desc">Brosur, flyer, konten sosial media</div>
+      </div>
+      <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+    </div>
+    
+    <div class="card security fade-in" onclick="openModal('security')">
+      <div class="card-icon"><i class="ri-lock-fill"></i></div>
+      <div>
+        <div class="card-title">Keamanan Akun</div>
+        <div class="card-desc">Proteksi akun dari ancaman hacker</div>
+      </div>
+      <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+    </div>
+    
+    <div class="card system fade-in" onclick="openModal('system')">
+      <div class="card-icon"><i class="ri-cpu-fill"></i></div>
+      <div>
+        <div class="card-title">Sistem Custom</div>
+        <div class="card-desc">Pembuatan sistem sesuai kebutuhan</div>
+      </div>
+      <div class="card-arrow"><i class="ri-arrow-right-up-line"></i></div>
+    </div>
   </div>
 </section>
 
-<div class="modal" id="modal">
-  <div class="modal-box" id="modalContent"></div>
+<!-- PARTNER -->
+<section class="partner-section">
+  <div class="partner-marquee" id="partnerMarquee">
+    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google">
+    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg" alt="Facebook">
+    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub">
+    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" alt="OpenAI">
+    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Ads_logo.svg" alt="Google Ads">
+    <!-- Duplicate for seamless loop -->
+    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google">
+    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg" alt="Facebook">
+    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub">
+    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" alt="OpenAI">
+    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Ads_logo.svg" alt="Google Ads">
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust-section">
+  <div class="section-header">
+    <div class="section-tag">Mengapa Kami</div>
+    <h2 class="section-title">Kenapa Memilih Kedai Media</h2>
+  </div>
+  
+  <div class="trust-grid">
+    <div class="trust-card fade-in">
+      <div class="trust-icon"><i class="ri-history-line"></i></div>
+      <div class="trust-title">Terpercaya sejak 2009</div>
+      <div class="trust-desc">Lebih dari 15 tahun pengalaman melayani klien</div>
+    </div>
+    <div class="trust-card fade-in">
+      <div class="trust-icon"><i class="ri-user-star-line"></i></div>
+      <div class="trust-title">10.000+ Klien</div>
+      <div class="trust-desc">Dipercaya seluruh Indonesia</div>
+    </div>
+    <div class="trust-card fade-in">
+      <div class="trust-icon"><i class="ri-bar-chart-grouped-line"></i></div>
+      <div class="trust-title">Success Rate Tinggi</div>
+      <div class="trust-desc">Keberhasilan hingga 99.9%</div>
+    </div>
+    <div class="trust-card fade-in">
+      <div class="trust-icon"><i class="ri-customer-service-2-line"></i></div>
+      <div class="trust-title">Support 24/7</div>
+      <div class="trust-desc">Siap membantu kapan saja</div>
+    </div>
+    <div class="trust-card fade-in">
+      <div class="trust-icon"><i class="ri-shield-check-line"></i></div>
+      <div class="trust-title">100% Aman</div>
+      <div class="trust-desc">Privasi terjamin</div>
+    </div>
+    <div class="trust-card fade-in">
+      <div class="trust-icon"><i class="ri-rocket-2-line"></i></div>
+      <div class="trust-title">Cepat & Profesional</div>
+      <div class="trust-desc">Pengerjaan cepat & berkualitas</div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-content">
+    <div class="modal-close" onclick="closeModal()"><i class="ri-close-line"></i></div>
+    <h3 class="modal-title" id="modalTitle"></h3>
+    <p class="modal-desc" id="modalDesc"></p>
+    <div class="modal-actions">
+      <a href="#" class="btn btn-primary" id="modalLink">Pelajari Selengkapnya</a>
+      <a href="https://wa.me/6282285781863" target="_blank" rel="noopener" class="btn btn-secondary">Hubungi Kami</a>
+    </div>
+  </div>
 </div>
 
-<section class="footer-pro">
+<!-- FOOTER -->
+<footer>
   <div class="footer-grid">
-    <div>
-      <div class="footer-title">Kedai Media</div>
-      <div style="color: #94a3b8; font-size: 14px; line-height: 1.7;">Solusi digital profesional sejak 2009. Melayani website, automation, dan sistem custom seluruh Indonesia.</div>
+    <div class="footer-brand">
+      <div class="footer-logo">Kedai<span>Media</span></div>
+      <p class="footer-tagline">Solusi digital profesional sejak 2009. Melayani website, automation, dan sistem custom seluruh Indonesia.</p>
     </div>
     <div>
       <div class="footer-title">Layanan</div>
@@ -265,112 +1113,138 @@ header {
     </div>
     <div>
       <div class="footer-title">Kontak</div>
-      <div style="color: #94a3b8; font-size: 14px;">WhatsApp</div>
-      <div style="color: #94a3b8; font-size: 14px;">Indonesia</div>
+      <p class="footer-link" style="cursor: default;">WhatsApp</p>
+      <p class="footer-link" style="cursor: default;">Indonesia</p>
     </div>
   </div>
-  <div class="footer-bottom">© 2026 Kedai Media Indonesia. All rights reserved.</div>
-</section>
+  <div class="footer-bottom">
+    © 2026 Kedai Media Indonesia. All rights reserved.
+  </div>
+</footer>
 
 <script>
-// === 1. COUNTER ANIMATION ===
-function animateValue(id, start, end, duration) {
-  const obj = document.getElementById(id);
-  if (!obj) return;
-  const range = end - start;
-  const startTime = performance.now();
-  function update(currentTime) {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    const current = Math.floor(start + (range * (1 - Math.pow(1 - progress, 3))));
-    obj.innerHTML = current.toLocaleString();
-    if (progress < 1) requestAnimationFrame(update);
-  }
-  requestAnimationFrame(update);
-}
-animateValue("clients", 0, 10247, 2500);
-animateValue("visitors", 0, Math.floor(Math.random() * 200) + 50, 2000);
-
-// === 2. SCROLL REVEAL ===
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) entry.target.classList.add("visible");
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll(".card").forEach((el, i) => {
-  el.style.transitionDelay = `${i * 80}ms`;
-  observer.observe(el);
-});
-
-// === 3. SERVICES DATA ===
+// === DATA LAYANAN ===
 const services = {
-  recovery: { title: "Pemulihan Akun Sosmed", desc: "Mengembalikan akun yang diretas.", url: "pemulihan-akun-sosmed/" },
-  website: { title: "Pembuatan Website", desc: "Website profesional untuk bisnis.", url: "jasa-pembuatan-website/" },
-  wa: { title: "WhatsApp Automation", desc: "WhatsApp bot dan auto reply bisnis.", url: "whatsapp-automation/" },
-  social: { title: "Optimasi Sosial Media", desc: "Followers real dan engagement.", url: "optimasi-sosial-media/" },
-  ads: { title: "Iklan Digital", desc: "Facebook Ads dan Google Ads.", url: "iklan-digital/" },
-  design: { title: "Desain Grafis", desc: "Desain brosur, flyer, konten sosial media.", url: "desain-grafis/" },
-  security: { title: "Keamanan Akun", desc: "Proteksi akun dari hacker.", url: "keamanan-akun/" },
-  system: { title: "Sistem Custom", desc: "Pembuatan sistem sesuai kebutuhan.", url: "sistem-custom/" }
+  recovery: { 
+    title: "Pemulihan Akun Sosmed", 
+    desc: "Layanan profesional untuk mengembalikan akun sosial media Anda yang telah diretas atau di-hack. Kami menangani Facebook, Instagram, TikTok, dan platform lainnya dengan tingkat keberhasilan tinggi.", 
+    url: "pemulihan-akun-sosmed/" 
+  },
+  website: { 
+    title: "Pembuatan Website", 
+    desc: "Website profesional untuk bisnis, UMKM, company profile, instansi pemerintah, sekolah, dan organisasi. Desain modern dengan performa optimal.", 
+    url: "jasa-pembuatan-website/" 
+  },
+  wa: { 
+    title: "WhatsApp Automation", 
+    desc: "Solusi WhatsApp bot dan auto reply untuk bisnis. Tingkatkan efisiensi layanan pelanggan dengan sistem otomatis yang cerdas.", 
+    url: "whatsapp-automation/" 
+  },
+  social: { 
+    title: "Optimasi Sosial Media", 
+    desc: "Jasa followers real dan engagement untuk Instagram, Facebook, dan TikTok. Tingkatkan visibilitas dan kredibilitas bisnis Anda.", 
+    url: "optimasi-sosial-media/" 
+  },
+  ads: { 
+    title: "Iklan Digital", 
+    desc: "Kelola iklan Facebook Ads, Instagram Ads, dan Google Ads secara profesional. Optimasi budget untuk hasil maksimal.", 
+    url: "iklan-digital/" 
+  },
+  design: { 
+    title: "Desain Grafis", 
+    desc: "Jasa desain brosur, flyer, konten sosial media, dan kebutuhan visual lainnya. Desain menarik yang meningkatkan brand awareness.", 
+    url: "desain-grafis/" 
+  },
+  security: { 
+    title: "Keamanan Akun", 
+    desc: "Proteksi akun sosial media Anda dari ancaman hacker. Audit keamanan dan implementasi sistem perlindungan menyeluruh.", 
+    url: "keamanan-akun/" 
+  },
+  system: { 
+    title: "Sistem Custom", 
+    desc: "Pengembangan sistem dan aplikasi sesuai kebutuhan spesifik bisnis Anda. Solusi teknologi yang scalable dan maintainable.", 
+    url: "sistem-custom/" 
+  }
 };
 
-// === 4. MODAL FUNCTIONS (PERBAIKAN LINK) ===
-function openModal(service) {
-  const s = services[service];
+// === MODAL FUNCTIONS ===
+function openModal(key) {
+  const s = services[key];
   if (!s) return;
   
-  const modal = document.getElementById("modal");
-  const modalContent = document.getElementById("modalContent");
+  document.getElementById('modalTitle').textContent = s.title;
+  document.getElementById('modalDesc').textContent = s.desc;
   
-  modal.style.display = "flex";
-  document.body.style.overflow = "hidden";
+  const linkEl = document.getElementById('modalLink');
+  linkEl.href = s.url;
+  linkEl.onclick = function(e) {
+    window.location.href = s.url;
+    return false;
+  };
   
-  // Template Modal
-  modalContent.innerHTML = 
-    "<div class='close' onclick='closeModal()'>✕</div>" +
-    "<h3>" + s.title + "</h3>" +
-    "<p>" + s.desc + "</p>" +
-    // Menambahkan ID unik untuk tombol agar mudah di-select
-    "<a href='" + s.url + "' id='linkLayanan' class='btn btn-blue'>Pelajari Selengkapnya</a>" +
-    "<a href='https://wa.me/6282285781863' target='_blank' rel='noopener' class='btn btn-green'>Hubungi Sekarang</a>";
-
-  // --- SOLUSI UTAMA: Memaksa link untuk berfungsi via JavaScript ---
-  const linkElement = document.getElementById('linkLayanan');
-  if(linkElement) {
-    linkElement.onclick = function(e) {
-      e.preventDefault(); // Mencegah default dulu
-      // Langsung arahkan window ke URL tujuan
-      window.location.href = s.url;
-    };
-  }
-  // ----------------------------------------------------------------
+  document.getElementById('modal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
-  document.getElementById("modal").style.display = "none";
-  document.body.style.overflow = "";
+  document.getElementById('modal').style.display = 'none';
+  document.body.style.overflow = '';
 }
 
-document.getElementById("modal").addEventListener("click", function(e) {
+document.getElementById('modal').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
 });
-document.addEventListener("keydown", function(e) {
-  if (e.key === "Escape") closeModal();
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
 });
 
-// === 5. INFINITE PARTNER SCROLL ===
-const partnerTrack = document.getElementById("partnerTrack");
-// Gandakan konten
-partnerTrack.innerHTML += partnerTrack.innerHTML;
-let scrollPosition = 0;
-function autoScrollPartners() {
-  scrollPosition -= 0.5;
-  const halfWidth = partnerTrack.scrollWidth / 2;
-  if (Math.abs(scrollPosition) >= halfWidth) scrollPosition = 0;
-  partnerTrack.style.transform = "translateX(" + scrollPosition + "px)";
-  requestAnimationFrame(autoScrollPartners);
+// === COUNTER ANIMATION ===
+function animateCounter(id, end, duration) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  
+  const startTime = performance.now();
+  
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(end * eased).toLocaleString();
+    
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  
+  requestAnimationFrame(update);
 }
-autoScrollPartners();
+
+// === SCROLL ANIMATIONS ===
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// === HEADER SCROLL EFFECT ===
+window.addEventListener('scroll', () => {
+  const header = document.getElementById('header');
+  if (window.scrollY > 50) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+});
+
+// === INIT ON LOAD ===
+document.addEventListener('DOMContentLoaded', () => {
+  animateCounter('clients', 10247, 2500);
+  animateCounter('visitors', Math.floor(Math.random() * 200) + 50, 2000);
+});
 </script>
+
 </body>
 </html>
