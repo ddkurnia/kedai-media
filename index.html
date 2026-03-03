@@ -26,7 +26,7 @@ Jasa Website, Pemulihan Akun Sosmed, WhatsApp Automation, Followers Real, Iklan 
 /* === CSS VARIABLES - KEDAI MEDIA THEME === */
 :root {
   --white: #ffffff;
-  --black: #111111;
+  --black: #0f172a;
   --gray-50: #f9fafb;
   --gray-100: #f3f4f6;
   --gray-200: #e5e7eb;
@@ -53,7 +53,6 @@ body {
   line-height: 1.6;
 }
 
-/* === GLOBAL STYLES === */
 h1, h2, h3, h4, h5 {
   font-family: 'Poppins', sans-serif;
   color: var(--black);
@@ -65,29 +64,67 @@ h1, h2, h3, h4, h5 {
   padding: 0 5%;
 }
 
-/* === DECORATIVE BACKGROUND === */
-.bg-decoration {
+/* === BACKGROUND DESIGN (ENHANCED) === */
+.bg-design {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  height: 600px;
-  background: linear-gradient(180deg, rgba(14, 165, 233, 0.03) 0%, transparent 100%);
-  pointer-events: none;
+  width: 100%;
+  height: 100vh;
   z-index: -1;
+  /* Gradien lebih kuat agar terlihat jelas */
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(139, 92, 246, 0.1) 50%, rgba(255,255,255,1) 100%);
+  overflow: hidden;
 }
 
-.bg-blob {
-  position: fixed;
+.bg-grid-lines {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* Garis grid lebih kontras */
+  background-image: 
+    linear-gradient(rgba(14, 165, 233, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 165, 233, 0.15) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
+}
+
+.bg-shape {
+  position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.4;
-  pointer-events: none;
+  filter: blur(100px); /* Blur lebih halus */
   z-index: -1;
+  animation: float 10s infinite alternate;
 }
 
-.blob-1 { width: 500px; height: 500px; background: rgba(56, 189, 248, 0.15); top: -200px; right: -100px; }
-.blob-2 { width: 400px; height: 400px; background: rgba(139, 92, 246, 0.15); bottom: 20%; left: -150px; }
+@keyframes float {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(20px, 20px); }
+}
+
+.shape-1 {
+  width: 500px;
+  height: 500px;
+  background: rgba(14, 165, 233, 0.25); /* Opacity dinaikkan */
+  top: -150px;
+  right: -100px;
+}
+
+.shape-2 {
+  width: 400px;
+  height: 400px;
+  background: rgba(139, 92, 246, 0.25); /* Opacity dinaikkan */
+  bottom: 10%;
+  left: -100px;
+}
+
+.shape-3 {
+  width: 300px;
+  height: 300px;
+  background: rgba(236, 72, 153, 0.2);
+  top: 40%;
+  right: 10%;
+}
 
 /* === HEADER === */
 header {
@@ -96,14 +133,15 @@ header {
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--gray-100);
-  transition: box-shadow 0.3s;
+  transition: all 0.3s;
 }
 
 header.scrolled {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  background: rgba(255, 255, 255, 0.98);
 }
 
 .header-inner {
@@ -136,6 +174,50 @@ header.scrolled {
   -webkit-text-fill-color: transparent;
 }
 
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-link {
+  color: var(--gray-600);
+  text-decoration: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.nav-link:hover {
+  color: var(--sky-500);
+  background: rgba(14, 165, 233, 0.05);
+}
+
+.nav-cta {
+  background: var(--primary-gradient);
+  color: white !important;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--black);
+  cursor: pointer;
+}
+
+/* Status Badge Online (KEMBALI) */
 .status-badge {
   display: flex;
   align-items: center;
@@ -164,8 +246,9 @@ header.scrolled {
 
 /* === HERO === */
 .hero {
-  padding: 140px 0 80px;
+  padding: 160px 0 100px;
   text-align: center;
+  position: relative;
 }
 
 .hero-badge {
@@ -173,13 +256,14 @@ header.scrolled {
   align-items: center;
   gap: 8px;
   padding: 8px 20px;
-  background: var(--gray-50);
+  background: white;
   border: 1px solid var(--gray-200);
   border-radius: 50px;
   font-size: 13px;
   font-weight: 500;
   color: var(--gray-600);
   margin-bottom: 24px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
 }
 
 .hero-badge i {
@@ -259,7 +343,7 @@ header.scrolled {
   padding: 40px 0;
   border-top: 1px solid var(--gray-100);
   border-bottom: 1px solid var(--gray-100);
-  background: var(--gray-50);
+  background: var(--white);
 }
 
 .stats-grid {
@@ -279,7 +363,6 @@ header.scrolled {
   background: var(--text-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 4px;
 }
 
 .stat-label {
@@ -390,45 +473,158 @@ header.scrolled {
 .card-security { --card-gradient: linear-gradient(90deg, #06b6d4, #0891b2); --icon-bg: #ecfeff; --icon-color: #06b6d4; }
 .card-system { --card-gradient: linear-gradient(90deg, #64748b, #475569); --icon-bg: #f8fafc; --icon-color: #64748b; }
 
-/* === PARTNER === */
-.partner {
-  padding: 50px 0;
-  background: var(--black);
-  overflow: hidden;
+/* === TESTIMONIALS === */
+.testimonials {
+  padding: 80px 0;
+  background: var(--gray-50);
 }
 
-.partner-inner {
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 50px;
+}
+
+.testimonial-card {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: 20px;
+  padding: 32px;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.testimonial-card:hover {
+  border-color: transparent;
+  box-shadow: var(--card-hover-shadow);
+}
+
+.testimonial-header {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 16px;
+  margin-bottom: 20px;
 }
 
-.partner-label {
-  flex-shrink: 0;
-  font-size: 13px;
+.testimonial-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gray-100);
+}
+
+.testimonial-info h4 {
+  font-size: 16px;
   font-weight: 600;
-  color: var(--gray-400);
+  color: var(--black);
+  margin-bottom: 2px;
+}
+
+.testimonial-service {
+  font-size: 12px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  white-space: nowrap;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
 }
 
-.partner-track {
+.service-tag-ads { background: #fff7ed; color: #ea580c; }
+.service-tag-web { background: #eff6ff; color: #2563eb; }
+.service-tag-recovery { background: #fef2f2; color: #dc2626; }
+.service-tag-wa { background: #f0fdf4; color: #16a34a; }
+
+.testimonial-stars {
+  color: #fbbf24;
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.testimonial-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--gray-600);
+  font-style: italic;
+}
+
+.testimonial-quote {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 48px;
+  color: var(--gray-100);
+  font-family: serif;
+  line-height: 1;
+}
+
+/* === FAQ SECTION (UPDATED FOCUS) === */
+.faq {
+  padding: 80px 0;
+  background: var(--white);
+}
+
+.faq-grid {
+  max-width: 800px;
+  margin: 50px auto 0;
   display: flex;
-  gap: 50px;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-item {
+  border: 1px solid var(--gray-100);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.faq-item.active {
+  border-color: var(--sky-400);
+  box-shadow: 0 4px 20px rgba(14, 165, 233, 0.1);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 20px 24px;
+  background: white;
+  border: none;
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--black);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  gap: 16px;
 }
 
-.partner-logo {
-  height: 26px;
-  opacity: 0.4;
-  filter: brightness(0) invert(1);
-  transition: opacity 0.3s;
-  flex-shrink: 0;
+.faq-question i {
+  font-size: 20px;
+  color: var(--gray-400);
+  transition: transform 0.3s;
 }
 
-.partner-logo:hover {
-  opacity: 0.8;
+.faq-item.active .faq-question i {
+  transform: rotate(180deg);
+  color: var(--sky-500);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+}
+
+.faq-answer-inner {
+  padding: 0 24px 20px;
+  font-size: 14px;
+  color: var(--gray-600);
+  line-height: 1.7;
 }
 
 /* === TRUST === */
@@ -482,93 +678,67 @@ header.scrolled {
   color: var(--gray-400);
 }
 
-/* === TESTIMONIALS (NEW) === */
-.testimonials {
-  padding: 80px 0;
-  background: var(--white);
+/* === FOOTER === */
+footer {
+  background: var(--black);
+  color: var(--gray-400);
+  padding: 60px 0 30px;
 }
 
-.testimonials-grid {
+.footer-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  margin-top: 50px;
+  grid-template-columns: 2fr 1fr 1fr 1.2fr;
+  gap: 50px;
+  margin-bottom: 40px;
 }
 
-.testimonial-card {
-  background: var(--white);
-  border: 1px solid var(--gray-100);
-  border-radius: 20px;
-  padding: 32px;
-  transition: all 0.3s;
-  position: relative;
-}
-
-.testimonial-card:hover {
-  border-color: transparent;
-  box-shadow: var(--card-hover-shadow);
-  transform: translateY(-5px);
-}
-
-.testimonial-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
-}
-
-.testimonial-avatar {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--gray-100);
-}
-
-.testimonial-info h4 {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--black);
-  margin-bottom: 2px;
-}
-
-.testimonial-service {
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 20px;
-}
-
-/* Warna spesifik untuk layanan */
-.service-tag-ads { background: #fff7ed; color: #ea580c; }
-.service-tag-web { background: #eff6ff; color: #2563eb; }
-.service-tag-recovery { background: #fef2f2; color: #dc2626; }
-.service-tag-wa { background: #f0fdf4; color: #16a34a; }
-
-.testimonial-stars {
-  color: #fbbf24;
-  margin-bottom: 12px;
-  font-size: 18px;
-}
-
-.testimonial-text {
+.footer-brand p {
   font-size: 14px;
   line-height: 1.7;
-  color: var(--gray-600);
-  font-style: italic;
+  margin-top: 16px;
 }
 
-.testimonial-quote {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 48px;
-  color: var(--gray-100);
-  font-family: serif;
-  line-height: 1;
+.footer-logo {
+  font-family: 'Poppins', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+}
+
+.footer-logo span {
+  background: var(--text-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.footer-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer-link {
+  display: block;
+  color: var(--gray-400);
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 10px;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: var(--sky-400);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 24px;
+  text-align: center;
+  font-size: 13px;
 }
 
 /* === MODAL === */
@@ -641,69 +811,6 @@ header.scrolled {
 
 .modal-actions .btn { flex: 1; }
 
-/* === FOOTER === */
-footer {
-  background: var(--black);
-  color: var(--gray-400);
-  padding: 60px 0 30px;
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1.2fr;
-  gap: 50px;
-  margin-bottom: 40px;
-}
-
-.footer-brand p {
-  font-size: 14px;
-  line-height: 1.7;
-  margin-top: 16px;
-}
-
-.footer-logo {
-  font-family: 'Poppins', sans-serif;
-  font-size: 22px;
-  font-weight: 700;
-  color: white;
-}
-
-.footer-logo span {
-  background: var(--text-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.footer-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  color: white;
-  margin-bottom: 18px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.footer-link {
-  display: block;
-  color: var(--gray-400);
-  text-decoration: none;
-  font-size: 14px;
-  margin-bottom: 10px;
-  transition: color 0.2s;
-}
-
-.footer-link:hover {
-  color: var(--sky-400);
-}
-
-.footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: 24px;
-  text-align: center;
-  font-size: 13px;
-}
-
 /* === RESPONSIVE === */
 @media (max-width: 1024px) {
   .services-grid { grid-template-columns: repeat(2, 1fr); }
@@ -713,10 +820,24 @@ footer {
 }
 
 @media (max-width: 768px) {
+  .nav-menu { display: none; }
+  .nav-menu.active {
+    display: flex;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    padding: 20px;
+    border-top: 1px solid var(--gray-100);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+  .status-badge { display: none; } /* Sembunyikan status di mobile agar tidak penuh */
+  .mobile-menu-btn { display: block; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .services-grid { grid-template-columns: 1fr; }
   .trust-grid { grid-template-columns: repeat(2, 1fr); }
-  .partner-label { display: none; }
   .modal-actions { flex-direction: column; }
   .footer-grid { grid-template-columns: 1fr; gap: 30px; }
 }
@@ -744,20 +865,17 @@ footer {
   outline: 2px solid var(--sky-500);
   outline-offset: 2px;
 }
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-}
 </style>
 </head>
 <body>
 
-<div class="bg-decoration"></div>
-<div class="bg-blob blob-1"></div>
-<div class="bg-blob blob-2"></div>
+<!-- BACKGROUND DESIGN (ENHANCED) -->
+<div class="bg-design">
+  <div class="bg-grid-lines"></div>
+  <div class="bg-shape shape-1"></div>
+  <div class="bg-shape shape-2"></div>
+  <div class="bg-shape shape-3"></div>
+</div>
 
 <!-- HEADER -->
 <header id="header">
@@ -766,12 +884,25 @@ footer {
       <div class="powered">MALAKA HUB</div>
       <div class="logo">Kedai Media</div>
     </div>
+    
+    <nav class="nav-menu" id="navMenu">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#layanan" class="nav-link">Layanan</a>
+      <a href="#testimoni" class="nav-link">Testimoni</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+      <a href="https://wa.me/6282285781863" target="_blank" class="nav-link nav-cta">Hubungi Kami</a>
+    </nav>
+
     <div class="status-badge">Online</div>
+
+    <button class="mobile-menu-btn" onclick="toggleMenu()">
+      <i class="ri-menu-line"></i>
+    </button>
   </div>
 </header>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="home">
   <div class="container">
     <div class="hero-badge">
       <i class="ri-shield-check-line"></i>
@@ -876,16 +1007,162 @@ footer {
   </div>
 </section>
 
-<!-- PARTNER -->
-<section class="partner">
-  <div class="partner-inner" id="partnerTrack">
-    <span class="partner-label">Partner Teknologi</span>
-    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google">
-    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg" alt="Facebook">
-    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub">
-    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" alt="OpenAI">
-    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Ads_logo.svg" alt="Google Ads">
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimoni">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Kata Mereka Tentang Kami</h2>
+      <p class="section-subtitle">Testimoni asli dari klien yang telah menggunakan layanan kami</p>
+    </div>
+    
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-quote">“</div>
+        <div class="testimonial-header">
+          <img src="https://i.pravatar.cc/150?img=12" alt="User" class="testimonial-avatar">
+          <div class="testimonial-info">
+            <h4>Dewi Lestari</h4>
+            <span class="testimonial-service service-tag-ads">Iklan Digital</span>
+          </div>
+        </div>
+        <div class="testimonial-stars">
+          <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+        </div>
+        <p class="testimonial-text">"Sebelumnya saya rugi jutaan rupiah karena iklan yang tidak tepat sasaran. Setelah pakai jasa Kedai Media, OMSET naik 300% dalam 1 bulan! Tim yang sangat profesional."</p>
+      </div>
+
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-quote">“</div>
+        <div class="testimonial-header">
+          <img src="https://i.pravatar.cc/150?img=33" alt="User" class="testimonial-avatar">
+          <div class="testimonial-info">
+            <h4>Andi Wijaya</h4>
+            <span class="testimonial-service service-tag-web">Website</span>
+          </div>
+        </div>
+        <div class="testimonial-stars">
+          <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+        </div>
+        <p class="testimonial-text">"Website toko online saya sekarang jadi keren banget dan fast loading. Dulu sering crash, sekarang lancar jaya. Pelayanannya cepat dan revisinya juga dikerjakan dengan sabar."</p>
+      </div>
+
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-quote">“</div>
+        <div class="testimonial-header">
+          <img src="https://i.pravatar.cc/150?img=47" alt="User" class="testimonial-avatar">
+          <div class="testimonial-info">
+            <h4>Rizky Pratama</h4>
+            <span class="testimonial-service service-tag-recovery">Pemulihan Akun</span>
+          </div>
+        </div>
+        <div class="testimonial-stars">
+          <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+        </div>
+        <p class="testimonial-text">"Akun bisnis IG saya di-hack dan saya panik banget. Dalam waktu 24 jam, tim Kedai Media berhasil mengembalikannya dengan aman. Terima kasih banyak, best service!"</p>
+      </div>
+
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-quote">“</div>
+        <div class="testimonial-header">
+          <img src="https://i.pravatar.cc/150?img=51" alt="User" class="testimonial-avatar">
+          <div class="testimonial-info">
+            <h4>Sinta Maharani</h4>
+            <span class="testimonial-service service-tag-wa">WA Automation</span>
+          </div>
+        </div>
+        <div class="testimonial-stars">
+          <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+        </div>
+        <p class="testimonial-text">"Bot WhatsApp-nya luar biasa! Sekarang saya bisa tidur nyenyak karena pelanggan tetap terlayanan otomatis. Efisiensi waktu meningkat drastis, recommended banget!"</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ (UPDATED) -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Pertanyaan Umum</h2>
+      <p class="section-subtitle">Informasi penting seputar layanan utama kami</p>
+    </div>
+
+    <div class="faq-grid">
+      <!-- Pertanyaan Pemulihan Akun -->
+      <div class="faq-item active">
+        <button class="faq-question">
+          Apakah akun yang sudah lama hilang bisa dikembalikan?
+          <i class="ri-arrow-down-s-line"></i>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Ya, selama akun tersebut belum dihapus permanen oleh platform. Kami memiliki metode khusus untuk melacak dan memulihkan akun-akun lama yang terkunci atau diambil alih pihak lain, bahkan yang sudah berminggu-minggu atau berbulan-bulan hilang.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Data saya aman saat proses pemulihan?
+          <i class="ri-arrow-down-s-line"></i>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            100% Aman. Kami menerapkan perjanjian kerahasiaan (NDA). Proses pemulihan dilakukan secara transparan, dan kami tidak menyimpan data login Anda setelah pekerjaan selesai. Privasi klien adalah prioritas utama kami.
+          </div>
+        </div>
+      </div>
+
+      <!-- Pertanyaan Penghapusan Akun -->
+      <div class="faq-item">
+        <button class="faq-question">
+          Bisakah membantu menghapus akun yang lupa password?
+          <i class="ri-arrow-down-s-line"></i>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Bisa. Jika Anda memiliki akun lama (misalnya Facebook atau Instagram) yang ingin dihapus tapi tidak bisa login karena lupa password atau email hilang, kami bisa bantu proses penghapusan sesuai prosedur keamanan platform.
+          </div>
+        </div>
+      </div>
+
+      <!-- Pertanyaan WhatsApp Automation -->
+      <div class="faq-item">
+        <button class="faq-question">
+          Apakah WhatsApp Bot bisa menyebabkan nomor diblokir?
+          <i class="ri-arrow-down-s-line"></i>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Tidak. Sistem Automation yang kami bangun mengikuti ketentuan resmi WhatsApp (WhatsApp Business API). Kami memastikan penggunaan dilakukan secara wajar dan aman untuk menghindari risiko banned.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Fitur apa saja yang ada di WhatsApp Automation?
+          <i class="ri-arrow-down-s-line"></i>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Fiturnya lengkap: Auto-reply otomatis 24 jam, Sistem Jawaban Cepat (Quick Reply), Pengiriman Broadcast ke banyak kontak sekaligus, hingga Integrasi dengan sistem kasir atau website Anda.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Bagaimana jika proses pemulihan tidak berhasil?
+          <i class="ri-arrow-down-s-line"></i>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Kami menerapkan sistem <strong>"No Fix No Fee"</strong> (Tidak Sukses Tidak Bayar) untuk layanan pemulihan akun. Jika akun Anda tidak berhasil kami kembalikan, maka Anda tidak perlu membayar biaya jasa.
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -932,95 +1209,6 @@ footer {
   </div>
 </section>
 
-<!-- TESTIMONIALS (NEW SECTION) -->
-<section class="testimonials" id="testimoni">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">Kata Mereka Tentang Kami</h2>
-      <p class="section-subtitle">Testimoni asli dari klien yang telah menggunakan layanan kami</p>
-    </div>
-    
-    <div class="testimonials-grid">
-      <!-- Testimoni Iklan Digital -->
-      <div class="testimonial-card fade-up">
-        <div class="testimonial-quote">“</div>
-        <div class="testimonial-header">
-          <img src="https://i.pravatar.cc/150?img=12" alt="User" class="testimonial-avatar">
-          <div class="testimonial-info">
-            <h4>Dewi Lestari</h4>
-            <span class="testimonial-service service-tag-ads">Iklan Digital</span>
-          </div>
-        </div>
-        <div class="testimonial-stars">
-          <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
-        </div>
-        <p class="testimonial-text">"Sebelumnya saya rugi jutaan rupiah karena iklan yang tidak tepat sasaran. Setelah pakai jasa Kedai Media, OMSET naik 300% dalam 1 bulan! Tim yang sangat profesional."</p>
-      </div>
-
-      <!-- Testimoni Website -->
-      <div class="testimonial-card fade-up">
-        <div class="testimonial-quote">“</div>
-        <div class="testimonial-header">
-          <img src="https://i.pravatar.cc/150?img=33" alt="User" class="testimonial-avatar">
-          <div class="testimonial-info">
-            <h4>Andi Wijaya</h4>
-            <span class="testimonial-service service-tag-web">Website</span>
-          </div>
-        </div>
-        <div class="testimonial-stars">
-          <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
-        </div>
-        <p class="testimonial-text">"Website toko online saya sekarang jadi keren banget dan fast loading. Dulu sering crash, sekarang lancar jaya. Pelayanannya cepat dan revisinya juga dikerjakan dengan sabar."</p>
-      </div>
-
-      <!-- Testimoni Pemulihan Akun -->
-      <div class="testimonial-card fade-up">
-        <div class="testimonial-quote">“</div>
-        <div class="testimonial-header">
-          <img src="https://i.pravatar.cc/150?img=47" alt="User" class="testimonial-avatar">
-          <div class="testimonial-info">
-            <h4>Rizky Pratama</h4>
-            <span class="testimonial-service service-tag-recovery">Pemulihan Akun</span>
-          </div>
-        </div>
-        <div class="testimonial-stars">
-          <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
-        </div>
-        <p class="testimonial-text">"Akun bisnis IG saya di-hack dan saya panik banget. Dalam waktu 24 jam, tim Kedai Media berhasil mengembalikannya dengan aman. Terima kasih banyak, best service!"</p>
-      </div>
-
-      <!-- Testimoni WA Automation -->
-      <div class="testimonial-card fade-up">
-        <div class="testimonial-quote">“</div>
-        <div class="testimonial-header">
-          <img src="https://i.pravatar.cc/150?img=51" alt="User" class="testimonial-avatar">
-          <div class="testimonial-info">
-            <h4>Sinta Maharani</h4>
-            <span class="testimonial-service service-tag-wa">WA Automation</span>
-          </div>
-        </div>
-        <div class="testimonial-stars">
-          <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
-        </div>
-        <p class="testimonial-text">"Bot WhatsApp-nya luar biasa! Sekarang saya bisa tidur nyenyak karena pelanggan tetap terlayanan otomatis. Efisiensi waktu meningkat drastis, recommended banget!"</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MODAL -->
-<div class="modal-overlay" id="modal">
-  <div class="modal-box">
-    <div class="modal-close" onclick="closeModal()"><i class="ri-close-line"></i></div>
-    <h3 class="modal-title" id="modalTitle"></h3>
-    <p class="modal-desc" id="modalDesc"></p>
-    <div class="modal-actions">
-      <a href="#" class="btn btn-primary" id="modalLink">Pelajari Selengkapnya</a>
-      <a href="https://wa.me/6282285781863" target="_blank" rel="noopener" class="btn btn-outline">Hubungi Kami</a>
-    </div>
-  </div>
-</div>
-
 <!-- FOOTER -->
 <footer>
   <div class="container">
@@ -1054,6 +1242,19 @@ footer {
   </div>
 </footer>
 
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-box">
+    <div class="modal-close" onclick="closeModal()"><i class="ri-close-line"></i></div>
+    <h3 class="modal-title" id="modalTitle"></h3>
+    <p class="modal-desc" id="modalDesc"></p>
+    <div class="modal-actions">
+      <a href="#" class="btn btn-primary" id="modalLink">Pelajari Selengkapnya</a>
+      <a href="https://wa.me/6282285781863" target="_blank" rel="noopener" class="btn btn-outline">Hubungi Kami</a>
+    </div>
+  </div>
+</div>
+
 <script>
 // === DATA LAYANAN ===
 const services = {
@@ -1085,6 +1286,33 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
+// === TOGGLE MENU MOBILE ===
+function toggleMenu() {
+  const menu = document.getElementById('navMenu');
+  menu.classList.toggle('active');
+}
+
+// === FAQ ACCORDION ===
+document.querySelectorAll('.faq-question').forEach(button => {
+  button.addEventListener('click', () => {
+    const faqItem = button.parentElement;
+    const isActive = faqItem.classList.contains('active');
+    
+    // Close all FAQ items
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.classList.remove('active');
+      item.querySelector('.faq-answer').style.maxHeight = null;
+    });
+
+    // Open clicked item if it wasn't active
+    if (!isActive) {
+      faqItem.classList.add('active');
+      const answer = faqItem.querySelector('.faq-answer');
+      answer.style.maxHeight = answer.scrollHeight + "px";
+    }
+  });
+});
+
 document.getElementById('modal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
@@ -1112,33 +1340,14 @@ window.addEventListener('scroll', () => {
   document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// === PARTNER MARQUEE ===
-function initMarquee() {
-  const track = document.getElementById('partnerTrack');
-  if (!track) return;
-  const logos = track.querySelectorAll('.partner-logo');
-  if (logos.length < 2) return;
-  
-  // Clone logos
-  logos.forEach(logo => track.appendChild(logo.cloneNode(true)));
-  
-  let pos = 0;
-  const speed = 0.5;
-  function animate() {
-    pos -= speed;
-    const width = track.scrollWidth / 2;
-    if (Math.abs(pos) >= width) pos = 0;
-    track.style.transform = `translateX(${pos}px)`;
-    requestAnimationFrame(animate);
-  }
-  animate();
-}
-
 // === INIT ===
 document.addEventListener('DOMContentLoaded', () => {
   animateCounter('clients', 10247, 2500);
   animateCounter('visitors', Math.floor(Math.random() * 200) + 50, 2000);
-  initMarquee();
+  
+  // Set initial state for FAQ
+  const firstFaq = document.querySelector('.faq-item.active .faq-answer');
+  if (firstFaq) firstFaq.style.maxHeight = firstFaq.scrollHeight + "px";
 });
 </script>
 
