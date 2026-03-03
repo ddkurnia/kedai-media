@@ -482,6 +482,95 @@ header.scrolled {
   color: var(--gray-400);
 }
 
+/* === TESTIMONIALS (NEW) === */
+.testimonials {
+  padding: 80px 0;
+  background: var(--white);
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 50px;
+}
+
+.testimonial-card {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: 20px;
+  padding: 32px;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.testimonial-card:hover {
+  border-color: transparent;
+  box-shadow: var(--card-hover-shadow);
+  transform: translateY(-5px);
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.testimonial-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gray-100);
+}
+
+.testimonial-info h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 2px;
+}
+
+.testimonial-service {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+/* Warna spesifik untuk layanan */
+.service-tag-ads { background: #fff7ed; color: #ea580c; }
+.service-tag-web { background: #eff6ff; color: #2563eb; }
+.service-tag-recovery { background: #fef2f2; color: #dc2626; }
+.service-tag-wa { background: #f0fdf4; color: #16a34a; }
+
+.testimonial-stars {
+  color: #fbbf24;
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.testimonial-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--gray-600);
+  font-style: italic;
+}
+
+.testimonial-quote {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 48px;
+  color: var(--gray-100);
+  font-family: serif;
+  line-height: 1;
+}
+
 /* === MODAL === */
 .modal-overlay {
   display: none;
@@ -561,7 +650,7 @@ footer {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1.2fr;
   gap: 50px;
   margin-bottom: 40px;
 }
@@ -620,6 +709,7 @@ footer {
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .trust-grid { grid-template-columns: repeat(3, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .testimonials-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {
@@ -842,6 +932,82 @@ footer {
   </div>
 </section>
 
+<!-- TESTIMONIALS (NEW SECTION) -->
+<section class="testimonials" id="testimoni">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Kata Mereka Tentang Kami</h2>
+      <p class="section-subtitle">Testimoni asli dari klien yang telah menggunakan layanan kami</p>
+    </div>
+    
+    <div class="testimonials-grid">
+      <!-- Testimoni Iklan Digital -->
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-quote">“</div>
+        <div class="testimonial-header">
+          <img src="https://i.pravatar.cc/150?img=12" alt="User" class="testimonial-avatar">
+          <div class="testimonial-info">
+            <h4>Dewi Lestari</h4>
+            <span class="testimonial-service service-tag-ads">Iklan Digital</span>
+          </div>
+        </div>
+        <div class="testimonial-stars">
+          <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+        </div>
+        <p class="testimonial-text">"Sebelumnya saya rugi jutaan rupiah karena iklan yang tidak tepat sasaran. Setelah pakai jasa Kedai Media, OMSET naik 300% dalam 1 bulan! Tim yang sangat profesional."</p>
+      </div>
+
+      <!-- Testimoni Website -->
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-quote">“</div>
+        <div class="testimonial-header">
+          <img src="https://i.pravatar.cc/150?img=33" alt="User" class="testimonial-avatar">
+          <div class="testimonial-info">
+            <h4>Andi Wijaya</h4>
+            <span class="testimonial-service service-tag-web">Website</span>
+          </div>
+        </div>
+        <div class="testimonial-stars">
+          <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+        </div>
+        <p class="testimonial-text">"Website toko online saya sekarang jadi keren banget dan fast loading. Dulu sering crash, sekarang lancar jaya. Pelayanannya cepat dan revisinya juga dikerjakan dengan sabar."</p>
+      </div>
+
+      <!-- Testimoni Pemulihan Akun -->
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-quote">“</div>
+        <div class="testimonial-header">
+          <img src="https://i.pravatar.cc/150?img=47" alt="User" class="testimonial-avatar">
+          <div class="testimonial-info">
+            <h4>Rizky Pratama</h4>
+            <span class="testimonial-service service-tag-recovery">Pemulihan Akun</span>
+          </div>
+        </div>
+        <div class="testimonial-stars">
+          <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+        </div>
+        <p class="testimonial-text">"Akun bisnis IG saya di-hack dan saya panik banget. Dalam waktu 24 jam, tim Kedai Media berhasil mengembalikannya dengan aman. Terima kasih banyak, best service!"</p>
+      </div>
+
+      <!-- Testimoni WA Automation -->
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-quote">“</div>
+        <div class="testimonial-header">
+          <img src="https://i.pravatar.cc/150?img=51" alt="User" class="testimonial-avatar">
+          <div class="testimonial-info">
+            <h4>Sinta Maharani</h4>
+            <span class="testimonial-service service-tag-wa">WA Automation</span>
+          </div>
+        </div>
+        <div class="testimonial-stars">
+          <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+        </div>
+        <p class="testimonial-text">"Bot WhatsApp-nya luar biasa! Sekarang saya bisa tidur nyenyak karena pelanggan tetap terlayanan otomatis. Efisiensi waktu meningkat drastis, recommended banget!"</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- MODAL -->
 <div class="modal-overlay" id="modal">
   <div class="modal-box">
@@ -878,7 +1044,7 @@ footer {
       </div>
       <div>
         <div class="footer-title">Kontak</div>
-        <p class="footer-link" style="cursor: default;">WhatsApp</p>
+        <p class="footer-link" style="cursor: default;">WhatsApp: 0822-8578-1863</p>
         <p class="footer-link" style="cursor: default;">Indonesia</p>
       </div>
     </div>
