@@ -72,7 +72,6 @@ h1, h2, h3, h4, h5 {
   width: 100%;
   height: 100vh;
   z-index: -1;
-  /* Gradien lebih kuat agar terlihat jelas */
   background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(139, 92, 246, 0.1) 50%, rgba(255,255,255,1) 100%);
   overflow: hidden;
 }
@@ -81,7 +80,6 @@ h1, h2, h3, h4, h5 {
   position: absolute;
   width: 100%;
   height: 100%;
-  /* Garis grid lebih kontras */
   background-image: 
     linear-gradient(rgba(14, 165, 233, 0.15) 1px, transparent 1px),
     linear-gradient(90deg, rgba(14, 165, 233, 0.15) 1px, transparent 1px);
@@ -92,7 +90,7 @@ h1, h2, h3, h4, h5 {
 .bg-shape {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px); /* Blur lebih halus */
+  filter: blur(100px);
   z-index: -1;
   animation: float 10s infinite alternate;
 }
@@ -105,7 +103,7 @@ h1, h2, h3, h4, h5 {
 .shape-1 {
   width: 500px;
   height: 500px;
-  background: rgba(14, 165, 233, 0.25); /* Opacity dinaikkan */
+  background: rgba(14, 165, 233, 0.25);
   top: -150px;
   right: -100px;
 }
@@ -113,7 +111,7 @@ h1, h2, h3, h4, h5 {
 .shape-2 {
   width: 400px;
   height: 400px;
-  background: rgba(139, 92, 246, 0.25); /* Opacity dinaikkan */
+  background: rgba(139, 92, 246, 0.25);
   bottom: 10%;
   left: -100px;
 }
@@ -217,7 +215,7 @@ header.scrolled {
   cursor: pointer;
 }
 
-/* Status Badge Online (KEMBALI) */
+/* Status Badge Online */
 .status-badge {
   display: flex;
   align-items: center;
@@ -560,7 +558,7 @@ header.scrolled {
   line-height: 1;
 }
 
-/* === FAQ SECTION (UPDATED FOCUS) === */
+/* === FAQ SECTION === */
 .faq {
   padding: 80px 0;
   background: var(--white);
@@ -734,6 +732,32 @@ footer {
   color: var(--sky-400);
 }
 
+/* Footer Social Icons (NEW) */
+.footer-social {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.social-icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  color: var(--gray-400);
+  font-size: 20px;
+  transition: all 0.3s;
+}
+
+.social-icon-link:hover {
+  background: var(--primary-gradient);
+  color: white;
+  transform: translateY(-3px);
+}
+
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding-top: 24px;
@@ -833,7 +857,14 @@ footer {
     border-top: 1px solid var(--gray-100);
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
   }
-  .status-badge { display: none; } /* Sembunyikan status di mobile agar tidak penuh */
+  
+  /* Badge Online Tampil di Mobile */
+  .status-badge {
+    display: flex; 
+    padding: 6px 10px; 
+    font-size: 11px; 
+  }
+
   .mobile-menu-btn { display: block; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .services-grid { grid-template-columns: 1fr; }
@@ -1079,7 +1110,7 @@ footer {
   </div>
 </section>
 
-<!-- FAQ (UPDATED) -->
+<!-- FAQ -->
 <section class="faq" id="faq">
   <div class="container">
     <div class="section-header">
@@ -1234,6 +1265,15 @@ footer {
         <div class="footer-title">Kontak</div>
         <p class="footer-link" style="cursor: default;">WhatsApp: 0822-8578-1863</p>
         <p class="footer-link" style="cursor: default;">Indonesia</p>
+        <!-- Social Media Icons Here -->
+        <div class="footer-social">
+          <a href="https://www.facebook.com/profile.php?id=100064150927466" target="_blank" class="social-icon-link" title="Facebook">
+            <i class="ri-facebook-fill"></i>
+          </a>
+          <a href="https://www.tiktok.com/@kedai.media" target="_blank" class="social-icon-link" title="TikTok">
+            <i class="ri-tiktok-fill"></i>
+          </a>
+        </div>
       </div>
     </div>
     <div class="footer-bottom">
@@ -1258,7 +1298,7 @@ footer {
 <script>
 // === DATA LAYANAN ===
 const services = {
-  recovery: { title: "Pemulihan Akun Sosmed", desc: "Layanan profesional untuk mengembalikan akun sosial media Anda yang telah diretas atau di-hack. Kami menangani Facebook, Instagram, TikTok, dan platform lainnya dengan tingkat keberhasilan tinggi.", url: "pemulihan-akun-sosmed/" },
+  recovery: { title: "Pemulihan Akun Sosmed", desc: "Layanan profesional untuk mengembalikan akun sosial media Anda yang telah diretas atau di-hack. Kami menangani Facebook, Instagram, TikTok, dan platform lainnya với tingkat keberhasilan tinggi.", url: "pemulihan-akun-sosmed/" },
   website: { title: "Pembuatan Website", desc: "Website profesional untuk bisnis, UMKM, company profile, instansi pemerintah, sekolah, dan organisasi. Desain modern dengan performa optimal.", url: "jasa-pembuatan-website/" },
   wa: { title: "WhatsApp Automation", desc: "Solusi WhatsApp bot dan auto reply untuk bisnis. Tingkatkan efisiensi layanan pelanggan dengan sistem otomatis yang cerdas.", url: "whatsapp-automation/" },
   social: { title: "Optimasi Sosial Media", desc: "Jasa followers real dan engagement untuk Instagram, Facebook, dan TikTok. Tingkatkan visibilitas dan kredibilitas bisnis Anda.", url: "optimasi-sosial-media/" },
