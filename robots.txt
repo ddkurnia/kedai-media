@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ddkurnia.github.io/kedai-media/sitemap.xml
+Sitemap: https://kedaimedia.com/sitemap.xml
