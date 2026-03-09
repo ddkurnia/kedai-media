@@ -75,233 +75,88 @@ Jasa Pemulihan Akun Facebook, IG, TikTok yang Di-Hack | Kedai Media Indonesia
 :root {
   --white: #ffffff;
   --black: #0f172a;
-  --gray-50: #f8fafc;
-  --gray-100: #f1f5f9;
-  --gray-200: #e2e8f0;
-  --gray-400: #94a3b8;
-  --gray-600: #475569;
-  --sky-50: #f0f9ff;
-  --sky-100: #e0f2fe;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-400: #9ca3af;
+  --gray-600: #4b5563;
   --sky-400: #38bdf8;
   --sky-500: #0ea5e9;
-  --violet-50: #f5f3ff;
-  --violet-100: #ede9fe;
   --violet-500: #8b5cf6;
   --violet-600: #7c3aed;
   --primary-gradient: linear-gradient(135deg, #0ea5e9, #8b5cf6);
   --text-gradient: linear-gradient(90deg, #0ea5e9, #8b5cf6);
-  --card-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.08);
-  --card-hover-shadow: 0 20px 40px -10px rgba(14, 165, 233, 0.15);
+  --card-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+  --card-hover-shadow: 0 20px 50px -15px rgba(14, 165, 233, 0.2);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: 'Inter', sans-serif; background: var(--gray-50); color: var(--gray-600); overflow-x: hidden; line-height: 1.6; }
+body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--gray-600); overflow-x: hidden; line-height: 1.6; }
 h1, h2, h3, h4, h5 { font-family: 'Poppins', sans-serif; color: var(--black); }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
 
-/* === DECORATIVE PATTERNS === */
-.pattern-dots {
-  background-image: radial-gradient(rgba(14, 165, 233, 0.08) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
+/* === BACKGROUND === */
+.bg-design { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(139, 92, 246, 0.1) 50%, rgba(255,255,255,1) 100%); overflow: hidden; }
+.bg-grid-lines { position: absolute; width: 100%; height: 100%; background-image: linear-gradient(rgba(14, 165, 233, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(14, 165, 233, 0.15) 1px, transparent 1px); background-size: 50px 50px; mask-image: linear-gradient(to bottom, black 20%, transparent 100%); }
+.bg-shape { position: absolute; border-radius: 50%; filter: blur(100px); z-index: -1; animation: float 10s infinite alternate; }
+@keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(20px, 20px); } }
+.shape-1 { width: 500px; height: 500px; background: rgba(14, 165, 233, 0.25); top: -150px; right: -100px; }
+.shape-2 { width: 400px; height: 400px; background: rgba(139, 92, 246, 0.25); bottom: 10%; left: -100px; }
+.shape-3 { width: 300px; height: 300px; background: rgba(236, 72, 153, 0.2); top: 40%; right: 10%; }
 
-.pattern-grid {
-  background-image: 
-    linear-gradient(rgba(139, 92, 246, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(139, 92, 246, 0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
+/* === HEADER === */
+header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-100); transition: all 0.3s; }
+header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); background: rgba(255, 255, 255, 0.98); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+.brand { display: flex; flex-direction: column; line-height: 1.2; }
+.powered { font-size: 10px; color: var(--gray-400); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 500; }
+.logo { font-family: 'Poppins', sans-serif; font-size: 24px; font-weight: 700; background: var(--text-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.nav-menu { display: flex; align-items: center; gap: 8px; }
+.nav-link { color: var(--gray-600); text-decoration: none; padding: 8px 16px; font-size: 14px; font-weight: 500; border-radius: 8px; transition: all 0.3s; }
+.nav-link:hover { color: var(--sky-500); background: rgba(14, 165, 233, 0.05); }
+.nav-cta { background: var(--primary-gradient); color: white !important; padding: 10px 20px; border-radius: 8px; font-weight: 600; }
+.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4); }
+.mobile-menu-btn { display: none; background: none; border: none; font-size: 24px; color: var(--black); cursor: pointer; }
+.status-badge { display: flex; align-items: center; gap: 8px; padding: 8px 16px; background: #ecfdf5; border-radius: 50px; font-size: 13px; font-weight: 600; color: #059669; }
+.status-badge::before { content: ''; width: 8px; height: 8px; background: #10b981; border-radius: 50%; animation: blink 2s infinite; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
-.pattern-diagonal {
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 10px,
-    rgba(14, 165, 233, 0.02) 10px,
-    rgba(14, 165, 233, 0.02) 11px
-  );
-}
-
-/* === DECORATIVE SHAPES === */
-.deco-circle {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.deco-ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid;
-  pointer-events: none;
-}
-
-.deco-line {
-  position: absolute;
-  height: 1px;
-  pointer-events: none;
-}
-
-/* === HERO SECTION === */
-.hero-section {
-  position: relative;
-  background: linear-gradient(135deg, var(--sky-50) 0%, var(--white) 50%, var(--violet-50) 100%);
-  overflow: hidden;
-}
-
-.hero-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(14, 165, 233, 0.06) 1px, transparent 1px);
-  background-size: 20px 20px;
-  pointer-events: none;
-}
-
-.hero { 
-  padding: 160px 0 100px; 
-  text-align: center; 
-  position: relative; 
-  z-index: 1;
-}
-
-.hero-badge { 
-  display: inline-flex; 
-  align-items: center; 
-  gap: 8px; 
-  padding: 10px 24px; 
-  background: var(--white); 
-  border: 1px solid var(--gray-200); 
-  border-radius: 50px; 
-  font-size: 13px; 
-  font-weight: 500; 
-  color: var(--gray-600); 
-  margin-bottom: 28px; 
-  box-shadow: var(--card-shadow);
-}
-
+/* === HERO === */
+.hero { padding: 160px 0 100px; text-align: center; position: relative; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; background: white; border: 1px solid var(--gray-200); border-radius: 50px; font-size: 13px; font-weight: 500; color: var(--gray-600); margin-bottom: 24px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
 .hero-badge i { color: var(--sky-500); }
-
-.hero h1 { 
-  font-size: clamp(36px, 6vw, 52px); 
-  font-weight: 700; 
-  line-height: 1.2; 
-  margin-bottom: 24px; 
-  letter-spacing: -0.5px;
-  color: var(--black);
-}
-
-.hero h1 span { 
-  background: var(--text-gradient); 
-  -webkit-background-clip: text; 
-  -webkit-text-fill-color: transparent; 
-}
-
-.hero p { 
-  font-size: 18px; 
-  color: var(--gray-600); 
-  max-width: 640px; 
-  margin: 0 auto 36px; 
-  line-height: 1.7;
-}
-
+.hero h1 { font-size: clamp(36px, 6vw, 56px); font-weight: 700; line-height: 1.15; margin-bottom: 20px; letter-spacing: -0.5px; }
+.hero h1 span { background: var(--text-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { font-size: 18px; color: var(--gray-600); max-width: 600px; margin: 0 auto 32px; }
 .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
 /* === BUTTONS === */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 28px; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; text-decoration: none; border-radius: 12px; cursor: pointer; border: none; transition: all 0.3s; }
-.btn-primary { background: var(--primary-gradient); color: white; box-shadow: 0 4px 20px rgba(14, 165, 233, 0.25); }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(14, 165, 233, 0.35); }
-.btn-outline { background: var(--white); color: var(--gray-600); border: 1px solid var(--gray-200); }
-.btn-outline:hover { border-color: var(--sky-500); color: var(--sky-500); }
+.btn-primary { background: var(--primary-gradient); color: white; box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(14, 165, 233, 0.4); }
+.btn-outline { background: transparent; color: var(--gray-600); border: 2px solid var(--gray-200); }
+.btn-outline:hover { border-color: var(--sky-500); color: var(--sky-500); background: rgba(14, 165, 233, 0.05); }
 
-/* === STATS SECTION === */
-.stats-section {
-  background: var(--white);
-  border-top: 1px solid var(--gray-100);
-  border-bottom: 1px solid var(--gray-100);
-  position: relative;
-}
-
-.stats-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(90deg, transparent 0%, transparent 50%, rgba(14, 165, 233, 0.02) 50%, rgba(14, 165, 233, 0.02) 100%);
-  background-size: 60px 100%;
-  pointer-events: none;
-}
-
-.stats { padding: 50px 0; position: relative; z-index: 1; }
-.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
-.stat-item { text-align: center; padding: 20px; background: var(--gray-50); border-radius: 16px; }
+/* === STATS === */
+.stats { padding: 40px 0; border-top: 1px solid var(--gray-100); border-bottom: 1px solid var(--gray-100); background: var(--white); }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.stat-item { text-align: center; }
 .stat-number { font-family: 'Poppins', sans-serif; font-size: 36px; font-weight: 700; background: var(--text-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.stat-label { font-size: 14px; color: var(--gray-400); font-weight: 500; margin-top: 4px; }
+.stat-label { font-size: 14px; color: var(--gray-400); font-weight: 500; }
 
-/* === SERVICES SECTION === */
-.services-section {
-  background: linear-gradient(180deg, var(--white) 0%, var(--sky-50) 100%);
-  position: relative;
-}
-
-.services-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 200px;
-  background: linear-gradient(180deg, var(--white) 0%, transparent 100%);
-  pointer-events: none;
-}
-
-.services { padding: 80px 0; position: relative; z-index: 1; }
+/* === SERVICES === */
+.services { padding: 80px 0; }
 .section-header { text-align: center; margin-bottom: 50px; }
 .section-title { font-size: clamp(28px, 4vw, 36px); font-weight: 700; margin-bottom: 12px; }
 .section-subtitle { font-size: 16px; color: var(--gray-400); }
 .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 
-.service-card { 
-  background: var(--white); 
-  border: 1px solid var(--gray-100); 
-  border-radius: 20px; 
-  padding: 28px; 
-  cursor: pointer; 
-  transition: all 0.3s; 
-  position: relative; 
-  overflow: hidden;
-}
-
-.service-card::before { 
-  content: ''; 
-  position: absolute; 
-  top: 0; 
-  left: 0; 
-  right: 0; 
-  height: 3px; 
-  background: var(--card-gradient); 
-  opacity: 0; 
-  transition: opacity 0.3s; 
-}
-
+.service-card { background: var(--white); border: 1px solid var(--gray-100); border-radius: 20px; padding: 28px; cursor: pointer; transition: all 0.3s; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-start; }
+.service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--card-gradient); opacity: 0; transition: opacity 0.3s; }
 .service-card:hover::before { opacity: 1; }
 .service-card:hover { border-color: transparent; box-shadow: var(--card-hover-shadow); transform: translateY(-5px); }
-
-.service-icon { 
-  width: 52px; 
-  height: 52px; 
-  border-radius: 14px; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  font-size: 24px; 
-  margin-bottom: 18px; 
-  background: var(--icon-bg); 
-  color: var(--icon-color); 
-  transition: transform 0.3s; 
-}
-
+.service-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 18px; background: var(--icon-bg); color: var(--icon-color); transition: transform 0.3s; }
 .service-card:hover .service-icon { transform: scale(1.1); }
 .service-name { font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600; color: var(--black); margin-bottom: 8px; }
 .service-desc { font-size: 13px; color: var(--gray-600); line-height: 1.6; }
@@ -316,61 +171,18 @@ h1, h2, h3, h4, h5 { font-family: 'Poppins', sans-serif; color: var(--black); }
 .card-security { --card-gradient: linear-gradient(90deg, #06b6d4, #0891b2); --icon-bg: #ecfeff; --icon-color: #06b6d4; }
 .card-system { --card-gradient: linear-gradient(90deg, #64748b, #475569); --icon-bg: #f8fafc; --icon-color: #64748b; }
 
-/* === PARTNER SECTION === */
-.partner-section {
-  background: var(--white);
-  border-top: 1px solid var(--gray-100);
-  border-bottom: 1px solid var(--gray-100);
-  position: relative;
-}
-
-.partner-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 30px,
-    rgba(139, 92, 246, 0.015) 30px,
-    rgba(139, 92, 246, 0.015) 31px
-  );
-  pointer-events: none;
-}
-
-.partner { padding: 50px 0; position: relative; z-index: 1; }
+/* === PARTNER === */
+.partner { padding: 60px 0; background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(14, 165, 233, 0.03) 50%, rgba(255,255,255,0) 100%); overflow: hidden; border-top: 1px solid rgba(14, 165, 233, 0.05); border-bottom: 1px solid rgba(14, 165, 233, 0.05); }
 .partner-inner { display: flex; align-items: center; gap: 40px; }
 .partner-label { flex-shrink: 0; font-size: 13px; font-weight: 600; color: var(--gray-600); text-transform: uppercase; letter-spacing: 2px; white-space: nowrap; }
 .partner-track { display: flex; gap: 50px; align-items: center; }
 .partner-logo { height: 26px; opacity: 0.4; filter: grayscale(100%); transition: all 0.3s; flex-shrink: 0; }
 .partner-logo:hover { opacity: 1; filter: grayscale(0%); }
 
-/* === TESTIMONIALS SECTION === */
-.testimonials-section {
-  background: linear-gradient(135deg, var(--violet-50) 0%, var(--gray-50) 50%, var(--sky-50) 100%);
-  position: relative;
-}
-
-.testimonials-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.03) 0%, transparent 50%),
-                      radial-gradient(circle at 80% 50%, rgba(14, 165, 233, 0.03) 0%, transparent 50%);
-  pointer-events: none;
-}
-
-.testimonials { padding: 80px 0; position: relative; z-index: 1; }
+/* === TESTIMONIALS === */
+.testimonials { padding: 80px 0; background: var(--gray-50); }
 .testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 50px; }
-.testimonial-card { 
-  background: var(--white); 
-  border: 1px solid var(--gray-100); 
-  border-radius: 20px; 
-  padding: 32px; 
-  transition: all 0.3s; 
-  position: relative; 
-}
-
+.testimonial-card { background: var(--white); border: 1px solid var(--gray-100); border-radius: 20px; padding: 32px; transition: all 0.3s; position: relative; }
 .testimonial-card:hover { border-color: transparent; box-shadow: var(--card-hover-shadow); }
 .testimonial-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
 .testimonial-avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gray-100); }
@@ -382,76 +194,30 @@ h1, h2, h3, h4, h5 { font-family: 'Poppins', sans-serif; color: var(--black); }
 .service-tag-wa { background: #f0fdf4; color: #16a34a; }
 .testimonial-stars { color: #fbbf24; margin-bottom: 12px; font-size: 18px; }
 .testimonial-text { font-size: 14px; line-height: 1.7; color: var(--gray-600); font-style: italic; }
-.testimonial-quote { position: absolute; top: 20px; right: 20px; font-size: 48px; color: var(--gray-200); font-family: serif; line-height: 1; }
+.testimonial-quote { position: absolute; top: 20px; right: 20px; font-size: 48px; color: var(--gray-100); font-family: serif; line-height: 1; }
 
-/* === FAQ SECTION === */
-.faq-section {
-  background: var(--white);
-  position: relative;
-}
-
-.faq-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(rgba(14, 165, 233, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(14, 165, 233, 0.02) 1px, transparent 1px);
-  background-size: 32px 32px;
-  pointer-events: none;
-}
-
-.faq { padding: 80px 0; position: relative; z-index: 1; }
+/* === FAQ === */
+.faq { padding: 80px 0; background: var(--white); }
 .faq-grid { max-width: 800px; margin: 50px auto 0; display: flex; flex-direction: column; gap: 16px; }
-.faq-item { border: 1px solid var(--gray-100); border-radius: 16px; overflow: hidden; transition: all 0.3s; background: var(--white); }
+.faq-item { border: 1px solid var(--gray-100); border-radius: 16px; overflow: hidden; transition: all 0.3s; }
 .faq-item.active { border-color: var(--sky-400); box-shadow: 0 4px 20px rgba(14, 165, 233, 0.1); }
-.faq-question { width: 100%; padding: 20px 24px; background: transparent; border: none; text-align: left; font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 600; color: var(--black); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.faq-question { width: 100%; padding: 20px 24px; background: white; border: none; text-align: left; font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 600; color: var(--black); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
 .faq-question i { font-size: 20px; color: var(--gray-400); transition: transform 0.3s; }
 .faq-item.active .faq-question i { transform: rotate(180deg); color: var(--sky-500); }
 .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
 .faq-answer-inner { padding: 0 24px 20px; font-size: 14px; color: var(--gray-600); line-height: 1.7; }
 
-/* === TRUST SECTION === */
-.trust-section {
-  background: linear-gradient(180deg, var(--gray-50) 0%, var(--white) 100%);
-  position: relative;
-}
-
-.trust-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(139, 92, 246, 0.04) 1px, transparent 1px);
-  background-size: 16px 16px;
-  pointer-events: none;
-}
-
-.trust { padding: 80px 0; position: relative; z-index: 1; }
+/* === TRUST === */
+.trust { padding: 80px 0; background: var(--gray-50); }
 .trust-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
-.trust-item { background: var(--white); border: 1px solid var(--gray-100); border-radius: 16px; padding: 24px 16px; text-align: center; transition: all 0.3s; }
-.trust-item:hover { border-color: var(--sky-200); box-shadow: var(--card-shadow); transform: translateY(-3px); }
+.trust-item { background: var(--white); border-radius: 16px; padding: 24px 16px; text-align: center; transition: all 0.3s; }
+.trust-item:hover { box-shadow: var(--card-shadow); transform: translateY(-3px); }
 .trust-icon { width: 44px; height: 44px; background: var(--primary-gradient); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; font-size: 20px; color: white; }
 .trust-title { font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600; color: var(--black); margin-bottom: 4px; }
 .trust-desc { font-size: 12px; color: var(--gray-400); }
 
 /* === FOOTER === */
-footer { 
-  background: linear-gradient(180deg, var(--black) 0%, #020617 100%); 
-  color: var(--gray-400); 
-  padding: 60px 0 30px; 
-  position: relative;
-}
-
-footer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--sky-500), var(--violet-500), transparent);
-}
-
+footer { background: var(--black); color: var(--gray-400); padding: 60px 0 30px; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 50px; margin-bottom: 40px; }
 .footer-brand p { font-size: 14px; line-height: 1.7; margin-top: 16px; }
 .footer-logo { font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 700; color: white; }
@@ -460,12 +226,12 @@ footer::before {
 .footer-link { display: block; color: var(--gray-400); text-decoration: none; font-size: 14px; margin-bottom: 10px; transition: color 0.2s; }
 .footer-link:hover { color: var(--sky-400); }
 .footer-social { display: flex; gap: 12px; margin-top: 10px; }
-.social-icon-link { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; color: var(--gray-400); font-size: 20px; transition: all 0.3s; }
-.social-icon-link:hover { background: var(--primary-gradient); border-color: transparent; color: white; transform: translateY(-3px); }
+.social-icon-link { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(255, 255, 255, 0.05); border-radius: 10px; color: var(--gray-400); font-size: 20px; transition: all 0.3s; }
+.social-icon-link:hover { background: var(--primary-gradient); color: white; transform: translateY(-3px); }
 .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 24px; text-align: center; font-size: 13px; }
 
 /* === MODAL === */
-.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); z-index: 2000; justify-content: center; align-items: center; padding: 20px; }
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(4px); z-index: 2000; justify-content: center; align-items: center; padding: 20px; }
 .modal-box { background: var(--white); border-radius: 24px; padding: 40px; max-width: 480px; width: 100%; position: relative; animation: modalIn 0.3s ease-out; }
 @keyframes modalIn { from { opacity: 0; transform: scale(0.95) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
 .modal-close { position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; background: var(--gray-100); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; color: var(--gray-400); transition: all 0.2s; }
@@ -474,23 +240,6 @@ footer::before {
 .modal-desc { font-size: 15px; color: var(--gray-600); margin-bottom: 28px; line-height: 1.6; }
 .modal-actions { display: flex; gap: 12px; }
 .modal-actions .btn { flex: 1; }
-
-/* === HEADER === */
-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-100); transition: all 0.3s; }
-header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); background: rgba(255, 255, 255, 0.98); }
-.header-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
-.brand { display: flex; flex-direction: column; line-height: 1.2; }
-.powered { font-size: 10px; color: var(--gray-400); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 500; }
-.logo { font-family: 'Poppins', sans-serif; font-size: 24px; font-weight: 700; background: var(--text-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.nav-menu { display: flex; align-items: center; gap: 8px; }
-.nav-link { color: var(--gray-600); text-decoration: none; padding: 8px 16px; font-size: 14px; font-weight: 500; border-radius: 8px; transition: all 0.3s; }
-.nav-link:hover { color: var(--sky-500); background: var(--sky-50); }
-.nav-cta { background: var(--primary-gradient); color: white !important; padding: 10px 20px; border-radius: 8px; font-weight: 600; }
-.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4); }
-.mobile-menu-btn { display: none; background: none; border: none; font-size: 24px; color: var(--black); cursor: pointer; }
-.status-badge { display: flex; align-items: center; gap: 8px; padding: 8px 16px; background: #ecfdf5; border-radius: 50px; font-size: 13px; font-weight: 600; color: #059669; }
-.status-badge::before { content: ''; width: 8px; height: 8px; background: #10b981; border-radius: 50%; animation: blink 2s infinite; }
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
 /* === RESPONSIVE === */
 @media (max-width: 1024px) { .services-grid { grid-template-columns: repeat(2, 1fr); } .trust-grid { grid-template-columns: repeat(3, 1fr); } .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; } .testimonials-grid { grid-template-columns: 1fr; } }
@@ -505,6 +254,9 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); background: rgba(2
 </head>
 <body>
 
+<!-- BACKGROUND -->
+<div class="bg-design"> <div class="bg-grid-lines"></div> <div class="bg-shape shape-1"></div> <div class="bg-shape shape-2"></div> <div class="bg-shape shape-3"></div> </div>
+
 <!-- HEADER -->
 <header id="header">
   <div class="container header-inner">
@@ -517,146 +269,132 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); background: rgba(2
   </div>
 </header>
 
-<!-- HERO SECTION -->
-<section class="hero-section" id="home">
-  <div class="hero">
-    <div class="container">
-      <div class="hero-badge"> <i class="ri-shield-check-line"></i> Partner Digital Terpercaya Sejak 2009 </div>
-      <h1>Solusi Lengkap <span>Digital & Sosial Media</span> untuk Anda</h1>
-      <p>Pemulihan akun yang di-hack, pembuatan website profesional, WhatsApp automation, hingga optimasi sosial media. Kami hadir sebagai mitra digital satu atap untuk membantu mengatasi segala kebutuhan online Anda dengan layanan 24 jam dan tingkat keberhasilan 99.9%.</p>
-      <div class="hero-buttons">
-        <a href="#layanan" class="btn btn-primary"> <i class="ri-service-line"></i> Lihat Semua Layanan </a>
-        <a href="https://wa.me/6282285781863?text=Halo,%20saya%20ingin%20konsultasi%20tentang%20layanan%20Kedai%20Media" target="_blank" rel="noopener" class="btn btn-outline"> <i class="ri-whatsapp-line"></i> Konsultasi Gratis </a>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-badge"> <i class="ri-shield-check-line"></i> Dipercaya sejak 2009 </div>
+    <h1>Solusi Digital <span>Profesional</span><br>untuk Bisnis Anda</h1>
+    <p>Kami membantu bisnis Anda berkembang dengan layanan digital terpercaya. Lebih dari 10.000 klien telah merasakan hasilnya.</p>
+    <div class="hero-buttons">
+      <a href="#layanan" class="btn btn-primary"> <i class="ri-arrow-right-line"></i> Lihat Layanan </a>
+      <a href="https://wa.me/6282285781863" target="_blank" rel="noopener" class="btn btn-outline"> <i class="ri-whatsapp-line"></i> Hubungi Kami </a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item"> <div class="stat-number" id="clients">0</div> <div class="stat-label">Klien Puas</div> </div>
+      <div class="stat-item"> <div class="stat-number" id="visitors">0</div> <div class="stat-label">Pengunjung</div> </div>
+      <div class="stat-item"> <div class="stat-number">99.9%</div> <div class="stat-label">Success Rate</div> </div>
+      <div class="stat-item"> <div class="stat-number">24/7</div> <div class="stat-label">Support</div> </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="layanan">
+  <div class="container">
+    <div class="section-header"> <h2 class="section-title">Layanan Kami</h2> <p class="section-subtitle">Pilih solusi yang tepat untuk kebutuhan bisnis Anda</p> </div>
+    <div class="services-grid">
+      <div class="service-card card-recovery fade-up" onclick="openModal('recovery')">
+        <div class="service-icon"><i class="ri-shield-keyhole-fill"></i></div>
+        <div class="service-name">Pemulihan Akun Sosmed</div>
+        <div class="service-desc">Bingung cara mengembalikan akun FB yang di hack, Instagram di ambil alih, atau email diganti? Kami bantu pemulihan akses akun Anda dengan aman.</div>
+      </div>
+      <div class="service-card card-website fade-up" onclick="openModal('website')">
+        <div class="service-icon"><i class="ri-code-box-fill"></i></div>
+        <div class="service-name">Pembuatan Website</div>
+        <div class="service-desc">Jasa pembuatan website profesional untuk UMKM, company profile, dan toko online. Desain modern, SEO ready, dan fast loading.</div>
+      </div>
+      <div class="service-card card-wa fade-up" onclick="openModal('wa')">
+        <div class="service-icon"><i class="ri-whatsapp-fill"></i></div>
+        <div class="service-name">WhatsApp Automation</div>
+        <div class="service-desc">Butuh bot WhatsApp otomatis? Kami buatkan sistem auto reply, blast broadcast, dan chatbot cerdas untuk bisnis Anda.</div>
+      </div>
+      <div class="service-card card-social fade-up" onclick="openModal('social')">
+        <div class="service-icon"><i class="ri-group-fill"></i></div>
+        <div class="service-name">Optimasi Sosial Media</div>
+        <div class="service-desc">Mau tambah followers real dan engagement tinggi di Instagram atau TikTok? Tingkatkan kredibilitas bisnis Anda sekarang.</div>
+      </div>
+      <div class="service-card card-ads fade-up" onclick="openModal('ads')">
+        <div class="service-icon"><i class="ri-megaphone-fill"></i></div>
+        <div class="service-name">Iklan Digital</div>
+        <div class="service-desc">Jasa kelola iklan Facebook Ads & Google Ads. Biayan hemat, hasil maksimal, tepat sasaran dan bikin penjualan naik.</div>
+      </div>
+      <div class="service-card card-design fade-up" onclick="openModal('design')">
+        <div class="service-icon"><i class="ri-palette-fill"></i></div>
+        <div class="service-name">Desain Grafis</div>
+        <div class="service-desc">Jasa desain logo, banner, feed Instagram, dan brosur. Desain menarik yang bikin bisnis Anda kelihatan lebih profesional.</div>
+      </div>
+      <div class="service-card card-security fade-up" onclick="openModal('security')">
+        <div class="service-icon"><i class="ri-lock-fill"></i></div>
+        <div class="service-name">Keamanan Akun</div>
+        <div class="service-desc">Takut akun di hack lagi? Kami bantu pasang proteksi keamanan ekstra dan backup data agar akun Anda aman dari peretas.</div>
+      </div>
+      <div class="service-card card-system fade-up" onclick="openModal('system')">
+        <div class="service-icon"><i class="ri-cpu-fill"></i></div>
+        <div class="service-name">Hapus Akun & Sistem</div>
+        <div class="service-desc">Cara menghapus akun FB lupa password? Atau butuh sistem custom khusus bisnis? Kami sediakan solusinya.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- STATS SECTION -->
-<section class="stats-section">
-  <div class="stats">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat-item"> <div class="stat-number" id="clients">0</div> <div class="stat-label">Klien Terlayani</div> </div>
-        <div class="stat-item"> <div class="stat-number" id="visitors">0</div> <div class="stat-label">Total Layanan</div> </div>
-        <div class="stat-item"> <div class="stat-number">99.9%</div> <div class="stat-label">Success Rate</div> </div>
-        <div class="stat-item"> <div class="stat-number">24/7</div> <div class="stat-label">Layanan Aktif</div> </div>
-      </div>
+<!-- PARTNER -->
+<section class="partner">
+  <div class="partner-inner" id="partnerTrack">
+    <span class="partner-label">Partner Teknologi</span>
+    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google">
+    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg" alt="Facebook">
+    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub">
+    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" alt="OpenAI">
+    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Ads_logo.svg" alt="Google Ads">
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimoni">
+  <div class="container">
+    <div class="section-header"> <h2 class="section-title">Kata Mereka Tentang Kami</h2> <p class="section-subtitle">Testimoni asli dari klien yang telah menggunakan layanan kami</p> </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-up"> <div class="testimonial-quote">“</div> <div class="testimonial-header"> <img src="https://i.pravatar.cc/150?img=12" alt="User" class="testimonial-avatar"> <div class="testimonial-info"> <h4>Dewi Lestari</h4> <span class="testimonial-service service-tag-ads">Iklan Digital</span> </div> </div> <div class="testimonial-stars"> <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i> </div> <p class="testimonial-text">"Sebelumnya saya rugi jutaan rupiah karena iklan yang tidak tepat sasaran. Setelah pakai jasa Kedai Media, OMSET naik 300% dalam 1 bulan! Tim yang sangat profesional."</p> </div>
+      <div class="testimonial-card fade-up"> <div class="testimonial-quote">“</div> <div class="testimonial-header"> <img src="https://i.pravatar.cc/150?img=33" alt="User" class="testimonial-avatar"> <div class="testimonial-info"> <h4>Andi Wijaya</h4> <span class="testimonial-service service-tag-web">Website</span> </div> </div> <div class="testimonial-stars"> <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i> </div> <p class="testimonial-text">"Website toko online saya sekarang jadi keren banget dan fast loading. Dulu sering crash, sekarang lancar jaya. Pelayanannya cepat dan revisinya juga dikerjakan dengan sabar."</p> </div>
+      <div class="testimonial-card fade-up"> <div class="testimonial-quote">“</div> <div class="testimonial-header"> <img src="https://i.pravatar.cc/150?img=47" alt="User" class="testimonial-avatar"> <div class="testimonial-info"> <h4>Rizky Pratama</h4> <span class="testimonial-service service-tag-recovery">Pemulihan Akun</span> </div> </div> <div class="testimonial-stars"> <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i> </div> <p class="testimonial-text">"Akun bisnis IG saya di-hack dan saya panik banget. Dalam waktu 24 jam, tim Kedai Media berhasil mengembalikannya dengan aman. Terima kasih banyak, best service!"</p> </div>
+      <div class="testimonial-card fade-up"> <div class="testimonial-quote">“</div> <div class="testimonial-header"> <img src="https://i.pravatar.cc/150?img=51" alt="User" class="testimonial-avatar"> <div class="testimonial-info"> <h4>Sinta Maharani</h4> <span class="testimonial-service service-tag-wa">WA Automation</span> </div> </div> <div class="testimonial-stars"> <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i> </div> <p class="testimonial-text">"Bot WhatsApp-nya luar biasa! Sekarang saya bisa tidur nyenyak karena pelanggan tetap terlayanan otomatis. Efisiensi waktu meningkat drastis, recommended banget!"</p> </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES SECTION -->
-<section class="services-section" id="layanan">
-  <div class="services">
-    <div class="container">
-      <div class="section-header"> <h2 class="section-title">Layanan Kami</h2> <p class="section-subtitle">Pilih solusi yang tepat untuk kebutuhan bisnis Anda</p> </div>
-      <div class="services-grid">
-        <div class="service-card card-recovery fade-up" onclick="openModal('recovery')">
-          <div class="service-icon"><i class="ri-shield-keyhole-fill"></i></div>
-          <div class="service-name">Pemulihan Akun Sosmed</div>
-          <div class="service-desc">Bingung cara mengembalikan akun FB yang di hack, Instagram di ambil alih, atau email diganti? Kami bantu pemulihan akses akun Anda dengan aman.</div>
-        </div>
-        <div class="service-card card-website fade-up" onclick="openModal('website')">
-          <div class="service-icon"><i class="ri-code-box-fill"></i></div>
-          <div class="service-name">Pembuatan Website</div>
-          <div class="service-desc">Jasa pembuatan website profesional untuk UMKM, company profile, dan toko online. Desain modern, SEO ready, dan fast loading.</div>
-        </div>
-        <div class="service-card card-wa fade-up" onclick="openModal('wa')">
-          <div class="service-icon"><i class="ri-whatsapp-fill"></i></div>
-          <div class="service-name">WhatsApp Automation</div>
-          <div class="service-desc">Butuh bot WhatsApp otomatis? Kami buatkan sistem auto reply, blast broadcast, dan chatbot cerdas untuk bisnis Anda.</div>
-        </div>
-        <div class="service-card card-social fade-up" onclick="openModal('social')">
-          <div class="service-icon"><i class="ri-group-fill"></i></div>
-          <div class="service-name">Optimasi Sosial Media</div>
-          <div class="service-desc">Mau tambah followers real dan engagement tinggi di Instagram atau TikTok? Tingkatkan kredibilitas bisnis Anda sekarang.</div>
-        </div>
-        <div class="service-card card-ads fade-up" onclick="openModal('ads')">
-          <div class="service-icon"><i class="ri-megaphone-fill"></i></div>
-          <div class="service-name">Iklan Digital</div>
-          <div class="service-desc">Jasa kelola iklan Facebook Ads & Google Ads. Biayan hemat, hasil maksimal, tepat sasaran dan bikin penjualan naik.</div>
-        </div>
-        <div class="service-card card-design fade-up" onclick="openModal('design')">
-          <div class="service-icon"><i class="ri-palette-fill"></i></div>
-          <div class="service-name">Desain Grafis</div>
-          <div class="service-desc">Jasa desain logo, banner, feed Instagram, dan brosur. Desain menarik yang bikin bisnis Anda kelihatan lebih profesional.</div>
-        </div>
-        <div class="service-card card-security fade-up" onclick="openModal('security')">
-          <div class="service-icon"><i class="ri-lock-fill"></i></div>
-          <div class="service-name">Keamanan Akun</div>
-          <div class="service-desc">Takut akun di hack lagi? Kami bantu pasang proteksi keamanan ekstra dan backup data agar akun Anda aman dari peretas.</div>
-        </div>
-        <div class="service-card card-system fade-up" onclick="openModal('system')">
-          <div class="service-icon"><i class="ri-cpu-fill"></i></div>
-          <div class="service-name">Hapus Akun & Sistem</div>
-          <div class="service-desc">Cara menghapus akun FB lupa password? Atau butuh sistem custom khusus bisnis? Kami sediakan solusinya.</div>
-        </div>
-      </div>
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-header"> <h2 class="section-title">Pertanyaan Umum</h2> <p class="section-subtitle">Informasi penting seputar layanan utama kami</p> </div>
+    <div class="faq-grid">
+      <div class="faq-item active"> <button class="faq-question"> Bagaimana cara mengembalikan akun Facebook yang di hack dan email diganti? <i class="ri-arrow-down-s-line"></i> </button> <div class="faq-answer"> <div class="faq-answer-inner"> Jika email Facebook Anda sudah diganti peretas, pemulihan mandiri sangat sulit. Kami memiliki metode khusus untuk merebut kembali akses akun Facebook Anda melalui prosedur advokasi langsung ke tim keamanan Meta. </div> </div> </div>
+      <div class="faq-item"> <button class="faq-question"> Data saya aman saat proses pemulihan? <i class="ri-arrow-down-s-line"></i> </button> <div class="faq-answer"> <div class="faq-answer-inner"> 100% Aman. Kami menerapkan perjanjian kerahasiaan (NDA). Proses pemulihan dilakukan secara transparan, dan kami tidak menyimpan data login Anda setelah pekerjaan selesai. Privasi klien adalah prioritas utama kami. </div> </div> </div>
+      <div class="faq-item"> <button class="faq-question"> Bisakah membantu menghapus akun Facebook yang lupa password? <i class="ri-arrow-down-s-line"></i> </button> <div class="faq-answer"> <div class="faq-answer-inner"> Bisa. Jika Anda memiliki akun lama yang ingin dihapus tapi tidak bisa login karena lupa password atau email hilang, kami bisa bantu proses penghapusan sesuai prosedur keamanan platform. </div> </div> </div>
+      <div class="faq-item"> <button class="faq-question"> Apakah WhatsApp Bot bisa menyebabkan nomor diblokir? <i class="ri-arrow-down-s-line"></i> </button> <div class="faq-answer"> <div class="faq-answer-inner"> Tidak. Sistem Automation yang kami bangun mengikuti ketentuan resmi WhatsApp (WhatsApp Business API). Kami memastikan penggunaan dilakukan secara wajar dan aman untuk menghindari risiko banned. </div> </div> </div>
+      <div class="faq-item"> <button class="faq-question"> Fitur apa saja yang ada di WhatsApp Automation? <i class="ri-arrow-down-s-line"></i> </button> <div class="faq-answer"> <div class="faq-answer-inner"> Fiturnya lengkap: Auto-reply otomatis 24 jam, Sistem Jawaban Cepat (Quick Reply), Pengiriman Broadcast ke banyak kontak sekaligus, hingga Integrasi dengan sistem kasir atau website Anda. </div> </div> </div>
+      <div class="faq-item"> <button class="faq-question"> Bagaimana jika proses pemulihan tidak berhasil? <i class="ri-arrow-down-s-line"></i> </button> <div class="faq-answer"> <div class="faq-answer-inner"> Kami menerapkan sistem <strong>"No Fix No Fee"</strong> (Tidak Sukses Tidak Bayar) untuk layanan pemulihan akun. Jika akun Anda tidak berhasil kami kembalikan, maka Anda tidak perlu membayar biaya jasa. </div> </div> </div>
     </div>
   </div>
 </section>
 
-<!-- PARTNER SECTION -->
-<section class="partner-section">
-  <div class="partner">
-    <div class="partner-inner" id="partnerTrack">
-      <span class="partner-label">Partner Teknologi</span>
-      <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google">
-      <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg" alt="Facebook">
-      <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub">
-      <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-      <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" alt="OpenAI">
-      <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Ads_logo.svg" alt="Google Ads">
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS SECTION -->
-<section class="testimonials-section" id="testimoni">
-  <div class="testimonials">
-    <div class="container">
-      <div class="section-header"> <h2 class="section-title">Kata Mereka Tentang Kami</h2> <p class="section-subtitle">Testimoni asli dari klien yang telah menggunakan layanan kami</p> </div>
-      <div class="testimonials-grid">
-        <div class="testimonial-card fade-up"> <div class="testimonial-quote">"</div> <div class="testimonial-header"> <img src="https://i.pravatar.cc/150?img=12" alt="User" class="testimonial-avatar"> <div class="testimonial-info"> <h4>Dewi Lestari</h4> <span class="testimonial-service service-tag-ads">Iklan Digital</span> </div> </div> <div class="testimonial-stars"> <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i> </div> <p class="testimonial-text">"Sebelumnya saya rugi jutaan rupiah karena iklan yang tidak tepat sasaran. Setelah pakai jasa Kedai Media, OMSET naik 300% dalam 1 bulan! Tim yang sangat profesional."</p> </div>
-        <div class="testimonial-card fade-up"> <div class="testimonial-quote">"</div> <div class="testimonial-header"> <img src="https://i.pravatar.cc/150?img=33" alt="User" class="testimonial-avatar"> <div class="testimonial-info"> <h4>Andi Wijaya</h4> <span class="testimonial-service service-tag-web">Website</span> </div> </div> <div class="testimonial-stars"> <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i> </div> <p class="testimonial-text">"Website toko online saya sekarang jadi keren banget dan fast loading. Dulu sering crash, sekarang lancar jaya. Pelayanannya cepat dan revisinya juga dikerjakan dengan sabar."</p> </div>
-        <div class="testimonial-card fade-up"> <div class="testimonial-quote">"</div> <div class="testimonial-header"> <img src="https://i.pravatar.cc/150?img=47" alt="User" class="testimonial-avatar"> <div class="testimonial-info"> <h4>Rizky Pratama</h4> <span class="testimonial-service service-tag-recovery">Pemulihan Akun</span> </div> </div> <div class="testimonial-stars"> <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i> </div> <p class="testimonial-text">"Akun bisnis IG saya di-hack dan saya panik banget. Dalam waktu 24 jam, tim Kedai Media berhasil mengembalikannya dengan aman. Terima kasih banyak, best service!"</p> </div>
-        <div class="testimonial-card fade-up"> <div class="testimonial-quote">"</div> <div class="testimonial-header"> <img src="https://i.pravatar.cc/150?img=51" alt="User" class="testimonial-avatar"> <div class="testimonial-info"> <h4>Sinta Maharani</h4> <span class="testimonial-service service-tag-wa">WA Automation</span> </div> </div> <div class="testimonial-stars"> <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i> </div> <p class="testimonial-text">"Bot WhatsApp-nya luar biasa! Sekarang saya bisa tidur nyenyak karena pelanggan tetap terlayanan otomatis. Efisiensi waktu meningkat drastis, recommended banget!"</p> </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ SECTION -->
-<section class="faq-section" id="faq">
-  <div class="faq">
-    <div class="container">
-      <div class="section-header"> <h2 class="section-title">Pertanyaan Umum</h2> <p class="section-subtitle">Informasi penting seputar layanan utama kami</p> </div>
-      <div class="faq-grid">
-        <div class="faq-item active"> <button class="faq-question"> Bagaimana cara mengembalikan akun Facebook yang di hack dan email diganti? <i class="ri-arrow-down-s-line"></i> </button> <div class="faq-answer"> <div class="faq-answer-inner"> Jika email Facebook Anda sudah diganti peretas, pemulihan mandiri sangat sulit. Kami memiliki metode khusus untuk merebut kembali akses akun Facebook Anda melalui prosedur advokasi langsung ke tim keamanan Meta. </div> </div> </div>
-        <div class="faq-item"> <button class="faq-question"> Data saya aman saat proses pemulihan? <i class="ri-arrow-down-s-line"></i> </button> <div class="faq-answer"> <div class="faq-answer-inner"> 100% Aman. Kami menerapkan perjanjian kerahasiaan (NDA). Proses pemulihan dilakukan secara transparan, dan kami tidak menyimpan data login Anda setelah pekerjaan selesai. Privasi klien adalah prioritas utama kami. </div> </div> </div>
-        <div class="faq-item"> <button class="faq-question"> Bisakah membantu menghapus akun Facebook yang lupa password? <i class="ri-arrow-down-s-line"></i> </button> <div class="faq-answer"> <div class="faq-answer-inner"> Bisa. Jika Anda memiliki akun lama yang ingin dihapus tapi tidak bisa login karena lupa password atau email hilang, kami bisa bantu proses penghapusan sesuai prosedur keamanan platform. </div> </div> </div>
-        <div class="faq-item"> <button class="faq-question"> Apakah WhatsApp Bot bisa menyebabkan nomor diblokir? <i class="ri-arrow-down-s-line"></i> </button> <div class="faq-answer"> <div class="faq-answer-inner"> Tidak. Sistem Automation yang kami bangun mengikuti ketentuan resmi WhatsApp (WhatsApp Business API). Kami memastikan penggunaan dilakukan secara wajar dan aman untuk menghindari risiko banned. </div> </div> </div>
-        <div class="faq-item"> <button class="faq-question"> Fitur apa saja yang ada di WhatsApp Automation? <i class="ri-arrow-down-s-line"></i> </button> <div class="faq-answer"> <div class="faq-answer-inner"> Fiturnya lengkap: Auto-reply otomatis 24 jam, Sistem Jawaban Cepat (Quick Reply), Pengiriman Broadcast ke banyak kontak sekaligus, hingga Integrasi dengan sistem kasir atau website Anda. </div> </div> </div>
-        <div class="faq-item"> <button class="faq-question"> Bagaimana jika proses pemulihan tidak berhasil? <i class="ri-arrow-down-s-line"></i> </button> <div class="faq-answer"> <div class="faq-answer-inner"> Kami menerapkan sistem <strong>"No Fix No Fee"</strong> (Tidak Sukses Tidak Bayar) untuk layanan pemulihan akun. Jika akun Anda tidak berhasil kami kembalikan, maka Anda tidak perlu membayar biaya jasa. </div> </div> </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TRUST SECTION -->
-<section class="trust-section">
-  <div class="trust">
-    <div class="container">
-      <div class="section-header"> <h2 class="section-title">Kenapa Memilih Kami</h2> <p class="section-subtitle">Kepercayaan klien adalah prioritas utama kami</p> </div>
-      <div class="trust-grid">
-        <div class="trust-item fade-up"> <div class="trust-icon"><i class="ri-history-line"></i></div> <div class="trust-title">Sejak 2009</div> <div class="trust-desc">15+ tahun pengalaman</div> </div>
-        <div class="trust-item fade-up"> <div class="trust-icon"><i class="ri-user-star-line"></i></div> <div class="trust-title">10.000+ Klien</div> <div class="trust-desc">Seluruh Indonesia</div> </div>
-        <div class="trust-item fade-up"> <div class="trust-icon"><i class="ri-bar-chart-grouped-line"></i></div> <div class="trust-title">99.9% Sukses</div> <div class="trust-desc">Tingkat keberhasilan</div> </div>
-        <div class="trust-item fade-up"> <div class="trust-icon"><i class="ri-customer-service-2-line"></i></div> <div class="trust-title">Support 24/7</div> <div class="trust-desc">Siap membantu</div> </div>
-        <div class="trust-item fade-up"> <div class="trust-icon"><i class="ri-shield-check-line"></i></div> <div class="trust-title">100% Aman</div> <div class="trust-desc">Privasi terjamin</div> </div>
-        <div class="trust-item fade-up"> <div class="trust-icon"><i class="ri-rocket-2-line"></i></div> <div class="trust-title">Cepat & Pro</div> <div class="trust-desc">Proses profesional</div> </div>
-      </div>
+<!-- TRUST -->
+<section class="trust">
+  <div class="container">
+    <div class="section-header"> <h2 class="section-title">Kenapa Memilih Kami</h2> <p class="section-subtitle">Kepercayaan klien adalah prioritas utama kami</p> </div>
+    <div class="trust-grid">
+      <div class="trust-item fade-up"> <div class="trust-icon"><i class="ri-history-line"></i></div> <div class="trust-title">Sejak 2009</div> <div class="trust-desc">15+ tahun pengalaman</div> </div>
+      <div class="trust-item fade-up"> <div class="trust-icon"><i class="ri-user-star-line"></i></div> <div class="trust-title">10.000+ Klien</div> <div class="trust-desc">Seluruh Indonesia</div> </div>
+      <div class="trust-item fade-up"> <div class="trust-icon"><i class="ri-bar-chart-grouped-line"></i></div> <div class="trust-title">99.9% Sukses</div> <div class="trust-desc">Tingkat keberhasilan</div> </div>
+      <div class="trust-item fade-up"> <div class="trust-icon"><i class="ri-customer-service-2-line"></i></div> <div class="trust-title">Support 24/7</div> <div class="trust-desc">Siap membantu</div> </div>
+      <div class="trust-item fade-up"> <div class="trust-icon"><i class="ri-shield-check-line"></i></div> <div class="trust-title">100% Aman</div> <div class="trust-desc">Privasi terjamin</div> </div>
+      <div class="trust-item fade-up"> <div class="trust-icon"><i class="ri-rocket-2-line"></i></div> <div class="trust-title">Cepat & Pro</div> <div class="trust-desc">Proses profesional</div> </div>
     </div>
   </div>
 </section>
@@ -710,7 +448,7 @@ window.addEventListener('scroll', () => { document.getElementById('header').clas
 function initMarquee() { const track = document.getElementById('partnerTrack'); if (!track) return; const logos = track.querySelectorAll('.partner-logo'); if (logos.length < 2) return; logos.forEach(logo => track.appendChild(logo.cloneNode(true))); let pos = 0; const speed = 0.5; function animate() { pos -= speed; const width = track.scrollWidth / 2; if (Math.abs(pos) >= width) pos = 0; track.style.transform = `translateX(${pos}px)`; requestAnimationFrame(animate); } animate(); }
 
 // === INIT ===
-document.addEventListener('DOMContentLoaded', () => { animateCounter('clients', 10247, 2500); animateCounter('visitors', 65, 2000); const firstFaq = document.querySelector('.faq-item.active .faq-answer'); if (firstFaq) firstFaq.style.maxHeight = firstFaq.scrollHeight + "px"; initMarquee(); });
+document.addEventListener('DOMContentLoaded', () => { animateCounter('clients', 10247, 2500); animateCounter('visitors', Math.floor(Math.random() * 200) + 50, 2000); const firstFaq = document.querySelector('.faq-item.active .faq-answer'); if (firstFaq) firstFaq.style.maxHeight = firstFaq.scrollHeight + "px"; initMarquee(); });
 </script>
 
 </body>
