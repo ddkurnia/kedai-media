@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="uhQbLYS0LhZkFZtxX9bQBlViS_13YCNKOyJcya7nyX4" />
+
+<title>Blog Tips Digital & Solusi Akun | Kedai Media Indonesia</title>
+
+<!-- SEO META -->
+<meta name="description" content="Panduan lengkap cara mengembalikan akun Facebook yang di hack, memulihkan akun Instagram, dan tips keamanan digital. Baca artikel terbaru dari Kedai Media.">
+<meta name="keywords" content="blog kedai media, cara mengembalikan akun facebook di hack, akun fb di hack email diganti, tips keamanan akun, pemulihan akun sosmed">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Kedai Media Indonesia">
+
+<link rel="canonical" href="https://kedaimedia.com/blog" />
+<link rel="icon" type="image/x-icon" href="faviconn.png">
+
+<!-- OPEN GRAPH -->
+<meta property="og:locale" content="id_ID">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Blog Tips Digital & Solusi Akun | Kedai Media">
+<meta property="og:description" content="Panduan lengkap cara mengembalikan akun Facebook yang di hack dan tips keamanan digital.">
+<meta property="og:url" content="https://kedaimedia.com/blog">
+<meta property="og:site_name" content="Kedai Media Indonesia">
+<meta property="og:image" content="https://via.placeholder.com/1200x630?text=Kedai+Media+Blog">
+
+<!-- FONTS & ICONS -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+<style>
+/* === CSS VARIABLES === */
+:root {
+  --bg: #0a0a0f;
+  --bg-elevated: #12121a;
+  --fg: #f4f4f5;
+  --fg-muted: #71717a;
+  --accent: #22d3ee;
+  --accent-warm: #f97316;
+  --accent-pink: #ec4899;
+  --card-bg: rgba(24, 24, 32, 0.8);
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(34, 211, 238, 0.3);
+  --glow: rgba(34, 211, 238, 0.15);
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { 
+  font-family: 'Inter', sans-serif; 
+  background: var(--bg); 
+  color: var(--fg); 
+  overflow-x: hidden; 
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5 { font-family: 'Space Grotesk', sans-serif; color: var(--fg); letter-spacing: -0.02em; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+
+/* === ANIMATED BACKGROUND === */
+.bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(34, 211, 238, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 90% 80%, rgba(249, 115, 22, 0.08) 0%, transparent 50%),
+    var(--bg);
+}
+
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: linear-gradient(to bottom, black 0%, transparent 70%);
+}
+
+.floating-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  animation: orbFloat 20s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.3), rgba(34, 211, 238, 0));
+  top: -100px;
+  right: -100px;
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), transparent);
+  bottom: 20%;
+  left: -100px;
+  animation-delay: -7s;
+}
+
+.orb-3 {
+  width: 250px;
+  height: 250px;
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.15), transparent);
+  top: 50%;
+  right: 10%;
+  animation-delay: -14s;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -20px) scale(1.05); }
+  50% { transform: translate(-20px, 30px) scale(0.95); }
+  75% { transform: translate(-30px, -10px) scale(1.02); }
+}
+
+/* === HEADER === */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(10, 10, 15, 0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+header.scrolled {
+  background: rgba(10, 10, 15, 0.95);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.brand { 
+  display: flex; 
+  flex-direction: column; 
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.powered { 
+  font-size: 10px; 
+  color: var(--fg-muted); 
+  text-transform: uppercase; 
+  letter-spacing: 1.5px; 
+  font-weight: 500; 
+}
+
+.logo { 
+  font-family: 'Space Grotesk', sans-serif; 
+  font-size: 24px; 
+  font-weight: 700; 
+  background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-menu { 
+  display: flex; 
+  align-items: center; 
+  gap: 8px; 
+}
+
+.nav-link { 
+  color: var(--fg-muted); 
+  text-decoration: none; 
+  padding: 10px 18px; 
+  font-size: 14px; 
+  font-weight: 500; 
+  border-radius: var(--radius-sm);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-link:hover { 
+  color: var(--fg); 
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-link.active {
+  color: var(--accent);
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  left: 18px;
+  right: 18px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+
+.nav-cta { 
+  background: linear-gradient(135deg, var(--accent), #06b6d4); 
+  color: var(--bg) !important; 
+  padding: 10px 20px; 
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+
+.nav-cta:hover { 
+  transform: translateY(-2px); 
+  box-shadow: 0 8px 25px rgba(34, 211, 238, 0.3);
+  background: linear-gradient(135deg, var(--accent), #06b6d4);
+}
+
+.mobile-menu-btn { 
+  display: none; 
+  background: none; 
+  border: none; 
+  font-size: 24px; 
+  color: var(--fg); 
+  cursor: pointer; 
+  padding: 8px;
+}
+
+/* === HERO === */
+.hero {
+  padding: 160px 0 80px;
+  text-align: center;
+  position: relative;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg-muted);
+  margin-bottom: 28px;
+  backdrop-filter: blur(10px);
+}
+
+.hero-badge i {
+  color: var(--accent);
+  font-size: 16px;
+}
+
+.hero h1 {
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  letter-spacing: -0.03em;
+}
+
+.hero h1 .highlight {
+  background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  color: var(--fg-muted);
+  max-width: 560px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+}
+
+/* === SEARCH === */
+.search-container {
+  max-width: 520px;
+  margin: 0 auto 60px;
+  position: relative;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 6px 6px 6px 24px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.search-box:focus-within {
+  border-color: var(--border-hover);
+  box-shadow: 0 0 0 4px var(--glow);
+}
+
+.search-box input {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--fg);
+  font-size: 15px;
+  padding: 14px 0;
+  outline: none;
+  font-family: inherit;
+}
+
+.search-box input::placeholder {
+  color: var(--fg-muted);
+}
+
+.search-btn {
+  background: linear-gradient(135deg, var(--accent), #06b6d4);
+  color: var(--bg);
+  border: none;
+  padding: 14px 28px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 20px rgba(34, 211, 238, 0.3);
+}
+
+/* === CATEGORY FILTER === */
+.category-filter {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+
+.filter-btn {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  color: var(--fg-muted);
+  padding: 10px 20px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  backdrop-filter: blur(10px);
+}
+
+.filter-btn:hover {
+  border-color: var(--border-hover);
+  color: var(--fg);
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, var(--accent), #06b6d4);
+  color: var(--bg);
+  border-color: transparent;
+}
+
+/* === BLOG GRID === */
+.blog-section {
+  padding: 20px 0 100px;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 28px;
+}
+
+/* === BLOG CARD === */
+.blog-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  backdrop-filter: blur(10px);
+  text-decoration: none;
+  display: block;
+}
+
+.blog-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--border-hover);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 0 1px var(--border-hover);
+}
+
+.blog-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(34, 211, 238, 0.05));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.blog-card:hover::before {
+  opacity: 1;
+}
+
+.card-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.blog-card:hover .card-image img {
+  transform: scale(1.08);
+}
+
+.card-category {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 6px 14px;
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent);
+}
+
+.card-body {
+  padding: 28px;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 12px;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.blog-card:hover .card-title {
+  color: var(--accent);
+}
+
+.card-excerpt {
+  font-size: 14px;
+  color: var(--fg-muted);
+  line-height: 1.7;
+  margin-bottom: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
+.card-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.author-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border);
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.author-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.card-date {
+  font-size: 12px;
+  color: var(--fg-muted);
+}
+
+.read-time {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--fg-muted);
+}
+
+.read-time i {
+  font-size: 14px;
+}
+
+/* === FEATURED POST === */
+.featured-section {
+  padding: 0 0 60px;
+}
+
+.featured-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  backdrop-filter: blur(10px);
+  text-decoration: none;
+}
+
+.featured-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-hover);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+}
+
+.featured-image {
+  position: relative;
+  height: 380px;
+  overflow: hidden;
+}
+
+.featured-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.featured-card:hover .featured-image img {
+  transform: scale(1.05);
+}
+
+.featured-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, var(--accent-warm), #ea580c);
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: white;
+}
+
+.featured-content {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.featured-category {
+  display: inline-block;
+  padding: 6px 14px;
+  background: rgba(34, 211, 238, 0.1);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 20px;
+  width: fit-content;
+}
+
+.featured-title {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 16px;
+  color: var(--fg);
+}
+
+.featured-card:hover .featured-title {
+  color: var(--accent);
+}
+
+.featured-excerpt {
+  font-size: 15px;
+  color: var(--fg-muted);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.featured-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* === FOOTER === */
+footer {
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--border);
+  padding: 60px 0 30px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.2fr;
+  gap: 50px;
+  margin-bottom: 40px;
+}
+
+.footer-brand p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--fg-muted);
+  margin-top: 16px;
+}
+
+.footer-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--fg);
+}
+
+.footer-logo span {
+  background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.footer-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer-link {
+  display: block;
+  color: var(--fg-muted);
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 12px;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--accent);
+}
+
+.footer-social {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.social-icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--fg-muted);
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.social-icon-link:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--fg-muted);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 1024px) {
+  .featured-card {
+    grid-template-columns: 1fr;
+  }
+  .featured-image {
+    height: 280px;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: var(--bg-elevated);
+    flex-direction: column;
+    padding: 20px;
+    border-top: 1px solid var(--border);
+    gap: 4px;
+  }
+  .nav-menu.active {
+    display: flex;
+  }
+  .mobile-menu-btn {
+    display: block;
+  }
+  .hero h1 {
+    font-size: 32px;
+  }
+  .hero-subtitle {
+    font-size: 16px;
+  }
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+  .featured-title {
+    font-size: 22px;
+  }
+  .featured-content {
+    padding: 28px;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 130px 0 60px;
+  }
+  .search-box {
+    flex-direction: column;
+    padding: 12px;
+    gap: 12px;
+  }
+  .search-box input {
+    width: 100%;
+    text-align: center;
+  }
+  .search-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .category-filter {
+    gap: 8px;
+  }
+  .filter-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+}
+
+/* === ANIMATIONS === */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- BACKGROUND -->
+<div class="bg-canvas">
+  <div class="bg-grid"></div>
+  <div class="floating-orb orb-1"></div>
+  <div class="floating-orb orb-2"></div>
+  <div class="floating-orb orb-3"></div>
+</div>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="container header-inner">
+    <a href="https://kedaimedia.com" class="brand">
+      <div class="powered">MALAKA HUB</div>
+      <div class="logo">Kedai Media</div>
+    </a>
+    <nav class="nav-menu" id="navMenu">
+      <a href="https://kedaimedia.com" class="nav-link">Home</a>
+      <a href="https://kedaimedia.com#layanan" class="nav-link">Layanan</a>
+      <a href="https://kedaimedia.com/blog" class="nav-link active">Blog</a>
+      <a href="https://kedaimedia.com#faq" class="nav-link">FAQ</a>
+      <a href="https://wa.me/6282285781863" target="_blank" class="nav-link nav-cta">Hubungi Kami</a>
+    </nav>
+    <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">
+      <i class="ri-menu-line"></i>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge fade-up">
+      <i class="ri-article-line"></i>
+      Blog dan Artikel Terbaru
+    </div>
+    <h1 class="fade-up stagger-1">Panduan <span class="highlight">Digital</span> yang<br>Kamu Butuhkan</h1>
+    <p class="hero-subtitle fade-up stagger-2">Temukan tips keamanan akun, tutorial pemulihan, dan panduan digital lengkap untuk melindungi kehadiran online kamu.</p>
+    
+    <!-- SEARCH -->
+    <div class="search-container fade-up stagger-3">
+      <div class="search-box">
+        <i class="ri-search-line" style="color: var(--fg-muted); font-size: 20px;"></i>
+        <input type="text" id="searchInput" placeholder="Cari artikel tentang Facebook, Instagram, keamanan..." aria-label="Search articles">
+        <button class="search-btn" onclick="searchArticles()">
+          <span>Search</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- CATEGORY FILTER -->
+    <div class="category-filter fade-up stagger-4">
+      <button class="filter-btn active" data-category="all">Semua</button>
+      <button class="filter-btn" data-category="facebook">Facebook</button>
+      <button class="filter-btn" data-category="instagram">Instagram</button>
+      <button class="filter-btn" data-category="keamanan">Keamanan</button>
+      <button class="filter-btn" data-category="tutorial">Tutorial</button>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED POST -->
+<section class="featured-section">
+  <div class="container">
+    <a href="https://kedaimedia.com/blog/cara-mengembalikan-akun-facebook-di-hack" class="featured-card fade-up" id="featuredPost">
+      <div class="featured-image">
+        <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&q=80" alt="Cara Mengembalikan Akun Facebook yang Di Hack" loading="lazy">
+        <div class="featured-badge">Artikel Pilihan</div>
+      </div>
+      <div class="featured-content">
+        <span class="featured-category">Facebook</span>
+        <h2 class="featured-title">Cara Mengembalikan Akun Facebook yang Di Hack: Panduan Lengkap 2024</h2>
+        <p class="featured-excerpt">Panduan komprehensif untuk mengembalikan akun Facebook yang telah diretas. Pelajari langkah-langkah pemulihan yang terbukti efektif dan tips mencegah hacking di masa depan.</p>
+        <div class="featured-meta">
+          <div class="card-author">
+            <img src="https://i.pravatar.cc/150?img=68" alt="Author" class="author-avatar">
+            <div class="author-info">
+              <span class="author-name">Tim Kedai Media</span>
+              <span class="card-date">15 Januari 2024</span>
+            </div>
+          </div>
+          <span class="read-time"><i class="ri-time-line"></i> 8 menit baca</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- BLOG GRID -->
+<section class="blog-section">
+  <div class="container">
+    <div class="blog-grid" id="blogGrid">
+      <!-- Posts will be rendered by JavaScript -->
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">Kedai<span>Media</span></div>
+        <p>Solusi digital profesional sejak 2009. Melayani pemulihan akun, website, automation, dan sistem custom seluruh Indonesia.</p>
+      </div>
+      <div>
+        <div class="footer-title">Layanan</div>
+        <a href="https://kedaimedia.com/pemulihan-akun-sosmed/" class="footer-link">Pemulihan Akun</a>
+        <a href="https://kedaimedia.com/jasa-pembuatan-website/" class="footer-link">Pembuatan Website</a>
+        <a href="https://kedaimedia.com/whatsapp-automation/" class="footer-link">WhatsApp Automation</a>
+        <a href="https://kedaimedia.com/sistem-custom/" class="footer-link">Sistem Custom</a>
+      </div>
+      <div>
+        <div class="footer-title">Blog</div>
+        <a href="https://kedaimedia.com/blog/cara-mengembalikan-akun-facebook-di-hack" class="footer-link">Akun FB Di Hack</a>
+        <a href="https://kedaimedia.com/blog/akun-facebook-di-hack-email-diganti" class="footer-link">Email Diganti</a>
+        <a href="https://kedaimedia.com/blog/akun-facebook-di-hack-nomor-diganti" class="footer-link">Nomor Diganti</a>
+        <a href="https://kedaimedia.com/blog/cara-memulihkan-akun-facebook-tidak-bisa-login" class="footer-link">Tidak Bisa Login</a>
+      </div>
+      <div>
+        <div class="footer-title">Kontak</div>
+        <p class="footer-link" style="cursor: default; margin-bottom: 8px;">WhatsApp: 0822-8578-1863</p>
+        <p class="footer-link" style="cursor: default;">Indonesia</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/profile.php?id=100064150927466" target="_blank" class="social-icon-link" title="Facebook" aria-label="Facebook">
+            <i class="ri-facebook-fill"></i>
+          </a>
+          <a href="https://www.tiktok.com/@kedai.media" target="_blank" class="social-icon-link" title="TikTok" aria-label="TikTok">
+            <i class="ri-tiktok-fill"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2024 Kedai Media Indonesia. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+// === BLOG DATA ===
+const blogPosts = [
+  {
+    id: 1,
+    title: "Cara Mengembalikan Akun Facebook yang Di Hack: Panduan Lengkap",
+    excerpt: "Akun Facebook kamu di hack? Jangan panik! Panduan lengkap ini akan membantu kamu mengembalikan akses akun dengan cepat dan aman. Ikuti langkah-langkah yang sudah terbukti efektif.",
+    category: "facebook",
+    url: "https://kedaimedia.com/blog/cara-mengembalikan-akun-facebook-di-hack",
+    image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&q=80",
+    author: "Tim Kedai Media",
+    authorImg: "https://i.pravatar.cc/150?img=68",
+    date: "15 Januari 2024",
+    readTime: "8 menit",
+    featured: true
+  },
+  {
+    id: 2,
+    title: "Akun Facebook Di Hack Email Diganti? Ini Solusinya",
+    excerpt: "Peretas sudah mengganti email akun Facebook kamu? Pelajari cara mengatasi situasi kritis ini dengan metode pemulihan lanjutan yang bisa kamu lakukan sendiri atau dengan bantuan profesional.",
+    category: "facebook",
+    url: "https://kedaimedia.com/blog/akun-facebook-di-hack-email-diganti",
+    image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=600&q=80",
+    author: "Tim Kedai Media",
+    authorImg: "https://i.pravatar.cc/150?img=68",
+    date: "12 Januari 2024",
+    readTime: "6 menit",
+    featured: false
+  },
+  {
+    id: 3,
+    title: "Akun Facebook Di Hack Nomor HP Diganti: Cara Mengatasinya",
+    excerpt: "Nomor HP yang terdaftar di Facebook sudah diganti peretas? Jangan khawatir, masih ada beberapa cara untuk memulihkan akun kamu. Simak panduan lengkapnya di sini.",
+    category: "facebook",
+    url: "https://kedaimedia.com/blog/akun-facebook-di-hack-nomor-diganti",
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80",
+    author: "Tim Kedai Media",
+    authorImg: "https://i.pravatar.cc/150?img=68",
+    date: "10 Januari 2024",
+    readTime: "7 menit",
+    featured: false
+  },
+  {
+    id: 4,
+    title: "Cara Memulihkan Akun Facebook Tidak Bisa Login",
+    excerpt: "Tidak bisa login ke akun Facebook tapi tidak yakin apakah di hack? Panduan ini akan membantu diagnose masalah dan memberikan solusi tepat untuk setiap skenario.",
+    category: "facebook",
+    url: "https://kedaimedia.com/blog/cara-memulihkan-akun-facebook-tidak-bisa-login",
+    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&q=80",
+    author: "Tim Kedai Media",
+    authorImg: "https://i.pravatar.cc/150?img=68",
+    date: "8 Januari 2024",
+    readTime: "5 menit",
+    featured: false
+  },
+  {
+    id: 5,
+    title: "5 Cara Mencegah Akun Sosial Media Di Hack",
+    excerpt: "Mencegah lebih baik dari mengobati. Pelajari 5 langkah preventif untuk mengamankan akun sosial media kamu dari serangan peretas. Lindungi privasi mulai dari sekarang.",
+    category: "keamanan",
+    url: "#",
+    image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&q=80",
+    author: "Tim Kedai Media",
+    authorImg: "https://i.pravatar.cc/150?img=68",
+    date: "5 Januari 2024",
+    readTime: "4 menit",
+    featured: false
+  },
+  {
+    id: 6,
+    title: "Cara Mengamankan Akun Instagram dari Hacking",
+    excerpt: "Instagram semakin populer dan menjadi target peretas. Pelajari cara mengaktifkan 2FA, mengenali aktivitas mencurigakan, dan tips keamanan lanjutan untuk akun kamu.",
+    category: "instagram",
+    url: "#",
+    image: "https://images.unsplash.com/photo-1611262588024-d12430b98920?w=600&q=80",
+    author: "Tim Kedai Media",
+    authorImg: "https://i.pravatar.cc/150?img=68",
+    date: "3 Januari 2024",
+    readTime: "6 menit",
+    featured: false
+  }
+];
+
+// === DOM ELEMENTS ===
+const blogGrid = document.getElementById('blogGrid');
+const searchInput = document.getElementById('searchInput');
+const filterBtns = document.querySelectorAll('.filter-btn');
+
+let currentCategory = 'all';
+
+// === RENDER BLOG CARDS ===
+function renderBlogCards(posts) {
+  if (!blogGrid) return;
+  
+  blogGrid.innerHTML = '';
+  
+  const filteredPosts = posts.filter(post => !post.featured);
+  
+  if (filteredPosts.length === 0) {
+    blogGrid.innerHTML = `
+      <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+        <i class="ri-search-line" style="font-size: 48px; color: var(--fg-muted); margin-bottom: 16px; display: block;"></i>
+        <h3 style="font-size: 20px; margin-bottom: 8px;">Artikel tidak ditemukan</h3>
+        <p style="color: var(--fg-muted);">Coba gunakan kata kunci lain atau reset filter.</p>
+      </div>
+    `;
+    return;
+  }
+  
+  filteredPosts.forEach((post, index) => {
+    const card = document.createElement('a');
+    card.href = post.url;
+    card.className = `blog-card fade-up stagger-${Math.min(index + 1, 4)}`;
+    
+    const categoryLabel = getCategoryLabel(post.category);
+    
+    card.innerHTML = `
+      <div class="card-image">
+        <img src="${post.image}" alt="${post.title}" loading="lazy">
+        <span class="card-category">${categoryLabel}</span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">${post.title}</h3>
+        <p class="card-excerpt">${post.excerpt}</p>
+        <div class="card-meta">
+          <div class="card-author">
+            <img src="${post.authorImg}" alt="${post.author}" class="author-avatar">
+            <div class="author-info">
+              <span class="author-name">${post.author}</span>
+              <span class="card-date">${post.date}</span>
+            </div>
+          </div>
+          <span class="read-time"><i class="ri-time-line"></i> ${post.readTime}</span>
+        </div>
+      </div>
+    `;
+    
+    blogGrid.appendChild(card);
+  });
+  
+  // Re-observe new elements
+  observeElements();
+}
+
+function getCategoryLabel(category) {
+  const labels = {
+    facebook: 'Facebook',
+    instagram: 'Instagram',
+    keamanan: 'Keamanan',
+    tutorial: 'Tutorial'
+  };
+  return labels[category] || category;
+}
+
+// === FILTER BY CATEGORY ===
+function filterByCategory(category) {
+  currentCategory = category;
+  
+  filterBtns.forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.category === category);
+  });
+  
+  if (category === 'all') {
+    renderBlogCards(blogPosts);
+  } else {
+    const filtered = blogPosts.filter(post => post.category === category);
+    renderBlogCards(filtered);
+  }
+}
+
+// === SEARCH ARTICLES ===
+function searchArticles() {
+  const query = searchInput.value.toLowerCase().trim();
+  
+  if (!query) {
+    filterByCategory(currentCategory);
+    return;
+  }
+  
+  const results = blogPosts.filter(post => 
+    post.title.toLowerCase().includes(query) ||
+    post.excerpt.toLowerCase().includes(query) ||
+    post.category.toLowerCase().includes(query)
+  );
+  
+  renderBlogCards(results);
+}
+
+// === EVENT LISTENERS ===
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterByCategory(btn.dataset.category);
+  });
+});
+
+searchInput.addEventListener('keyup', (e) => {
+  if (e.key === 'Enter') {
+    searchArticles();
+  }
+});
+
+searchInput.addEventListener('input', () => {
+  if (!searchInput.value) {
+    filterByCategory(currentCategory);
+  }
+});
+
+// === TOGGLE MENU MOBILE ===
+function toggleMenu() {
+  const menu = document.getElementById('navMenu');
+  if (menu) {
+    menu.classList.toggle('active');
+  }
+}
+
+// === INTERSECTION OBSERVER ===
+function observeElements() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  
+  document.querySelectorAll('.fade-up').forEach(el => {
+    observer.observe(el);
+  });
+}
+
+// === HEADER SCROLL ===
+window.addEventListener('scroll', () => {
+  const header = document.getElementById('header');
+  if (header) {
+    header.classList.toggle('scrolled', window.scrollY > 50);
+  }
+});
+
+// === INIT ===
+document.addEventListener('DOMContentLoaded', () => {
+  renderBlogCards(blogPosts);
+  observeElements();
+});
+</script>
+
+</body>
+      </html>
