@@ -74,7 +74,7 @@ Jasa Pemulihan Akun Facebook, IG, TikTok yang Di-Hack | Kedai Media Indonesia
 <!-- FONTS & ICONS -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
 <style>
@@ -243,31 +243,305 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); background: var(--
 .stat-number { font-family: 'Poppins', sans-serif; font-size: 36px; font-weight: 700; background: var(--text-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .stat-label { font-size: 14px; color: var(--text-muted); font-weight: 500; }
 
-/* === SERVICES === */
-.services { padding: 80px 0; }
-.section-header { text-align: center; margin-bottom: 50px; }
-.section-title { font-size: clamp(28px, 4vw, 36px); font-weight: 700; margin-bottom: 12px; }
-.section-subtitle { font-size: 16px; color: var(--text-muted); }
-.services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+/* === SERVICES - ENHANCED === */
+.services { 
+  padding: 100px 0; 
+  background: var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
+}
 
-.service-card { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 20px; padding: 28px; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-start; }
-.service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--card-gradient); opacity: 0; transition: opacity 0.3s; }
-.service-card:hover::before { opacity: 1; }
-.service-card:hover { border-color: transparent; box-shadow: var(--card-hover-shadow); transform: translateY(-5px); }
-.service-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 18px; background: var(--icon-bg); color: var(--icon-color); transition: transform 0.3s; }
-.service-card:hover .service-icon { transform: scale(1.1); }
-.service-name { font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; transition: color 0.3s ease; }
-.service-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+.services::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--primary-gradient);
+}
 
-/* Card Variations */
-.card-website { --card-gradient: linear-gradient(90deg, #3b82f6, #2563eb); --icon-bg: var(--icon-website); --icon-color: #3b82f6; }
-.card-recovery { --card-gradient: linear-gradient(90deg, #ef4444, #dc2626); --icon-bg: var(--icon-recovery); --icon-color: #ef4444; }
-.card-wa { --card-gradient: linear-gradient(90deg, #22c55e, #16a34a); --icon-bg: var(--icon-wa); --icon-color: #22c55e; }
-.card-social { --card-gradient: linear-gradient(90deg, #8b5cf6, #7c3aed); --icon-bg: var(--icon-social); --icon-color: #8b5cf6; }
-.card-ads { --card-gradient: linear-gradient(90deg, #f97316, #ea580c); --icon-bg: var(--icon-ads); --icon-color: #f97316; }
-.card-design { --card-gradient: linear-gradient(90deg, #ec4899, #db2777); --icon-bg: var(--icon-design); --icon-color: #ec4899; }
-.card-security { --card-gradient: linear-gradient(90deg, #06b6d4, #0891b2); --icon-bg: var(--icon-security); --icon-color: #06b6d4; }
-.card-system { --card-gradient: linear-gradient(90deg, #64748b, #475569); --icon-bg: var(--icon-system); --icon-color: #64748b; }
+.section-header { text-align: center; margin-bottom: 60px; }
+.section-title { font-size: clamp(32px, 5vw, 42px); font-weight: 800; margin-bottom: 16px; letter-spacing: -0.5px; }
+.section-subtitle { font-size: 18px; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+
+/* Enhanced Services Grid - 2 columns for better visibility */
+.services-grid { 
+  display: grid; 
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 24px; 
+}
+
+/* Enhanced Service Card */
+.service-card { 
+  background: var(--bg-card); 
+  border: 2px solid var(--border-light); 
+  border-radius: 24px; 
+  padding: 36px; 
+  cursor: pointer; 
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+  position: relative; 
+  overflow: hidden; 
+  display: flex; 
+  align-items: flex-start;
+  gap: 28px;
+}
+
+.service-card::before { 
+  content: ''; 
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 6px; 
+  height: 100%; 
+  background: var(--card-gradient);
+  transform: scaleY(0);
+  transition: transform 0.4s ease;
+}
+
+.service-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 150px;
+  background: var(--card-gradient);
+  opacity: 0.03;
+  border-radius: 50%;
+  transform: translate(50%, -50%);
+  transition: all 0.4s ease;
+}
+
+.service-card:hover { 
+  border-color: var(--card-color); 
+  box-shadow: 0 25px 60px -15px var(--card-shadow-color);
+  transform: translateY(-8px) scale(1.01);
+}
+
+.service-card:hover::before {
+  transform: scaleY(1);
+}
+
+.service-card:hover::after {
+  opacity: 0.08;
+  transform: translate(30%, -30%) scale(1.5);
+}
+
+/* Icon Container - Much Larger */
+.service-icon { 
+  width: 80px; 
+  height: 80px; 
+  min-width: 80px;
+  border-radius: 20px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  font-size: 36px; 
+  background: var(--icon-bg); 
+  color: var(--icon-color); 
+  transition: all 0.4s ease; 
+  position: relative;
+  overflow: hidden;
+}
+
+.service-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--icon-color);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.service-card:hover .service-icon { 
+  transform: scale(1.1) rotate(-5deg);
+  background: var(--icon-color);
+  color: white;
+}
+
+.service-card:hover .service-icon::before {
+  opacity: 0.1;
+}
+
+/* Service Content */
+.service-content {
+  flex: 1;
+  padding-top: 4px;
+}
+
+.service-name { 
+  font-family: 'Poppins', sans-serif; 
+  font-size: 22px; 
+  font-weight: 700; 
+  color: var(--text-primary); 
+  margin-bottom: 12px; 
+  transition: color 0.3s ease; 
+  letter-spacing: -0.3px;
+}
+
+.service-card:hover .service-name {
+  color: var(--card-color);
+}
+
+.service-desc { 
+  font-size: 15px; 
+  color: var(--text-secondary); 
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.service-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  background: var(--tag-bg);
+  color: var(--tag-color);
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .service-tag {
+  background: var(--tag-bg-hover);
+}
+
+.service-tag i {
+  font-size: 14px;
+}
+
+/* Arrow indicator */
+.service-arrow {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-secondary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.service-card:hover .service-arrow {
+  opacity: 1;
+  transform: translateX(0);
+  background: var(--card-color);
+  color: white;
+}
+
+/* Card Variations with Enhanced Colors */
+.card-recovery { 
+  --card-gradient: linear-gradient(180deg, #ef4444, #dc2626);
+  --card-color: #ef4444;
+  --card-shadow-color: rgba(239, 68, 68, 0.25);
+  --icon-bg: linear-gradient(135deg, #fef2f2, #fee2e2);
+  --icon-color: #ef4444;
+  --tag-bg: rgba(239, 68, 68, 0.1);
+  --tag-color: #dc2626;
+  --tag-bg-hover: rgba(239, 68, 68, 0.15);
+}
+
+.card-website { 
+  --card-gradient: linear-gradient(180deg, #3b82f6, #2563eb);
+  --card-color: #3b82f6;
+  --card-shadow-color: rgba(59, 130, 246, 0.25);
+  --icon-bg: linear-gradient(135deg, #eff6ff, #dbeafe);
+  --icon-color: #3b82f6;
+  --tag-bg: rgba(59, 130, 246, 0.1);
+  --tag-color: #2563eb;
+  --tag-bg-hover: rgba(59, 130, 246, 0.15);
+}
+
+.card-wa { 
+  --card-gradient: linear-gradient(180deg, #22c55e, #16a34a);
+  --card-color: #22c55e;
+  --card-shadow-color: rgba(34, 197, 94, 0.25);
+  --icon-bg: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  --icon-color: #22c55e;
+  --tag-bg: rgba(34, 197, 94, 0.1);
+  --tag-color: #16a34a;
+  --tag-bg-hover: rgba(34, 197, 94, 0.15);
+}
+
+.card-social { 
+  --card-gradient: linear-gradient(180deg, #8b5cf6, #7c3aed);
+  --card-color: #8b5cf6;
+  --card-shadow-color: rgba(139, 92, 246, 0.25);
+  --icon-bg: linear-gradient(135deg, #f5f3ff, #ede9fe);
+  --icon-color: #8b5cf6;
+  --tag-bg: rgba(139, 92, 246, 0.1);
+  --tag-color: #7c3aed;
+  --tag-bg-hover: rgba(139, 92, 246, 0.15);
+}
+
+.card-ads { 
+  --card-gradient: linear-gradient(180deg, #f97316, #ea580c);
+  --card-color: #f97316;
+  --card-shadow-color: rgba(249, 115, 22, 0.25);
+  --icon-bg: linear-gradient(135deg, #fff7ed, #ffedd5);
+  --icon-color: #f97316;
+  --tag-bg: rgba(249, 115, 22, 0.1);
+  --tag-color: #ea580c;
+  --tag-bg-hover: rgba(249, 115, 22, 0.15);
+}
+
+.card-design { 
+  --card-gradient: linear-gradient(180deg, #ec4899, #db2777);
+  --card-color: #ec4899;
+  --card-shadow-color: rgba(236, 72, 153, 0.25);
+  --icon-bg: linear-gradient(135deg, #fdf2f8, #fce7f3);
+  --icon-color: #ec4899;
+  --tag-bg: rgba(236, 72, 153, 0.1);
+  --tag-color: #db2777;
+  --tag-bg-hover: rgba(236, 72, 153, 0.15);
+}
+
+.card-security { 
+  --card-gradient: linear-gradient(180deg, #06b6d4, #0891b2);
+  --card-color: #06b6d4;
+  --card-shadow-color: rgba(6, 182, 212, 0.25);
+  --icon-bg: linear-gradient(135deg, #ecfeff, #cffafe);
+  --icon-color: #06b6d4;
+  --tag-bg: rgba(6, 182, 212, 0.1);
+  --tag-color: #0891b2;
+  --tag-bg-hover: rgba(6, 182, 212, 0.15);
+}
+
+.card-system { 
+  --card-gradient: linear-gradient(180deg, #64748b, #475569);
+  --card-color: #64748b;
+  --card-shadow-color: rgba(100, 116, 139, 0.25);
+  --icon-bg: linear-gradient(135deg, #f8fafc, #f1f5f9);
+  --icon-color: #64748b;
+  --tag-bg: rgba(100, 116, 139, 0.1);
+  --tag-color: #475569;
+  --tag-bg-hover: rgba(100, 116, 139, 0.15);
+}
+
+/* Dark mode card adjustments */
+[data-theme="dark"] .card-recovery { --icon-bg: rgba(239, 68, 68, 0.15); }
+[data-theme="dark"] .card-website { --icon-bg: rgba(59, 130, 246, 0.15); }
+[data-theme="dark"] .card-wa { --icon-bg: rgba(34, 197, 94, 0.15); }
+[data-theme="dark"] .card-social { --icon-bg: rgba(139, 92, 246, 0.15); }
+[data-theme="dark"] .card-ads { --icon-bg: rgba(249, 115, 22, 0.15); }
+[data-theme="dark"] .card-design { --icon-bg: rgba(236, 72, 153, 0.15); }
+[data-theme="dark"] .card-security { --icon-bg: rgba(6, 182, 212, 0.15); }
+[data-theme="dark"] .card-system { --icon-bg: rgba(100, 116, 139, 0.15); }
 
 /* === BLOG SECTION === */
 .blog-section { padding: 80px 0; background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-body) 100%); transition: background 0.3s ease; }
@@ -371,7 +645,7 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
 
 /* === RESPONSIVE === */
 @media (max-width: 1024px) { 
-  .services-grid { grid-template-columns: repeat(2, 1fr); } 
+  .services-grid { grid-template-columns: 1fr; }
   .trust-grid { grid-template-columns: repeat(3, 1fr); } 
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; } 
   .testimonials-grid { grid-template-columns: 1fr; }
@@ -384,19 +658,24 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
   .status-badge { display: flex; padding: 6px 10px; font-size: 11px; } 
   .mobile-menu-btn { display: block; } 
   .stats-grid { grid-template-columns: repeat(2, 1fr); } 
-  .services-grid { grid-template-columns: 1fr; } 
+  .service-card { padding: 28px; flex-direction: column; gap: 20px; }
+  .service-icon { width: 64px; height: 64px; min-width: 64px; font-size: 28px; }
+  .service-name { font-size: 20px; }
   .trust-grid { grid-template-columns: repeat(2, 1fr); } 
   .modal-actions { flex-direction: column; } 
   .footer-grid { grid-template-columns: 1fr; gap: 30px; } 
   .partner-label { display: none; }
   .blog-grid { grid-template-columns: 1fr; }
   .header-actions { gap: 8px; }
+  .section-title { font-size: 28px; }
 }
 @media (max-width: 480px) { 
   .hero { padding: 120px 0 60px; } 
   .hero-buttons { flex-direction: column; } 
   .btn { width: 100%; } 
-  .trust-grid { grid-template-columns: 1fr; } 
+  .trust-grid { grid-template-columns: 1fr; }
+  .service-tags { gap: 6px; }
+  .service-tag { font-size: 11px; padding: 5px 10px; }
 }
 
 /* === ANIMATIONS === */
@@ -458,50 +737,132 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
   </div>
 </section>
 
-<!-- SERVICES -->
+<!-- SERVICES - ENHANCED -->
 <section class="services" id="layanan">
   <div class="container">
-    <div class="section-header"> <h2 class="section-title">Layanan Kami</h2> <p class="section-subtitle">Pilih solusi yang tepat untuk kebutuhan bisnis Anda</p> </div>
+    <div class="section-header"> 
+      <h2 class="section-title">Layanan Profesional Kami</h2> 
+      <p class="section-subtitle">Pilih solusi yang tepat untuk kebutuhan digital Anda. Dipercaya ribuan klien di seluruh Indonesia.</p> 
+    </div>
     <div class="services-grid">
+      <!-- Pemulihan Akun -->
       <div class="service-card card-recovery fade-up" onclick="openModal('recovery')">
         <div class="service-icon"><i class="ri-shield-keyhole-fill"></i></div>
-        <div class="service-name">Pemulihan Akun Sosmed</div>
-        <div class="service-desc">Bingung cara mengembalikan akun FB yang di hack, Instagram di ambil alih, atau email diganti? Kami bantu pemulihan akses akun Anda dengan aman.</div>
+        <div class="service-content">
+          <div class="service-name">Pemulihan Akun Sosmed</div>
+          <div class="service-desc">Bingung cara mengembalikan akun FB yang di hack, Instagram di ambil alih, atau email diganti? Kami bantu pemulihan akses akun Anda dengan metode profesional dan aman. Tingkat keberhasilan 99.9%.</div>
+          <div class="service-tags">
+            <span class="service-tag"><i class="ri-facebook-fill"></i> Facebook</span>
+            <span class="service-tag"><i class="ri-instagram-line"></i> Instagram</span>
+            <span class="service-tag"><i class="ri-tiktok-fill"></i> TikTok</span>
+          </div>
+        </div>
+        <div class="service-arrow"><i class="ri-arrow-right-line"></i></div>
       </div>
+      
+      <!-- Pembuatan Website -->
       <div class="service-card card-website fade-up" onclick="openModal('website')">
         <div class="service-icon"><i class="ri-code-box-fill"></i></div>
-        <div class="service-name">Pembuatan Website</div>
-        <div class="service-desc">Jasa pembuatan website profesional untuk UMKM, company profile, dan toko online. Desain modern, SEO ready, dan fast loading.</div>
+        <div class="service-content">
+          <div class="service-name">Pembuatan Website</div>
+          <div class="service-desc">Jasa pembuatan website profesional untuk UMKM, company profile, dan toko online. Desain modern, SEO ready, fast loading, dan mobile responsive. Gratis maintenance 1 bulan.</div>
+          <div class="service-tags">
+            <span class="service-tag"><i class="ri-store-2-line"></i> Toko Online</span>
+            <span class="service-tag"><i class="ri-building-line"></i> Company Profile</span>
+            <span class="service-tag"><i class="ri-landing-page"></i> Landing Page</span>
+          </div>
+        </div>
+        <div class="service-arrow"><i class="ri-arrow-right-line"></i></div>
       </div>
+      
+      <!-- WhatsApp Automation -->
       <div class="service-card card-wa fade-up" onclick="openModal('wa')">
         <div class="service-icon"><i class="ri-whatsapp-fill"></i></div>
-        <div class="service-name">WhatsApp Automation</div>
-        <div class="service-desc">Butuh bot WhatsApp otomatis? Kami buatkan sistem auto reply, blast broadcast, dan chatbot cerdas untuk bisnis Anda.</div>
+        <div class="service-content">
+          <div class="service-name">WhatsApp Automation</div>
+          <div class="service-desc">Butuh bot WhatsApp otomatis? Kami buatkan sistem auto reply 24 jam, blast broadcast ke ribuan kontak, dan chatbot cerdas untuk bisnis Anda. Tingkatkan efisiensi layanan pelanggan.</div>
+          <div class="service-tags">
+            <span class="service-tag"><i class="ri-robot-line"></i> Auto Reply</span>
+            <span class="service-tag"><i class="ri-send-plane-fill"></i> Broadcast</span>
+            <span class="service-tag"><i class="ri-customer-service-2-line"></i> Chatbot</span>
+          </div>
+        </div>
+        <div class="service-arrow"><i class="ri-arrow-right-line"></i></div>
       </div>
+      
+      <!-- Optimasi Sosial Media -->
       <div class="service-card card-social fade-up" onclick="openModal('social')">
         <div class="service-icon"><i class="ri-group-fill"></i></div>
-        <div class="service-name">Optimasi Sosial Media</div>
-        <div class="service-desc">Mau tambah followers real dan engagement tinggi di Instagram atau TikTok? Tingkatkan kredibilitas bisnis Anda sekarang.</div>
+        <div class="service-content">
+          <div class="service-name">Optimasi Sosial Media</div>
+          <div class="service-desc">Mau tambah followers real dan engagement tinggi di Instagram atau TikTok? Tingkatkan kredibilitas bisnis Anda sekarang. Followers real, bukan bot atau akun palsu.</div>
+          <div class="service-tags">
+            <span class="service-tag"><i class="ri-user-add-line"></i> Followers</span>
+            <span class="service-tag"><i class="ri-heart-fill"></i> Likes</span>
+            <span class="service-tag"><i class="ri-eye-fill"></i> Views</span>
+          </div>
+        </div>
+        <div class="service-arrow"><i class="ri-arrow-right-line"></i></div>
       </div>
+      
+      <!-- Iklan Digital -->
       <div class="service-card card-ads fade-up" onclick="openModal('ads')">
         <div class="service-icon"><i class="ri-megaphone-fill"></i></div>
-        <div class="service-name">Iklan Digital</div>
-        <div class="service-desc">Jasa kelola iklan Facebook Ads & Google Ads. Biayan hemat, hasil maksimal, tepat sasaran dan bikin penjualan naik.</div>
+        <div class="service-content">
+          <div class="service-name">Iklan Digital</div>
+          <div class="service-desc">Jasa kelola iklan Facebook Ads & Google Ads secara profesional. Biaya hemat, hasil maksimal, tepat sasaran. Laporan performa mingguan dan optimasi harian.</div>
+          <div class="service-tags">
+            <span class="service-tag"><i class="ri-facebook-box-fill"></i> FB Ads</span>
+            <span class="service-tag"><i class="ri-google-fill"></i> Google Ads</span>
+            <span class="service-tag"><i class="ri-line-chart-fill"></i> Analytics</span>
+          </div>
+        </div>
+        <div class="service-arrow"><i class="ri-arrow-right-line"></i></div>
       </div>
+      
+      <!-- Desain Grafis -->
       <div class="service-card card-design fade-up" onclick="openModal('design')">
         <div class="service-icon"><i class="ri-palette-fill"></i></div>
-        <div class="service-name">Desain Grafis</div>
-        <div class="service-desc">Jasa desain logo, banner, feed Instagram, dan brosur. Desain menarik yang bikin bisnis Anda kelihatan lebih profesional.</div>
+        <div class="service-content">
+          <div class="service-name">Desain Grafis</div>
+          <div class="service-desc">Jasa desain logo, banner, feed Instagram, dan brosur. Desain menarik yang bikin bisnis Anda kelihatan lebih profesional dan meningkatkan brand awareness.</div>
+          <div class="service-tags">
+            <span class="service-tag"><i class="ri-brush-fill"></i> Logo</span>
+            <span class="service-tag"><i class="ri-image-fill"></i> Banner</span>
+            <span class="service-tag"><i class="ri-layout-grid-fill"></i> Feed IG</span>
+          </div>
+        </div>
+        <div class="service-arrow"><i class="ri-arrow-right-line"></i></div>
       </div>
+      
+      <!-- Keamanan Akun -->
       <div class="service-card card-security fade-up" onclick="openModal('security')">
         <div class="service-icon"><i class="ri-lock-fill"></i></div>
-        <div class="service-name">Keamanan Akun</div>
-        <div class="service-desc">Takut akun di hack lagi? Kami bantu pasang proteksi keamanan ekstra dan backup data agar akun Anda aman dari peretas.</div>
+        <div class="service-content">
+          <div class="service-name">Keamanan Akun</div>
+          <div class="service-desc">Takut akun di hack lagi? Kami bantu pasang proteksi keamanan ekstra dan backup data agar akun Anda aman dari peretas. Audit keamanan menyeluruh.</div>
+          <div class="service-tags">
+            <span class="service-tag"><i class="ri-shield-check-line"></i> 2FA Setup</span>
+            <span class="service-tag"><i class="ri-database-2-line"></i> Backup</span>
+            <span class="service-tag"><i class="ri-search-eye-line"></i> Audit</span>
+          </div>
+        </div>
+        <div class="service-arrow"><i class="ri-arrow-right-line"></i></div>
       </div>
+      
+      <!-- Hapus Akun & Sistem -->
       <div class="service-card card-system fade-up" onclick="openModal('system')">
         <div class="service-icon"><i class="ri-cpu-fill"></i></div>
-        <div class="service-name">Hapus Akun & Sistem</div>
-        <div class="service-desc">Cara menghapus akun FB lupa password? Atau butuh sistem custom khusus bisnis? Kami sediakan solusinya.</div>
+        <div class="service-content">
+          <div class="service-name">Hapus Akun & Sistem Custom</div>
+          <div class="service-desc">Cara menghapus akun FB lupa password? Atau butuh sistem custom khusus bisnis? Kami sediakan solusinya. Pengembangan aplikasi dan integrasi sistem.</div>
+          <div class="service-tags">
+            <span class="service-tag"><i class="ri-delete-bin-line"></i> Hapus Akun</span>
+            <span class="service-tag"><i class="ri-tools-fill"></i> Custom</span>
+            <span class="service-tag"><i class="ri-plug-fill"></i> Integrasi</span>
+          </div>
+        </div>
+        <div class="service-arrow"><i class="ri-arrow-right-line"></i></div>
       </div>
     </div>
   </div>
@@ -847,4 +1208,4 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 </body>
-</html>
+  </html>
