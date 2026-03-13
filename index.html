@@ -132,7 +132,7 @@ Jasa Pemulihan Akun Facebook, IG, TikTok yang Di-Hack | Kedai Media Indonesia
   --icon-system: #f8fafc;
   
   /* Services Variables - BRAND IDENTITY GRADIENT */
-  --services-bg: linear-gradient(135deg, #e0f2fe 0%, #ede9fe 100%); /* Biru Langit ke Ungu Muda */
+  --services-bg: linear-gradient(135deg, #e0f2fe 0%, #ede9fe 100%); 
   --services-bg-solid-fallback: #e0f2fe;
   --services-text-title: #1e293b;
   --services-text-sub: #475569;
@@ -179,8 +179,7 @@ Jasa Pemulihan Akun Facebook, IG, TikTok yang Di-Hack | Kedai Media Indonesia
   --card-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
   --card-hover-shadow: 0 20px 50px -15px rgba(14, 165, 233, 0.15);
   
-  /* Services Variables Dark - Deep Brand Gradient */
-  --services-bg: linear-gradient(135deg, #0c4a6e 0%, #4c1d95 100%); /* Biru Gelap ke Ungu Gelap */
+  --services-bg: linear-gradient(135deg, #0c4a6e 0%, #4c1d95 100%); 
   --services-bg-solid-fallback: #0c4a6e;
   --services-text-title: #ffffff;
   --services-text-sub: #e2e8f0;
@@ -262,13 +261,12 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); background: var(--
 /* === SERVICES - BRAND IDENTITY GRADIENT BACKGROUND === */
 .services { 
   padding: 100px 0; 
-  background: var(--services-bg); /* Gradient Biru-Ungu */
+  background: var(--services-bg);
   position: relative;
   overflow: hidden;
   transition: background 0.3s ease;
 }
 
-/* Subtle pattern overlay */
 .services::before {
   content: '';
   position: absolute;
@@ -278,7 +276,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); background: var(--
   pointer-events: none;
 }
 
-/* Glow Effect */
 .services::after {
   content: '';
   position: absolute;
@@ -325,7 +322,7 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); background: var(--
 /* Enhanced Service Card */
 .service-card { 
   background: var(--services-card-bg);
-  border: none;
+  border: 2px solid var(--card-color); /* Border Berwarna */
   border-radius: 24px; 
   padding: 36px; 
   cursor: pointer; 
@@ -335,12 +332,13 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); background: var(--
   display: flex; 
   align-items: flex-start;
   gap: 28px;
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 30px -10px var(--card-shadow-color);
 }
 
 .service-card:hover { 
-  box-shadow: 0 30px 60px -20px var(--card-shadow-color);
+  box-shadow: 0 20px 40px -15px var(--card-shadow-color);
   transform: translateY(-8px) scale(1.01);
+  border-color: var(--card-color); /* Keep border color on hover */
 }
 
 /* Gradient border effect on hover */
@@ -356,36 +354,73 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); background: var(--
 }
 .service-card:hover::before { transform: scaleY(1); }
 
-/* Icon Container - Large & Colorful */
+/* === UPDATE: LARGE 3D ICON === */
 .service-icon { 
-  width: 80px; height: 80px; min-width: 80px;
-  border-radius: 20px; 
-  display: flex; align-items: center; justify-content: center; 
-  font-size: 36px; 
-  background: var(--icon-bg); 
+  width: 120px; 
+  height: 120px; 
+  min-width: 120px;
+  border-radius: 24px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  font-size: 54px; /* Icon size increased */
+  
+  /* 3D Effects */
+  background: linear-gradient(145deg, var(--icon-bg), var(--icon-bg-darker, #ffffff)); 
   color: var(--icon-color); 
+  box-shadow: 
+    8px 8px 20px rgba(0,0,0,0.1), 
+    -4px -4px 12px rgba(255,255,255,0.8), 
+    inset 2px 2px 4px rgba(255,255,255,0.5), 
+    inset -2px -2px 4px rgba(0,0,0,0.05);
   transition: all 0.4s ease; 
-  position: relative; overflow: hidden;
+  position: relative; 
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.5);
+}
+
+/* Adjustments for Dark Mode 3D */
+[data-theme="dark"] .service-icon {
+  box-shadow: 
+    8px 8px 20px rgba(0,0,0,0.4), 
+    -4px -4px 12px rgba(255,255,255,0.05), 
+    inset 2px 2px 4px rgba(255,255,255,0.05), 
+    inset -2px -2px 4px rgba(0,0,0,0.2);
+  border: 1px solid rgba(255,255,255,0.05);
 }
 
 .service-card:hover .service-icon { 
-  transform: scale(1.1) rotate(-5deg);
+  transform: scale(1.05) rotate(-5deg);
   background: var(--icon-color);
   color: white;
-  box-shadow: 0 10px 20px -10px var(--icon-color);
+  box-shadow: 0 15px 30px -10px var(--icon-color);
 }
 
 /* Service Content */
 .service-content { flex: 1; padding-top: 4px; }
+
+/* === UPDATE: BIG TITLE WITH BACKGROUND === */
 .service-name { 
   font-family: 'Poppins', sans-serif; 
-  font-size: 22px; 
-  font-weight: 700; 
-  color: var(--services-card-text);
-  margin-bottom: 12px; 
+  font-size: 28px; /* Font size increased */
+  font-weight: 800; 
+  margin-bottom: 16px; 
   transition: color 0.3s ease; 
+  display: inline-block; /* Allows background to fit content */
+  padding: 8px 20px;
+  border-radius: 12px;
+  background: var(--card-gradient); /* Gradient Background */
+  color: white; /* White text for contrast */
+  box-shadow: 0 4px 15px -3px var(--card-shadow-color);
+  line-height: 1.3;
 }
-.service-card:hover .service-name { color: var(--card-color); }
+
+/* Text Gradient for Card Title? Actually white is better on gradient bg */
+.service-card:hover .service-name {
+  transform: translateX(5px);
+  box-shadow: 0 8px 20px -3px var(--card-shadow-color);
+}
+
 .service-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px; }
 
 .service-tags { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -412,14 +447,14 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); background: var(--
 }
 
 /* Card Color Variations */
-.card-recovery { --card-gradient: linear-gradient(180deg, #ef4444, #dc2626); --card-color: #ef4444; --card-shadow-color: rgba(239, 68, 68, 0.4); --icon-bg: #fef2f2; --icon-color: #ef4444; --tag-bg: rgba(239, 68, 68, 0.1); --tag-color: #dc2626; --tag-bg-hover: rgba(239, 68, 68, 0.2); }
-.card-website { --card-gradient: linear-gradient(180deg, #3b82f6, #2563eb); --card-color: #3b82f6; --card-shadow-color: rgba(59, 130, 246, 0.4); --icon-bg: #eff6ff; --icon-color: #3b82f6; --tag-bg: rgba(59, 130, 246, 0.1); --tag-color: #2563eb; --tag-bg-hover: rgba(59, 130, 246, 0.2); }
-.card-wa { --card-gradient: linear-gradient(180deg, #22c55e, #16a34a); --card-color: #22c55e; --card-shadow-color: rgba(34, 197, 94, 0.4); --icon-bg: #f0fdf4; --icon-color: #22c55e; --tag-bg: rgba(34, 197, 94, 0.1); --tag-color: #16a34a; --tag-bg-hover: rgba(34, 197, 94, 0.2); }
-.card-social { --card-gradient: linear-gradient(180deg, #8b5cf6, #7c3aed); --card-color: #8b5cf6; --card-shadow-color: rgba(139, 92, 246, 0.4); --icon-bg: #f5f3ff; --icon-color: #8b5cf6; --tag-bg: rgba(139, 92, 246, 0.1); --tag-color: #7c3aed; --tag-bg-hover: rgba(139, 92, 246, 0.2); }
-.card-ads { --card-gradient: linear-gradient(180deg, #f97316, #ea580c); --card-color: #f97316; --card-shadow-color: rgba(249, 115, 22, 0.4); --icon-bg: #fff7ed; --icon-color: #f97316; --tag-bg: rgba(249, 115, 22, 0.1); --tag-color: #ea580c; --tag-bg-hover: rgba(249, 115, 22, 0.2); }
-.card-design { --card-gradient: linear-gradient(180deg, #ec4899, #db2777); --card-color: #ec4899; --card-shadow-color: rgba(236, 72, 153, 0.4); --icon-bg: #fdf2f8; --icon-color: #ec4899; --tag-bg: rgba(236, 72, 153, 0.1); --tag-color: #db2777; --tag-bg-hover: rgba(236, 72, 153, 0.2); }
-.card-security { --card-gradient: linear-gradient(180deg, #06b6d4, #0891b2); --card-color: #06b6d4; --card-shadow-color: rgba(6, 182, 212, 0.4); --icon-bg: #ecfeff; --icon-color: #06b6d4; --tag-bg: rgba(6, 182, 212, 0.1); --tag-color: #0891b2; --tag-bg-hover: rgba(6, 182, 212, 0.2); }
-.card-system { --card-gradient: linear-gradient(180deg, #64748b, #475569); --card-color: #64748b; --card-shadow-color: rgba(100, 116, 139, 0.4); --icon-bg: #f8fafc; --icon-color: #64748b; --tag-bg: rgba(100, 116, 139, 0.1); --tag-color: #475569; --tag-bg-hover: rgba(100, 116, 139, 0.2); }
+.card-recovery { --card-gradient: linear-gradient(135deg, #ef4444, #dc2626); --card-color: #ef4444; --card-shadow-color: rgba(239, 68, 68, 0.3); --icon-bg: #fee2e2; --icon-bg-darker: #fecaca; --icon-color: #ef4444; --tag-bg: rgba(239, 68, 68, 0.1); --tag-color: #dc2626; --tag-bg-hover: rgba(239, 68, 68, 0.2); }
+.card-website { --card-gradient: linear-gradient(135deg, #3b82f6, #2563eb); --card-color: #3b82f6; --card-shadow-color: rgba(59, 130, 246, 0.3); --icon-bg: #dbeafe; --icon-bg-darker: #bfdbfe; --icon-color: #3b82f6; --tag-bg: rgba(59, 130, 246, 0.1); --tag-color: #2563eb; --tag-bg-hover: rgba(59, 130, 246, 0.2); }
+.card-wa { --card-gradient: linear-gradient(135deg, #22c55e, #16a34a); --card-color: #22c55e; --card-shadow-color: rgba(34, 197, 94, 0.3); --icon-bg: #dcfce7; --icon-bg-darker: #bbf7d0; --icon-color: #22c55e; --tag-bg: rgba(34, 197, 94, 0.1); --tag-color: #16a34a; --tag-bg-hover: rgba(34, 197, 94, 0.2); }
+.card-social { --card-gradient: linear-gradient(135deg, #8b5cf6, #7c3aed); --card-color: #8b5cf6; --card-shadow-color: rgba(139, 92, 246, 0.3); --icon-bg: #ede9fe; --icon-bg-darker: #ddd6fe; --icon-color: #8b5cf6; --tag-bg: rgba(139, 92, 246, 0.1); --tag-color: #7c3aed; --tag-bg-hover: rgba(139, 92, 246, 0.2); }
+.card-ads { --card-gradient: linear-gradient(135deg, #f97316, #ea580c); --card-color: #f97316; --card-shadow-color: rgba(249, 115, 22, 0.3); --icon-bg: #ffedd5; --icon-bg-darker: #fed7aa; --icon-color: #f97316; --tag-bg: rgba(249, 115, 22, 0.1); --tag-color: #ea580c; --tag-bg-hover: rgba(249, 115, 22, 0.2); }
+.card-design { --card-gradient: linear-gradient(135deg, #ec4899, #db2777); --card-color: #ec4899; --card-shadow-color: rgba(236, 72, 153, 0.3); --icon-bg: #fce7f3; --icon-bg-darker: #fbcfe8; --icon-color: #ec4899; --tag-bg: rgba(236, 72, 153, 0.1); --tag-color: #db2777; --tag-bg-hover: rgba(236, 72, 153, 0.2); }
+.card-security { --card-gradient: linear-gradient(135deg, #06b6d4, #0891b2); --card-color: #06b6d4; --card-shadow-color: rgba(6, 182, 212, 0.3); --icon-bg: #cffafe; --icon-bg-darker: #a5f3fc; --icon-color: #06b6d4; --tag-bg: rgba(6, 182, 212, 0.1); --tag-color: #0891b2; --tag-bg-hover: rgba(6, 182, 212, 0.2); }
+.card-system { --card-gradient: linear-gradient(135deg, #64748b, #475569); --card-color: #64748b; --card-shadow-color: rgba(100, 116, 139, 0.3); --icon-bg: #f1f5f9; --icon-bg-darker: #e2e8f0; --icon-color: #64748b; --tag-bg: rgba(100, 116, 139, 0.1); --tag-color: #475569; --tag-bg-hover: rgba(100, 116, 139, 0.2); }
 
 /* === BLOG SECTION === */
 .blog-section { padding: 80px 0; background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-body) 100%); transition: background 0.3s ease; }
@@ -536,9 +571,11 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
   .status-badge { display: flex; padding: 6px 10px; font-size: 11px; } 
   .mobile-menu-btn { display: block; } 
   .stats-grid { grid-template-columns: repeat(2, 1fr); } 
-  .service-card { padding: 28px; flex-direction: column; gap: 20px; }
-  .service-icon { width: 64px; height: 64px; min-width: 64px; font-size: 28px; }
-  .service-name { font-size: 20px; }
+  .service-card { padding: 28px; flex-direction: column; gap: 20px; align-items: center; text-align: center; }
+  /* Responsive Icon */
+  .service-icon { width: 100px; height: 100px; min-width: 100px; font-size: 46px; }
+  .service-name { font-size: 22px; }
+  .service-tags { justify-content: center; }
   .trust-grid { grid-template-columns: repeat(2, 1fr); } 
   .modal-actions { flex-direction: column; } 
   .footer-grid { grid-template-columns: 1fr; gap: 30px; } 
@@ -1086,4 +1123,4 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 </body>
-        </html>
+  </html>
