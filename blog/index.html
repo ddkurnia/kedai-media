@@ -918,14 +918,14 @@ footer {
       </div>
       <div class="featured-content">
         <span class="featured-category">Facebook</span>
-        <h2 class="featured-title">Cara Mengembalikan Akun Facebook yang Di Hack: Panduan Lengkap 2024</h2>
+        <h2 class="featured-title" id="featuredTitle">Cara Mengembalikan Akun Facebook yang Di Hack: Panduan Lengkap 2026</h2>
         <p class="featured-excerpt">Panduan komprehensif untuk mengembalikan akun Facebook yang telah diretas. Pelajari langkah-langkah pemulihan yang terbukti efektif dan tips mencegah hacking di masa depan.</p>
         <div class="featured-meta">
           <div class="card-author">
             <img src="https://i.pravatar.cc/150?img=68" alt="Author" class="author-avatar">
             <div class="author-info">
               <span class="author-name">Tim Kedai Media</span>
-              <span class="card-date">15 Januari 2024</span>
+              <span class="card-date" id="featuredDate">15 Januari 2026</span>
             </div>
           </div>
           <span class="read-time"><i class="ri-time-line"></i> 8 menit baca</span>
@@ -981,12 +981,18 @@ footer {
       </div>
     </div>
     <div class="footer-bottom">
-      © 2024 Kedai Media Indonesia. All rights reserved.
+      <span id="copyright"></span>
     </div>
   </div>
 </footer>
 
 <script>
+// === DYNAMIC YEAR ===
+const currentYear = new Date().getFullYear();
+
+// Set copyright with dynamic year
+document.getElementById('copyright').innerHTML = `© ${currentYear} Kedai Media Indonesia. All rights reserved.`;
+
 // === BLOG DATA ===
 const blogPosts = [
   {
@@ -998,7 +1004,7 @@ const blogPosts = [
     image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&q=80",
     author: "Tim Kedai Media",
     authorImg: "https://i.pravatar.cc/150?img=68",
-    date: "15 Januari 2024",
+    date: "15 Januari 2026",
     readTime: "8 menit",
     featured: true
   },
@@ -1011,7 +1017,7 @@ const blogPosts = [
     image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=600&q=80",
     author: "Tim Kedai Media",
     authorImg: "https://i.pravatar.cc/150?img=68",
-    date: "12 Januari 2024",
+    date: "12 Januari 2026",
     readTime: "6 menit",
     featured: false
   },
@@ -1024,7 +1030,7 @@ const blogPosts = [
     image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80",
     author: "Tim Kedai Media",
     authorImg: "https://i.pravatar.cc/150?img=68",
-    date: "10 Januari 2024",
+    date: "10 Januari 2026",
     readTime: "7 menit",
     featured: false
   },
@@ -1037,7 +1043,7 @@ const blogPosts = [
     image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&q=80",
     author: "Tim Kedai Media",
     authorImg: "https://i.pravatar.cc/150?img=68",
-    date: "8 Januari 2024",
+    date: "8 Januari 2026",
     readTime: "5 menit",
     featured: false
   },
@@ -1050,7 +1056,7 @@ const blogPosts = [
     image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&q=80",
     author: "Tim Kedai Media",
     authorImg: "https://i.pravatar.cc/150?img=68",
-    date: "5 Januari 2024",
+    date: "5 Januari 2026",
     readTime: "4 menit",
     featured: false
   },
@@ -1063,7 +1069,7 @@ const blogPosts = [
     image: "https://images.unsplash.com/photo-1611262588024-d12430b98920?w=600&q=80",
     author: "Tim Kedai Media",
     authorImg: "https://i.pravatar.cc/150?img=68",
-    date: "3 Januari 2024",
+    date: "3 Januari 2026",
     readTime: "6 menit",
     featured: false
   }
@@ -1232,4 +1238,4 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 </body>
-      </html>
+    </html>
