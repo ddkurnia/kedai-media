@@ -331,16 +331,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   gap: 10px;
 }
 
-.badge-populer {
-  background: linear-gradient(135deg, #fbbf24, #f59e0b);
-  color: #78350f;
-  font-size: 10px;
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
 .service-desc { 
   font-size: 14px; 
   color: var(--text-secondary); 
@@ -408,33 +398,173 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
 
 .blog-more { text-align: center; margin-top: 40px; }
 
-/* === PARTNER === */
-.partner { padding: 60px 0; background: var(--bg-secondary); overflow: hidden; border-top: 1px solid rgba(14, 165, 233, 0.05); border-bottom: 1px solid rgba(14, 165, 233, 0.05); transition: background 0.3s ease; }
-.partner-inner { display: flex; align-items: center; gap: 40px; }
-.partner-label { flex-shrink: 0; font-size: 13px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; white-space: nowrap; }
-.partner-track { display: flex; gap: 50px; align-items: center; }
-.partner-logo { height: 26px; opacity: 0.4; filter: grayscale(100%); transition: all 0.3s; flex-shrink: 0; }
-.partner-logo:hover { opacity: 1; filter: grayscale(0%); }
+/* === INTEGRATIONS (WORKS WITH EVERYTHING) - NEW STYLE === */
+.integrations {
+  padding: 80px 0;
+  background: var(--bg-body);
+  position: relative;
+  overflow: hidden;
+}
 
-/* === TESTIMONIALS === */
-.testimonials { padding: 80px 0; background: var(--bg-body); transition: background 0.3s ease; }
-.testimonials-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 50px; }
-.testimonial-card { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 20px; padding: 32px; transition: all 0.3s; position: relative; }
-.testimonial-card:hover { border-color: transparent; box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1); }
-.testimonial-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
-.testimonial-avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border-light); }
-.testimonial-info h4 { font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 2px; }
-.testimonial-service { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; padding: 4px 10px; border-radius: 20px; }
-.service-tag-ads { background: rgba(249, 115, 22, 0.1); color: #ea580c; }
-.service-tag-web { background: rgba(59, 130, 246, 0.1); color: #2563eb; }
-.service-tag-recovery { background: rgba(239, 68, 68, 0.1); color: #dc2626; }
-.service-tag-wa { background: rgba(34, 197, 94, 0.1); color: #16a34a; }
-.testimonial-stars { color: #fbbf24; margin-bottom: 12px; font-size: 18px; }
-.testimonial-text { font-size: 14px; line-height: 1.7; color: var(--text-secondary); font-style: italic; }
-.testimonial-quote { position: absolute; top: 20px; right: 20px; font-size: 48px; color: var(--border-medium); font-family: serif; line-height: 1; }
+.integrations .section-header {
+  margin-bottom: 50px;
+}
+
+.integrations-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.integration-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.integration-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--sky-400);
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+}
+
+.integration-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--text-primary);
+  flex-shrink: 0;
+  transition: all 0.3s;
+}
+
+.integration-card:hover .integration-icon {
+  background: var(--primary-gradient);
+  color: white;
+}
+
+.integration-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.integration-links {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.integration-link {
+  color: #ef4444; /* Red color as per request */
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s;
+}
+
+.integration-link:hover {
+  gap: 10px;
+}
+
+/* === TESTIMONIALS (WHAT PEOPLE SAY) - NEW STYLE === */
+.testimonials {
+  padding: 80px 0;
+  background: var(--bg-secondary);
+  position: relative;
+}
+
+.testimonials .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 50px;
+  text-align: left;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.testimonial-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 20px;
+  padding: 28px;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.testimonial-card:hover {
+  border-color: transparent;
+  box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.testimonial-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border-light);
+}
+
+.testimonial-info h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.testimonial-handle {
+  font-size: 13px;
+  color: var(--sky-500);
+  font-weight: 500;
+}
+
+.testimonial-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.view-all-link {
+  color: #ef4444; /* Red color */
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s;
+}
+.view-all-link:hover { gap: 10px; }
 
 /* === FAQ === */
-.faq { padding: 80px 0; background: var(--bg-secondary); transition: background 0.3s ease; }
+.faq { padding: 80px 0; background: var(--bg-body); transition: background 0.3s ease; }
 .faq-grid { max-width: 800px; margin: 50px auto 0; display: flex; flex-direction: column; gap: 16px; }
 .faq-item { border: 1px solid var(--border-medium); border-radius: 16px; overflow: hidden; transition: all 0.3s; background: var(--bg-card); }
 .faq-item.active { border-color: var(--sky-400); box-shadow: 0 4px 20px rgba(14, 165, 233, 0.1); }
@@ -445,7 +575,7 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
 .faq-answer-inner { padding: 0 24px 20px; font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
 
 /* === TRUST === */
-.trust { padding: 80px 0; background: var(--bg-body); transition: background 0.3s ease; }
+.trust { padding: 80px 0; background: var(--bg-secondary); transition: background 0.3s ease; }
 .trust-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
 .trust-item { background: var(--bg-card); border-radius: 16px; padding: 24px 16px; text-align: center; transition: all 0.3s; border: 1px solid var(--border-light); }
 .trust-item:hover { box-shadow: 0 10px 30px -5px rgba(0,0,0,0.05); transform: translateY(-3px); }
@@ -483,8 +613,9 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
   .services-grid { grid-template-columns: repeat(2, 1fr); } 
   .trust-grid { grid-template-columns: repeat(3, 1fr); } 
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; } 
-  .testimonials-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
   .blog-grid { grid-template-columns: repeat(2, 1fr); }
+  .integrations-grid { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 768px) { 
   .nav-menu { display: none; } 
@@ -497,16 +628,20 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
   .trust-grid { grid-template-columns: repeat(2, 1fr); } 
   .modal-actions { flex-direction: column; } 
   .footer-grid { grid-template-columns: 1fr; gap: 30px; } 
-  .partner-label { display: none; }
   .blog-grid { grid-template-columns: 1fr; }
   .header-actions { gap: 8px; }
   .section-title { font-size: 28px; }
+  .testimonials .section-header { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 40px; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .integrations-grid { grid-template-columns: repeat(2, 1fr); }
+  .integration-links { flex-direction: column; gap: 15px; align-items: center; }
 }
 @media (max-width: 480px) { 
   .hero { padding: 120px 0 60px; } 
   .hero-buttons { flex-direction: column; } 
   .btn { width: 100%; } 
   .trust-grid { grid-template-columns: 1fr; }
+  .integrations-grid { grid-template-columns: 1fr; }
 }
 
 /* === ANIMATIONS === */
@@ -523,10 +658,8 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
 <!-- HEADER -->
 <header id="header">
   <div class="container header-inner">
-    <!-- PERBAIKAN: Link logo ke homepage -->
     <a href="https://kedaimedia.com/" class="brand"> <div class="powered">MALAKA HUB</div> <div class="logo">Kedai Media</div> </a>
     <nav class="nav-menu" id="navMenu">
-      <!-- PERBAIKAN: Link Home -->
       <a href="https://kedaimedia.com/" class="nav-link">Home</a> 
       <a href="#layanan" class="nav-link">Layanan</a> 
       <a href="#blog" class="nav-link">Blog</a>
@@ -648,7 +781,6 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
         </div>
       </div>
 
-      <!-- TAMBAHAN: Layanan Keamanan Akun -->
       <div class="service-card card-security fade-up" onclick="openModal('security')">
         <div class="service-icon"><i class="ri-lock-password-fill"></i></div>
         <div class="service-name">Keamanan Akun</div>
@@ -660,7 +792,6 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
         </div>
       </div>
 
-      <!-- TAMBAHAN: Layanan Sistem Custom -->
       <div class="service-card card-system fade-up" onclick="openModal('system')">
         <div class="service-icon"><i class="ri-terminal-box-fill"></i></div>
         <div class="service-name">Sistem Custom</div>
@@ -672,6 +803,153 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
         </div>
       </div>
       
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATIONS (WORKS WITH EVERYTHING) - REPLACED PARTNER -->
+<section class="integrations" id="integrations">
+  <div class="container">
+    <div class="section-header"> 
+      <h2 class="section-title">Works With Everything</h2> 
+      <p class="section-subtitle">Integrasi seamless dengan platform dan tools favorit Anda.</p> 
+    </div>
+    
+    <div class="integrations-grid">
+      <div class="integration-card">
+        <div class="integration-icon"><i class="ri-whatsapp-fill" style="color: #25D366;"></i></div>
+        <div class="integration-name">WhatsApp</div>
+      </div>
+      <div class="integration-card">
+        <div class="integration-icon"><i class="ri-telegram-fill" style="color: #0088cc;"></i></div>
+        <div class="integration-name">Telegram</div>
+      </div>
+      <div class="integration-card">
+        <div class="integration-icon"><i class="ri-discord-fill" style="color: #5865F2;"></i></div>
+        <div class="integration-name">Discord</div>
+      </div>
+      <div class="integration-card">
+        <div class="integration-icon"><i class="ri-slack-fill" style="color: #4A154B;"></i></div>
+        <div class="integration-name">Slack</div>
+      </div>
+      <div class="integration-card">
+        <div class="integration-icon"><i class="ri-facebook-fill" style="color: #1877F2;"></i></div>
+        <div class="integration-name">Facebook</div>
+      </div>
+      <div class="integration-card">
+        <div class="integration-icon"><i class="ri-instagram-fill" style="color: #E4405F;"></i></div>
+        <div class="integration-name">Instagram</div>
+      </div>
+      <div class="integration-card">
+        <div class="integration-icon"><i class="ri-openai-fill" style="color: #10a37f;"></i></div>
+        <div class="integration-name">OpenAI</div>
+      </div>
+      <div class="integration-card">
+        <div class="integration-icon"><i class="ri-google-fill" style="color: #4285F4;"></i></div>
+        <div class="integration-name">Google</div>
+      </div>
+      <div class="integration-card">
+        <div class="integration-icon"><i class="ri-github-fill" style="color: #181717;"></i></div>
+        <div class="integration-name">GitHub</div>
+      </div>
+      <div class="integration-card">
+        <div class="integration-icon"><i class="ri-twitter-x-fill"></i></div>
+        <div class="integration-name">Twitter / X</div>
+      </div>
+      <div class="integration-card">
+        <div class="integration-icon"><i class="ri-tiktok-fill"></i></div>
+        <div class="integration-name">TikTok</div>
+      </div>
+      <div class="integration-card">
+        <div class="integration-icon"><i class="ri-spotify-fill" style="color: #1DB954;"></i></div>
+        <div class="integration-name">Spotify</div>
+      </div>
+    </div>
+    
+    <div class="integration-links">
+      <a href="#" class="integration-link">View all 50+ integrations <i class="ri-arrow-right-line"></i></a>
+      <a href="#" class="integration-link">See what people built <i class="ri-arrow-right-line"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS (WHAT PEOPLE SAY) - NEW STYLE -->
+<section class="testimonials" id="testimoni">
+  <div class="container">
+    <div class="section-header"> 
+      <div>
+        <h2 class="section-title">What People Say</h2>
+        <p class="section-subtitle">Dengarkan langsung dari klien yang telah merasakan layanan kami.</p>
+      </div>
+      <a href="#" class="view-all-link">View all <i class="ri-arrow-right-line"></i></a>
+    </div>
+    
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-header">
+          <img src="https://i.pravatar.cc/150?img=12" alt="User" class="testimonial-avatar">
+          <div class="testimonial-info">
+            <h4>Dewi Lestari</h4>
+            <span class="testimonial-handle">@dewilestari</span>
+          </div>
+        </div>
+        <p class="testimonial-text">"Sebelumnya saya rugi jutaan rupiah karena iklan yang tidak tepat sasaran. Setelah pakai jasa Kedai Media, OMSET naik 300% dalam 1 bulan! Tim yang sangat profesional dan responsif."</p>
+      </div>
+      
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-header">
+          <img src="https://i.pravatar.cc/150?img=33" alt="User" class="testimonial-avatar">
+          <div class="testimonial-info">
+            <h4>Andi Wijaya</h4>
+            <span class="testimonial-handle">@andiwijaya</span>
+          </div>
+        </div>
+        <p class="testimonial-text">"Website toko online saya sekarang jadi keren banget dan fast loading. Dulu sering crash, sekarang lancar jaya. Pelayanannya cepat dan revisinya juga dikerjakan dengan sabar."</p>
+      </div>
+      
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-header">
+          <img src="https://i.pravatar.cc/150?img=47" alt="User" class="testimonial-avatar">
+          <div class="testimonial-info">
+            <h4>Rizky Pratama</h4>
+            <span class="testimonial-handle">@rizkypratama</span>
+          </div>
+        </div>
+        <p class="testimonial-text">"Akun bisnis IG saya di-hack dan saya panik banget. Dalam waktu 24 jam, tim Kedai Media berhasil mengembalikannya dengan aman. Terima kasih banyak, best service!"</p>
+      </div>
+      
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-header">
+          <img src="https://i.pravatar.cc/150?img=51" alt="User" class="testimonial-avatar">
+          <div class="testimonial-info">
+            <h4>Sinta Maharani</h4>
+            <span class="testimonial-handle">@sintamaharani</span>
+          </div>
+        </div>
+        <p class="testimonial-text">"Bot WhatsApp-nya luar biasa! Sekarang saya bisa tidur nyenyak karena pelanggan tetap terlayanan otomatis. Efisiensi waktu meningkat drastis, recommended banget!"</p>
+      </div>
+      
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-header">
+          <img src="https://i.pravatar.cc/150?img=32" alt="User" class="testimonial-avatar">
+          <div class="testimonial-info">
+            <h4>Budi Santoso</h4>
+            <span class="testimonial-handle">@budisantoso</span>
+          </div>
+        </div>
+        <p class="testimonial-text">"Pemulihan akun Facebook yang emailnya sudah diganti hacker pun bisa diatasi. Prosesnya transparan dan aman. Data privasi saya dijaga dengan baik. Top markotop!"</p>
+      </div>
+      
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-header">
+          <img src="https://i.pravatar.cc/150?img=44" alt="User" class="testimonial-avatar">
+          <div class="testimonial-info">
+            <h4>Maya Putri</h4>
+            <span class="testimonial-handle">@mayaputri</span>
+          </div>
+        </div>
+        <p class="testimonial-text">"Desain grafis yang dibuat sangat kekinian dan sesuai brand identity saya. Komunikasinya enak, revisi pun tidak dikenakan biaya tambahan. Pasti bakal langganan terus."</p>
+      </div>
     </div>
   </div>
 </section>
@@ -695,32 +973,6 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
     
     <div class="blog-more">
       <a href="https://kedaimedia.com/blog/" class="btn btn-outline">Lihat Semua Artikel <i class="ri-arrow-right-line"></i></a>
-    </div>
-  </div>
-</section>
-
-<!-- PARTNER -->
-<section class="partner">
-  <div class="partner-inner" id="partnerTrack">
-    <span class="partner-label">Partner Teknologi</span>
-    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google">
-    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Facebook_icon.svg" alt="Facebook">
-    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub">
-    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" alt="OpenAI">
-    <img class="partner-logo" src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Ads_logo.svg" alt="Google Ads">
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="testimonials" id="testimoni">
-  <div class="container">
-    <div class="section-header"> <h2 class="section-title">Kata Mereka Tentang Kami</h2> <p class="section-subtitle">Testimoni asli dari klien yang telah menggunakan layanan kami</p> </div>
-    <div class="testimonials-grid">
-      <div class="testimonial-card fade-up"> <div class="testimonial-quote">"</div> <div class="testimonial-header"> <img src="https://i.pravatar.cc/150?img=12" alt="User" class="testimonial-avatar"> <div class="testimonial-info"> <h4>Dewi Lestari</h4> <span class="testimonial-service service-tag-ads">Iklan Digital</span> </div> </div> <div class="testimonial-stars"> <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i> </div> <p class="testimonial-text">"Sebelumnya saya rugi jutaan rupiah karena iklan yang tidak tepat sasaran. Setelah pakai jasa Kedai Media, OMSET naik 300% dalam 1 bulan! Tim yang sangat profesional."</p> </div>
-      <div class="testimonial-card fade-up"> <div class="testimonial-quote">"</div> <div class="testimonial-header"> <img src="https://i.pravatar.cc/150?img=33" alt="User" class="testimonial-avatar"> <div class="testimonial-info"> <h4>Andi Wijaya</h4> <span class="testimonial-service service-tag-web">Website</span> </div> </div> <div class="testimonial-stars"> <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i> </div> <p class="testimonial-text">"Website toko online saya sekarang jadi keren banget dan fast loading. Dulu sering crash, sekarang lancar jaya. Pelayanannya cepat dan revisinya juga dikerjakan dengan sabar."</p> </div>
-      <div class="testimonial-card fade-up"> <div class="testimonial-quote">"</div> <div class="testimonial-header"> <img src="https://i.pravatar.cc/150?img=47" alt="User" class="testimonial-avatar"> <div class="testimonial-info"> <h4>Rizky Pratama</h4> <span class="testimonial-service service-tag-recovery">Pemulihan Akun</span> </div> </div> <div class="testimonial-stars"> <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i> </div> <p class="testimonial-text">"Akun bisnis IG saya di-hack dan saya panik banget. Dalam waktu 24 jam, tim Kedai Media berhasil mengembalikannya dengan aman. Terima kasih banyak, best service!"</p> </div>
-      <div class="testimonial-card fade-up"> <div class="testimonial-quote">"</div> <div class="testimonial-header"> <img src="https://i.pravatar.cc/150?img=51" alt="User" class="testimonial-avatar"> <div class="testimonial-info"> <h4>Sinta Maharani</h4> <span class="testimonial-service service-tag-wa">WA Automation</span> </div> </div> <div class="testimonial-stars"> <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i> </div> <p class="testimonial-text">"Bot WhatsApp-nya luar biasa! Sekarang saya bisa tidur nyenyak karena pelanggan tetap terlayanan otomatis. Efisiensi waktu meningkat drastis, recommended banget!"</p> </div>
     </div>
   </div>
 </section>
@@ -762,7 +1014,6 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
       <div class="footer-brand"> <div class="footer-logo">Kedai<span>Media</span></div> <p>Solusi digital profesional sejak 2009. Melayani website, automation, dan sistem custom seluruh Indonesia.</p> </div>
       <div> 
         <div class="footer-title">Layanan</div>
-        <!-- PERBAIKAN: URL sesuai permintaan -->
         <a href="https://kedaimedia.com/pemulihan-akun-sosmed/" class="footer-link">Pemulihan Akun</a> 
         <a href="https://kedaimedia.com/pembuatan-website/" class="footer-link">Pembuatan Website</a> 
         <a href="https://kedaimedia.com/whatsapp-automation/" class="footer-link">WhatsApp Automation</a> 
@@ -774,7 +1025,6 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
       </div>
       <div> 
         <div class="footer-title">Blog</div>
-        <!-- PERBAIKAN: URL Blog spesifik -->
         <a href="https://kedaimedia.com/blog/cara-mengembalikan-akun-facebook-di-hack" class="footer-link">Akun FB Di Hack</a> 
         <a href="https://kedaimedia.com/blog/akun-facebook-di-hack-email-diganti" class="footer-link">Email Diganti</a> 
         <a href="https://kedaimedia.com/blog/akun-facebook-di-hack-nomor-diganti" class="footer-link">Nomor Diganti</a> 
@@ -783,7 +1033,6 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
       </div>
       <div> <div class="footer-title">Kontak</div> <p class="footer-link" style="cursor: default;">WhatsApp: 0822-8578-1863</p> <p class="footer-link" style="cursor: default;">Indonesia</p> <div class="footer-social"> <a href="https://www.facebook.com/profile.php?id=100064150927466" target="_blank" class="social-icon-link" title="Facebook"><i class="ri-facebook-fill"></i></a> <a href="https://www.tiktok.com/@kedai.media" target="_blank" class="social-icon-link" title="TikTok"><i class="ri-tiktok-fill"></i></a> </div> </div>
     </div>
-    <!-- UPDATE TAHUN 2026 -->
     <div class="footer-bottom"> &copy; 2026 Kedai Media Indonesia. All rights reserved. </div>
   </div>
 </footer>
@@ -794,7 +1043,7 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
 </div>
 
 <script>
-// === DATA LAYANAN (URL DIPERBAIKI) ===
+// === DATA LAYANAN ===
 const services = { 
   recovery: { title: "Pemulihan Akun Sosmed", desc: "Layanan profesional untuk mengembalikan akun sosial media Anda yang telah diretas atau di-hack. Kami menangani Facebook, Instagram, TikTok, dan platform lainnya dengan tingkat keberhasilan tinggi.", url: "https://kedaimedia.com/pemulihan-akun-sosmed/" }, 
   website: { title: "Pembuatan Website", desc: "Website profesional untuk bisnis, UMKM, company profile, instansi pemerintah, sekolah, dan organisasi. Desain modern dengan performa optimal.", url: "https://kedaimedia.com/pembuatan-website/" }, 
@@ -806,7 +1055,7 @@ const services = {
   system: { title: "Sistem Custom", desc: "Pengembangan sistem dan aplikasi sesuai kebutuhan spesifik bisnis Anda. Solusi teknologi yang scalable dan maintainable.", url: "https://kedaimedia.com/sistem-custom/" } 
 };
 
-// === BLOG DATA (URL DIPERBAIKI) ===
+// === BLOG DATA ===
 const blogPosts = [
   { id: 1, title: "Cara Mengembalikan Akun Facebook yang Di Hack: Panduan Lengkap 2024", excerpt: "Akun Facebook kamu di hack? Jangan panik! Panduan lengkap ini akan membantu kamu mengembalikan akses akun dengan cepat dan aman.", category: "facebook", url: "https://kedaimedia.com/blog/cara-mengembalikan-akun-facebook-di-hack", image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&q=80", date: "15 Januari 2024", readTime: "8 menit" },
   { id: 2, title: "Akun Facebook Di Hack Email Diganti? Ini Solusinya", excerpt: "Peretas sudah mengganti email akun Facebook kamu? Pelajari cara mengatasi situasi kritis ini dengan metode pemulihan lanjutan.", category: "facebook", url: "https://kedaimedia.com/blog/akun-facebook-di-hack-email-diganti", image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=600&q=80", date: "12 Januari 2024", readTime: "6 menit" },
@@ -843,9 +1092,6 @@ document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 // === HEADER SCROLL ===
 window.addEventListener('scroll', () => { document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50); });
 
-// === PARTNER MARQUEE ===
-function initMarquee() { const track = document.getElementById('partnerTrack'); if (!track) return; const logos = track.querySelectorAll('.partner-logo'); if (logos.length < 2) return; logos.forEach(logo => track.appendChild(logo.cloneNode(true))); let pos = 0; const speed = 0.5; function animate() { pos -= speed; const width = track.scrollWidth / 2; if (Math.abs(pos) >= width) pos = 0; track.style.transform = 'translateX(' + pos + 'px)'; requestAnimationFrame(animate); } animate(); }
-
 // === BLOG RENDER ===
 function renderBlogCards(posts) { const grid = document.getElementById('blogGrid'); if (!grid) return; grid.innerHTML = ''; posts.forEach((post, index) => { const card = document.createElement('a'); card.href = post.url; card.className = 'blog-card fade-up'; card.style.transitionDelay = (index * 0.1) + 's'; card.innerHTML = `<div class="blog-card-image"><img src="${post.image}" alt="${post.title}" loading="lazy"><span class="blog-card-category">${post.category}</span></div><div class="blog-card-body"><h3 class="blog-card-title">${post.title}</h3><p class="blog-card-excerpt">${post.excerpt}</p><div class="blog-card-meta"><span class="blog-card-date"><i class="ri-calendar-line"></i> ${post.date}</span><span class="blog-card-read"><i class="ri-time-line"></i> ${post.readTime}</span></div></div>`; grid.appendChild(card); }); document.querySelectorAll('.blog-card.fade-up').forEach(el => observer.observe(el)); }
 
@@ -855,24 +1101,20 @@ document.querySelectorAll('.filter-btn').forEach(btn => { btn.addEventListener('
 // ============================================
 // === REAL-TIME VISITOR COUNTER (REAL API) ===
 // ============================================
-const NAMESPACE = 'kedai-media-com'; // Namespace unik untuk website Anda
+const NAMESPACE = 'kedai-media-com'; 
 const VISITOR_KEY = 'total-visitors';
 const BLOG_KEY = 'total-posts';
 
 async function fetchRealTimeData() {
   try {
-    // 1. Hit Visitor Counter
     const hitResponse = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${VISITOR_KEY}`);
     const hitData = await hitResponse.json();
     
-    // 2. Get Blog Post Count
     const blogResponse = await fetch(`https://api.countapi.xyz/get/${NAMESPACE}/${BLOG_KEY}`);
     const blogData = await blogResponse.json();
     
-    // Update Stats
     animateCounter('visitors', hitData.value, 2000);
     
-    // Update Live Online Badge
     const liveCountEl = document.getElementById('liveCount');
     if (liveCountEl) {
       liveCountEl.textContent = Math.min(Math.ceil(hitData.value % 50) + 3, 25);
@@ -892,7 +1134,6 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchRealTimeData();
   const firstFaq = document.querySelector('.faq-item.active .faq-answer'); 
   if (firstFaq) firstFaq.style.maxHeight = firstFaq.scrollHeight + "px"; 
-  initMarquee(); 
   renderBlogCards(blogPosts);
 });
 </script>
