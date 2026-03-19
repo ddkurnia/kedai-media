@@ -99,13 +99,6 @@
   
   --border-light: #f3f4f6;
   --border-medium: #e5e7eb;
-  
-  /* Services Variables */
-  --services-bg: #f8fafc;
-  --services-title: #0f172a;
-  --services-card-bg: #ffffff;
-  --services-card-border: #e2e8f0;
-  --services-card-hover-border: #0ea5e9;
 }
 
 /* Dark Mode Variables */
@@ -128,12 +121,6 @@
   
   --border-light: #1e293b;
   --border-medium: #1e293b;
-  
-  --services-bg: #0c1222;
-  --services-title: #ffffff;
-  --services-card-bg: #131c31;
-  --services-card-border: #1e293b;
-  --services-card-hover-border: #38bdf8;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -227,10 +214,10 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
 .stat-number { font-family: 'Poppins', sans-serif; font-size: 36px; font-weight: 700; background: var(--text-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .stat-label { font-size: 14px; color: var(--text-muted); font-weight: 500; }
 
-/* === SERVICES === */
+/* === SERVICES (UPDATED DESIGN) === */
 .services { 
   padding: 100px 0; 
-  background: var(--services-bg);
+  background: var(--bg-body);
   position: relative;
   overflow: hidden;
 }
@@ -247,7 +234,7 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   font-weight: 800; 
   margin-bottom: 16px; 
   letter-spacing: -0.5px; 
-  color: var(--services-title);
+  color: var(--text-primary);
 }
 
 .section-subtitle { 
@@ -257,6 +244,7 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   margin: 0 auto; 
 }
 
+/* Grid Layout untuk Layanan */
 .services-grid { 
   display: grid; 
   grid-template-columns: repeat(3, 1fr); 
@@ -265,108 +253,138 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   z-index: 1; 
 }
 
+/* Desain Kartu Baru (Dark Card Style) */
 .service-card { 
-  background: var(--services-card-bg);
-  border: 1px solid var(--services-card-border);
-  border-radius: 16px;
-  padding: 32px; 
+  background: #0f172a; /* Base dark color */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 0; 
   cursor: pointer; 
-  transition: all 0.3s ease; 
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
   position: relative; 
   overflow: hidden; 
   display: flex; 
   flex-direction: column;
-  align-items: flex-start;
   text-align: left; 
-  gap: 16px;
+  text-decoration: none;
+  color: #fff;
 }
 
+/* Hover Effect - Transform & Glow */
 .service-card:hover { 
-  transform: translateY(-4px);
-  border-color: var(--services-card-hover-border);
-  box-shadow: 0 10px 30px -10px rgba(14, 165, 233, 0.15);
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 20px 40px -10px rgba(14, 165, 233, 0.3);
 }
 
-.service-card::before { 
-  content: ''; 
-  position: absolute; 
-  top: 0; left: 0; right: 0; 
-  height: 3px; 
-  background: var(--card-color); 
-  transform: scaleX(0); 
-  transition: transform 0.3s ease; 
-}
-.service-card:hover::before { transform: scaleX(1); }
-
-.service-icon { 
-  width: 48px; 
-  height: 48px; 
-  border-radius: 12px; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  font-size: 24px; 
-  background: rgba(0,0,0,0.03); 
-  color: var(--card-color); 
-  transition: all 0.3s ease; 
+/* Gradient Border Effect on Hover */
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0), rgba(139, 92, 246, 0));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  transition: background 0.4s ease;
+  pointer-events: none;
 }
 
-[data-theme="dark"] .service-icon {
-  background: rgba(255,255,255,0.05);
+.service-card:hover::before {
+  background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
 }
 
-.service-card:hover .service-icon { 
-  background: var(--card-color);
-  color: white;
+/* Gambar/Thumbnail Area */
+.service-image {
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
 
+.service-image i {
+  font-size: 64px;
+  color: rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease;
+}
+
+.service-card:hover .service-image i {
+  color: rgba(56, 189, 248, 0.3);
+  transform: scale(1.1);
+}
+
+/* Konten di dalam kartu */
+.service-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(to top, #0f172a 0%, rgba(15, 23, 42, 0.95) 100%);
+  flex-grow: 1;
+}
+
+/* Label Badge (NEW / POPULER) */
+.service-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 10;
+}
+
+.badge-new {
+  background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+  color: #fff;
+}
+
+.badge-populer {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #78350f;
+}
+
+/* Ikon di konten */
+.service-icon-small {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 12px;
+  color: var(--sky-400);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Judul Layanan */
 .service-name { 
   font-family: 'Poppins', sans-serif; 
   font-size: 18px; 
   font-weight: 700; 
-  color: var(--text-primary);
+  color: #ffffff;
   line-height: 1.3;
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
 
+/* Subjudul/Deskripsi */
 .service-desc { 
-  font-size: 14px; 
-  color: var(--text-secondary); 
+  font-size: 13px; 
+  color: rgba(255, 255, 255, 0.6); 
   line-height: 1.6; 
 }
-
-.service-specs {
-  margin-top: auto;
-  padding-top: 16px;
-  width: 100%;
-  border-top: 1px dashed var(--border-medium);
-}
-
-.spec-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
-  font-size: 13px;
-  color: var(--text-secondary);
-}
-
-.spec-item i {
-  color: var(--card-color);
-  font-size: 16px;
-}
-
-/* Card Color Variations */
-.card-recovery { --card-color: #ef4444; }
-.card-website { --card-color: #3b82f6; }
-.card-wa { --card-color: #22c55e; }
-.card-social { --card-color: #8b5cf6; }
-.card-ads { --card-color: #f97316; }
-.card-design { --card-color: #ec4899; }
-.card-security { --card-color: #14b8a6; }
-.card-system { --card-color: #6366f1; }
 
 /* === BLOG SECTION === */
 .blog-section { padding: 80px 0; background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-body) 100%); transition: background 0.3s ease; }
@@ -398,10 +416,10 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
 
 .blog-more { text-align: center; margin-top: 40px; }
 
-/* === INTEGRATIONS (WORKS WITH EVERYTHING) - NEW STYLE === */
+/* === INTEGRATIONS === */
 .integrations {
   padding: 80px 0;
-  background: var(--bg-body);
+  background: var(--bg-secondary);
   position: relative;
   overflow: hidden;
 }
@@ -439,7 +457,7 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: var(--bg-secondary);
+  background: var(--bg-body);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -468,7 +486,7 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
 }
 
 .integration-link {
-  color: #ef4444; /* Red color as per request */
+  color: #ef4444;
   font-weight: 600;
   font-size: 15px;
   text-decoration: none;
@@ -482,10 +500,10 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   gap: 10px;
 }
 
-/* === TESTIMONIALS (WHAT PEOPLE SAY) - NEW STYLE === */
+/* === TESTIMONIALS === */
 .testimonials {
   padding: 80px 0;
-  background: var(--bg-secondary);
+  background: var(--bg-body);
   position: relative;
 }
 
@@ -552,7 +570,7 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
 }
 
 .view-all-link {
-  color: #ef4444; /* Red color */
+  color: #ef4444;
   font-weight: 600;
   font-size: 15px;
   text-decoration: none;
@@ -564,7 +582,7 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
 .view-all-link:hover { gap: 10px; }
 
 /* === FAQ === */
-.faq { padding: 80px 0; background: var(--bg-body); transition: background 0.3s ease; }
+.faq { padding: 80px 0; background: var(--bg-secondary); transition: background 0.3s ease; }
 .faq-grid { max-width: 800px; margin: 50px auto 0; display: flex; flex-direction: column; gap: 16px; }
 .faq-item { border: 1px solid var(--border-medium); border-radius: 16px; overflow: hidden; transition: all 0.3s; background: var(--bg-card); }
 .faq-item.active { border-color: var(--sky-400); box-shadow: 0 4px 20px rgba(14, 165, 233, 0.1); }
@@ -575,7 +593,7 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
 .faq-answer-inner { padding: 0 24px 20px; font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
 
 /* === TRUST === */
-.trust { padding: 80px 0; background: var(--bg-secondary); transition: background 0.3s ease; }
+.trust { padding: 80px 0; background: var(--bg-body); transition: background 0.3s ease; }
 .trust-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
 .trust-item { background: var(--bg-card); border-radius: 16px; padding: 24px 16px; text-align: center; transition: all 0.3s; border: 1px solid var(--border-light); }
 .trust-item:hover { box-shadow: 0 10px 30px -5px rgba(0,0,0,0.05); transform: translateY(-3px); }
@@ -706,108 +724,119 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
   </div>
 </section>
 
-<!-- SERVICES -->
+<!-- SERVICES (UPDATED HTML) -->
 <section class="services" id="layanan">
   <div class="container">
     <div class="section-header"> 
       <h2 class="section-title">Layanan Profesional Kami</h2> 
-      <p class="section-subtitle">Infrastructure & Digital Solution for Your Business.</p> 
+      <p class="section-subtitle">Pilih solusi digital terbaik untuk kebutuhan Anda.</p> 
     </div>
     <div class="services-grid">
       
-      <div class="service-card card-recovery fade-up" onclick="openModal('recovery')">
-        <div class="service-icon"><i class="ri-shield-keyhole-fill"></i></div>
-        <div class="service-name">Pemulihan Akun Sosmed</div>
-        <div class="service-desc">Solusi pemulihan akses akun Facebook, Instagram, dan TikTok yang diretas atau di-hack.</div>
-        <div class="service-specs">
-          <div class="spec-item"><i class="ri-check-line"></i> Email & No HP Diganti</div>
-          <div class="spec-item"><i class="ri-check-line"></i> 2FA Bypass</div>
-          <div class="spec-item"><i class="ri-check-line"></i> Proses 1-3 Hari</div>
+      <!-- Recovery Service -->
+      <a href="https://kedaimedia.com/pemulihan-akun-sosmed/" class="service-card fade-up">
+        <span class="service-badge badge-populer">Populer</span>
+        <div class="service-image">
+          <i class="ri-shield-keyhole-fill"></i>
         </div>
-      </div>
+        <div class="service-content">
+          <div class="service-icon-small"><i class="ri-shield-keyhole-fill"></i></div>
+          <h3 class="service-name">Pemulihan Akun Sosmed</h3>
+          <p class="service-desc">Solusi pemulihan akses akun Facebook, Instagram, dan TikTok yang diretas atau di-hack.</p>
+        </div>
+      </a>
       
-      <div class="service-card card-website fade-up" onclick="openModal('website')">
-        <div class="service-icon"><i class="ri-code-box-fill"></i></div>
-        <div class="service-name">Pembuatan Website</div>
-        <div class="service-desc">Development website profesional dengan teknologi modern dan kecepatan tinggi.</div>
-        <div class="service-specs">
-          <div class="spec-item"><i class="ri-check-line"></i> SEO Optimized</div>
-          <div class="spec-item"><i class="ri-check-line"></i> Mobile Responsive</div>
-          <div class="spec-item"><i class="ri-check-line"></i> Free SSL & Domain</div>
+      <!-- Website Service -->
+      <a href="https://kedaimedia.com/pembuatan-website/" class="service-card fade-up">
+        <span class="service-badge badge-new">New</span>
+        <div class="service-image">
+          <i class="ri-code-box-fill"></i>
         </div>
-      </div>
+        <div class="service-content">
+          <div class="service-icon-small"><i class="ri-code-box-fill"></i></div>
+          <h3 class="service-name">Pembuatan Website</h3>
+          <p class="service-desc">Website profesional dengan teknologi modern dan performa tinggi.</p>
+        </div>
+      </a>
       
-      <div class="service-card card-wa fade-up" onclick="openModal('wa')">
-        <div class="service-icon"><i class="ri-whatsapp-fill"></i></div>
-        <div class="service-name">WhatsApp Automation</div>
-        <div class="service-desc">Sistem otomatis untuk bisnis menggunakan Official WhatsApp Business API.</div>
-        <div class="service-specs">
-          <div class="spec-item"><i class="ri-check-line"></i> Auto Reply 24/7</div>
-          <div class="spec-item"><i class="ri-check-line"></i> Bulk Broadcast</div>
-          <div class="spec-item"><i class="ri-check-line"></i> Chatbot AI</div>
+      <!-- WA Automation Service -->
+      <a href="https://kedaimedia.com/whatsapp-automation/" class="service-card fade-up">
+        <div class="service-image">
+          <i class="ri-whatsapp-fill"></i>
         </div>
-      </div>
+        <div class="service-content">
+          <div class="service-icon-small"><i class="ri-whatsapp-fill"></i></div>
+          <h3 class="service-name">WhatsApp Automation</h3>
+          <p class="service-desc">Sistem otomatis untuk bisnis menggunakan Official WhatsApp API.</p>
+        </div>
+      </a>
       
-      <div class="service-card card-social fade-up" onclick="openModal('social')">
-        <div class="service-icon"><i class="ri-group-fill"></i></div>
-        <div class="service-name">Optimasi Sosial Media</div>
-        <div class="service-desc">Tingkatkan kredibilitas dan reach bisnis Anda di platform sosial media.</div>
-        <div class="service-specs">
-          <div class="spec-item"><i class="ri-check-line"></i> Real Followers</div>
-          <div class="spec-item"><i class="ri-check-line"></i> High Engagement</div>
-          <div class="spec-item"><i class="ri-check-line"></i> Safe Method</div>
+      <!-- Social Media Optimization -->
+      <a href="https://kedaimedia.com/optimasi-sosial-media/" class="service-card fade-up">
+        <div class="service-image">
+          <i class="ri-group-fill"></i>
         </div>
-      </div>
+        <div class="service-content">
+          <div class="service-icon-small"><i class="ri-group-fill"></i></div>
+          <h3 class="service-name">Optimasi Sosial Media</h3>
+          <p class="service-desc">Tingkatkan kredibilitas dan reach bisnis Anda di platform sosial media.</p>
+        </div>
+      </a>
       
-      <div class="service-card card-ads fade-up" onclick="openModal('ads')">
-        <div class="service-icon"><i class="ri-megaphone-fill"></i></div>
-        <div class="service-name">Iklan Digital</div>
-        <div class="service-desc">Manajemen iklan berbayar untuk mencapai target audiens yang tepat sasaran.</div>
-        <div class="service-specs">
-          <div class="spec-item"><i class="ri-check-line"></i> Facebook & IG Ads</div>
-          <div class="spec-item"><i class="ri-check-line"></i> Google Ads</div>
-          <div class="spec-item"><i class="ri-check-line"></i> Analytics Report</div>
+      <!-- Digital Ads -->
+      <a href="https://kedaimedia.com/iklan-digital/" class="service-card fade-up">
+        <div class="service-image">
+          <i class="ri-megaphone-fill"></i>
         </div>
-      </div>
+        <div class="service-content">
+          <div class="service-icon-small"><i class="ri-megaphone-fill"></i></div>
+          <h3 class="service-name">Iklan Digital</h3>
+          <p class="service-desc">Manajemen iklan berbayar untuk mencapai target audiens yang tepat sasaran.</p>
+        </div>
+      </a>
       
-      <div class="service-card card-design fade-up" onclick="openModal('design')">
-        <div class="service-icon"><i class="ri-palette-fill"></i></div>
-        <div class="service-name">Desain Grafis</div>
-        <div class="service-desc">Jasa desain visual profesional untuk kebutuhan branding dan marketing.</div>
-        <div class="service-specs">
-          <div class="spec-item"><i class="ri-check-line"></i> Logo & Branding</div>
-          <div class="spec-item"><i class="ri-check-line"></i> Social Media Content</div>
-          <div class="spec-item"><i class="ri-check-line"></i> Banner & Poster</div>
+      <!-- Graphic Design -->
+      <a href="https://kedaimedia.com/desain-grafis/" class="service-card fade-up">
+        <div class="service-image">
+          <i class="ri-palette-fill"></i>
         </div>
-      </div>
+        <div class="service-content">
+          <div class="service-icon-small"><i class="ri-palette-fill"></i></div>
+          <h3 class="service-name">Desain Grafis</h3>
+          <p class="service-desc">Jasa desain visual profesional untuk kebutuhan branding dan marketing.</p>
+        </div>
+      </a>
 
-      <div class="service-card card-security fade-up" onclick="openModal('security')">
-        <div class="service-icon"><i class="ri-lock-password-fill"></i></div>
-        <div class="service-name">Keamanan Akun</div>
-        <div class="service-desc">Proteksi akun sosial media Anda dari ancaman hacker dengan sistem keamanan berlapis.</div>
-        <div class="service-specs">
-          <div class="spec-item"><i class="ri-check-line"></i> Audit Keamanan</div>
-          <div class="spec-item"><i class="ri-check-line"></i> Setup 2FA</div>
-          <div class="spec-item"><i class="ri-check-line"></i> Proteksi Akun</div>
+      <!-- Security -->
+      <a href="https://kedaimedia.com/keamanan-akun/" class="service-card fade-up">
+        <div class="service-image">
+          <i class="ri-lock-password-fill"></i>
         </div>
-      </div>
+        <div class="service-content">
+          <div class="service-icon-small"><i class="ri-lock-password-fill"></i></div>
+          <h3 class="service-name">Keamanan Akun</h3>
+          <p class="service-desc">Proteksi akun sosial media Anda dari ancaman hacker dengan sistem berlapis.</p>
+        </div>
+      </a>
 
-      <div class="service-card card-system fade-up" onclick="openModal('system')">
-        <div class="service-icon"><i class="ri-terminal-box-fill"></i></div>
-        <div class="service-name">Sistem Custom</div>
-        <div class="service-desc">Pengembangan aplikasi dan sistem khusus sesuai kebutuhan spesifik bisnis Anda.</div>
-        <div class="service-specs">
-          <div class="spec-item"><i class="ri-check-line"></i> Aplikasi Web</div>
-          <div class="spec-item"><i class="ri-check-line"></i> API Integration</div>
-          <div class="spec-item"><i class="ri-check-line"></i> Dashboard Admin</div>
+      <!-- Custom System -->
+      <a href="https://kedaimedia.com/sistem-custom/" class="service-card fade-up">
+        <span class="service-badge badge-new">New</span>
+        <div class="service-image">
+          <i class="ri-terminal-box-fill"></i>
         </div>
-      </div>
+        <div class="service-content">
+          <div class="service-icon-small"><i class="ri-terminal-box-fill"></i></div>
+          <h3 class="service-name">Sistem Custom</h3>
+          <p class="service-desc">Pengembangan aplikasi dan sistem khusus sesuai kebutuhan spesifik bisnis.</p>
+        </div>
+      </a>
       
     </div>
   </div>
 </section>
 
-<!-- INTEGRATIONS (WORKS WITH EVERYTHING) - REPLACED PARTNER -->
+<!-- INTEGRATIONS -->
 <section class="integrations" id="integrations">
   <div class="container">
     <div class="section-header"> 
@@ -873,7 +902,7 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
   </div>
 </section>
 
-<!-- TESTIMONIALS (WHAT PEOPLE SAY) - NEW STYLE -->
+<!-- TESTIMONIALS -->
 <section class="testimonials" id="testimoni">
   <div class="container">
     <div class="section-header"> 
@@ -1139,4 +1168,4 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 </body>
-</html>
+  </html>
