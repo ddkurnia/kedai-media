@@ -99,6 +99,11 @@
   
   --border-light: #f3f4f6;
   --border-medium: #e5e7eb;
+  
+  /* Services Variables */
+  --services-bg: #f8fafc;
+  --services-card-bg: #f3f4f6; /* Abu muda untuk light mode */
+  --services-card-border: #e5e7eb;
 }
 
 /* Dark Mode Variables */
@@ -121,6 +126,10 @@
   
   --border-light: #1e293b;
   --border-medium: #1e293b;
+  
+  --services-bg: #0c1222;
+  --services-card-bg: #131c31; /* Gelap untuk dark mode */
+  --services-card-border: #1e293b;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -244,7 +253,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   margin: 0 auto; 
 }
 
-/* Grid Layout untuk Layanan */
 .services-grid { 
   display: grid; 
   grid-template-columns: repeat(3, 1fr); 
@@ -253,10 +261,10 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   z-index: 1; 
 }
 
-/* Desain Kartu Baru (Dark Card Style) */
+/* Desain Kartu Abu-Abu Muda dengan Gambar */
 .service-card { 
-  background: #0f172a; /* Base dark color */
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--services-card-bg);
+  border: 1px solid var(--services-card-border);
   border-radius: 20px;
   padding: 0; 
   cursor: pointer; 
@@ -267,56 +275,45 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   flex-direction: column;
   text-align: left; 
   text-decoration: none;
-  color: #fff;
+  color: var(--text-primary);
 }
 
-/* Hover Effect - Transform & Glow */
+/* Hover Effect */
 .service-card:hover { 
   transform: translateY(-8px) scale(1.02);
-  border-color: rgba(56, 189, 248, 0.5);
-  box-shadow: 0 20px 40px -10px rgba(14, 165, 233, 0.3);
-}
-
-/* Gradient Border Effect on Hover */
-.service-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  border-radius: 20px;
-  padding: 2px;
-  background: linear-gradient(135deg, rgba(14, 165, 233, 0), rgba(139, 92, 246, 0));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  transition: background 0.4s ease;
-  pointer-events: none;
-}
-
-.service-card:hover::before {
-  background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+  border-color: var(--sky-400);
+  box-shadow: 0 20px 40px -10px rgba(14, 165, 233, 0.2);
 }
 
 /* Gambar/Thumbnail Area */
 .service-image {
   width: 100%;
-  height: 180px;
-  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 1));
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 200px;
   position: relative;
   overflow: hidden;
 }
 
-.service-image i {
-  font-size: 64px;
-  color: rgba(255, 255, 255, 0.1);
-  transition: all 0.4s ease;
+.service-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
-.service-card:hover .service-image i {
-  color: rgba(56, 189, 248, 0.3);
+.service-card:hover .service-image img {
   transform: scale(1.1);
+}
+
+/* Overlay Gradasi pada Gambar */
+.service-image::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to top, var(--services-card-bg), transparent);
+  z-index: 1;
 }
 
 /* Konten di dalam kartu */
@@ -324,11 +321,10 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
   position: relative;
   z-index: 2;
-  background: linear-gradient(to top, #0f172a 0%, rgba(15, 23, 42, 0.95) 100%);
-  flex-grow: 1;
+  margin-top: -20px; /* Agar konten sedikit naik ke area gambar */
 }
 
 /* Label Badge (NEW / POPULER) */
@@ -343,31 +339,31 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   text-transform: uppercase;
   letter-spacing: 0.5px;
   z-index: 10;
+  backdrop-filter: blur(4px);
 }
 
 .badge-new {
-  background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+  background: rgba(14, 165, 233, 0.9);
   color: #fff;
 }
 
 .badge-populer {
-  background: linear-gradient(135deg, #fbbf24, #f59e0b);
-  color: #78350f;
+  background: rgba(249, 115, 22, 0.9);
+  color: #fff;
 }
 
-/* Ikon di konten */
+/* Ikon kecil di konten */
 .service-icon-small {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(14, 165, 233, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
-  margin-bottom: 12px;
-  color: var(--sky-400);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 20px;
+  color: var(--sky-500);
+  border: 1px solid rgba(14, 165, 233, 0.2);
 }
 
 /* Judul Layanan */
@@ -375,14 +371,14 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   font-family: 'Poppins', sans-serif; 
   font-size: 18px; 
   font-weight: 700; 
-  color: #ffffff;
+  color: var(--text-primary);
   line-height: 1.3;
 }
 
-/* Subjudul/Deskripsi */
+/* Deskripsi */
 .service-desc { 
   font-size: 13px; 
-  color: rgba(255, 255, 255, 0.6); 
+  color: var(--text-secondary); 
   line-height: 1.6; 
 }
 
@@ -737,7 +733,7 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
       <a href="https://kedaimedia.com/pemulihan-akun-sosmed/" class="service-card fade-up">
         <span class="service-badge badge-populer">Populer</span>
         <div class="service-image">
-          <i class="ri-shield-keyhole-fill"></i>
+          <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pemulihan Akun">
         </div>
         <div class="service-content">
           <div class="service-icon-small"><i class="ri-shield-keyhole-fill"></i></div>
@@ -750,7 +746,7 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
       <a href="https://kedaimedia.com/pembuatan-website/" class="service-card fade-up">
         <span class="service-badge badge-new">New</span>
         <div class="service-image">
-          <i class="ri-code-box-fill"></i>
+          <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pembuatan Website">
         </div>
         <div class="service-content">
           <div class="service-icon-small"><i class="ri-code-box-fill"></i></div>
@@ -762,7 +758,7 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
       <!-- WA Automation Service -->
       <a href="https://kedaimedia.com/whatsapp-automation/" class="service-card fade-up">
         <div class="service-image">
-          <i class="ri-whatsapp-fill"></i>
+          <img src="https://images.unsplash.com/photo-1611746872915-64382b5c76da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="WhatsApp Automation">
         </div>
         <div class="service-content">
           <div class="service-icon-small"><i class="ri-whatsapp-fill"></i></div>
@@ -774,7 +770,7 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
       <!-- Social Media Optimization -->
       <a href="https://kedaimedia.com/optimasi-sosial-media/" class="service-card fade-up">
         <div class="service-image">
-          <i class="ri-group-fill"></i>
+          <img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Optimasi Sosial Media">
         </div>
         <div class="service-content">
           <div class="service-icon-small"><i class="ri-group-fill"></i></div>
@@ -786,7 +782,7 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
       <!-- Digital Ads -->
       <a href="https://kedaimedia.com/iklan-digital/" class="service-card fade-up">
         <div class="service-image">
-          <i class="ri-megaphone-fill"></i>
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Iklan Digital">
         </div>
         <div class="service-content">
           <div class="service-icon-small"><i class="ri-megaphone-fill"></i></div>
@@ -798,7 +794,7 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
       <!-- Graphic Design -->
       <a href="https://kedaimedia.com/desain-grafis/" class="service-card fade-up">
         <div class="service-image">
-          <i class="ri-palette-fill"></i>
+          <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Desain Grafis">
         </div>
         <div class="service-content">
           <div class="service-icon-small"><i class="ri-palette-fill"></i></div>
@@ -810,7 +806,7 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
       <!-- Security -->
       <a href="https://kedaimedia.com/keamanan-akun/" class="service-card fade-up">
         <div class="service-image">
-          <i class="ri-lock-password-fill"></i>
+          <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Keamanan Akun">
         </div>
         <div class="service-content">
           <div class="service-icon-small"><i class="ri-lock-password-fill"></i></div>
@@ -823,7 +819,7 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
       <a href="https://kedaimedia.com/sistem-custom/" class="service-card fade-up">
         <span class="service-badge badge-new">New</span>
         <div class="service-image">
-          <i class="ri-terminal-box-fill"></i>
+          <img src="https://images.unsplash.com/photo-1555949963-aa9d443e57c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sistem Custom">
         </div>
         <div class="service-content">
           <div class="service-icon-small"><i class="ri-terminal-box-fill"></i></div>
@@ -1089,7 +1085,7 @@ const blogPosts = [
   { id: 1, title: "Cara Mengembalikan Akun Facebook yang Di Hack: Panduan Lengkap 2024", excerpt: "Akun Facebook kamu di hack? Jangan panik! Panduan lengkap ini akan membantu kamu mengembalikan akses akun dengan cepat dan aman.", category: "facebook", url: "https://kedaimedia.com/blog/cara-mengembalikan-akun-facebook-di-hack", image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&q=80", date: "15 Januari 2024", readTime: "8 menit" },
   { id: 2, title: "Akun Facebook Di Hack Email Diganti? Ini Solusinya", excerpt: "Peretas sudah mengganti email akun Facebook kamu? Pelajari cara mengatasi situasi kritis ini dengan metode pemulihan lanjutan.", category: "facebook", url: "https://kedaimedia.com/blog/akun-facebook-di-hack-email-diganti", image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=600&q=80", date: "12 Januari 2024", readTime: "6 menit" },
   { id: 3, title: "Akun Facebook Di Hack Nomor HP Diganti: Cara Mengatasinya", excerpt: "Nomor HP yang terdaftar di Facebook sudah diganti peretas? Jangan khawatir, masih ada cara untuk memulihkan akun kamu.", category: "facebook", url: "https://kedaimedia.com/blog/akun-facebook-di-hack-nomor-diganti", image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80", date: "10 Januari 2024", readTime: "7 menit" },
-  { id: 4, title: "Cara Memulihkan Akun Facebook Tidak Bisa Login", excerpt: "Tidak bisa login ke akun Facebook tapi tidak yakin apakah di hack? Panduan ini akan membantu diagnose masalah dan solusinya.", category: "facebook", url: "https://kedaimedia.com/blog/cara-memulihkan-akun-facebook-tidak-bisa-login", image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&q=80", date: "8 Januari 2024", readTime: "5 menit" },
+  { id: 4, title: "Cara Memulihkan Akun Facebook Tidak Bisa Login", excerpt: "Tidak bisa login ke akun Facebook tapi tidak yakin apakah di hack? Panduan này akan membantu diagnose masalah dan solusinya.", category: "facebook", url: "https://kedaimedia.com/blog/cara-memulihkan-akun-facebook-tidak-bisa-login", image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&q=80", date: "8 Januari 2024", readTime: "5 menit" },
   { id: 5, title: "Cara Mengembalikan Akun Facebook yang Hilang", excerpt: "Akun Facebook tiba-tiba hilang atau tidak ditemukan? Simak panduan lengkap cara mengembalikan akun FB yang hilang atau terhapus.", category: "facebook", url: "https://kedaimedia.com/blog/cara-mengembalikan-akun-facebook-hilang", image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&q=80", date: "5 Januari 2024", readTime: "6 menit" },
   { id: 6, title: "5 Cara Mencegah Akun Sosial Media Di Hack", excerpt: "Mencegah lebih baik dari mengobati. Pelajari 5 langkah preventif untuk mengamankan akun sosial media kamu dari peretas.", category: "keamanan", url: "#", image: "https://images.unsplash.com/photo-1611262588024-d12430b98920?w=600&q=80", date: "3 Januari 2024", readTime: "4 menit" }
 ];
@@ -1168,4 +1164,4 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 </body>
-  </html>
+</html>
