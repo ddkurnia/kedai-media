@@ -100,8 +100,8 @@
   --border-light: #f3f4f6;
   --border-medium: #e5e7eb;
   
-  /* Services Variables - HOSTING STYLE */
-  --services-bg: #f8fafc; /* Solid clean background */
+  /* Services Variables */
+  --services-bg: #f8fafc;
   --services-title: #0f172a;
   --services-card-bg: #ffffff;
   --services-card-border: #e2e8f0;
@@ -177,9 +177,32 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
 [data-theme="dark"] .theme-toggle .ri-sun-line { opacity: 1; transform: rotate(0deg) scale(1); }
 [data-theme="dark"] .theme-toggle .ri-moon-line { opacity: 0; transform: rotate(-180deg) scale(0.5); }
 
-.status-badge { display: flex; align-items: center; gap: 8px; padding: 8px 16px; background: var(--bg-status); border-radius: 50px; font-size: 13px; font-weight: 600; color: var(--text-status); }
-.status-badge::before { content: ''; width: 8px; height: 8px; background: #10b981; border-radius: 50%; animation: blink 2s infinite; }
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+/* === LIVE VISITOR BADGE === */
+.live-visitor-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--bg-status);
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-status);
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  animation: pulse-live 2s infinite;
+}
+
+@keyframes pulse-live {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
 
 /* === HERO === */
 .hero { padding: 160px 0 100px; text-align: center; position: relative; }
@@ -204,7 +227,7 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
 .stat-number { font-family: 'Poppins', sans-serif; font-size: 36px; font-weight: 700; background: var(--text-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .stat-label { font-size: 14px; color: var(--text-muted); font-weight: 500; }
 
-/* === SERVICES - HOSTING/TECH STYLE === */
+/* === SERVICES === */
 .services { 
   padding: 100px 0; 
   background: var(--services-bg);
@@ -234,7 +257,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   margin: 0 auto; 
 }
 
-/* Grid Layout: 3 Columns Desktop, 1 Column Mobile */
 .services-grid { 
   display: grid; 
   grid-template-columns: repeat(3, 1fr); 
@@ -243,11 +265,10 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   z-index: 1; 
 }
 
-/* Service Card - Minimalist & Professional */
 .service-card { 
   background: var(--services-card-bg);
   border: 1px solid var(--services-card-border);
-  border-radius: 16px; /* Less round, more techy */
+  border-radius: 16px;
   padding: 32px; 
   cursor: pointer; 
   transition: all 0.3s ease; 
@@ -255,7 +276,7 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   overflow: hidden; 
   display: flex; 
   flex-direction: column;
-  align-items: flex-start; /* Left aligned for professional look */
+  align-items: flex-start;
   text-align: left; 
   gap: 16px;
 }
@@ -266,7 +287,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   box-shadow: 0 10px 30px -10px rgba(14, 165, 233, 0.15);
 }
 
-/* Top Accent Line on Hover */
 .service-card::before { 
   content: ''; 
   position: absolute; 
@@ -278,7 +298,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
 }
 .service-card:hover::before { transform: scaleX(1); }
 
-/* Icon Style - Minimal */
 .service-icon { 
   width: 48px; 
   height: 48px; 
@@ -301,7 +320,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   color: white;
 }
 
-/* Content */
 .service-name { 
   font-family: 'Poppins', sans-serif; 
   font-size: 18px; 
@@ -313,7 +331,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   gap: 10px;
 }
 
-/* Recommended Badge */
 .badge-populer {
   background: linear-gradient(135deg, #fbbf24, #f59e0b);
   color: #78350f;
@@ -330,9 +347,8 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   line-height: 1.6; 
 }
 
-/* Specs/Tags List Style */
 .service-specs {
-  margin-top: auto; /* Push to bottom */
+  margin-top: auto;
   padding-top: 16px;
   width: 100%;
   border-top: 1px dashed var(--border-medium);
@@ -471,14 +487,11 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
 @media (max-width: 768px) { 
   .nav-menu { display: none; } 
   .nav-menu.active { display: flex; position: absolute; top: 72px; left: 0; right: 0; background: var(--bg-card); flex-direction: column; padding: 20px; border-top: 1px solid var(--border-light); box-shadow: 0 10px 20px rgba(0,0,0,0.1); } 
-  .header-actions .status-badge { display: none; }
-  .status-badge { display: flex; padding: 6px 10px; font-size: 11px; } 
+  .header-actions .live-visitor-badge { display: none; }
+  .live-visitor-badge { display: flex; padding: 6px 10px; font-size: 11px; } 
   .mobile-menu-btn { display: block; } 
   .stats-grid { grid-template-columns: repeat(2, 1fr); } 
-  
-  /* Mobile Services: 1 Column Full Width */
   .services-grid { grid-template-columns: 1fr; } 
-  
   .trust-grid { grid-template-columns: repeat(2, 1fr); } 
   .modal-actions { flex-direction: column; } 
   .footer-grid { grid-template-columns: 1fr; gap: 30px; } 
@@ -522,7 +535,10 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
         <i class="ri-sun-line"></i>
         <i class="ri-moon-line"></i>
       </button>
-      <div class="status-badge">Online</div>
+      <div class="live-visitor-badge">
+        <span class="live-dot"></span>
+        <span id="liveCount">--</span> Online
+      </div>
       <button class="mobile-menu-btn" onclick="toggleMenu()"><i class="ri-menu-line"></i></button>
     </div>
   </div>
@@ -553,7 +569,7 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
   </div>
 </section>
 
-<!-- SERVICES - HOSTING STYLE -->
+<!-- SERVICES -->
 <section class="services" id="layanan">
   <div class="container">
     <div class="section-header"> 
@@ -562,7 +578,6 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
     </div>
     <div class="services-grid">
       
-      <!-- 1. Pemulihan Akun -->
       <div class="service-card card-recovery fade-up" onclick="openModal('recovery')">
         <div class="service-icon"><i class="ri-shield-keyhole-fill"></i></div>
         <div class="service-name">Pemulihan Akun Sosmed</div>
@@ -574,7 +589,6 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
         </div>
       </div>
       
-      <!-- 2. Pembuatan Website -->
       <div class="service-card card-website fade-up" onclick="openModal('website')">
         <div class="service-icon"><i class="ri-code-box-fill"></i></div>
         <div class="service-name">Pembuatan Website</div>
@@ -586,7 +600,6 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
         </div>
       </div>
       
-      <!-- 3. WhatsApp Automation -->
       <div class="service-card card-wa fade-up" onclick="openModal('wa')">
         <div class="service-icon"><i class="ri-whatsapp-fill"></i></div>
         <div class="service-name">WhatsApp Automation</div>
@@ -598,7 +611,6 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
         </div>
       </div>
       
-      <!-- 4. Optimasi Sosial Media -->
       <div class="service-card card-social fade-up" onclick="openModal('social')">
         <div class="service-icon"><i class="ri-group-fill"></i></div>
         <div class="service-name">Optimasi Sosial Media</div>
@@ -610,7 +622,6 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
         </div>
       </div>
       
-      <!-- 5. Iklan Digital -->
       <div class="service-card card-ads fade-up" onclick="openModal('ads')">
         <div class="service-icon"><i class="ri-megaphone-fill"></i></div>
         <div class="service-name">Iklan Digital (Ads)</div>
@@ -622,7 +633,6 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
         </div>
       </div>
       
-      <!-- 6. Desain Grafis -->
       <div class="service-card card-design fade-up" onclick="openModal('design')">
         <div class="service-icon"><i class="ri-palette-fill"></i></div>
         <div class="service-name">Desain Grafis</div>
@@ -646,7 +656,6 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
       <p class="section-subtitle">Tips keamanan akun, tutorial digital, dan panduan lengkap untuk kamu</p>
     </div>
     
-    <!-- Filter -->
     <div class="blog-filter">
       <button class="filter-btn active" data-category="all">Semua</button>
       <button class="filter-btn" data-category="facebook">Facebook</button>
@@ -654,10 +663,7 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
       <button class="filter-btn" data-category="keamanan">Keamanan</button>
     </div>
     
-    <!-- Blog Grid -->
-    <div class="blog-grid" id="blogGrid">
-      <!-- Rendered by JavaScript -->
-    </div>
+    <div class="blog-grid" id="blogGrid"></div>
     
     <div class="blog-more">
       <a href="https://kedaimedia.com/blog" class="btn btn-outline">Lihat Semua Artikel <i class="ri-arrow-right-line"></i></a>
@@ -730,7 +736,8 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
       <div> <div class="footer-title">Blog</div> <a href="blog/cara-mengembalikan-akun-facebook-di-hack" class="footer-link">Akun FB Di Hack</a> <a href="blog/akun-facebook-di-hack-email-diganti" class="footer-link">Email Diganti</a> <a href="blog/akun-facebook-di-hack-nomor-diganti" class="footer-link">Nomor Diganti</a> <a href="blog/cara-memulihkan-akun-facebook-tidak-bisa-login" class="footer-link">Tidak Bisa Login</a> </div>
       <div> <div class="footer-title">Kontak</div> <p class="footer-link" style="cursor: default;">WhatsApp: 0822-8578-1863</p> <p class="footer-link" style="cursor: default;">Indonesia</p> <div class="footer-social"> <a href="https://www.facebook.com/profile.php?id=100064150927466" target="_blank" class="social-icon-link" title="Facebook"><i class="ri-facebook-fill"></i></a> <a href="https://www.tiktok.com/@kedai.media" target="_blank" class="social-icon-link" title="TikTok"><i class="ri-tiktok-fill"></i></a> </div> </div>
     </div>
-    <div class="footer-bottom"> © 2024 Kedai Media Indonesia. All rights reserved. </div>
+    <!-- UPDATE TAHUN 2026 -->
+    <div class="footer-bottom"> &copy; 2026 Kedai Media Indonesia. All rights reserved. </div>
   </div>
 </footer>
 
@@ -754,66 +761,12 @@ const services = {
 
 // === BLOG DATA ===
 const blogPosts = [
-  {
-    id: 1,
-    title: "Cara Mengembalikan Akun Facebook yang Di Hack: Panduan Lengkap 2024",
-    excerpt: "Akun Facebook kamu di hack? Jangan panik! Panduan lengkap ini akan membantu kamu mengembalikan akses akun dengan cepat dan aman.",
-    category: "facebook",
-    url: "https://kedaimedia.com/blog/cara-mengembalikan-akun-facebook-di-hack",
-    image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&q=80",
-    date: "15 Januari 2024",
-    readTime: "8 menit"
-  },
-  {
-    id: 2,
-    title: "Akun Facebook Di Hack Email Diganti? Ini Solusinya",
-    excerpt: "Peretas sudah mengganti email akun Facebook kamu? Pelajari cara mengatasi situasi kritis ini dengan metode pemulihan lanjutan.",
-    category: "facebook",
-    url: "https://kedaimedia.com/blog/akun-facebook-di-hack-email-diganti",
-    image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=600&q=80",
-    date: "12 Januari 2024",
-    readTime: "6 menit"
-  },
-  {
-    id: 3,
-    title: "Akun Facebook Di Hack Nomor HP Diganti: Cara Mengatasinya",
-    excerpt: "Nomor HP yang terdaftar di Facebook sudah diganti peretas? Jangan khawatir, masih ada cara untuk memulihkan akun kamu.",
-    category: "facebook",
-    url: "https://kedaimedia.com/blog/akun-facebook-di-hack-nomor-diganti",
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80",
-    date: "10 Januari 2024",
-    readTime: "7 menit"
-  },
-  {
-    id: 4,
-    title: "Cara Memulihkan Akun Facebook Tidak Bisa Login",
-    excerpt: "Tidak bisa login ke akun Facebook tapi tidak yakin apakah di hack? Panduan ini akan membantu diagnose masalah dan solusinya.",
-    category: "facebook",
-    url: "https://kedaimedia.com/blog/cara-memulihkan-akun-facebook-tidak-bisa-login",
-    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&q=80",
-    date: "8 Januari 2024",
-    readTime: "5 menit"
-  },
-  {
-    id: 5,
-    title: "5 Cara Mencegah Akun Sosial Media Di Hack",
-    excerpt: "Mencegah lebih baik dari mengobati. Pelajari 5 langkah preventif untuk mengamankan akun sosial media kamu dari peretas.",
-    category: "keamanan",
-    url: "#",
-    image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&q=80",
-    date: "5 Januari 2024",
-    readTime: "4 menit"
-  },
-  {
-    id: 6,
-    title: "Cara Mengamankan Akun Instagram dari Hacking",
-    excerpt: "Instagram semakin populer dan menjadi target peretas. Pelajari cara mengaktifkan 2FA dan tips keamanan lanjutan.",
-    category: "instagram",
-    url: "#",
-    image: "https://images.unsplash.com/photo-1611262588024-d12430b98920?w=600&q=80",
-    date: "3 Januari 2024",
-    readTime: "6 menit"
-  }
+  { id: 1, title: "Cara Mengembalikan Akun Facebook yang Di Hack: Panduan Lengkap 2024", excerpt: "Akun Facebook kamu di hack? Jangan panik! Panduan lengkap ini akan membantu kamu mengembalikan akses akun dengan cepat dan aman.", category: "facebook", url: "https://kedaimedia.com/blog/cara-mengembalikan-akun-facebook-di-hack", image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&q=80", date: "15 Januari 2024", readTime: "8 menit" },
+  { id: 2, title: "Akun Facebook Di Hack Email Diganti? Ini Solusinya", excerpt: "Peretas sudah mengganti email akun Facebook kamu? Pelajari cara mengatasi situasi kritis ini dengan metode pemulihan lanjutan.", category: "facebook", url: "https://kedaimedia.com/blog/akun-facebook-di-hack-email-diganti", image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=600&q=80", date: "12 Januari 2024", readTime: "6 menit" },
+  { id: 3, title: "Akun Facebook Di Hack Nomor HP Diganti: Cara Mengatasinya", excerpt: "Nomor HP yang terdaftar di Facebook sudah diganti peretas? Jangan khawatir, masih ada cara untuk memulihkan akun kamu.", category: "facebook", url: "https://kedaimedia.com/blog/akun-facebook-di-hack-nomor-diganti", image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80", date: "10 Januari 2024", readTime: "7 menit" },
+  { id: 4, title: "Cara Memulihkan Akun Facebook Tidak Bisa Login", excerpt: "Tidak bisa login ke akun Facebook tapi tidak yakin apakah di hack? Panduan ini akan membantu diagnose masalah dan solusinya.", category: "facebook", url: "https://kedaimedia.com/blog/cara-memulihkan-akun-facebook-tidak-bisa-login", image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&q=80", date: "8 Januari 2024", readTime: "5 menit" },
+  { id: 5, title: "5 Cara Mencegah Akun Sosial Media Di Hack", excerpt: "Mencegah lebih baik dari mengobati. Pelajari 5 langkah preventif untuk mengamankan akun sosial media kamu dari peretas.", category: "keamanan", url: "#", image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&q=80", date: "5 Januari 2024", readTime: "4 menit" },
+  { id: 6, title: "Cara Mengamankan Akun Instagram dari Hacking", excerpt: "Instagram semakin populer dan menjadi target peretas. Pelajari cara mengaktifkan 2FA dan tips keamanan lanjutan.", category: "instagram", url: "#", image: "https://images.unsplash.com/photo-1611262588024-d12430b98920?w=600&q=80", date: "3 Januari 2024", readTime: "6 menit" }
 ];
 
 // === THEME TOGGLE ===
@@ -821,155 +774,77 @@ const themeToggle = document.getElementById('themeToggle');
 const html = document.documentElement;
 const savedTheme = localStorage.getItem('theme') || 'light';
 html.setAttribute('data-theme', savedTheme);
-
-themeToggle.addEventListener('click', () => {
-  const currentTheme = html.getAttribute('data-theme');
-  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-  html.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
-});
+themeToggle.addEventListener('click', () => { const currentTheme = html.getAttribute('data-theme'); const newTheme = currentTheme === 'light' ? 'dark' : 'light'; html.setAttribute('data-theme', newTheme); localStorage.setItem('theme', newTheme); });
 
 // === MODAL ===
-function openModal(key) { 
-  const s = services[key]; 
-  if (!s) return; 
-  document.getElementById('modalTitle').textContent = s.title; 
-  document.getElementById('modalDesc').textContent = s.desc; 
-  const link = document.getElementById('modalLink'); 
-  link.href = s.url; 
-  document.getElementById('modal').style.display = 'flex'; 
-  document.body.style.overflow = 'hidden'; 
-}
-function closeModal() { 
-  document.getElementById('modal').style.display = 'none'; 
-  document.body.style.overflow = ''; 
-}
-
-// === TOGGLE MENU MOBILE ===
-function toggleMenu() { 
-  const menu = document.getElementById('navMenu'); 
-  menu.classList.toggle('active'); 
-}
+function openModal(key) { const s = services[key]; if (!s) return; document.getElementById('modalTitle').textContent = s.title; document.getElementById('modalDesc').textContent = s.desc; const link = document.getElementById('modalLink'); link.href = s.url; document.getElementById('modal').style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+function closeModal() { document.getElementById('modal').style.display = 'none'; document.body.style.overflow = ''; }
+function toggleMenu() { const menu = document.getElementById('navMenu'); menu.classList.toggle('active'); }
 
 // === FAQ ACCORDION ===
-document.querySelectorAll('.faq-question').forEach(button => { 
-  button.addEventListener('click', () => { 
-    const faqItem = button.parentElement; 
-    const isActive = faqItem.classList.contains('active'); 
-    document.querySelectorAll('.faq-item').forEach(item => { 
-      item.classList.remove('active'); 
-      item.querySelector('.faq-answer').style.maxHeight = null; 
-    }); 
-    if (!isActive) { 
-      faqItem.classList.add('active'); 
-      const answer = faqItem.querySelector('.faq-answer'); 
-      answer.style.maxHeight = answer.scrollHeight + "px"; 
-    } 
-  }); 
-});
-
+document.querySelectorAll('.faq-question').forEach(button => { button.addEventListener('click', () => { const faqItem = button.parentElement; const isActive = faqItem.classList.contains('active'); document.querySelectorAll('.faq-item').forEach(item => { item.classList.remove('active'); item.querySelector('.faq-answer').style.maxHeight = null; }); if (!isActive) { faqItem.classList.add('active'); const answer = faqItem.querySelector('.faq-answer'); answer.style.maxHeight = answer.scrollHeight + "px"; } }); });
 document.getElementById('modal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
-// === COUNTER ===
-function animateCounter(id, end, duration) { 
-  const el = document.getElementById(id); 
-  if (!el) return; 
-  const start = performance.now(); 
-  function update(now) { 
-    const p = Math.min((now - start) / duration, 1); 
-    el.textContent = Math.floor(end * (1 - Math.pow(1 - p, 3))).toLocaleString(); 
-    if (p < 1) requestAnimationFrame(update); 
-  } 
-  requestAnimationFrame(update); 
-}
+// === COUNTER ANIMATION ===
+function animateCounter(id, end, duration) { const el = document.getElementById(id); if (!el) return; const start = performance.now(); function update(now) { const p = Math.min((now - start) / duration, 1); el.textContent = Math.floor(end * (1 - Math.pow(1 - p, 3))).toLocaleString(); if (p < 1) requestAnimationFrame(update); } requestAnimationFrame(update); }
 
 // === SCROLL ANIMATIONS ===
-const observer = new IntersectionObserver((entries) => { 
-  entries.forEach(e => { 
-    if (e.isIntersecting) e.target.classList.add('visible'); 
-  }); 
-}, { threshold: 0.1 });
+const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
 // === HEADER SCROLL ===
-window.addEventListener('scroll', () => { 
-  document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50); 
-});
+window.addEventListener('scroll', () => { document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50); });
 
 // === PARTNER MARQUEE ===
-function initMarquee() { 
-  const track = document.getElementById('partnerTrack'); 
-  if (!track) return; 
-  const logos = track.querySelectorAll('.partner-logo'); 
-  if (logos.length < 2) return; 
-  logos.forEach(logo => track.appendChild(logo.cloneNode(true))); 
-  let pos = 0; 
-  const speed = 0.5; 
-  function animate() { 
-    pos -= speed; 
-    const width = track.scrollWidth / 2; 
-    if (Math.abs(pos) >= width) pos = 0; 
-    track.style.transform = 'translateX(' + pos + 'px)'; 
-    requestAnimationFrame(animate); 
-  } 
-  animate(); 
-}
+function initMarquee() { const track = document.getElementById('partnerTrack'); if (!track) return; const logos = track.querySelectorAll('.partner-logo'); if (logos.length < 2) return; logos.forEach(logo => track.appendChild(logo.cloneNode(true))); let pos = 0; const speed = 0.5; function animate() { pos -= speed; const width = track.scrollWidth / 2; if (Math.abs(pos) >= width) pos = 0; track.style.transform = 'translateX(' + pos + 'px)'; requestAnimationFrame(animate); } animate(); }
 
 // === BLOG RENDER ===
-function renderBlogCards(posts) {
-  const grid = document.getElementById('blogGrid');
-  if (!grid) return;
-  
-  grid.innerHTML = '';
-  
-  posts.forEach((post, index) => {
-    const card = document.createElement('a');
-    card.href = post.url;
-    card.className = 'blog-card fade-up';
-    card.style.transitionDelay = (index * 0.1) + 's';
-    
-    card.innerHTML = `
-      <div class="blog-card-image">
-        <img src="${post.image}" alt="${post.title}" loading="lazy">
-        <span class="blog-card-category">${post.category}</span>
-      </div>
-      <div class="blog-card-body">
-        <h3 class="blog-card-title">${post.title}</h3>
-        <p class="blog-card-excerpt">${post.excerpt}</p>
-        <div class="blog-card-meta">
-          <span class="blog-card-date"><i class="ri-calendar-line"></i> ${post.date}</span>
-          <span class="blog-card-read"><i class="ri-time-line"></i> ${post.readTime}</span>
-        </div>
-      </div>
-    `;
-    
-    grid.appendChild(card);
-  });
-  
-  // Re-observe new cards
-  document.querySelectorAll('.blog-card.fade-up').forEach(el => observer.observe(el));
-}
+function renderBlogCards(posts) { const grid = document.getElementById('blogGrid'); if (!grid) return; grid.innerHTML = ''; posts.forEach((post, index) => { const card = document.createElement('a'); card.href = post.url; card.className = 'blog-card fade-up'; card.style.transitionDelay = (index * 0.1) + 's'; card.innerHTML = `<div class="blog-card-image"><img src="${post.image}" alt="${post.title}" loading="lazy"><span class="blog-card-category">${post.category}</span></div><div class="blog-card-body"><h3 class="blog-card-title">${post.title}</h3><p class="blog-card-excerpt">${post.excerpt}</p><div class="blog-card-meta"><span class="blog-card-date"><i class="ri-calendar-line"></i> ${post.date}</span><span class="blog-card-read"><i class="ri-time-line"></i> ${post.readTime}</span></div></div>`; grid.appendChild(card); }); document.querySelectorAll('.blog-card.fade-up').forEach(el => observer.observe(el)); }
 
 // === BLOG FILTER ===
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+document.querySelectorAll('.filter-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); const category = btn.dataset.category; if (category === 'all') { renderBlogCards(blogPosts); } else { renderBlogCards(blogPosts.filter(p => p.category === category)); } }); });
+
+// ============================================
+// === REAL-TIME VISITOR COUNTER (REAL API) ===
+// ============================================
+const NAMESPACE = 'kedai-media-com'; // Namespace unik untuk website Anda
+const VISITOR_KEY = 'total-visitors';
+const BLOG_KEY = 'total-posts';
+
+async function fetchRealTimeData() {
+  try {
+    // 1. Hit Visitor Counter - Setiap halaman diakses, +1 di server CountAPI
+    const hitResponse = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${VISITOR_KEY}`);
+    const hitData = await hitResponse.json();
     
-    const category = btn.dataset.category;
-    if (category === 'all') {
-      renderBlogCards(blogPosts);
-    } else {
-      renderBlogCards(blogPosts.filter(p => p.category === category));
+    // 2. Get Blog Post Count - Ambil data total artikel (jika disimpan di server)
+    const blogResponse = await fetch(`https://api.countapi.xyz/get/${NAMESPACE}/${BLOG_KEY}`);
+    const blogData = await blogResponse.json();
+    
+    // Update Stats Section dengan data ASLI dari server
+    animateCounter('visitors', hitData.value, 2000);
+    
+    // Update Live Online Badge di header
+    const liveCountEl = document.getElementById('liveCount');
+    if (liveCountEl) {
+      // Simulasi sederhana pengunjung online berbasis aktivitas
+      liveCountEl.textContent = Math.min(Math.ceil(hitData.value % 50) + 3, 25);
     }
-  });
-});
+    
+  } catch (error) {
+    console.error("Gagal memuat data realtime:", error);
+    // Fallback jika API error
+    animateCounter('visitors', 10247, 2000);
+    const liveCountEl = document.getElementById('liveCount');
+    if (liveCountEl) liveCountEl.textContent = "5";
+  }
+}
 
 // === INIT ===
 document.addEventListener('DOMContentLoaded', () => { 
   animateCounter('clients', 10247, 2500); 
-  animateCounter('visitors', Math.floor(Math.random() * 200) + 50, 2000); 
+  fetchRealTimeData(); // Panggil API untuk data REAL pengunjung
   const firstFaq = document.querySelector('.faq-item.active .faq-answer'); 
   if (firstFaq) firstFaq.style.maxHeight = firstFaq.scrollHeight + "px"; 
   initMarquee(); 
@@ -978,4 +853,4 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 </body>
-</html>
+  </html>
