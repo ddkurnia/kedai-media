@@ -375,6 +375,8 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
 .card-social { --card-color: #8b5cf6; }
 .card-ads { --card-color: #f97316; }
 .card-design { --card-color: #ec4899; }
+.card-security { --card-color: #14b8a6; }
+.card-system { --card-color: #6366f1; }
 
 /* === BLOG SECTION === */
 .blog-section { padding: 80px 0; background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-body) 100%); transition: background 0.3s ease; }
@@ -521,9 +523,11 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
 <!-- HEADER -->
 <header id="header">
   <div class="container header-inner">
-    <a href="#home" class="brand"> <div class="powered">MALAKA HUB</div> <div class="logo">Kedai Media</div> </a>
+    <!-- PERBAIKAN: Link logo ke homepage -->
+    <a href="https://kedaimedia.com/" class="brand"> <div class="powered">MALAKA HUB</div> <div class="logo">Kedai Media</div> </a>
     <nav class="nav-menu" id="navMenu">
-      <a href="#home" class="nav-link">Home</a> 
+      <!-- PERBAIKAN: Link Home -->
+      <a href="https://kedaimedia.com/" class="nav-link">Home</a> 
       <a href="#layanan" class="nav-link">Layanan</a> 
       <a href="#blog" class="nav-link">Blog</a>
       <a href="#testimoni" class="nav-link">Testimoni</a> 
@@ -624,7 +628,7 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
       
       <div class="service-card card-ads fade-up" onclick="openModal('ads')">
         <div class="service-icon"><i class="ri-megaphone-fill"></i></div>
-        <div class="service-name">Iklan Digital (Ads)</div>
+        <div class="service-name">Iklan Digital</div>
         <div class="service-desc">Manajemen iklan berbayar untuk mencapai target audiens yang tepat sasaran.</div>
         <div class="service-specs">
           <div class="spec-item"><i class="ri-check-line"></i> Facebook & IG Ads</div>
@@ -641,6 +645,30 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
           <div class="spec-item"><i class="ri-check-line"></i> Logo & Branding</div>
           <div class="spec-item"><i class="ri-check-line"></i> Social Media Content</div>
           <div class="spec-item"><i class="ri-check-line"></i> Banner & Poster</div>
+        </div>
+      </div>
+
+      <!-- TAMBAHAN: Layanan Keamanan Akun -->
+      <div class="service-card card-security fade-up" onclick="openModal('security')">
+        <div class="service-icon"><i class="ri-lock-password-fill"></i></div>
+        <div class="service-name">Keamanan Akun</div>
+        <div class="service-desc">Proteksi akun sosial media Anda dari ancaman hacker dengan sistem keamanan berlapis.</div>
+        <div class="service-specs">
+          <div class="spec-item"><i class="ri-check-line"></i> Audit Keamanan</div>
+          <div class="spec-item"><i class="ri-check-line"></i> Setup 2FA</div>
+          <div class="spec-item"><i class="ri-check-line"></i> Proteksi Akun</div>
+        </div>
+      </div>
+
+      <!-- TAMBAHAN: Layanan Sistem Custom -->
+      <div class="service-card card-system fade-up" onclick="openModal('system')">
+        <div class="service-icon"><i class="ri-terminal-box-fill"></i></div>
+        <div class="service-name">Sistem Custom</div>
+        <div class="service-desc">Pengembangan aplikasi dan sistem khusus sesuai kebutuhan spesifik bisnis Anda.</div>
+        <div class="service-specs">
+          <div class="spec-item"><i class="ri-check-line"></i> Aplikasi Web</div>
+          <div class="spec-item"><i class="ri-check-line"></i> API Integration</div>
+          <div class="spec-item"><i class="ri-check-line"></i> Dashboard Admin</div>
         </div>
       </div>
       
@@ -666,7 +694,7 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
     <div class="blog-grid" id="blogGrid"></div>
     
     <div class="blog-more">
-      <a href="https://kedaimedia.com/blog" class="btn btn-outline">Lihat Semua Artikel <i class="ri-arrow-right-line"></i></a>
+      <a href="https://kedaimedia.com/blog/" class="btn btn-outline">Lihat Semua Artikel <i class="ri-arrow-right-line"></i></a>
     </div>
   </div>
 </section>
@@ -732,8 +760,27 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand"> <div class="footer-logo">Kedai<span>Media</span></div> <p>Solusi digital profesional sejak 2009. Melayani website, automation, dan sistem custom seluruh Indonesia.</p> </div>
-      <div> <div class="footer-title">Layanan</div> <a href="pemulihan-akun-sosmed/" class="footer-link">Pemulihan Akun</a> <a href="jasa-pembuatan-website/" class="footer-link">Pembuatan Website</a> <a href="whatsapp-automation/" class="footer-link">WhatsApp Automation</a> <a href="sistem-custom/" class="footer-link">Sistem Custom</a> </div>
-      <div> <div class="footer-title">Blog</div> <a href="blog/cara-mengembalikan-akun-facebook-di-hack" class="footer-link">Akun FB Di Hack</a> <a href="blog/akun-facebook-di-hack-email-diganti" class="footer-link">Email Diganti</a> <a href="blog/akun-facebook-di-hack-nomor-diganti" class="footer-link">Nomor Diganti</a> <a href="blog/cara-memulihkan-akun-facebook-tidak-bisa-login" class="footer-link">Tidak Bisa Login</a> </div>
+      <div> 
+        <div class="footer-title">Layanan</div>
+        <!-- PERBAIKAN: URL sesuai permintaan -->
+        <a href="https://kedaimedia.com/pemulihan-akun-sosmed/" class="footer-link">Pemulihan Akun</a> 
+        <a href="https://kedaimedia.com/pembuatan-website/" class="footer-link">Pembuatan Website</a> 
+        <a href="https://kedaimedia.com/whatsapp-automation/" class="footer-link">WhatsApp Automation</a> 
+        <a href="https://kedaimedia.com/optimasi-sosial-media/" class="footer-link">Optimasi Sosial Media</a>
+        <a href="https://kedaimedia.com/iklan-digital/" class="footer-link">Iklan Digital</a>
+        <a href="https://kedaimedia.com/desain-grafis/" class="footer-link">Desain Grafis</a>
+        <a href="https://kedaimedia.com/keamanan-akun/" class="footer-link">Keamanan Akun</a>
+        <a href="https://kedaimedia.com/sistem-custom/" class="footer-link">Sistem Custom</a>
+      </div>
+      <div> 
+        <div class="footer-title">Blog</div>
+        <!-- PERBAIKAN: URL Blog spesifik -->
+        <a href="https://kedaimedia.com/blog/cara-mengembalikan-akun-facebook-di-hack" class="footer-link">Akun FB Di Hack</a> 
+        <a href="https://kedaimedia.com/blog/akun-facebook-di-hack-email-diganti" class="footer-link">Email Diganti</a> 
+        <a href="https://kedaimedia.com/blog/akun-facebook-di-hack-nomor-diganti" class="footer-link">Nomor Diganti</a> 
+        <a href="https://kedaimedia.com/blog/cara-memulihkan-akun-facebook-tidak-bisa-login" class="footer-link">Tidak Bisa Login</a>
+        <a href="https://kedaimedia.com/blog/cara-mengembalikan-akun-facebook-hilang" class="footer-link">Akun FB Hilang</a>
+      </div>
       <div> <div class="footer-title">Kontak</div> <p class="footer-link" style="cursor: default;">WhatsApp: 0822-8578-1863</p> <p class="footer-link" style="cursor: default;">Indonesia</p> <div class="footer-social"> <a href="https://www.facebook.com/profile.php?id=100064150927466" target="_blank" class="social-icon-link" title="Facebook"><i class="ri-facebook-fill"></i></a> <a href="https://www.tiktok.com/@kedai.media" target="_blank" class="social-icon-link" title="TikTok"><i class="ri-tiktok-fill"></i></a> </div> </div>
     </div>
     <!-- UPDATE TAHUN 2026 -->
@@ -747,26 +794,26 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
 </div>
 
 <script>
-// === DATA LAYANAN ===
+// === DATA LAYANAN (URL DIPERBAIKI) ===
 const services = { 
-  recovery: { title: "Pemulihan Akun Sosmed", desc: "Layanan profesional untuk mengembalikan akun sosial media Anda yang telah diretas atau di-hack. Kami menangani Facebook, Instagram, TikTok, dan platform lainnya dengan tingkat keberhasilan tinggi.", url: "pemulihan-akun-sosmed/" }, 
-  website: { title: "Pembuatan Website", desc: "Website profesional untuk bisnis, UMKM, company profile, instansi pemerintah, sekolah, dan organisasi. Desain modern dengan performa optimal.", url: "jasa-pembuatan-website/" }, 
-  wa: { title: "WhatsApp Automation", desc: "Solusi WhatsApp bot dan auto reply untuk bisnis. Tingkatkan efisiensi layanan pelanggan dengan sistem otomatis yang cerdas.", url: "whatsapp-automation/" }, 
-  social: { title: "Optimasi Sosial Media", desc: "Jasa followers real dan engagement cho Instagram, Facebook, dan TikTok. Tingkatkan visibilitas dan kredibilitas bisnis Anda.", url: "optimasi-sosial-media/" }, 
-  ads: { title: "Iklan Digital", desc: "Kelola iklan Facebook Ads, Instagram Ads, dan Google Ads secara profesional. Optimasi budget untuk hasil maksimal.", url: "iklan-digital/" }, 
-  design: { title: "Desain Grafis", desc: "Jasa desain brosur, flyer, konten sosial media, dan kebutuhan visual lainnya. Desain menarik yang meningkatkan brand awareness.", url: "desain-grafis/" }, 
-  security: { title: "Keamanan Akun", desc: "Proteksi akun sosial media Anda dari ancaman hacker. Audit keamanan dan implementasi sistem perlindungan menyeluruh.", url: "keamanan-akun/" }, 
-  system: { title: "Sistem Custom", desc: "Pengembangan sistem dan aplikasi sesuai kebutuhan spesifik bisnis Anda. Solusi teknologi yang scalable dan maintainable.", url: "sistem-custom/" } 
+  recovery: { title: "Pemulihan Akun Sosmed", desc: "Layanan profesional untuk mengembalikan akun sosial media Anda yang telah diretas atau di-hack. Kami menangani Facebook, Instagram, TikTok, dan platform lainnya dengan tingkat keberhasilan tinggi.", url: "https://kedaimedia.com/pemulihan-akun-sosmed/" }, 
+  website: { title: "Pembuatan Website", desc: "Website profesional untuk bisnis, UMKM, company profile, instansi pemerintah, sekolah, dan organisasi. Desain modern dengan performa optimal.", url: "https://kedaimedia.com/pembuatan-website/" }, 
+  wa: { title: "WhatsApp Automation", desc: "Solusi WhatsApp bot dan auto reply untuk bisnis. Tingkatkan efisiensi layanan pelanggan dengan sistem otomatis yang cerdas.", url: "https://kedaimedia.com/whatsapp-automation/" }, 
+  social: { title: "Optimasi Sosial Media", desc: "Jasa followers real dan engagement cho Instagram, Facebook, dan TikTok. Tingkatkan visibilitas dan kredibilitas bisnis Anda.", url: "https://kedaimedia.com/optimasi-sosial-media/" }, 
+  ads: { title: "Iklan Digital", desc: "Kelola iklan Facebook Ads, Instagram Ads, dan Google Ads secara profesional. Optimasi budget untuk hasil maksimal.", url: "https://kedaimedia.com/iklan-digital/" }, 
+  design: { title: "Desain Grafis", desc: "Jasa desain brosur, flyer, konten sosial media, dan kebutuhan visual lainnya. Desain menarik yang meningkatkan brand awareness.", url: "https://kedaimedia.com/desain-grafis/" }, 
+  security: { title: "Keamanan Akun", desc: "Proteksi akun sosial media Anda dari ancaman hacker. Audit keamanan dan implementasi sistem perlindungan menyeluruh.", url: "https://kedaimedia.com/keamanan-akun/" }, 
+  system: { title: "Sistem Custom", desc: "Pengembangan sistem dan aplikasi sesuai kebutuhan spesifik bisnis Anda. Solusi teknologi yang scalable dan maintainable.", url: "https://kedaimedia.com/sistem-custom/" } 
 };
 
-// === BLOG DATA ===
+// === BLOG DATA (URL DIPERBAIKI) ===
 const blogPosts = [
   { id: 1, title: "Cara Mengembalikan Akun Facebook yang Di Hack: Panduan Lengkap 2024", excerpt: "Akun Facebook kamu di hack? Jangan panik! Panduan lengkap ini akan membantu kamu mengembalikan akses akun dengan cepat dan aman.", category: "facebook", url: "https://kedaimedia.com/blog/cara-mengembalikan-akun-facebook-di-hack", image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&q=80", date: "15 Januari 2024", readTime: "8 menit" },
   { id: 2, title: "Akun Facebook Di Hack Email Diganti? Ini Solusinya", excerpt: "Peretas sudah mengganti email akun Facebook kamu? Pelajari cara mengatasi situasi kritis ini dengan metode pemulihan lanjutan.", category: "facebook", url: "https://kedaimedia.com/blog/akun-facebook-di-hack-email-diganti", image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=600&q=80", date: "12 Januari 2024", readTime: "6 menit" },
   { id: 3, title: "Akun Facebook Di Hack Nomor HP Diganti: Cara Mengatasinya", excerpt: "Nomor HP yang terdaftar di Facebook sudah diganti peretas? Jangan khawatir, masih ada cara untuk memulihkan akun kamu.", category: "facebook", url: "https://kedaimedia.com/blog/akun-facebook-di-hack-nomor-diganti", image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&q=80", date: "10 Januari 2024", readTime: "7 menit" },
   { id: 4, title: "Cara Memulihkan Akun Facebook Tidak Bisa Login", excerpt: "Tidak bisa login ke akun Facebook tapi tidak yakin apakah di hack? Panduan ini akan membantu diagnose masalah dan solusinya.", category: "facebook", url: "https://kedaimedia.com/blog/cara-memulihkan-akun-facebook-tidak-bisa-login", image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&q=80", date: "8 Januari 2024", readTime: "5 menit" },
-  { id: 5, title: "5 Cara Mencegah Akun Sosial Media Di Hack", excerpt: "Mencegah lebih baik dari mengobati. Pelajari 5 langkah preventif untuk mengamankan akun sosial media kamu dari peretas.", category: "keamanan", url: "#", image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&q=80", date: "5 Januari 2024", readTime: "4 menit" },
-  { id: 6, title: "Cara Mengamankan Akun Instagram dari Hacking", excerpt: "Instagram semakin populer dan menjadi target peretas. Pelajari cara mengaktifkan 2FA dan tips keamanan lanjutan.", category: "instagram", url: "#", image: "https://images.unsplash.com/photo-1611262588024-d12430b98920?w=600&q=80", date: "3 Januari 2024", readTime: "6 menit" }
+  { id: 5, title: "Cara Mengembalikan Akun Facebook yang Hilang", excerpt: "Akun Facebook tiba-tiba hilang atau tidak ditemukan? Simak panduan lengkap cara mengembalikan akun FB yang hilang atau terhapus.", category: "facebook", url: "https://kedaimedia.com/blog/cara-mengembalikan-akun-facebook-hilang", image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&q=80", date: "5 Januari 2024", readTime: "6 menit" },
+  { id: 6, title: "5 Cara Mencegah Akun Sosial Media Di Hack", excerpt: "Mencegah lebih baik dari mengobati. Pelajari 5 langkah preventif untuk mengamankan akun sosial media kamu dari peretas.", category: "keamanan", url: "#", image: "https://images.unsplash.com/photo-1611262588024-d12430b98920?w=600&q=80", date: "3 Januari 2024", readTime: "4 menit" }
 ];
 
 // === THEME TOGGLE ===
@@ -814,27 +861,25 @@ const BLOG_KEY = 'total-posts';
 
 async function fetchRealTimeData() {
   try {
-    // 1. Hit Visitor Counter - Setiap halaman diakses, +1 di server CountAPI
+    // 1. Hit Visitor Counter
     const hitResponse = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${VISITOR_KEY}`);
     const hitData = await hitResponse.json();
     
-    // 2. Get Blog Post Count - Ambil data total artikel (jika disimpan di server)
+    // 2. Get Blog Post Count
     const blogResponse = await fetch(`https://api.countapi.xyz/get/${NAMESPACE}/${BLOG_KEY}`);
     const blogData = await blogResponse.json();
     
-    // Update Stats Section dengan data ASLI dari server
+    // Update Stats
     animateCounter('visitors', hitData.value, 2000);
     
-    // Update Live Online Badge di header
+    // Update Live Online Badge
     const liveCountEl = document.getElementById('liveCount');
     if (liveCountEl) {
-      // Simulasi sederhana pengunjung online berbasis aktivitas
       liveCountEl.textContent = Math.min(Math.ceil(hitData.value % 50) + 3, 25);
     }
     
   } catch (error) {
     console.error("Gagal memuat data realtime:", error);
-    // Fallback jika API error
     animateCounter('visitors', 10247, 2000);
     const liveCountEl = document.getElementById('liveCount');
     if (liveCountEl) liveCountEl.textContent = "5";
@@ -844,7 +889,7 @@ async function fetchRealTimeData() {
 // === INIT ===
 document.addEventListener('DOMContentLoaded', () => { 
   animateCounter('clients', 10247, 2500); 
-  fetchRealTimeData(); // Panggil API untuk data REAL pengunjung
+  fetchRealTimeData();
   const firstFaq = document.querySelector('.faq-item.active .faq-answer'); 
   if (firstFaq) firstFaq.style.maxHeight = firstFaq.scrollHeight + "px"; 
   initMarquee(); 
@@ -853,4 +898,4 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 </body>
-  </html>
+</html>
