@@ -102,7 +102,7 @@
   
   /* Services Variables */
   --services-bg: #f8fafc;
-  --services-card-bg: #f3f4f6; /* Abu muda untuk light mode */
+  --services-card-bg: #f3f4f6;
   --services-card-border: #e5e7eb;
 }
 
@@ -128,7 +128,7 @@
   --border-medium: #1e293b;
   
   --services-bg: #0c1222;
-  --services-card-bg: #131c31; /* Gelap untuk dark mode */
+  --services-card-bg: #131c31;
   --services-card-border: #1e293b;
 }
 
@@ -223,7 +223,7 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
 .stat-number { font-family: 'Poppins', sans-serif; font-size: 36px; font-weight: 700; background: var(--text-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .stat-label { font-size: 14px; color: var(--text-muted); font-weight: 500; }
 
-/* === SERVICES (UPDATED DESIGN) === */
+/* === SERVICES === */
 .services { 
   padding: 100px 0; 
   background: var(--bg-body);
@@ -261,7 +261,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   z-index: 1; 
 }
 
-/* Desain Kartu Abu-Abu Muda dengan Gambar */
 .service-card { 
   background: var(--services-card-bg);
   border: 1px solid var(--services-card-border);
@@ -278,14 +277,12 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   color: var(--text-primary);
 }
 
-/* Hover Effect */
 .service-card:hover { 
   transform: translateY(-8px) scale(1.02);
   border-color: var(--sky-400);
   box-shadow: 0 20px 40px -10px rgba(14, 165, 233, 0.2);
 }
 
-/* Gambar/Thumbnail Area */
 .service-image {
   width: 100%;
   height: 200px;
@@ -304,7 +301,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   transform: scale(1.1);
 }
 
-/* Overlay Gradasi pada Gambar */
 .service-image::after {
   content: '';
   position: absolute;
@@ -316,7 +312,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   z-index: 1;
 }
 
-/* Konten di dalam kartu */
 .service-content {
   padding: 24px;
   display: flex;
@@ -324,10 +319,9 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   gap: 12px;
   position: relative;
   z-index: 2;
-  margin-top: -20px; /* Agar konten sedikit naik ke area gambar */
+  margin-top: -20px;
 }
 
-/* Label Badge (NEW / POPULER) */
 .service-badge {
   position: absolute;
   top: 16px;
@@ -352,7 +346,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   color: #fff;
 }
 
-/* Ikon kecil di konten */
 .service-icon-small {
   width: 40px;
   height: 40px;
@@ -366,7 +359,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   border: 1px solid rgba(14, 165, 233, 0.2);
 }
 
-/* Judul Layanan */
 .service-name { 
   font-family: 'Poppins', sans-serif; 
   font-size: 18px; 
@@ -375,7 +367,6 @@ header.scrolled { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
   line-height: 1.3;
 }
 
-/* Deskripsi */
 .service-desc { 
   font-size: 13px; 
   color: var(--text-secondary); 
@@ -609,7 +600,116 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
 .footer-social { display: flex; gap: 12px; margin-top: 10px; }
 .social-icon-link { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(255, 255, 255, 0.05); border-radius: 10px; color: var(--gray-400); font-size: 20px; transition: all 0.3s; }
 .social-icon-link:hover { background: var(--primary-gradient); color: white; transform: translateY(-3px); }
-.footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 24px; text-align: center; font-size: 13px; }
+
+/* === FOOTER LEGAL SECTION (NEW) === */
+.footer-legal {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 32px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.footer-legal-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.footer-legal-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-legal-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #10b981;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.footer-legal-title i {
+  font-size: 18px;
+}
+
+.footer-legal-subtitle {
+  font-size: 12px;
+  color: var(--gray-400);
+}
+
+.footer-legal-badges {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.legal-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.legal-badge:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(14, 165, 233, 0.3);
+}
+
+.legal-badge-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px;
+}
+
+.legal-badge-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.legal-badge-label {
+  font-size: 10px;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.legal-badge-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.legal-badge-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(14, 165, 233, 0.2));
+  font-size: 18px;
+  color: #10b981;
+}
+
+.footer-bottom { 
+  border-top: 1px solid rgba(255, 255, 255, 0.08); 
+  padding-top: 24px; 
+  text-align: center; 
+  font-size: 13px; 
+}
 
 /* === MODAL === */
 .modal-overlay { display: none; position: fixed; inset: 0; background: var(--bg-modal); backdrop-filter: blur(4px); z-index: 2000; justify-content: center; align-items: center; padding: 20px; }
@@ -649,6 +749,21 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
   .testimonials-grid { grid-template-columns: 1fr; }
   .integrations-grid { grid-template-columns: repeat(2, 1fr); }
   .integration-links { flex-direction: column; gap: 15px; align-items: center; }
+  
+  /* Footer Legal Responsive */
+  .footer-legal-content {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: center;
+  }
+  .footer-legal-text {
+    align-items: center;
+    width: 100%;
+  }
+  .footer-legal-badges {
+    width: 100%;
+    justify-content: center;
+  }
 }
 @media (max-width: 480px) { 
   .hero { padding: 120px 0 60px; } 
@@ -656,6 +771,13 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
   .btn { width: 100%; } 
   .trust-grid { grid-template-columns: 1fr; }
   .integrations-grid { grid-template-columns: 1fr; }
+  .legal-badge {
+    width: 100%;
+    justify-content: center;
+  }
+  .footer-legal-badges {
+    flex-direction: column;
+  }
 }
 
 /* === ANIMATIONS === */
@@ -720,7 +842,7 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
   </div>
 </section>
 
-<!-- SERVICES (UPDATED HTML) -->
+<!-- SERVICES -->
 <section class="services" id="layanan">
   <div class="container">
     <div class="section-header"> 
@@ -742,7 +864,7 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
         </div>
       </a>
       
-      <!-- Website Service (LINK DIPERBAIKI) -->
+      <!-- Website Service -->
       <a href="https://kedaimedia.com/jasa-pembuatan-website/" class="service-card fade-up">
         <span class="service-badge badge-new">New</span>
         <div class="service-image">
@@ -815,7 +937,7 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
         </div>
       </a>
 
-      <!-- Custom System (FOTO DIGANTI) -->
+      <!-- Custom System -->
       <a href="https://kedaimedia.com/sistem-custom/" class="service-card fade-up">
         <span class="service-badge badge-new">New</span>
         <div class="service-image">
@@ -1058,6 +1180,43 @@ footer { background: var(--bg-footer); color: var(--gray-400); padding: 60px 0 3
       </div>
       <div> <div class="footer-title">Kontak</div> <p class="footer-link" style="cursor: default;">WhatsApp: 0822-8578-1863</p> <p class="footer-link" style="cursor: default;">Indonesia</p> <div class="footer-social"> <a href="https://www.facebook.com/profile.php?id=100064150927466" target="_blank" class="social-icon-link" title="Facebook"><i class="ri-facebook-fill"></i></a> <a href="https://www.tiktok.com/@kedai.media" target="_blank" class="social-icon-link" title="TikTok"><i class="ri-tiktok-fill"></i></a> </div> </div>
     </div>
+    
+    <!-- FOOTER LEGAL SECTION (NEW) -->
+    <div class="footer-legal">
+      <div class="footer-legal-content">
+        <div class="footer-legal-text">
+          <div class="footer-legal-title">
+            <i class="ri-shield-check-line"></i>
+            Terdaftar Resmi di OSS
+          </div>
+          <div class="footer-legal-subtitle">Business Entity Registration - Indonesian Government</div>
+        </div>
+        <div class="footer-legal-badges">
+          <!-- Legal Business Badge -->
+          <div class="legal-badge">
+            <div class="legal-badge-icon">
+              <i class="ri-government-line"></i>
+            </div>
+            <div class="legal-badge-text">
+              <span class="legal-badge-label">Status</span>
+              <span class="legal-badge-name">Legal Business</span>
+            </div>
+          </div>
+          <!-- Malaka Hub Logo Badge -->
+          <div class="legal-badge">
+            <img src="https://kedaimedia.com/malaka-hub-logo.png" alt="Malaka Hub" class="legal-badge-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="legal-badge-icon" style="display: none;">
+              <i class="ri-building-4-line"></i>
+            </div>
+            <div class="legal-badge-text">
+              <span class="legal-badge-label">Powered by</span>
+              <span class="legal-badge-name">Malaka Hub</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <div class="footer-bottom"> &copy; 2026 Kedai Media Indonesia. All rights reserved. </div>
   </div>
 </footer>
@@ -1123,9 +1282,7 @@ function renderBlogCards(posts) { const grid = document.getElementById('blogGrid
 // === BLOG FILTER ===
 document.querySelectorAll('.filter-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); const category = btn.dataset.category; if (category === 'all') { renderBlogCards(blogPosts); } else { renderBlogCards(blogPosts.filter(p => p.category === category)); } }); });
 
-// ============================================
-// === REAL-TIME VISITOR COUNTER (REAL API) ===
-// ============================================
+// === REAL-TIME VISITOR COUNTER ===
 const NAMESPACE = 'kedai-media-com'; 
 const VISITOR_KEY = 'total-visitors';
 const BLOG_KEY = 'total-posts';
@@ -1164,4 +1321,4 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 </body>
-                                </html>
+  </html>
