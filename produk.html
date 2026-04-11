@@ -1,44 +1,165 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Kedai Media Produk</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produk Kedai Media</title>
 
-  <!-- Auto redirect 3 detik -->
-  <meta http-equiv="refresh" content="3;url=http://lynk.id/kedaimedia/124yy16e0wq4/checkout">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 40px;
-      background: #0f172a;
-      color: white;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 15px 25px;
-      background: #22c55e;
-      color: white;
-      text-decoration: none;
-      border-radius: 10px;
-      font-size: 18px;
-    }
-  </style>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #1e1b4b, #020617);
+  color: white;
+  text-align: center;
+}
+
+/* HEADER */
+.header {
+  padding: 40px 20px 10px;
+}
+
+.header h1 {
+  font-size: 28px;
+  background: linear-gradient(90deg, #22c55e, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header p {
+  opacity: 0.7;
+  margin-top: 10px;
+}
+
+/* GRID */
+.container {
+  padding: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 18px;
+  margin-top: 20px;
+}
+
+/* CARD */
+.card {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  text-decoration: none;
+  color: white;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* BORDER GLOW */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  padding: 1px;
+  background: linear-gradient(45deg, #22c55e, #3b82f6, #a855f7);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.03);
+}
+
+/* IMAGE */
+.card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+/* TITLE */
+.card h3 {
+  padding: 12px;
+  font-size: 14px;
+}
+
+/* BADGE */
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #22c55e;
+  font-size: 10px;
+  padding: 5px 8px;
+  border-radius: 6px;
+}
+
+/* FOOTER */
+.footer {
+  margin: 30px 0;
+  font-size: 12px;
+  opacity: 0.5;
+}
+</style>
+
 </head>
 <body>
 
-  <h1>🚀 Produk Digital Kedai Media</h1>
-  <p>Klik tombol di bawah untuk lihat semua produk</p>
+<div class="header">
+  <h1>🚀 Produk Kedai Media</h1>
+  <p>Pilih layanan terbaik untuk bisnis kamu</p>
+</div>
 
-  <a href="http://lynk.id/kedaimedia/124yy16e0wq4/checkout" class="btn">
-    Lihat Produk Sekarang
-  </a>
+<div class="container">
+  <div class="grid">
 
-  <p style="margin-top:20px; opacity:0.7;">
-    Anda akan diarahkan otomatis...
-  </p>
+    <!-- APLIKASI KASIR (PRIORITAS) -->
+    <a href="https://lynk.id/USERNAMEKAMU/kasir" class="card">
+      <span class="badge">🔥 BEST</span>
+      <img src="https://via.placeholder.com/300x200" alt="">
+      <h3>Aplikasi Kasir UMKM</h3>
+    </a>
+
+    <!-- WEBSITE -->
+    <a href="https://lynk.id/USERNAMEKAMU/website" class="card">
+      <img src="https://via.placeholder.com/300x200" alt="">
+      <h3>Jasa Website</h3>
+    </a>
+
+    <!-- BOT WA -->
+    <a href="https://lynk.id/USERNAMEKAMU/botwa" class="card">
+      <img src="https://via.placeholder.com/300x200" alt="">
+      <h3>Bot WhatsApp</h3>
+    </a>
+
+    <!-- DESAIN -->
+    <a href="https://lynk.id/USERNAMEKAMU/desain" class="card">
+      <img src="https://via.placeholder.com/300x200" alt="">
+      <h3>Jasa Desain</h3>
+    </a>
+
+    <!-- RECOVERY -->
+    <a href="https://lynk.id/USERNAMEKAMU/recovery" class="card">
+      <img src="https://via.placeholder.com/300x200" alt="">
+      <h3>Recovery Akun</h3>
+    </a>
+
+  </div>
+</div>
+
+<div class="footer">
+  Kedai Media © 2026
+</div>
 
 </body>
 </html>
