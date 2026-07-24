@@ -153,6 +153,14 @@ async function uploadToCloudinary(file) {
         lastUploadedUrl = CLOUDINARY_CONFIG.getArticleUrl(data.public_id);
         lastUploadedPublicId = data.public_id;
 
+        // OTOMATIS: Set sebagai thumbnail jika field articleImage kosong
+        const articleImageField = document.getElementById('articleImage');
+        if (articleImageField && !articleImageField.value.trim()) {
+            const thumbUrl = CLOUDINARY_CONFIG.getThumbUrl(data.public_id);
+            articleImageField.value = thumbUrl;
+            showImagePreview();
+        }
+
         // Show result
         document.getElementById('uploadResult').classList.remove('hidden');
         document.getElementById('uploadPreviewImg').src = CLOUDINARY_CONFIG.getThumbUrl(data.public_id);
