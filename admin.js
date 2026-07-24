@@ -738,6 +738,162 @@ function previewArticle() {
     document.getElementById('generatedHTMLSection').classList.add('hidden');
 }
 
+// === CONTENT FORMATTER ===
+// Otomatis konversi text mentah jadi HTML rapi saat generate artikel
+function formatContent(raw) {
+    if (!raw) return '';
+    // Pisah per baris, simpan newline asli untuk deteksi paragraf
+    const lines = raw.split('\n');
+    let html = '';
+    let i = 0;
+
+    while (i < lines.length) {
+        const line = lines[i];
+        const trimmed = line.trim();
+
+        // Skip baris kosong
+        if (trimmed === '') { i++; continue; }
+
+        // --- HR: --- atau *** atau ---
+        if (/^[-]{3,}$/.test(trimmed) || /^[*]{3,}$/.test(trimmed)) {
+            html += '<hr>';
+            i++; continue;
+        }
+
+        // --- Gambar: <img ...> (sudah HTML dari tombol insert)
+        if (/^<img\s/i.test(trimmed)) {
+            html += trimmed + '\n';
+            i++; continue;
+        }
+
+        // --- Block HTML yang sudah ada (div, ul, ol, blockquote, table)
+        if (/^<(div|ul|ol|blockquote|table|h[1-6]|hr)/i.test(trimmed)) {
+            // Kumpulkan sampai closing tag
+            const tagMatch = trimmed.match(/^<(div|ul|ol|blockquote|table)/i);
+            if (tagMatch) {
+                const tagName = tagMatch[1].toLowerCase();
+                let block = trimmed;
+                let depth = 1;
+                i++;
+                while (i < lines.length && depth > 0) {
+                    const openTags = (lines[i].match(new RegExp('<' + tagName, 'gi')) || []).length;
+                    const closeTags = (lines[i].match(new RegExp('</' + tagName, 'gi')) || []).length;
+                    depth += openTags - closeTags;
+                    block += '\n' + lines[i];
+                    i++;
+                }
+                html += block + '\n';
+            } else {
+                html += trimmed + '\n';
+                i++;
+            }
+            continue;
+        }
+
+        // --- Heading: # ## ### atau H1 H2 H3 atau baris pendek ALL CAPS
+        const mdHeading = trimmed.match(/^(#{1,3})\s+(.+)/);
+        if (mdHeading) {
+            const level = mdHeading[1].length;
+            html += '<h' + (level + 1) + '>' + inlineFormat(mdHeading[2]) + '</h' + (level + 1) + '>\n';
+            i++; continue;
+        }
+        // Deteksi heading: baris pendek (< 60 char) dan ALL CAPS (minimal 3 huruf kapital)
+        if (trimmed.length < 60 && trimmed.length > 3 && /^[A-Z\s\d.,!?]+$/.test(trimmed) && /[A-Z]{3,}/.test(trimmed)) {
+            html += '<h2>' + inlineFormat(trimmed) + '</h2>\n';
+            i++; continue;
+        }
+        // Deteksi heading: angka + titik + spasi + teks pendek (contoh: "1. Buka halaman...")
+        if (/^\d+\.\s+.+/.test(trimmed) && trimmed.length < 80) {
+            html += '<h3>' + inlineFormat(trimmed) + '</h3>\n';
+            i++; continue;
+        }
+
+        // --- Bullet list: kumpulkan semua baris bullet berurutan
+        if (/^[\-\*\•]\s+/.test(trimmed)) {
+            let listItems = [];
+            // Cek apakah baris sebelumnya adalah paragraf pendek (jadi judul list)
+            let listTitle = '';
+            if (html.endsWith('</p>\n')) {
+                // Ambil teks dari <p> terakhir, jadikan judul box
+                const lastP = html.lastIndexOf('<p>');
+                const lastPEnd = html.lastIndexOf('</p>');
+                if (lastP >= 0 && lastPEnd > lastP) {
+                    listTitle = html.substring(lastP + 3, lastPEnd);
+                    html = html.substring(0, lastP);
+                }
+            }
+            while (i < lines.length && /^[\-\*\•]\s+/.test(lines[i].trim())) {
+                listItems.push(inlineFormat(lines[i].trim().replace(/^[\-\*\•]\s+/, '')));
+                i++;
+            }
+            html += '<div class="box">';
+            if (listTitle) html += '<p><strong>' + listTitle + '</strong></p>';
+            html += '<ul>' + listItems.map(item => '<li>' + item + '</li>').join('\n') + '</ul></div>\n';
+            continue;
+        }
+
+        // --- Numbered list: kumpulkan semua baris bernomor berurutan
+        if (/^\d+\.\s+/.test(trimmed) && trimmed.length >= 80) {
+            let listItems = [];
+            while (i < lines.length && /^\d+\.\s+/.test(lines[i].trim())) {
+                listItems.push(inlineFormat(lines[i].trim().replace(/^\d+\.\s+/, '')));
+                i++;
+            }
+            html += '<div class="box"><ol>' + listItems.map(item => '<li>' + item + '</li>').join('\n') + '</ol></div>\n';
+            continue;
+        }
+
+        // --- Blockquote: > text
+        if (/^>\s+/.test(trimmed)) {
+            let quoteLines = [];
+            while (i < lines.length && /^>\s*/.test(lines[i].trim())) {
+                quoteLines.push(inlineFormat(lines[i].trim().replace(/^>\s*/, '')));
+                i++;
+            }
+            html += '<blockquote>' + quoteLines.join('<br>') + '</blockquote>\n';
+            continue;
+        }
+
+        // --- Paragraf: kumpulkan baris teks berurutan (sampai baris kosong atau pola khusus)
+        let paraLines = [trimmed];
+        i++;
+        while (i < lines.length) {
+            const next = lines[i].trim();
+            // Berhenti jika baris kosong atau pola khusus
+            if (next === '' ||
+                /^[-]{3,}$/.test(next) || /^[*]{3,}$/.test(next) ||
+                /^<img\s/i.test(next) ||
+                /^<(div|ul|ol|blockquote|table|h[1-6])/i.test(next) ||
+                /^#{1,3}\s+/.test(next) ||
+                /^[\-\*\•]\s+/.test(next) ||
+                /^>\s+/.test(next) ||
+                (next.length < 60 && /^[A-Z\s\d.,!?]+$/.test(next) && /[A-Z]{3,}/.test(next))) {
+                break;
+            }
+            paraLines.push(next);
+            i++;
+        }
+        const paraText = paraLines.join(' ').replace(/\s{2,}/g, ' ');
+        html += '<p>' + inlineFormat(paraText) + '</p>\n';
+    }
+
+    return html;
+}
+
+// Format inline: bold, italic, links, kode
+function inlineFormat(text) {
+    if (!text) return '';
+    // Jangan parse jika sudah mengandung tag HTML (kecuali <img>)
+    if (/<\w+[^>]*>/.test(text) && !/^<img\s/i.test(text)) return text;
+    // Bold: **text**
+    text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    // Italic: *text*
+    text = text.replace(/(?<!\*)\*(?<!\*)(.+?)(?<!\*)\*(?<!\*)/g, '<em>$1</em>');
+    // URL otomatis jadi link
+    text = text.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+    return text;
+}
+
 // === GENERATE ARTICLE HTML ===
 function generateArticleHTML() {
     const title = document.getElementById('articleTitle').value.trim();
@@ -797,26 +953,94 @@ margin:20px 0;
 }  
 .box{  
 background:#f5f7fb;  
-padding:20px;  
-border-radius:10px;  
+padding:20px 24px;  
+border-radius:12px;  
 margin:25px 0;  
+border-left:4px solid #0077ff;  
+}  
+.box ul,.box ol{  
+margin:10px 0;  
+padding-left:24px;  
+}  
+.box li{  
+margin-bottom:6px;  
 }  
 .cta{  
-background:#e8f1ff;  
-padding:20px;  
-border-radius:10px;  
+background:linear-gradient(135deg,#e8f1ff,#dbeafe);  
+padding:24px;  
+border-radius:12px;  
+border-left:4px solid #0077ff;  
+margin-top:30px;  
+}  
+.cta h2{  
+color:#1a56db;  
+margin-top:0;  
+}  
+.cta a{  
+display:inline-block;  
+background:#0077ff;  
+color:#fff!important;  
+padding:10px 24px;  
+border-radius:8px;  
+margin-top:10px;  
+font-size:16px;  
+}  
+.cta a:hover{  
+background:#005fcc;  
+}  
+hr{  
+border:none;  
+border-top:1px solid #e5e7eb;  
+margin:35px 0;  
+}  
+blockquote{  
+border-left:4px solid #d1d5db;  
+margin:25px 0;  
+padding:15px 20px;  
+background:#f9fafb;  
+font-style:italic;  
+color:#555;  
+border-radius:0 8px 8px 0;  
 }  
 a{  
 color:#0077ff;  
 text-decoration:none;  
 font-weight:bold;  
 }  
+a:hover{  
+text-decoration:underline;  
+}  
+h2{  
+color:#1a1a2e;  
+font-size:1.5em;  
+border-bottom:2px solid #e5e7eb;  
+padding-bottom:8px;  
+margin-top:40px;  
+margin-bottom:15px;  
+}  
+h3{  
+color:#333;  
+font-size:1.2em;  
+margin-top:25px;  
+margin-bottom:10px;  
+}  
+p{  
+margin-bottom:16px;  
+}  
+ul,ol{  
+padding-left:24px;  
+margin-bottom:16px;  
+}  
+li{  
+margin-bottom:6px;  
+}  
 </style>  </head>  <body>  
 <h1>${escHtml(title)}</h1>  
 ${image ? '<img src="' + image + '" alt="' + escAttr(title) + '">' : ''}
-${content}
+${formatContent(content)}
 <div class="cta">  
-<p>Butuh bantuan profesional untuk memulihkan akun Anda? <a href="https://kedaimedia.com/">Hubungi Kedai Media</a> untuk konsultasi gratis.</p>  
+<h2>Butuh Bantuan Profesional?</h2>  
+<p>Kedai Media Indonesia menyediakan solusi profesional untuk kebutuhan digital Anda. <a href="https://kedaimedia.com/">Konsultasi Gratis</a></p>  
 </div>  
 </body>  </html>`;
 }
