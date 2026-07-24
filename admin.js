@@ -1130,7 +1130,18 @@ async function publishToGitHub() {
     if (!slug) return showToast('Slug wajib diisi.', 'error');
     if (!title) return showToast('Judul wajib diisi.', 'error');
 
-    // Auto-save dulu jika belum
+    // AMBIL SEMUA DATA FORM SEBELUM saveArticle() karena saveArticle() memanggil resetForm()
+    // yang mengosongkan semua field form
+    const formImage = document.getElementById('articleImage').value.trim();
+    const formReadTime = document.getElementById('articleReadTime').value.trim() || '5 menit';
+    const formExcerpt = document.getElementById('articleExcerpt').value.trim();
+    const formCategory = document.getElementById('articleCategory').value;
+    const formDate = formatDate(new Date().toISOString());
+
+    // Generate HTML SEBELUM saveArticle() — karena generateArticleHTML() baca dari form
+    const html = generateArticleHTML();
+
+    // Auto-save dulu jika belum (ini akan memanggil resetForm() yang mengosongkan form)
     const editId = document.getElementById('editArticleId').value;
     if (!editId) {
         saveArticle();
@@ -1145,7 +1156,6 @@ async function publishToGitHub() {
     try {
         // ========== STEP 1: Upload file HTML artikel ==========
         updateBtn('Upload artikel HTML...');
-        const html = generateArticleHTML();
         const articlePath = `blog/${slug}.html`;
 
         const existingArticle = await githubAPI('GET', `/contents/${articlePath}`);
@@ -1161,11 +1171,6 @@ async function publishToGitHub() {
 
         // ========== STEP 2: Update blog/index.html ==========
         updateBtn('Update blog index...');
-        const image = document.getElementById('articleImage').value.trim();
-        const readTime = document.getElementById('articleReadTime').value.trim() || '5 menit';
-        const excerpt = document.getElementById('articleExcerpt').value.trim();
-        const category = document.getElementById('articleCategory').value;
-        const date = document.getElementById('articleMetaTitle') ? formatDate(new Date().toISOString()) : '';
 
         const blogIndexFile = await githubAPI('GET', '/contents/blog/index.html');
         if (!blogIndexFile) throw new Error('Gagal membaca blog/index.html');
@@ -1191,14 +1196,14 @@ async function publishToGitHub() {
             const newEntry = `  {
     id: ${newId},
     title: "${title.replace(/"/g, '\\"')}",
-    excerpt: "${(excerpt || '').replace(/"/g, '\\"').substring(0, 200)}",
-    category: "${category}",
+    excerpt: "${(formExcerpt || '').replace(/"/g, '\\"').substring(0, 200)}",
+    category: "${formCategory}",
     url: "${articleUrl}",
-    image: "${image || 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&q=80'}",
+    image: "${formImage || 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&q=80'}",
     author: "${SITE_CONFIG.author}",
     authorImg: "${SITE_CONFIG.authorImg}",
-    date: "${date}",
-    readTime: "${readTime}",
+    date: "${formDate}",
+    readTime: "${formReadTime}",
     featured: false
   }`;
 
