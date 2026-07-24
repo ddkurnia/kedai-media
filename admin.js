@@ -279,33 +279,36 @@ function handleLogin(e) {
     btnText.classList.add('hidden');
     spinner.classList.remove('hidden');
 
-    if (db) {
+    // Cek Firebase status
+    if (db && typeof firebase !== 'undefined' && firebase.auth) {
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then((userCredential) => {
                 showDashboard(userCredential.user);
             })
             .catch((error) => {
-                let msg = 'Login gagal. Periksa email dan password.';
-                if (error.code === 'auth/user-not-found') msg = 'Email tidak terdaftar.';
+                let msg = 'Login gagal. ' + error.message;
+                if (error.code === 'auth/user-not-found') msg = 'Email tidak terdaftar di Firebase. Gunakan mode fallback atau tambah user di Firebase Console.';
                 else if (error.code === 'auth/wrong-password') msg = 'Password salah.';
                 else if (error.code === 'auth/invalid-credential') msg = 'Email atau password salah.';
                 else if (error.code === 'auth/too-many-requests') msg = 'Terlalu banyak percobaan. Coba lagi nanti.';
+                else if (error.code === 'auth/invalid-email') msg = 'Format email tidak valid.';
                 errorEl.textContent = msg;
                 btnText.classList.remove('hidden');
                 spinner.classList.add('hidden');
             });
     } else {
-        // Fallback: localStorage auth (untuk testing tanpa Firebase)
+        // Fallback: localStorage auth
         setTimeout(() => {
-            if (email === 'admin@kedaimedia.com') {
+            if (email === 'admin@kedaimedia.com' && password.length >= 6) {
                 localStorage.setItem('km_admin_auth', JSON.stringify({ email, timestamp: Date.now() }));
                 showDashboard({ email });
             } else {
-                errorEl.textContent = 'Email tidak diizinkan. Gunakan admin@kedaimedia.com';
+                var fbStatus = firebaseLoading ? 'masih loading...' : 'tidak tersedia';
+                errorEl.textContent = "Login gagal. Gunakan email admin@kedaimedia.com. (Firebase " + fbStatus + ")";
                 btnText.classList.remove('hidden');
                 spinner.classList.add('hidden');
             }
-        }, 800);
+        }, 500);
     }
 }
 
@@ -1434,35 +1437,79 @@ function showToast(message, type) {
 }
 
 // === EVENT LISTENERS ===
-document.getElementById('articleSlug').addEventListener('input', updateSlugPreview);
-document.getElementById('articleImage').addEventListener('input', showImagePreview);
-document.getElementById('loginForm').addEventListener('submit', handleLogin);
+try {
+    document.getElementById('articleSlug').addEventListener('input', updateSlugPreview);
+    document.getElementById('articleImage').addEventListener('input', showImagePreview);
+} catch(e) {}
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    // Double-check handleLogin exists
+    if (typeof handleLogin === 'function') {
+        handleLogin(e);
+    } else {
+        alert('Error: admin.js belum selesai loading. Refresh halaman (Ctrl+Shift+R).');
+    }
+});
+
+// === FIREBASE READY FLAG ===
+let firebaseReady = false;
+let firebaseLoading = true;
 
 // === INIT ===
-document.addEventListener('DOMContentLoaded', () => {
+function initApp() {
     // Init drag & drop
-    initDragDrop();
+    try { initDragDrop(); } catch(e) {}
 
-    // Load Firebase SDK
-    const script = document.createElement('script');
-    script.src = 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js';
-    script.onload = () => {
-        const authScript = document.createElement('script');
-        authScript.src = 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js';
-        authScript.onload = () => {
-            const fsScript = document.createElement('script');
-            fsScript.src = 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js';
-            fsScript.onload = () => {
+    // Load Firebase SDK dengan timeout & error handling
+    const SDK_BASE = 'https://www.gstatic.com/firebasejs/10.12.0/';
+    const scripts = [
+        'firebase-app-compat.js',
+        'firebase-auth-compat.js',
+        'firebase-firestore-compat.js'
+    ];
+
+    // Timeout 6 detik - fallback ke localStorage
+    const fallbackTimer = setTimeout(() => {
+        if (!firebaseReady) {
+            console.warn('Firebase SDK timeout. Using localStorage fallback.');
+            firebaseLoading = false;
+            checkAuth();
+        }
+    }, 6000);
+
+    function loadScripts(index) {
+        if (index >= scripts.length) {
+            // Semua SDK loaded
+            clearTimeout(fallbackTimer);
+            firebaseReady = true;
+            firebaseLoading = false;
+            try {
                 initFirebase();
-                checkAuth();
-            };
-            document.head.appendChild(fsScript);
+            } catch(e) {
+                console.warn('initFirebase error:', e);
+            }
+            checkAuth();
+            return;
+        }
+
+        const s = document.createElement('script');
+        s.src = SDK_BASE + scripts[index];
+        s.onload = () => loadScripts(index + 1);
+        s.onerror = () => {
+            console.warn(`Failed to load ${scripts[index]}. Using localStorage fallback.`);
+            clearTimeout(fallbackTimer);
+            firebaseLoading = false;
+            checkAuth();
         };
-        document.head.appendChild(authScript);
-    };
-    script.onerror = () => {
-        console.warn('Firebase SDK failed to load. Using localStorage mode.');
-        checkAuth();
-    };
-    document.head.appendChild(script);
-});
+        document.head.appendChild(s);
+    }
+
+    loadScripts(0);
+}
+
+// Jalankan init - gunakan DOMContentLoaded jika tersedia, langsung jalankan jika sudah
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+} else {
+    initApp();
+}
