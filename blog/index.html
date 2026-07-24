@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="google-site-verification" content="uhQbLYS0LhZkFZtxX9bQBlViS_13YCNKOyJcya7nyX4" />
 
 <title>Blog Tips Digital & Solusi Akun | Kedai Media Indonesia</title>
@@ -902,9 +905,14 @@ footer {
       <button class="filter-btn active" data-category="all">Semua</button>
       <button class="filter-btn" data-category="facebook">Facebook</button>
       <button class="filter-btn" data-category="instagram">Instagram</button>
-      <button class="filter-btn" data-category="keamanan">Keamanan</button>
-      <button class="filter-btn" data-category="tutorial">Tutorial</button>
       <button class="filter-btn" data-category="tiktok">TikTok</button>
+      <button class="filter-btn" data-category="keamanan">Keamanan</button>
+      <button class="filter-btn" data-category="website">Website</button>
+      <button class="filter-btn" data-category="whatsapp">WhatsApp</button>
+      <button class="filter-btn" data-category="sosial-media">Sosial Media</button>
+      <button class="filter-btn" data-category="iklan">Iklan Digital</button>
+      <button class="filter-btn" data-category="desain">Desain</button>
+      <button class="filter-btn" data-category="tutorial">Tutorial</button>
     </div>
   </div>
 </section>
@@ -1092,7 +1100,7 @@ const blogPosts = [
     id: 8,
     title: "Jasa Pembuatan Website Profesional: Bangun Kredibilitas Bisnis Anda di Era Digital",
     excerpt: "Bagi bisnis yang ingin memiliki website profesional, Kedai Media menyediakan layanan pembuatan website yang dapat disesuaikan dengan kebutuhan bisnis, UMKM, perusahaan, organisasi, maupun personal.",
-    category: "facebook",
+    category: "website",
     url: "https://kedaimedia.com/blog/jasa-pembuatan-website-profesional",
     image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&q=80",
     author: "Tim Kedai Media",
@@ -1168,9 +1176,14 @@ function getCategoryLabel(category) {
   const labels = {
     facebook: 'Facebook',
     instagram: 'Instagram',
+    tiktok: 'TikTok',
     keamanan: 'Keamanan',
-    tutorial: 'Tutorial',
-    tiktok: 'TikTok'
+    website: 'Website',
+    whatsapp: 'WhatsApp',
+    'sosial-media': 'Sosial Media',
+    iklan: 'Iklan Digital',
+    desain: 'Desain',
+    tutorial: 'Tutorial'
   };
   return labels[category] || category;
 }
