@@ -539,7 +539,7 @@ function renderArticlesTable() {
         return;
     }
 
-    const categoryLabels = { facebook: 'Facebook', instagram: 'Instagram', tiktok: 'TikTok', keamanan: 'Keamanan', tutorial: 'Tutorial' };
+    const categoryLabels = { facebook: 'Facebook', instagram: 'Instagram', tiktok: 'TikTok', keamanan: 'Keamanan', website: 'Website', whatsapp: 'WhatsApp', 'sosial-media': 'Sosial Media', iklan: 'Iklan Digital', desain: 'Desain', tutorial: 'Tutorial' };
 
     tbody.innerHTML = filtered.map(a => `
         <tr>
