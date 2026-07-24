@@ -43,29 +43,62 @@ let lastUploadedPublicId = '';
 
 // === CLOUDINARY UPLOAD FUNCTIONS ===
 function compressImage(file, maxWidth, quality) {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
+        const timeout = setTimeout(() => reject(new Error('Timeout kompresi gambar (30 detik)')), 30000);
+
         const reader = new FileReader();
+        reader.onerror = () => { clearTimeout(timeout); reject(new Error('Gagal membaca file gambar')); };
         reader.onload = function(e) {
             const img = new Image();
+            img.onerror = () => { clearTimeout(timeout); reject(new Error('Format gambar tidak didukung')); };
             img.onload = function() {
-                const canvas = document.createElement('canvas');
-                let width = img.width;
-                let height = img.height;
+                try {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
 
-                // Resize if wider than maxWidth
-                if (width > maxWidth) {
-                    height = Math.round((height * maxWidth) / width);
-                    width = maxWidth;
-                }
+                    if (width > maxWidth) {
+                        height = Math.round((height * maxWidth) / width);
+                        width = maxWidth;
+                    }
 
-                canvas.width = width;
-                canvas.height = height;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(img, 0, 0, width, height);
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
 
-                canvas.toBlob(function(blob) {
+                    // Gunakan toDataURL (lebih reliable) lalu convert ke Blob
+                    const mimeType = 'image/webp';
+                    let dataUrl;
+                    try {
+                        dataUrl = canvas.toDataURL(mimeType, quality);
+                    } catch (err) {
+                        // Fallback ke JPEG jika WebP tidak didukung browser
+                        dataUrl = canvas.toDataURL('image/jpeg', quality);
+                    }
+
+                    // Cek apakah toDataURL gagal (return data:image/gif base64 kosong)
+                    if (!dataUrl || dataUrl === 'data:,') {
+                        clearTimeout(timeout);
+                        reject(new Error('Gagal mengkompres gambar'));
+                        return;
+                    }
+
+                    // Convert data URL ke Blob
+                    const byteStr = atob(dataUrl.split(',')[1]);
+                    const mimeStr = dataUrl.split(',')[0].split(':')[1].split(';')[0];
+                    const ab = new ArrayBuffer(byteStr.length);
+                    const ia = new Uint8Array(ab);
+                    for (let i = 0; i < byteStr.length; i++) {
+                        ia[i] = byteStr.charCodeAt(i);
+                    }
+                    const blob = new Blob([ab], { type: mimeStr });
+                    clearTimeout(timeout);
                     resolve(blob);
-                }, 'image/webp', quality);
+                } catch (err) {
+                    clearTimeout(timeout);
+                    reject(new Error('Gagal mengkompres: ' + err.message));
+                }
             };
             img.src = e.target.result;
         };
@@ -96,16 +129,19 @@ async function uploadToCloudinary(file) {
 
         // Step 2: Upload ke Cloudinary (unsigned upload)
         const formData = new FormData();
-        formData.append('file', compressedFile, file.name.replace(/\.[^.]+$/, '.webp'));
+        const ext = compressedFile.type === 'image/jpeg' ? '.jpg' : '.webp';
+        formData.append('file', compressedFile, file.name.replace(/\.[^.]+$/, ext));
         formData.append('upload_preset', CLOUDINARY_CONFIG.uploadPreset);
-        // Cloudinary server-side transformations untuk kompresi tambahan
-        formData.append('quality', 'auto:good');
-        formData.append('fetch_format', 'auto');
 
         const response = await fetch(CLOUDINARY_CONFIG.uploadUrl, {
             method: 'POST',
             body: formData
         });
+
+        if (!response.ok) {
+            const errData = await response.json().catch(() => ({}));
+            throw new Error(errData.error?.message || `HTTP ${response.status}`);
+        }
 
         const data = await response.json();
 
