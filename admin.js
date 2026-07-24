@@ -7,12 +7,13 @@
 // Dapatkan config ini dari: Firebase Console > Project Settings > Web App
 // Ganti nilai di bawah dengan config yang benar dari Firebase Console Anda
 const FIREBASE_CONFIG = {
-    apiKey: "AIzaSyDummy_REPLACE_WITH_YOUR_API_KEY",
+    apiKey: "AIzaSyCob2WoQs8nbtqwVojD_39H39Uuq8WDYpQ",
     authDomain: "kedaimedia-a26e5.firebaseapp.com",
     projectId: "kedaimedia-a26e5",
     storageBucket: "kedaimedia-a26e5.firebasestorage.app",
     messagingSenderId: "594372373056",
-    appId: "1:594372373056:web:REPLACE_WITH_YOUR_APP_ID"
+    appId: "1:594372373056:web:dc1e5e0d7ff3de7c430da5",
+    measurementId: "G-LTM1QNFLVP"
 };
 
 // === SITE CONFIG ===
