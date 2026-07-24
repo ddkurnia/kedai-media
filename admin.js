@@ -854,32 +854,146 @@ async function githubAPI(method, path, body) {
 
 async function publishToGitHub() {
     const slug = document.getElementById('articleSlug').value.trim();
+    const title = document.getElementById('articleTitle').value.trim();
+    const status = document.getElementById('articleStatus').value;
     if (!slug) return showToast('Slug wajib diisi.', 'error');
+    if (!title) return showToast('Judul wajib diisi.', 'error');
 
-    const html = generateArticleHTML();
-    const content = btoa(unescape(encodeURIComponent(html)));
-    const path = `blog/${slug}.html`;
+    // Auto-save dulu jika belum
+    const editId = document.getElementById('editArticleId').value;
+    if (!editId) {
+        saveArticle();
+    }
 
     const btn = document.getElementById('btnPublishGitHub');
     btn.disabled = true;
-    btn.innerHTML = '<span class="spinner"></span> Publishing...';
+    let step = 1;
+    const totalSteps = 4;
+    const updateBtn = (msg) => { btn.innerHTML = `<span class="spinner"></span> [${step++}/${totalSteps}] ${msg}`; };
 
-    // Get current file SHA if exists
-    const existing = await githubAPI('GET', `/contents/${path}`);
-    const sha = existing?.sha || null;
+    try {
+        // ========== STEP 1: Upload file HTML artikel ==========
+        updateBtn('Upload artikel HTML...');
+        const html = generateArticleHTML();
+        const articlePath = `blog/${slug}.html`;
 
-    const result = await githubAPI('PUT', `/contents/${path}`, {
-        message: `artikel: ${slug}`,
-        content: content,
-        sha: sha,
-        branch: getGitHubConfig().branch
-    });
+        const existingArticle = await githubAPI('GET', `/contents/${articlePath}`);
+        const articleSha = existingArticle?.sha || null;
 
-    btn.disabled = false;
-    btn.innerHTML = '<i class="ri-github-fill"></i> Publish ke GitHub';
+        const articleResult = await githubAPI('PUT', `/contents/${articlePath}`, {
+            message: `artikel: ${slug}`,
+            content: btoa(unescape(encodeURIComponent(html))),
+            sha: articleSha,
+            branch: getGitHubConfig().branch
+        });
+        if (!articleResult) throw new Error('Gagal upload artikel HTML');
 
-    if (result) {
-        showToast(`Artikel berhasil dipublish ke GitHub: /${path}`, 'success');
+        // ========== STEP 2: Update blog/index.html ==========
+        updateBtn('Update blog index...');
+        const image = document.getElementById('articleImage').value.trim();
+        const readTime = document.getElementById('articleReadTime').value.trim() || '5 menit';
+        const excerpt = document.getElementById('articleExcerpt').value.trim();
+        const category = document.getElementById('articleCategory').value;
+        const date = document.getElementById('articleMetaTitle') ? formatDate(new Date().toISOString()) : '';
+
+        const blogIndexFile = await githubAPI('GET', '/contents/blog/index.html');
+        if (!blogIndexFile) throw new Error('Gagal membaca blog/index.html');
+
+        let blogIndexContent = decodeURIComponent(escape(atob(blogIndexFile.content)));
+
+        // Cek apakah artikel sudah ada di blogPosts (berdasarkan slug di url)
+        const articleUrl = `${SITE_CONFIG.siteUrl}/blog/${slug}`;
+        const alreadyInIndex = blogIndexContent.includes(articleUrl);
+
+        if (!alreadyInIndex) {
+            // Cari ID tertinggi yang sudah ada
+            const idMatches = blogIndexContent.match(/id:\s*(\d+)/g);
+            let maxId = 0;
+            if (idMatches) {
+                idMatches.forEach(m => {
+                    const num = parseInt(m.match(/\d+/)[0]);
+                    if (num > maxId) maxId = num;
+                });
+            }
+            const newId = maxId + 1;
+
+            const newEntry = `  {
+    id: ${newId},
+    title: "${title.replace(/"/g, '\\"')}",
+    excerpt: "${(excerpt || '').replace(/"/g, '\\"').substring(0, 200)}",
+    category: "${category}",
+    url: "${articleUrl}",
+    image: "${image || 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&q=80'}",
+    author: "${SITE_CONFIG.author}",
+    authorImg: "${SITE_CONFIG.authorImg}",
+    date: "${date}",
+    readTime: "${readTime}",
+    featured: false
+  }`;
+
+            // Inject sebelum ];
+            // Cari pola penutup array: }
+];
+            blogIndexContent = blogIndexContent.replace(
+                /(\}\s*\];)/,
+                `},\n${newEntry}\n$1`
+            );
+
+            const blogIndexResult = await githubAPI('PUT', '/contents/blog/index.html', {
+                message: `update: tambah artikel ${slug} ke blogPosts`,
+                content: btoa(unescape(encodeURIComponent(blogIndexContent))),
+                sha: blogIndexFile.sha,
+                branch: getGitHubConfig().branch
+            });
+            if (!blogIndexResult) throw new Error('Gagal update blog/index.html');
+        }
+
+        // ========== STEP 3: Update sitemap.xml ==========
+        updateBtn('Update sitemap...');
+        const sitemapFile = await githubAPI('GET', '/contents/sitemap.xml');
+        if (sitemapFile) {
+            let sitemapContent = decodeURIComponent(escape(atob(sitemapFile.content)));
+
+            // Cek apakah sudah ada di sitemap
+            if (!sitemapContent.includes(articleUrl)) {
+                const newUrlEntry = `\n<url>\n<loc>${articleUrl}</loc>\n<priority>0.80</priority>\n</url>\n  `;
+                sitemapContent = sitemapContent.replace('</urlset>', `${newUrlEntry}</urlset>`);
+
+                await githubAPI('PUT', '/contents/sitemap.xml', {
+                    message: `update: sitemap tambah ${slug}`,
+                    content: btoa(unescape(encodeURIComponent(sitemapContent))),
+                    sha: sitemapFile.sha,
+                    branch: getGitHubConfig().branch
+                });
+            }
+        }
+
+        // ========== STEP 4: Ping Google ==========
+        updateBtn('Ping Google...');
+        try {
+            await fetch(`https://www.google.com/ping?sitemap=${encodeURIComponent(SITE_CONFIG.siteUrl + '/sitemap.xml')}`, { mode: 'no-cors' });
+        } catch (e) {}
+
+        // ========== DONE ==========
+        btn.disabled = false;
+        btn.innerHTML = '<i class="ri-github-fill"></i> Publish ke GitHub';
+        showToast(`Artikel LIVE! ${alreadyInIndex ? '' : 'blog/index.html + sitemap.xml updated + '}Google pinged. URL: ${articleUrl}`, 'success');
+
+        // Update status artikel jadi published
+        const art = articles.find(a => a.slug === slug);
+        if (art && art.status !== 'published') {
+            art.status = 'published';
+            localStorage.setItem('km_articles', JSON.stringify(articles));
+            if (db) {
+                db.collection('articles').doc(art.id).set({ status: 'published' }, { merge: true });
+            }
+            loadArticles();
+        }
+
+    } catch (error) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="ri-github-fill"></i> Publish ke GitHub';
+        showToast('Publish gagal: ' + error.message, 'error');
     }
 }
 
