@@ -931,9 +931,7 @@ async function publishToGitHub() {
     featured: false
   }`;
 
-            // Inject sebelum ];
-            // Cari pola penutup array: }
-];
+            // Inject sebelum penutup array ];
             blogIndexContent = blogIndexContent.replace(
                 /(\}\s*\];)/,
                 `},\n${newEntry}\n$1`
