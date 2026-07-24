@@ -934,10 +934,12 @@ async function publishToGitHub() {
     featured: false
   }`;
 
-            // Inject sebelum penutup array ];
+            // Inject sebelum penutup array
+            // Cari pola terakhir: } diikuti spasi/enter lalu ];
+            // Regex hanya mengandung ]; sebagai anchor, bukan dalam capture group
             blogIndexContent = blogIndexContent.replace(
-                /(\}\s*\];)/,
-                `},\n${newEntry}\n$1`
+                /\}\s*\];/,
+                `},\n${newEntry}\n];`
             );
 
             const blogIndexResult = await githubAPI('PUT', '/contents/blog/index.html', {
