@@ -204,7 +204,7 @@
                     <div class="col-8">
                         <div class="form-group">
                             <label>URL Gambar Thumbnail</label>
-                            <input type="url" id="articleImage" placeholder="https://images.unsplash.com/...">
+                            <input type="url" id="articleImage" placeholder="https://images.unsplash.com/... atau upload di bawah">
                             <div class="image-preview-container" id="imagePreviewContainer"></div>
                         </div>
                     </div>
@@ -219,6 +219,34 @@
                                 <option value="draft">Draft</option>
                                 <option value="published">Terbit</option>
                             </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cloudinary Image Upload -->
+                <div class="form-group">
+                    <label><i class="ri-image-add-line"></i> Upload Gambar (Cloudinary)</label>
+                    <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+                        <div class="upload-zone-content" id="uploadZoneContent">
+                            <i class="ri-cloud-upload-line" style="font-size:40px;color:#1a73e8;"></i>
+                            <p style="font-weight:600;margin-top:8px;">Klik atau drag & drop gambar ke sini</p>
+                            <p style="font-size:12px;color:#9aa0a6;margin-top:4px;">JPG, PNG, WebP (maks 10MB) — auto kompres ke WebP</p>
+                        </div>
+                        <div class="upload-progress hidden" id="uploadProgress">
+                            <span class="spinner"></span>
+                            <span id="uploadStatusText">Mengupload & mengkompres...</span>
+                        </div>
+                    </div>
+                    <input type="file" id="fileInput" accept="image/*" onchange="handleFileSelect(event)" style="display:none;">
+                    <div id="uploadResult" class="upload-result hidden">
+                        <img id="uploadPreviewImg" src="" alt="Preview">
+                        <div class="upload-result-info">
+                            <span id="uploadFileName" style="font-weight:500;font-size:13px;"></span>
+                            <span id="uploadFileSize" style="font-size:12px;color:#9aa0a6;"></span>
+                            <div style="display:flex;gap:6px;margin-top:8px;">
+                                <button type="button" class="btn-secondary" style="padding:4px 10px;font-size:12px;" onclick="copyUploadUrl()"><i class="ri-file-copy-line"></i> Copy URL</button>
+                                <button type="button" class="btn-secondary" style="padding:4px 10px;font-size:12px;" onclick="useAsThumbnail()"><i class="ri-image-line"></i> Jadikan Thumbnail</button>
+                                <button type="button" class="btn-secondary" style="padding:4px 10px;font-size:12px;" onclick="insertImageToContent()"><i class="ri-add-line"></i> Insert ke Konten</button>
+                            </div>
                         </div>
                     </div>
                 </div>

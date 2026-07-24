@@ -16,6 +16,214 @@ const FIREBASE_CONFIG = {
     measurementId: "G-LTM1QNFLVP"
 };
 
+// === CLOUDINARY CONFIG ===
+const CLOUDINARY_CONFIG = {
+    cloudName: 'dnpdjhdgr',
+    uploadPreset: 'kedaimedia',
+    // Auto kompres: WebP format + quality auto + max width 1200px
+    get uploadUrl() {
+        return `https://api.cloudinary.com/v1_1/${this.cloudName}/image/upload`;
+    },
+    // Thumbnail URL: auto format (WebP) + auto quality + width 600
+    getThumbUrl: function(publicId) {
+        return `https://res.cloudinary.com/${this.cloudName}/image/upload/f_auto,q_auto,w_600/${publicId}`;
+    },
+    // Artikel gambar URL: auto format + auto quality + width 800
+    getArticleUrl: function(publicId) {
+        return `https://res.cloudinary.com/${this.cloudName}/image/upload/f_auto,q_auto,w_800/${publicId}`;
+    },
+    // OG Image URL: 1200x630
+    getOgUrl: function(publicId) {
+        return `https://res.cloudinary.com/${this.cloudName}/image/upload/f_auto,q_auto,w_1200,h_630,c_fill/${publicId}`;
+    }
+};
+
+let lastUploadedUrl = '';
+let lastUploadedPublicId = '';
+
+// === CLOUDINARY UPLOAD FUNCTIONS ===
+function compressImage(file, maxWidth, quality) {
+    return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = new Image();
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                let width = img.width;
+                let height = img.height;
+
+                // Resize if wider than maxWidth
+                if (width > maxWidth) {
+                    height = Math.round((height * maxWidth) / width);
+                    width = maxWidth;
+                }
+
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+
+                canvas.toBlob(function(blob) {
+                    resolve(blob);
+                }, 'image/webp', quality);
+            };
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
+async function uploadToCloudinary(file) {
+    const zone = document.getElementById('uploadZone');
+    const zoneContent = document.getElementById('uploadZoneContent');
+    const progress = document.getElementById('uploadProgress');
+    const statusText = document.getElementById('uploadStatusText');
+
+    // Show progress
+    zone.classList.add('uploading');
+    zoneContent.classList.add('hidden');
+    progress.classList.remove('hidden');
+    statusText.textContent = 'Mengkompres gambar...';
+
+    try {
+        // Step 1: Kompres gambar (max 1600px, quality 0.8)
+        const compressedFile = await compressImage(file, 1600, 0.8);
+        const originalSize = file.size;
+        const compressedSize = compressedFile.size;
+        const savings = Math.round((1 - compressedSize / originalSize) * 100);
+
+        statusText.textContent = `Terkompres ${savings}% (${formatBytes(compressedSize)}) — Mengupload...`;
+
+        // Step 2: Upload ke Cloudinary (unsigned upload)
+        const formData = new FormData();
+        formData.append('file', compressedFile, file.name.replace(/\.[^.]+$/, '.webp'));
+        formData.append('upload_preset', CLOUDINARY_CONFIG.uploadPreset);
+        // Cloudinary server-side transformations untuk kompresi tambahan
+        formData.append('quality', 'auto:good');
+        formData.append('fetch_format', 'auto');
+
+        const response = await fetch(CLOUDINARY_CONFIG.uploadUrl, {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.error) {
+            throw new Error(data.error.message || 'Upload gagal');
+        }
+
+        // Step 3: Tampilkan hasil
+        lastUploadedUrl = CLOUDINARY_CONFIG.getArticleUrl(data.public_id);
+        lastUploadedPublicId = data.public_id;
+
+        // Show result
+        document.getElementById('uploadResult').classList.remove('hidden');
+        document.getElementById('uploadPreviewImg').src = CLOUDINARY_CONFIG.getThumbUrl(data.public_id);
+        document.getElementById('uploadFileName').textContent = data.public_id.split('/').pop();
+        document.getElementById('uploadFileSize').textContent =
+            `${formatBytes(originalSize)} → ${formatBytes(compressedSize)} (hemat ${savings}%) | Format: ${data.format}`;
+
+        showToast(`Gambar berhasil diupload! Kompresi: ${savings}%`, 'success');
+
+    } catch (error) {
+        showToast('Upload gagal: ' + error.message, 'error');
+    } finally {
+        // Reset zone
+        zone.classList.remove('uploading');
+        zoneContent.classList.remove('hidden');
+        progress.classList.add('hidden');
+    }
+}
+
+function handleFileSelect(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    // Validate
+    if (!file.type.startsWith('image/')) {
+        showToast('Hanya file gambar yang diperbolehkan.', 'error');
+        return;
+    }
+    if (file.size > 10 * 1024 * 1024) {
+        showToast('Ukuran file maksimal 10MB.', 'error');
+        return;
+    }
+
+    uploadToCloudinary(file);
+    event.target.value = ''; // Reset input
+}
+
+function copyUploadUrl() {
+    if (!lastUploadedUrl) return;
+    navigator.clipboard.writeText(lastUploadedUrl).then(() => {
+        showToast('URL gambar berhasil di-copy!', 'success');
+    });
+}
+
+function useAsThumbnail() {
+    if (!lastUploadedUrl) return;
+    // Use thumbnail size for article image
+    const thumbUrl = CLOUDINARY_CONFIG.getThumbUrl(lastUploadedPublicId);
+    document.getElementById('articleImage').value = thumbUrl;
+    showImagePreview();
+    showToast('Gambar dijadikan thumbnail!', 'success');
+}
+
+function insertImageToContent() {
+    if (!lastUploadedUrl) return;
+    const articleTitle = document.getElementById('articleTitle').value || 'gambar';
+    const imgTag = `<img src="${lastUploadedUrl}" alt="${escAttr(articleTitle)}">`;
+    const textarea = document.getElementById('articleContent');
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    textarea.value = textarea.value.substring(0, start) + imgTag + '\n' + textarea.value.substring(end);
+    textarea.focus();
+    showToast('Gambar di-insert ke konten artikel!', 'success');
+}
+
+function formatBytes(bytes) {
+    if (bytes === 0) return '0 B';
+    const k = 1024;
+    const sizes = ['B', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+}
+
+// === DRAG & DROP ===
+function initDragDrop() {
+    const zone = document.getElementById('uploadZone');
+    if (!zone) return;
+
+    ['dragenter', 'dragover'].forEach(evt => {
+        zone.addEventListener(evt, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            zone.classList.add('drag-over');
+        });
+    });
+
+    ['dragleave', 'drop'].forEach(evt => {
+        zone.addEventListener(evt, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            zone.classList.remove('drag-over');
+        });
+    });
+
+    zone.addEventListener('drop', (e) => {
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            const file = files[0];
+            if (file.type.startsWith('image/')) {
+                uploadToCloudinary(file);
+            } else {
+                showToast('Hanya file gambar yang diperbolehkan.', 'error');
+            }
+        }
+    });
+}
+
 // === SITE CONFIG ===
 const SITE_CONFIG = {
     domain: 'kedaimedia.com',
@@ -422,6 +630,7 @@ function resetForm() {
     document.getElementById('previewSection').classList.add('hidden');
     document.getElementById('generatedHTMLSection').classList.add('hidden');
     document.getElementById('imagePreviewContainer').innerHTML = '';
+    document.getElementById('uploadResult')?.classList.add('hidden');
     updateCharCount();
     updateSlugPreview();
 }
@@ -1119,6 +1328,9 @@ document.getElementById('loginForm').addEventListener('submit', handleLogin);
 
 // === INIT ===
 document.addEventListener('DOMContentLoaded', () => {
+    // Init drag & drop
+    initDragDrop();
+
     // Load Firebase SDK
     const script = document.createElement('script');
     script.src = 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js';
