@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin Panel - Kedai Media</title>
+    <link rel="icon" type="image/x-icon" href="kmfavicon.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- ===== LOGIN SCREEN ===== -->
+<div id="loginScreen" class="login-screen">
+    <div class="login-container">
+        <div class="login-logo">
+            <i class="ri-shield-keyhole-line" style="font-size:48px;color:#1a73e8;"></i>
+            <h1>Kedai Media</h1>
+            <p>Admin Panel</p>
+        </div>
+        <div id="loginError" class="error-msg"></div>
+        <form id="loginForm" class="login-form">
+            <div class="form-group">
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" placeholder="admin@kedaimedia.com" required>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" placeholder="Masukkan password" required>
+                <button type="button" class="toggle-pw" onclick="togglePassword()"><i class="ri-eye-off-line" id="eyeIcon"></i></button>
+            </div>
+            <button type="submit" class="btn-login" id="btnLogin">
+                <span id="loginBtnText">Masuk</span>
+                <span id="loginSpinner" class="spinner hidden"></span>
+            </button>
+        </form>
+        <p class="login-note">Hanya untuk administrator Kedai Media</p>
+    </div>
+</div>
+
+<!-- ===== ADMIN DASHBOARD ===== -->
+<div id="adminDashboard" class="admin-dashboard hidden">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>Kedai Media</h2>
+            <span class="badge-admin">ADMIN</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-section="dashboard" onclick="showSection('dashboard')">
+                <span class="nav-icon"><i class="ri-dashboard-3-line"></i></span> Dashboard
+            </a>
+            <a href="#" class="nav-item" data-section="articles" onclick="showSection('articles')">
+                <span class="nav-icon"><i class="ri-article-line"></i></span> Kelola Artikel
+            </a>
+            <a href="#" class="nav-item" data-section="new-article" onclick="showSection('new-article')">
+                <span class="nav-icon"><i class="ri-add-circle-line"></i></span> Artikel Baru
+            </a>
+            <a href="#" class="nav-item" data-section="seo" onclick="showSection('seo')">
+                <span class="nav-icon"><i class="ri-search-eye-line"></i></span> SEO Tools
+            </a>
+            <a href="#" class="nav-item" data-section="settings" onclick="showSection('settings')">
+                <span class="nav-icon"><i class="ri-settings-4-line"></i></span> Pengaturan
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <button class="btn-logout" onclick="logout()">
+                <i class="ri-logout-box-r-line"></i> Keluar
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main-content">
+        <header class="topbar">
+            <button class="btn-toggle-sidebar" onclick="toggleSidebar()"><i class="ri-menu-line"></i></button>
+            <h3 id="pageTitle">Dashboard</h3>
+            <div class="topbar-right">
+                <span class="admin-email" id="adminEmail"></span>
+            </div>
+        </header>
+
+        <!-- DASHBOARD SECTION -->
+        <div id="section-dashboard" class="content-section active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="statTotal">0</div>
+                    <div class="stat-label">Total Artikel</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="statPublished">0</div>
+                    <div class="stat-label">Terbit</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="statDraft">0</div>
+                    <div class="stat-label">Draft</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="statIndexed">0</div>
+                    <div class="stat-label">Google Indexed</div>
+                </div>
+            </div>
+            <div class="dashboard-info">
+                <div class="info-card">
+                    <h4><i class="ri-file-list-3-line"></i> Artikel Terbaru</h4>
+                    <div class="recent-list" id="recentArticles">
+                        <p style="color:#9aa0a6;font-size:14px;">Memuat...</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <h4><i class="ri-search-line"></i> Status SEO</h4>
+                    <div class="seo-status-list" id="seoStatusList">
+                        <p style="color:#9aa0a6;font-size:14px;">Memuat...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ARTICLES SECTION -->
+        <div id="section-articles" class="content-section">
+            <div class="section-header">
+                <h3>Kelola Artikel</h3>
+                <button class="btn-primary" onclick="showSection('new-article')"><i class="ri-add-line"></i> Artikel Baru</button>
+            </div>
+            <div class="filter-bar">
+                <input type="text" class="input-search" id="searchArticles" placeholder="Cari artikel..." oninput="filterArticles()">
+                <select class="select-filter" id="filterStatus" onchange="filterArticles()">
+                    <option value="all">Semua Status</option>
+                    <option value="published">Terbit</option>
+                    <option value="draft">Draft</option>
+                </select>
+            </div>
+            <div class="articles-table-container">
+                <table class="articles-table">
+                    <thead>
+                        <tr>
+                            <th>Judul</th>
+                            <th>Kategori</th>
+                            <th>Status</th>
+                            <th>Tanggal</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="articlesTableBody">
+                        <tr><td colspan="5" style="text-align:center;padding:40px;color:#9aa0a6;">Memuat artikel...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- NEW ARTICLE SECTION -->
+        <div id="section-new-article" class="content-section">
+            <div class="section-header">
+                <h3 id="editorTitle">Tulis Artikel Baru</h3>
+            </div>
+            <form id="articleForm" class="article-form" onsubmit="return false;">
+                <input type="hidden" id="editArticleId" value="">
+
+                <!-- SEO Fields -->
+                <div style="background:#e8f0fe;padding:16px;border-radius:8px;margin-bottom:24px;border-left:4px solid #1a73e8;">
+                    <h4 style="margin-bottom:12px;color:#1a73e8;"><i class="ri-search-eye-line"></i> SEO Settings</h4>
+                    <div class="form-row">
+                        <div class="col-8">
+                            <div class="form-group">
+                                <label>URL Slug</label>
+                                <input type="text" id="articleSlug" placeholder="contoh: cara-mengamankan-akun-facebook" required>
+                                <span class="form-hint">Akan menjadi: kedaimedia.com/blog/<span id="slugPreview">slug-anda</span></span>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label>Kategori</label>
+                                <select id="articleCategory" required>
+                                    <option value="facebook">Facebook</option>
+                                    <option value="instagram">Instagram</option>
+                                    <option value="tiktok">TikTok</option>
+                                    <option value="keamanan">Keamanan</option>
+                                    <option value="tutorial">Tutorial</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Meta Title (SEO) <span id="titleCharCount" style="color:#9aa0a6;">0/60</span></label>
+                        <input type="text" id="articleMetaTitle" placeholder="Judul SEO (maks 60 karakter)" oninput="updateCharCount()">
+                    </div>
+                    <div class="form-group">
+                        <label>Meta Description <span id="descCharCount" style="color:#9aa0a6;">0/160</span></label>
+                        <textarea id="articleMetaDesc" rows="2" placeholder="Deskripsi SEO (maks 160 karakter)" oninput="updateCharCount()"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Keywords (pisah dengan koma)</label>
+                        <input type="text" id="articleKeywords" placeholder="facebook hack, pemulihan akun, keamanan">
+                    </div>
+                </div>
+
+                <!-- Article Fields -->
+                <div class="form-group">
+                    <label>Judul Artikel</label>
+                    <input type="text" id="articleTitle" placeholder="Judul artikel yang menarik" required>
+                </div>
+                <div class="form-row">
+                    <div class="col-8">
+                        <div class="form-group">
+                            <label>URL Gambar Thumbnail</label>
+                            <input type="url" id="articleImage" placeholder="https://images.unsplash.com/...">
+                            <div class="image-preview-container" id="imagePreviewContainer"></div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label>Estimasi Baca</label>
+                            <input type="text" id="articleReadTime" placeholder="5 menit">
+                        </div>
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select id="articleStatus">
+                                <option value="draft">Draft</option>
+                                <option value="published">Terbit</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Excerpt (Ringkasan)</label>
+                    <textarea id="articleExcerpt" rows="3" placeholder="Ringkasan singkat artikel (2-3 kalimat)"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Konten Artikel (HTML)</label>
+                    <div class="editor-toolbar">
+                        <button type="button" class="toolbar-btn" onclick="insertTag('h2')" title="Heading 2">H2</button>
+                        <button type="button" class="toolbar-btn" onclick="insertTag('h3')" title="Heading 3">H3</button>
+                        <button type="button" class="toolbar-btn" onclick="insertTag('p')" title="Paragraf">P</button>
+                        <button type="button" class="toolbar-btn" onclick="insertTag('strong')" title="Bold"><b>B</b></button>
+                        <button type="button" class="toolbar-btn" onclick="insertTag('em')" title="Italic"><i>I</i></button>
+                        <button type="button" class="toolbar-btn" onclick="insertTag('ul')" title="List UL">UL</button>
+                        <button type="button" class="toolbar-btn" onclick="insertTag('ol')" title="List OL">OL</button>
+                        <button type="button" class="toolbar-btn" onclick="insertTag('img')" title="Image">IMG</button>
+                        <button type="button" class="toolbar-btn" onclick="insertTag('a')" title="Link">A</button>
+                        <button type="button" class="toolbar-btn" onclick="insertTag('blockquote')" title="Quote">Q</button>
+                        <button type="button" class="toolbar-btn" onclick="insertTag('pre')" title="Code">PRE</button>
+                    </div>
+                    <textarea id="articleContent" rows="20" placeholder="Tulis konten artikel dalam format HTML...&#10;&#10;<h2>Sub Heading</h2>&#10;<p>Paragraf artikel Anda...</p>&#10;<ul><li>Point 1</li></ul>" style="font-family:monospace;"></textarea>
+                    <div class="editor-bottom">
+                        <button type="button" class="btn-secondary" onclick="previewArticle()"><i class="ri-eye-line"></i> Preview</button>
+                        <button type="button" class="btn-secondary" onclick="generateHTML()"><i class="ri-code-s-slash-line"></i> Generate HTML</button>
+                    </div>
+                </div>
+
+                <!-- Preview -->
+                <div id="previewSection" class="preview-container hidden">
+                    <h4>Preview Artikel</h4>
+                    <div class="article-preview-content" id="articlePreview"></div>
+                </div>
+
+                <!-- Generated HTML -->
+                <div id="generatedHTMLSection" class="preview-container hidden">
+                    <h4>Generated Article HTML</h4>
+                    <textarea id="generatedHTML" class="code-editor" rows="20" readonly></textarea>
+                    <div style="margin-top:12px;display:flex;gap:8px;">
+                        <button type="button" class="btn-primary" onclick="copyGeneratedHTML()"><i class="ri-file-copy-line"></i> Copy HTML</button>
+                        <button type="button" class="btn-secondary" onclick="downloadHTML()"><i class="ri-download-line"></i> Download File</button>
+                        <button type="button" class="btn-secondary" onclick="publishToGitHub()" id="btnPublishGitHub" style="background:#188038;color:#fff;border:none;"><i class="ri-github-fill"></i> Publish ke GitHub</button>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="button" class="btn-primary" onclick="saveArticle()" id="btnSaveArticle"><i class="ri-save-line"></i> Simpan Artikel</button>
+                    <button type="button" class="btn-secondary" onclick="resetForm()"><i class="ri-refresh-line"></i> Reset</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- SEO TOOLS SECTION -->
+        <div id="section-seo" class="content-section">
+            <div class="section-header">
+                <h3>SEO Tools</h3>
+            </div>
+            <div class="seo-tools-grid">
+                <!-- Google Indexing -->
+                <div class="tool-card">
+                    <h4><i class="ri-search-line"></i> Request Google Indexing</h4>
+                    <p>Kirim URL ke Google agar segera diindeks. Biasanya memerlukan Google Search Console API.</p>
+                    <div class="form-group">
+                        <label>URL untuk diindeks</label>
+                        <input type="url" class="input-full" id="indexingUrl" placeholder="https://kedaimedia.com/blog/artikel-anda">
+                    </div>
+                    <button class="btn-primary" onclick="requestIndexing()" id="btnIndexing">Request Indexing</button>
+                    <div id="indexingResult" class="result-msg"></div>
+                </div>
+
+                <!-- Ping Sitemap -->
+                <div class="tool-card">
+                    <h4><i class="ri-notification-3-line"></i> Ping Sitemap ke Google</h4>
+                    <p>Beritahu Google bahwa sitemap Anda sudah diupdate.</p>
+                    <button class="btn-primary" onclick="pingSitemap()" id="btnPing">Ping Sitemap</button>
+                    <div id="pingResult" class="result-msg"></div>
+                </div>
+
+                <!-- Generate Sitemap -->
+                <div class="tool-card wide">
+                    <h4><i class="ri-file-list-3-line"></i> Generate Sitemap XML</h4>
+                    <p>Generate sitemap.xml baru berdasarkan artikel yang terdaftar. Copy dan update manual di repo, atau publish langsung ke GitHub.</p>
+                    <button class="btn-primary" onclick="generateSitemap()" id="btnSitemap">Generate Sitemap</button>
+                    <div id="sitemapEditor" class="hidden" style="margin-top:16px;">
+                        <textarea id="sitemapContent" class="code-editor" rows="15" readonly></textarea>
+                        <div style="margin-top:12px;display:flex;gap:8px;">
+                            <button class="btn-secondary" onclick="copySitemap()"><i class="ri-file-copy-line"></i> Copy</button>
+                            <button class="btn-primary" onclick="publishSitemapToGitHub()" style="background:#188038;color:#fff;border:none;"><i class="ri-github-fill"></i> Publish ke GitHub</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SEO Checker -->
+                <div class="tool-card wide">
+                    <h4><i class="ri-bar-chart-box-line"></i> SEO Score Checker</h4>
+                    <p>Periksa skor SEO artikel sebelum dipublish.</p>
+                    <div id="seoReport" class="seo-report"></div>
+                </div>
+
+                <!-- Update Blog Index -->
+                <div class="tool-card wide">
+                    <h4><i class="ri-code-box-line"></i> Update Blog Index</h4>
+                    <p>Generate kode JavaScript blogPosts[] untuk blog/index.html. Tambahkan ke array blogPosts yang sudah ada.</p>
+                    <button class="btn-primary" onclick="generateBlogIndex()" id="btnBlogIndex">Generate blogPosts Code</button>
+                    <div id="blogIndexEditor" class="hidden" style="margin-top:16px;">
+                        <textarea id="blogIndexContent" class="code-editor" rows="15" readonly></textarea>
+                        <div style="margin-top:12px;display:flex;gap:8px;">
+                            <button class="btn-secondary" onclick="copyBlogIndex()"><i class="ri-file-copy-line"></i> Copy</button>
+                        </div>
+                        <p class="form-hint" style="margin-top:8px;">Paste kode ini ke dalam array blogPosts di blog/index.html, sebelum tanda ];</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SETTINGS SECTION -->
+        <div id="section-settings" class="content-section">
+            <div class="section-header">
+                <h3>Pengaturan</h3>
+            </div>
+            <div class="settings-grid">
+                <!-- Firebase Config -->
+                <div class="info-card">
+                    <h4><i class="ri-fire-line"></i> Firebase Configuration</h4>
+                    <div class="info-list">
+                        <div class="info-item"><span>Project</span><span>kedaimedia-a26e5</span></div>
+                        <div class="info-item"><span>Project ID</span><span>594372373056</span></div>
+                        <div class="info-item"><span>Auth Status</span><span id="authStatus">Connected</span></div>
+                    </div>
+                </div>
+
+                <!-- GitHub Token -->
+                <div class="info-card">
+                    <h4><i class="ri-github-fill"></i> GitHub Integration</h4>
+                    <div class="form-group">
+                        <label>GitHub Personal Access Token</label>
+                        <input type="password" id="githubToken" class="input-full" placeholder="ghp_xxxxxxxxxxxx">
+                        <span class="form-hint">Token disimpan di browser localStorage. Diperlukan untuk publish langsung ke repo.</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Repo Owner</label>
+                        <input type="text" id="githubOwner" class="input-full" value="ddkurnia">
+                    </div>
+                    <div class="form-group">
+                        <label>Repo Name</label>
+                        <input type="text" id="githubRepo" class="input-full" value="kedai-media">
+                    </div>
+                    <div class="form-group">
+                        <label>Branch</label>
+                        <input type="text" id="githubBranch" class="input-full" value="main">
+                    </div>
+                    <button class="btn-primary" onclick="saveGitHubSettings()"><i class="ri-save-line"></i> Simpan</button>
+                    <button class="btn-secondary" onclick="testGitHubConnection()" style="margin-left:8px;"><i class="ri-test-tube-line"></i> Test Koneksi</button>
+                    <div id="githubTestResult" class="result-msg" style="margin-top:12px;"></div>
+                </div>
+
+                <!-- Site Info -->
+                <div class="info-card">
+                    <h4><i class="ri-global-line"></i> Informasi Website</h4>
+                    <div class="info-list">
+                        <div class="info-item"><span>Domain</span><span>kedaimedia.com</span></div>
+                        <div class="info-item"><span>Platform</span><span>GitHub Pages</span></div>
+                        <div class="info-item"><span>Articles Dir</span><span>/blog/</span></div>
+                    </div>
+                </div>
+
+                <!-- Data Management -->
+                <div class="info-card">
+                    <h4><i class="ri-database-2-line"></i> Kelola Data</h4>
+                    <div style="display:flex;flex-direction:column;gap:12px;">
+                        <button class="btn-secondary" onclick="exportData()"><i class="ri-download-line"></i> Export Semua Data (JSON)</button>
+                        <label class="btn-secondary" style="text-align:center;cursor:pointer;">
+                            <i class="ri-upload-line"></i> Import Data (JSON)
+                            <input type="file" accept=".json" onchange="importData(event)" style="display:none;">
+                        </label>
+                        <button class="btn-danger" onclick="confirmClearData()"><i class="ri-delete-bin-line"></i> Hapus Semua Data Lokal</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- DELETE MODAL -->
+<div id="deleteModal" class="modal hidden">
+    <div class="modal-overlay" onclick="closeDeleteModal()"></div>
+    <div class="modal-content">
+        <h3>Hapus Artikel?</h3>
+        <p>Artikel yang dihapus tidak dapat dikembalikan. Apakah Anda yakin?</p>
+        <div class="modal-actions">
+            <button class="btn-secondary" onclick="closeDeleteModal()">Batal</button>
+            <button class="btn-danger" id="btnConfirmDelete" onclick="confirmDeleteArticle()">Hapus</button>
+        </div>
+    </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="toast hidden"></div>
+
+<script src="admin.js"></script>
+</body>
+</html>
