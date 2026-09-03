@@ -316,18 +316,41 @@ strong { color: #0f172a; font-weight: 700; }
   transform: translateY(-4px);
   box-shadow: 0 16px 32px rgba(220, 38, 38, 0.1);
 }
+.service-card .service-image {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  background: #fee2e2;
+}
+.service-card .service-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.service-card:hover .service-image img {
+  transform: scale(1.06);
+}
 .service-card .num {
+  position: absolute;
+  top: 10px;
+  left: 10px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   background: linear-gradient(135deg, #ef4444, #dc2626);
   color: #fff;
   font-weight: 700;
   border-radius: 50%;
-  margin-bottom: 12px;
-  font-size: 15px;
+  font-size: 14px;
+  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.4);
+  z-index: 1;
 }
 .service-card h3 {
   margin: 0 0 8px 0;
@@ -1047,31 +1070,46 @@ strong { color: #0f172a; font-weight: 700; }
 
 <div class="service-grid">
   <a href="https://kedaimedia.com/jasa-pemulihan-akun-facebook" class="service-card" style="text-decoration:none;color:inherit;">
-    <span class="num">F</span>
+    <div class="service-image">
+      <span class="num">F</span>
+      <img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Jasa Pemulihan Akun Facebook" loading="lazy">
+    </div>
     <h3>Pemulihan Akun Facebook</h3>
     <p>Bantuan saat akun Facebook tidak bisa login, email berubah, nomor HP diganti, atau dugaan akun diambil alih.</p>
     <span style="display:inline-block;margin-top:10px;color:#dc2626;font-weight:600;font-size:14px;">Pelajari Layanan &rsaquo;</span>
   </a>
   <a href="https://kedaimedia.com/jasa-pemulihan-akun-instagram" class="service-card" style="text-decoration:none;color:inherit;">
-    <span class="num">IG</span>
+    <div class="service-image">
+      <span class="num">IG</span>
+      <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Jasa Pemulihan Akun Instagram" loading="lazy">
+    </div>
     <h3>Pemulihan Akun Instagram</h3>
     <p>Bantuan saat akun Instagram kehilangan akses, email diganti, atau masalah verifikasi dua faktor.</p>
     <span style="display:inline-block;margin-top:10px;color:#dc2626;font-weight:600;font-size:14px;">Pelajari Layanan &rsaquo;</span>
   </a>
   <a href="https://kedaimedia.com/jasa-pemulihan-akun-tiktok" class="service-card" style="text-decoration:none;color:inherit;">
-    <span class="num">TT</span>
+    <div class="service-image">
+      <span class="num">TT</span>
+      <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Jasa Pemulihan Akun TikTok" loading="lazy">
+    </div>
     <h3>Pemulihan Akun TikTok</h3>
     <p>Bantuan saat akun TikTok tidak bisa login, email berubah, nomor telepon diganti, atau OTP bermasalah.</p>
     <span style="display:inline-block;margin-top:10px;color:#dc2626;font-weight:600;font-size:14px;">Pelajari Layanan &rsaquo;</span>
   </a>
   <a href="https://kedaimedia.com/jasa-pemulihan-akun-google" class="service-card" style="text-decoration:none;color:inherit;">
-    <span class="num">G</span>
+    <div class="service-image">
+      <span class="num">G</span>
+      <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Jasa Pemulihan Akun Google" loading="lazy">
+    </div>
     <h3>Pemulihan Akun Google</h3>
     <p>Bantuan recovery akun Google dan Gmail yang kehilangan akses, lupa password, atau verifikasi bermasalah.</p>
     <span style="display:inline-block;margin-top:10px;color:#dc2626;font-weight:600;font-size:14px;">Pelajari Layanan &rsaquo;</span>
   </a>
   <a href="https://kedaimedia.com/jasa-pemulihan-email" class="service-card" style="text-decoration:none;color:inherit;">
-    <span class="num">E</span>
+    <div class="service-image">
+      <span class="num">E</span>
+      <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Jasa Pemulihan Email" loading="lazy">
+    </div>
     <h3>Pemulihan Email</h3>
     <p>Bantuan saat email tidak bisa login, password berubah, atau email pemulihan tidak dapat diakses.</p>
     <span style="display:inline-block;margin-top:10px;color:#dc2626;font-weight:600;font-size:14px;">Pelajari Layanan &rsaquo;</span>
